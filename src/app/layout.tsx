@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://travel.example.com"),
+  metadataBase: new URL("https://orsinialberto.github.io/blatero"),
   title: {
     default: "Diario di Viaggio",
     template: "%s · Diario di Viaggio",
