@@ -14,6 +14,7 @@ tags:
   - Cammini
 location: "Portogallo"
 duration: "14 giorni"
+totalKilometers: 226.5
 coords:
   lat: 37.926973
   lng: -8.806998

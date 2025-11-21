@@ -14,6 +14,7 @@ tags:
   - ZainoInSpalla
 location: "Italia"
 duration: "5 giorni"
+totalKilometers: 90
 coords:
   lat: 42.649433
   lng: 12.283140

@@ -36,6 +36,7 @@ export interface Travel {
   coords?: TravelCoords;
   heroTitleVariant: "light" | "dark";
   map?: TravelMapData;
+  totalKilometers?: number;
 }
 
 const travelsDirectory = path.join(process.cwd(), "src", "content", "travels");
@@ -87,6 +88,7 @@ function parseTravelFromFile(slug: string): Travel {
     content: processedContent.toString(),
     heroTitleVariant: parseHeroTitleVariant(data.heroTitleVariant),
     map: parseMap(data.map),
+    totalKilometers: normalizeNumber(data.totalKilometers),
   } satisfies Travel;
 }
 

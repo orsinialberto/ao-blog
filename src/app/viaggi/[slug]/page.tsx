@@ -45,6 +45,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
     formatDateRange(travel.date, travel.endDate),
     travel.duration,
     travel.location,
+    travel.totalKilometers ? `${travel.totalKilometers} km` : undefined,
   ].filter(Boolean) as string[];
 
   const heroTitleClass =

@@ -9,7 +9,11 @@ interface TravelCardProps {
 }
 
 export function TravelCard({ travel }: TravelCardProps) {
-  const highlights = [travel.location, travel.duration].filter(Boolean).join(" · ");
+  const highlights = [
+    travel.location,
+    travel.duration,
+    travel.totalKilometers ? `${travel.totalKilometers} km` : undefined,
+  ].filter(Boolean).join(" · ");
 
   return (
     <article className="flex flex-col overflow-hidden rounded-3xl bg-white shadow-card transition hover:-translate-y-1">
