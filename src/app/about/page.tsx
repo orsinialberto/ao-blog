@@ -17,13 +17,13 @@ export default function AboutPage() {
         </p>
         <h1 className="text-4xl font-semibold text-brand-primary">Ciao, sono Alberto</h1>
         <div className="space-y-4 text-brand-muted">
-          <p>
+          <p className="font-klee text-lg">
             una delle mie più grandi passioni è viaggiare. Nel 2019 ho percorso il mio primo cammino, il Cammino di Santiago portoghese della costa, e ho scoperto una passione che non mi ha più lasciato. Da allora ogni anno cerco di concedermi almeno un viaggio, in Italia o all'estero. Mettere lo zaino in spalla e camminare per chilometri è diventata una delle cose che più mi rendono felice.
           </p>
-          <p>
+          <p className="font-klee text-lg">
             Oltre ai cammini, adoro viaggiare in moto, sentire il vento, affrontare curve di montagna e lasciarmi sorprendere dai panorami che si aprono davanti a me.
           </p>
-          <p>
+          <p className="font-klee text-lg">
             E poi c'è la voglia di avventura pura: partire senza meta precisa, solo con il mio zaino, e scoprire culture, luoghi e persone diverse da quelle a cui sono abituato. Viaggiare è per me un modo di sentirmi vivo, curioso e libero.
           </p>
         </div>

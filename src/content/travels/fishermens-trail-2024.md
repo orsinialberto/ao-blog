@@ -9,7 +9,6 @@ heroTitleVariant: "light"
 tags:
   - Portogallo
   - Europa
-  - RotaVicentina
   - ZainoInSpalla
   - Cammini
 location: "Portogallo"

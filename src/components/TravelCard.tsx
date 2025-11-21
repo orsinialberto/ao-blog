@@ -33,8 +33,7 @@ export function TravelCard({ travel }: TravelCardProps) {
         <Link href={`/viaggi/${travel.slug}`} className="mt-2 text-2xl font-semibold text-brand-primary">
           {travel.title}
         </Link>
-        <p className="mt-3 text-base text-brand-muted">{travel.description}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
           {travel.tags.map((tag) => (
             <Link
               key={tag}
@@ -45,7 +44,8 @@ export function TravelCard({ travel }: TravelCardProps) {
             </Link>
           ))}
         </div>
-        <div className="mt-6 flex items-center justify-between text-sm font-semibold text-brand-secondary">
+        <p className="font-klee mt-3 text-base text-brand-muted">{travel.description}</p>
+        <div className="mt-auto flex items-center justify-between pt-6 text-sm font-semibold text-brand-secondary">
           <span>{highlights || "In aggiornamento"}</span>
           <Link href={`/viaggi/${travel.slug}`}>Leggi →</Link>
         </div>

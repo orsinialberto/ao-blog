@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Comforter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -51,6 +54,8 @@ a {
   .prose-travel p {
     line-height: 1.8;
     margin-top: 1rem;
+    font-family: var(--font-klee-one), cursive;
+    font-size: 1.125rem;
   }
 
   .prose-travel img {

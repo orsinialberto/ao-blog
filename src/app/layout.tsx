@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Comforter, Klee_One, Poiret_One } from "next/font/google";
 
 import "./globals.css";
 import { Footer } from "@/components/Footer";
@@ -13,6 +13,30 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const comforter = Comforter({
+  variable: "--font-comforter",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: true,
+});
+
+const kleeOne = Klee_One({
+  variable: "--font-klee-one",
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  display: "swap",
+  preload: true,
+});
+
+const poiretOne = Poiret_One({
+  variable: "--font-poiret-one",
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -33,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="it">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-brand-background antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${comforter.variable} ${kleeOne.variable} ${poiretOne.variable} bg-brand-background antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           <Header />

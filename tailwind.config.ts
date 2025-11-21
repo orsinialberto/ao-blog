@@ -8,7 +8,7 @@ const config: Config = {
         brand: {
           background: "#f7f7f5",
           primary: "#0f172a",
-          secondary: "#f97316",
+          secondary: "#334155",
           accent: "#14b8a6",
           muted: "#475569",
         },
@@ -16,6 +16,9 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
         display: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
+        comforter: ["var(--font-comforter)", "Brush Script MT", "cursive"],
+        klee: ["var(--font-klee-one)", "cursive"],
+        poiret: ["var(--font-poiret-one)", "sans-serif"],
       },
       boxShadow: {
         card: "0 25px 45px rgba(15, 23, 42, 0.08)",
