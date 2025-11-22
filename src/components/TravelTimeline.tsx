@@ -109,33 +109,30 @@ export function TravelTimeline({ timeline }: TravelTimelineProps) {
           {/* Linea verticale */}
           <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-brand-secondary/20" />
 
-          <div className="relative space-y-8">
+          <div className="relative space-y-1">
             {timeline.map((item, index) => {
               const isLast = index === timeline.length - 1;
               const nextItem = !isLast ? timeline[index + 1] : null;
+              const dotColor = dotColors[index % dotColors.length];
 
               return (
                 <div key={index} className="relative pl-4">
                   <div className="flex items-start gap-4">
                     {/* Punto della timeline */}
-                    <div className="absolute left-4 top-4 z-10 h-2 w-2 -translate-x-1/2 -translate-y-1/2 shrink-0 rounded-full bg-brand-secondary" />
+                    <div className={`absolute left-[16.25px] top-4 z-10 h-3 w-3 -translate-x-1/2 -translate-y-1/2 shrink-0 rounded-full ${dotColor} shadow-sm`} />
 
                     {/* Nome città */}
-                    <div className="flex-1 pt-1">
-                      <p className="text-sm font-semibold text-brand-primary">{item.city}</p>
+                    <div className="flex-1 pt-0.5 ml-5">
+                      <p className="text-sm font-semibold font-klee text-brand-primary">{item.city}</p>
                     </div>
                   </div>
 
                   {/* Distanza tra tappe */}
                   {nextItem?.km !== undefined && (
-                    <div className="ml-12 mt-2">
-                      <div className="inline-flex items-center gap-2">
-                        <div className="h-px w-8 bg-brand-secondary/20" />
-                        <span className="text-xs font-semibold text-brand-muted">
-                          {nextItem.km} km
-                        </span>
-                        <div className="h-px w-8 bg-brand-secondary/20" />
-                      </div>
+                    <div className="ml-5 mt-2">
+                      <span className="text-[10px] font-medium text-brand-muted">
+                        {nextItem.km} km
+                      </span>
                     </div>
                   )}
                 </div>
