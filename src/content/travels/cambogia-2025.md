@@ -107,6 +107,15 @@ Mi ha colpito anche l’enorme distesa di fiori di loto asiatico che ricopriva i
 
 ## Siem Reap
 
+Arrivare a Siem Reap è stato come cambiare atmosfera con un clic. Dopo il traffico impazzito di Phnom Penh e il fascino rurale di Battambang, Siem Reap mi è sembrata quasi un’altra Cambogia: ordinata, moderna, con un tocco sorprendentemente europeo. Si sente che siamo a un passo da uno dei siti archeologici più importanti al mondo, e la città sembra voler accogliere nel modo migliore chi arriva per scoprire Angkor.
+
+La prima cosa che ho fatto – inutile dirlo – è stata andare al mercato notturno lungo il fiume. Lo sapete: se c’è un mercato, io ci finisco dentro. Luci calde, bancarelle, profumi di street food… un piccolo caos ben organizzato, come piace a me.
+
+Uscito dal mercato, quasi per sbaglio, mi sono ritrovato in Pub Street. E lì ho pensato: “Ma dove sono finito?”. L’ingresso è segnato da un enorme cartello al neon rosso, e da lì in poi è un tuffo in un mondo completamente diverso: bar e pub ovunque, ristoranti illuminati da luci sgargianti, musica assordante che rimbalza da un locale all’altro.
+Ho visto bar sport in pieno stile americano, con maxi-schermi che trasmettevano qualsiasi sport esistente, turisti intenti a divorare hamburger e a bere birra come se non ci fosse un domani. Non poteva mancare il ristorante “italiano” (virgolette d’obbligo), con pizze creative e paste dal dubbio passato in patria. Accanto, un pub irlandese vecchia scuola… e subito dopo una discoteca moderna in stile cinese.
+
+Insomma: luci, neon, caos, festa. Un angolo di Cambogia che non mi aspettavo affatto di trovare, ma che – nel suo essere così fuori contesto – ha un fascino tutto suo.
+
 ## Angokor Wat
 
 ## Kampot - Kep
