@@ -118,6 +118,37 @@ Insomma: luci, neon, caos, festa. Un angolo di Cambogia che non mi aspettavo aff
 
 ## Angokor Wat
 
+uesti sono i templi che ho visitato nell’area di Angkor: Pre Rup, East Mebon, Ta Som, Neak Pean, Preah Khan, Angkor Wat, Bayon, Angkor Thom, Phimeanakas, Ta Keo, Ta Prohm, Banteay Kdei, Banteay Srei, Preah Ko, Bakong e Lolei.
+Elencarli è facile; descriverli davvero richiederebbe un’enciclopedia intera. Ognuno ha un carattere proprio, un dettaglio che ti sorprende, un angolo che ti lascia senza parole.
+
+Camminare tra queste rovine è un viaggio nel tempo: ti ritrovi catapultato in un’epoca in cui i sovrani erano considerati divinità, e ogni pietra racconta la grandezza di un impero che ha governato questa terra per secoli.
+Ad Angkor Wat mi sono sentito un archeologo, intento a leggere i bassorilievi che scorrono come pagine di una storia antichissima. A Ta Prohm, invece, è impossibile non trasformarsi in esploratori: qui la natura ha vinto, ha stritolato i muri e abbracciato le torri con radici gigantesche.
+Il Bayon, però, è il tempio che più mi ha messo i brividi. Camminare tra centinaia di volti scolpiti nella pietra, che ti osservano da ogni direzione, è un’esperienza quasi ipnotica. Ti senti piccolo, sorvegliato, parte di qualcosa di antico e imponente.
+
+Visitare i templi di Angkor è stata un’esperienza che, da sola, vale un viaggio in Cambogia.
+
+![Tempio di Bayon](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763735049/photo-10_bt20ut.jpg)
+
+Una delle cose più belle è stata vedere l’alba ad Angkor Wat e il tramonto dalla cima di Phnom Bakheng.
+L’alba è stata magica: il cielo si è acceso d’arancione e il sole è spuntato dietro una delle meraviglie del mondo moderno. Ho scattato foto che sembravano cartoline, ma la realtà era ancora più bella.
+
+Il tramonto, invece, mi ha regalato un’emozione diversa. Aveva piovuto tutto il giorno, e per questo non ho visto il sole scendere dietro la foresta. Ma la pioggia aveva lasciato un silenzio quasi sacro: eravamo in pochi, il vento leggero, la vista su un mare di alberi dove spuntava imponente Angkor Wat.
+È stato un momento di pace totale, uno di quelli in cui senti le energie che ti tornano addosso tutte insieme.
+
+Tre giorni ad Angkor non sono bastati — e in effetti è proprio vero che l’appetito vien mangiando.
+Così il quarto giorno ho deciso di spingermi oltre e visitare la zona di Koh Ker e il tempio di Preah Vihear, quasi al confine con la Thailandia.
+
+A Koh Ker ho trovato uno dei templi più alti che abbia mai visto, una piramide che sale verso il cielo e ti regala un panorama incredibile: una distesa infinita di foresta cambogiana, verde e potente.
+
+Preah Vihear, invece, domina un altopiano con una vista che spazia tra Cambogia e Thailandia. Per salire bisogna cambiare mezzo: la strada è troppo ripida e tortuosa, quindi solo le guide autorizzate possono accompagnarti con i loro pick-up.
+In cima, il tempio è spettacolare, e le scimmie che si aggirano tra le rovine rendono la scena ancora più surreale.
+
+C’è un dettaglio che non mi aspettavo: lungo la strada ho notato posti militari, soldati e perfino qualche carro armato mimetizzato nella vegetazione. Una volta arrivati, altre postazioni dell’esercito erano visibili tra le rovine.
+Parlando con i nostri accompagnatori ho scoperto che qui la tensione tra Cambogia e Thailandia è ancora alta: la zona è contesa, e pochi giorni prima c’era stato uno scontro a fuoco in cui era morto un cambogiano.
+
+Per fortuna non ho vissuto nessun momento pericoloso, ma è inquietante pensare che, proprio in quei giorni, la situazione stava di nuovo peggiorando.
+Eppure, nonostante tutto, la bellezza di Preah Vihear resta qualcosa di difficile da dimenticare.
+
 ## Kampot - Kep
 
 Ho sempre voluto fare un viaggio in Asia e quando ho deciso di andare in Cambogia è stato per trovare quell'autenticità che altri paesi più turistici non hanno. Volevo vivere un'avventura zaino in spalla, dormire negli ostelli, mangiare il cibo locale e spostarmi con i mezzi locali. Ho fatto tutto questo ne se sono uscito felice.
