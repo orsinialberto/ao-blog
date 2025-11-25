@@ -123,4 +123,67 @@ timeline:
 
 # Il viaggio
 
-In arrivo 
+## La Rota Vicentina – Il Cammino dei Pescatori
+
+Prima di partire mi ero informato su lunghezze e dislivelli e il pensiero era stato:  
+*“Facile, dai. Una passeggiata rilassante vista oceano.”*  
+Mai mi sono sbagliato di più.
+
+La Rota Vicentina, il **Cammino dei Pescatori**, corre lungo la costa occidentale del Portogallo, da Porto Covo fino a Cabo de São Vicente, per poi proseguire verso la più turistica Lagos.
+
+Il mio viaggio inizia a **Porto Covo**, un piccolo paese di pescatori affacciato sull’oceano. Il tramonto del primo giorno è un assaggio perfetto di ciò che mi aspetta: il sole che sprofonda nel mare e un cielo infuocato che sembra voler inaugurare l’avventura.
+
+---
+
+### Sabbia, scogliere e piedi che affondano
+
+La mattina dopo si parte presto. Il sentiero si tiene alto su una scogliera frastagliata, con l’oceano sempre alla mia sinistra. Sabbia ovunque. Sabbia rossa, sabbia dorata, sabbia che inghiotte i piedi a ogni passo.  
+Capisco subito che qui non sono i dislivelli il problema: è il terreno.  
+Cammino, mi fermo, svuoto le scarpe. Ripeti. Tutto il giorno.
+
+Ma basta alzare lo sguardo e la fatica svanisce:  
+il blu dell’oceano, il verde brillante delle piante grasse che esplodono tra la sabbia, il vento salato che arriva forte dal mare… uno spettacolo continuo.
+
+Ogni tanto, tra le onde, spuntano **pescatori che nuotano con un cesto in spalla**. Raggiungono scogli isolati per pescare il pesce che — guarda caso — mi ritrovo ogni sera nel piatto.  
+Una vita semplice e coraggiosa, fatta di mare e sale.
+
+Non mancano **surfisti** che si tuffano in acqua armati di tavola in cerca dell’onda perfetta e **camperisti** parcheggiati in cima alle scogliere, con vista privilegiata sul tramonto.  
+È impossibile non fantasticare: ti viene voglia di mollare tutto, comprare un van e trasferirti qui, dove la vita sembra più leggera e tutto profuma di libertà.
+
+---
+
+### Cammino, bagno, tramonto: la routine perfetta
+
+Una delle cose più belle di questo cammino è la fine della giornata:  
+dopo chilometri nella sabbia e qualche imprecazione a denti stretti, arrivi al villaggio e… **vai in spiaggia**.
+
+Scalzi, finalmente.  
+Un tuffo nell’acqua gelida dell’oceano e i piedi tornano nuovi.  
+La sensazione di pace è indescrivibile.
+
+Poi arriva il **tramonto**. E che tramonti.  
+Di quelli che si imprimono addosso e ti ricordano perché cammini: il rumore delle onde, il vento in faccia, il cielo che si accende e tu che respiri più lento.
+
+---
+
+### La magia che svanisce… e ciò che resta
+
+Fino a **Cabo de São Vicente** è pura poesia: natura selvaggia, pochissima gente, ritmi lenti.  
+Poi però la costa cambia: appaiono spiagge affollate, ombrelloni colorati, traffico, musica.  
+Si entra nella zona più turistica dell’Algarve e un po’ di quella magia si perde per strada.
+
+Il cammino si conclude a **Lagos**, città giovane e festosa.  
+L’arrivo non ha un luogo simbolico — forse una statua, forse una stazione — ma in fondo non importa.
+
+Perché ciò che resta davvero sono:
+- gli scogli che sfidano il mare
+- i piedi stanchi e felici
+- quel pensiero silenzioso che ti dice: *“Vorrei non finisse mai”*
+
+---
+
+Un cammino che ti mette alla prova ad ogni passo…  
+ma che ti ripaga con **tramonti che ti ricompongono il cuore**, panorami che ti lasciano senza fiato e un senso di libertà che difficilmente trovi altrove.
+
+La Rota Vicentina è così:  
+**selvaggia, dura, meravigliosa.**
