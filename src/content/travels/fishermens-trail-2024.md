@@ -133,9 +133,7 @@ La Rota Vicentina, il **Cammino dei Pescatori**, corre lungo la costa occidental
 
 Il mio viaggio inizia a **Porto Covo**, un piccolo paese di pescatori affacciato sull’oceano. Il tramonto del primo giorno è un assaggio perfetto di ciò che mi aspetta: il sole che sprofonda nel mare e un cielo infuocato che sembra voler inaugurare l’avventura.
 
----
-
-### Sabbia, scogliere e piedi che affondano
+## Sabbia, scogliere e piedi che affondano
 
 La mattina dopo si parte presto. Il sentiero si tiene alto su una scogliera frastagliata, con l’oceano sempre alla mia sinistra. Sabbia ovunque. Sabbia rossa, sabbia dorata, sabbia che inghiotte i piedi a ogni passo.  
 Capisco subito che qui non sono i dislivelli il problema: è il terreno.  
@@ -150,9 +148,7 @@ Una vita semplice e coraggiosa, fatta di mare e sale.
 Non mancano **surfisti** che si tuffano in acqua armati di tavola in cerca dell’onda perfetta e **camperisti** parcheggiati in cima alle scogliere, con vista privilegiata sul tramonto.  
 È impossibile non fantasticare: ti viene voglia di mollare tutto, comprare un van e trasferirti qui, dove la vita sembra più leggera e tutto profuma di libertà.
 
----
-
-### Cammino, bagno, tramonto: la routine perfetta
+## Cammino, bagno, tramonto: la routine perfetta
 
 Una delle cose più belle di questo cammino è la fine della giornata:  
 dopo chilometri nella sabbia e qualche imprecazione a denti stretti, arrivi al villaggio e… **vai in spiaggia**.
@@ -164,9 +160,7 @@ La sensazione di pace è indescrivibile.
 Poi arriva il **tramonto**. E che tramonti.  
 Di quelli che si imprimono addosso e ti ricordano perché cammini: il rumore delle onde, il vento in faccia, il cielo che si accende e tu che respiri più lento.
 
----
-
-### La magia che svanisce… e ciò che resta
+## La magia che svanisce… e ciò che resta
 
 Fino a **Cabo de São Vicente** è pura poesia: natura selvaggia, pochissima gente, ritmi lenti.  
 Poi però la costa cambia: appaiono spiagge affollate, ombrelloni colorati, traffico, musica.  
@@ -176,14 +170,28 @@ Il cammino si conclude a **Lagos**, città giovane e festosa.
 L’arrivo non ha un luogo simbolico — forse una statua, forse una stazione — ma in fondo non importa.
 
 Perché ciò che resta davvero sono:
-- gli scogli che sfidano il mare
-- i piedi stanchi e felici
-- quel pensiero silenzioso che ti dice: *“Vorrei non finisse mai”*
-
----
+ - gli scogli che sfidano il mare
+ - i piedi stanchi e felici
+ - quel pensiero silenzioso che ti dice: *“Vorrei non finisse mai”*
 
 Un cammino che ti mette alla prova ad ogni passo…  
 ma che ti ripaga con **tramonti che ti ricompongono il cuore**, panorami che ti lasciano senza fiato e un senso di libertà che difficilmente trovi altrove.
 
 La Rota Vicentina è così:  
 **selvaggia, dura, meravigliosa.**
+
+## Una chiusa dal sentiero
+
+Durante questo cammino ho letto un libro che mi ha fatto compagnia ogni sera:  
+*Una passeggiata nei boschi* di Bill Bryson.  
+C’è un passaggio che, più di tutti, descrive esattamente ciò che ho provato sulla Rota Vicentina:
+
+> *“La vita assume una drastica semplicità quando si cammina.  
+> Il tempo perde il suo consueto significato.  
+> Quando è buio si va a dormire, quando fa giorno ci si alza,  
+> e tutto ciò che sta in mezzo sta semplicemente nel mezzo.  
+> In realtà è una cosa fantastica.”*  
+> — Bill Bryson, *Una passeggiata nei boschi*
+
+Ecco: questo è il cammino.  
+Ed è per questo che continuo a partire.
