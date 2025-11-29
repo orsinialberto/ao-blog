@@ -9,7 +9,6 @@ heroTitleVariant: "light"
 tags:
   - Italia
   - Europa
-  - Umbria
   - Cammini
   - ZainoInSpalla
 location: "Italia"

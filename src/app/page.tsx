@@ -34,14 +34,6 @@ export default async function HomePage() {
               <p className="font-klee text-xl leading-relaxed text-white/90 md:text-2xl">
                 Partire, scoprire e raccontare: i viaggi che mi fanno stare bene.
               </p>
-              <div className="flex items-center justify-center pt-2">
-                <Link
-                  href="/viaggi"
-                  className="font-klee inline-flex items-center justify-center rounded-full border-2 border-white/70 px-8 py-4 text-base font-semibold uppercase tracking-wide text-white backdrop-blur-sm transition-all hover:scale-105 hover:border-white hover:bg-white/10"
-                >
-                  i miei viaggi
-                </Link>
-              </div>
             </div>
           </div>
         </div>

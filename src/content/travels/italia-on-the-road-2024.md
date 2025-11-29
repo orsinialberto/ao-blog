@@ -78,6 +78,141 @@ gallery:
 
 ---
 
-# Il viaggio
+## Un viaggio in moto nel Nord Italia – Tra strade, lagune e colline da cartolina
 
-In arrivo
+Il serbatoio è pieno, la borsa è stretta alla sella, casco e guanti allacciati.  
+Mi guardo allo specchietto: l’espressione è quella da rider convinto.  
+Sono pronto.
+
+Come sempre, prima tappa fissa: **autogrill**.  
+È lì che un viaggio in moto inizia davvero.  
+Colazione, due risate con i compagni di strada e uno sguardo al percorso — più per abitudine che per necessità — e si parte.
+
+Siamo sulla A4, direzione Veneto. Destinazione finale: **Delta del Po**.  
+Ma la moto si sa… quando vede una montagna davanti, prende fuoco.  
+Così all’altezza di Vicenza decidiamo di **cercare qualche curva** e salire verso l’**altopiano di Asiago**.
+
+La salita è dolce, le moto sono calde e il rumore dei motori diventa musica.  
+In cima ci accoglie un panorama immenso: una distesa di prati a perdita d’occhio e, alle spalle, la pianura che si srotola fino all’orizzonte.  
+Uno di quei momenti in cui ti esce un “wow” senza pensarci.
+
+Ma la montagna ci ricorda subito chi comanda:  
+dal cielo cominciano a cadere gocce gelide… anzi, sembrano **piccoli chicchi di ghiaccio**.  
+Le emozioni salgono e scendono più veloce della strada: meraviglia → preoccupazione.  
+Non proprio le condizioni ideali per un mezzo a due ruote.
+
+Riparo d’emergenza in un distributore.  
+Indossiamo l’antipioggia, ci guardiamo come per dire “andiamo? …andiamo”.  
+E ripartiamo. Piano, con rispetto per l’asfalto, ma col cuore che ride.
+
+Pochi chilometri ed ecco che il cielo si apre.  
+Sembra quasi prenderci in giro.  
+Il motore riprende a cantare e noi con lui.
+
+Scendiamo dall’altopiano e arriviamo a **Bassano del Grappa**.  
+Un ponte rosso iconico, un aperitivo meritato e la soddisfazione di una giornata già piena.
+
+## Lagune, silenzi e fenicotteri rosa
+
+Il giorno dopo si riparte presto: autostrada fino a **Chioggia**, la piccola Venezia.  
+Canali, pescherecci, ponti: una città che ha l’aria di saperla lunga sul mare.  
+Prima sosta: **baccalà mantecato**. E qui capisci subito che sei in un posto giusto.
+
+Poi via, direzione **Delta del Po**.  
+E qui il viaggio cambia.  
+Le isole sottili di terra sembrano galleggiare sull’acqua, i canali si perdono all’orizzonte e la moto scivola in mezzo alla laguna come sospesa.
+
+A un tratto — come in un quadro impressionista —  
+**fenicotteri rosa** che cercano cibo nell’acqua.  
+Se non fossi stato lì, non ci avrei mai creduto.
+
+![Fenicotteri Rosa](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/delta-del-po-01_hsakib.jpg)
+
+Sulla strada incontriamo **ponti di barche**, casette di pescatori e camper parcheggiati in posti che sembrano fatti per **guardare il tramonto e dimenticare l’orologio**.
+
+![Ponte di barche](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/delta-del-po-04_mm8fya.jpg)
+
+Il Delta è così:  
+calmo, silenzioso, pieno di vita vera.  
+E ti fa venir voglia di mollare tutto e fermarti.
+
+Ma la tabella di marcia non perdona.  
+Con il sole che si tuffa nella laguna, ripartiamo verso **Marina di Ravenna**.  
+Fuori stagione, silenziosa, con gli stabilimenti balneari addormentati in riva al mare.  
+Mangiamo qualcosa in fretta e ci buttiamo a letto, stanchi e felici.
+
+## Appennino tosco-emiliano: boschi, sterrati e buon vino
+
+Nuova partenza, nuove nuvole.  
+All’altezza di Cesena una pioggia improvvisa ci costringe di nuovo a ripararci sotto una pensilina — la famosa “nuvola di Fantozzi” ci ha beccati in pieno.
+
+Passato lo scroscio, decidiamo di **lasciare l’autostrada** e infilarci tra le curve dell’Appennino tosco-emiliano.  
+Boschi fitti, strade consumate dal tempo… e la sensazione di trovarsi in un posto dove **i telefoni non prendono ma i pensieri sì**.
+
+Arriviamo ad **Arezzo** nel pomeriggio.  
+Il nostro B&B è in cima a un poggio tra gli ulivi.  
+Per raggiungerlo: uno sterrato che è più avventura che strada, ma le moto — orgogliose — non battono ciglio.
+
+Dal giardino la vista è perfetta: **colline toscane che si rincorrono** sotto il cielo dorato.  
+Ricaricate le energie, andiamo a scoprire la città → mura medievali, una fortezza medicea e un’atmosfera da film storico.
+
+La serata si chiude in gloria con un **peposo** che ci fa alzare dalla tavola riconciliati con il mondo.
+
+## Val d'Orcia: quando la realtà supera la fantasia
+
+Giorno nuovo, obiettivo chiaro: **i cipressi**.  
+Prima però attraversiamo le **Crete Senesi**: panorami mozzafiato, colori che sembrano scelti con cura da un pittore.
+
+Poi entriamo nella **Val d’Orcia**.  
+E lì il cuore fa “click”.  
+Colline perfette, borghi arroccati, campi infiniti.  
+Sembra un’immagine che conoscevi già… solo che adesso ci sei dentro tu.
+
+Visitiamo **Montalcino** e **Pienza**, entrambi bellissimi, e lungo la strada finalmente trovo **il punto perfetto per fotografare i famosi cipressi**.  
+Check ✔️
+
+![Val d'Orcia](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-04_mp4ixv.jpg)
+
+Poi giù verso la **Maremma Toscana** fino a **Castiglione della Pescaia**:  
+dall’Adriatico al Tirreno — il coast to coast è completato!  
+Tramonto sul mare, profumo di pesce e la consapevolezza che questo viaggio ha un ritmo suo, e noi lo stiamo seguendo benissimo.
+
+## Curve, mare e Ferrari
+
+Penultimo giorno.  
+Seguiamo la costa verso **Livorno**, pini marittimi a fare da guardiani della strada e il mare che sembra di toccarlo.  
+Qui ci concediamo un **cacciucco come si deve**.  
+Per par condicio, usciamo dall’autostrada e andiamo a **Pisa**: la Torre pende ancora, per fortuna.
+
+Poi basta pianura: è tempo di curve.  
+Si sale verso il **Passo dell’Abetone**:  
+strada bellissima, ritmo perfetto… ma in cima è **gelido**.  
+Gli impianti sciistici dormono, il paese è deserto e trovare da mangiare diventa una piccola missione.  
+Fa parte dell’avventura, no?
+
+Ultimo giorno: **Maranello**.  
+Qui tutto è rosso.  
+Il Cavallino Rampante è ovunque e tu non puoi fare a meno di sentirti un po’ parte di quella storia.
+
+Visitiamo il **Museo Ferrari**, io sogno a occhi aperti.  
+Davanti allo storico ingresso della fabbrica mi chiedo come debba essere lavorare per creare **macchine che fanno sognare il mondo**.
+
+![Ingresso fabbrica Ferrari](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/maranello-01_gq0cat.jpg)
+
+Poi si torna a casa.  
+Autostrada liscia fino a Milano, mentre nella testa scorrono come una playlist perfetta:
+
+- la neve sull'altopiano di Asiago
+- i fenicotteri rosa del Delta
+- le curve dell'Appennino
+- le colline della Val d'Orcia
+- il rombo del motore che fa sempre bene al cuore
+
+> Guidare è bello.
+> E l'Italia è il posto migliore dove farlo.
+
+Ogni curva è stata un assaggio di qualcosa che voglio riscoprire.  
+E so già che tornerò a mettere le ruote su queste strade.  
+
+Perché **ci sono viaggi che finiscono**…  
+e altri che **non smettono mai di chiamarti**.

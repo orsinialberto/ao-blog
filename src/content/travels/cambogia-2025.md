@@ -10,7 +10,6 @@ tags:
   - Cambogia
   - Asia
   - ZainoInSpalla
-  - Storia
 location: "Cambogia"
 duration: "14 giorni"
 coords:

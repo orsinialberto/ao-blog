@@ -23,9 +23,6 @@ export default async function TravelsPage() {
           Archivio
         </p>
         <h1 className="text-4xl font-semibold text-brand-primary">Tutti i viaggi</h1>
-        <p className="text-lg text-brand-muted">
-          Sfoglia tutte le destinazioni, filtra per tag e trova ispirazione per il prossimo itinerario.
-        </p>
       </header>
 
       <Suspense fallback={<div>Caricamento...</div>}>
