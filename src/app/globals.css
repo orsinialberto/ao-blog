@@ -48,16 +48,7 @@ a {
 @layer components {
   .prose-travel h2 {
     margin-top: 2rem;
-    margin-bottom: 1.5rem;
     font-size: 1.5rem;
-  }
-
-  .prose-travel h2:first-child {
-    margin-top: 0;
-  }
-
-  .prose-travel p + h2 {
-    margin-top: 1.5rem;
   }
 
   .prose-travel p {
@@ -65,23 +56,6 @@ a {
     margin-top: 1rem;
     font-family: var(--font-klee-one), cursive;
     font-size: 1.125rem;
-  }
-
-  .prose-travel ul,
-  .prose-travel ol {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-    font-family: var(--font-klee-one), cursive;
-    font-size: 1.125rem;
-    line-height: 1.8;
-  }
-
-  .prose-travel li {
-    margin-top: 0.5rem;
-    font-family: var(--font-klee-one), cursive;
-    font-size: 1.125rem;
-    line-height: 1.8;
   }
 
   .prose-travel img {

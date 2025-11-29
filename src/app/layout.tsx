@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Comforter, Klee_One, Poiret_One } from "next/font/go
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { MainWrapper } from "@/components/MainWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,7 +62,7 @@ export default function RootLayout({
       >
         <div className="flex min-h-screen flex-col">
           <Header />
-          <main className="flex-1 pb-16 pt-10">{children}</main>
+          <MainWrapper>{children}</MainWrapper>
           <Footer />
         </div>
       </body>
