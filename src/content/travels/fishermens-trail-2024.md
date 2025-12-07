@@ -142,6 +142,8 @@ Cammino, mi fermo, svuoto le scarpe. Ripeti. Tutto il giorno.
 Ma basta alzare lo sguardo e la fatica svanisce:  
 il blu dell’oceano, il verde brillante delle piante grasse che esplodono tra la sabbia, il vento salato che arriva forte dal mare… uno spettacolo continuo.
 
+![Scogliera](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-03_jexos0.jpg)
+
 Ogni tanto, tra le onde, spuntano **pescatori che nuotano con un cesto in spalla**. Raggiungono scogli isolati per pescare il pesce che — guarda caso — mi ritrovo ogni sera nel piatto.  
 Una vita semplice e coraggiosa, fatta di mare e sale.
 
@@ -159,6 +161,8 @@ La sensazione di pace è indescrivibile.
 
 Poi arriva il **tramonto**. E che tramonti.  
 Di quelli che si imprimono addosso e ti ricordano perché cammini: il rumore delle onde, il vento in faccia, il cielo che si accende e tu che respiri più lento.
+
+![tramonto in spiaggia](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-09_cfto5p.jpg)
 
 ## La magia che svanisce… e ciò che resta
 
