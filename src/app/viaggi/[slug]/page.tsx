@@ -53,7 +53,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
     travel.heroTitleVariant === "dark" ? "text-slate-900" : "text-white";
 
   return (
-    <article className="container space-y-12">
+    <article className="container mx-auto max-w-4xl space-y-12">
       <div className="overflow-hidden rounded-[40px] bg-white shadow-card">
         <div className="relative h-[420px] w-full">
           <Image
