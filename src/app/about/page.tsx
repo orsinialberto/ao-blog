@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
-      <section className="space-y-6 rounded-[32px] bg-white p-8 shadow-card">
+      <section className="space-y-6 bg-white p-8 shadow-card">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
           Chi sono
         </p>
@@ -34,7 +34,7 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-      <aside className="space-y-6 rounded-[32px] bg-white p-8 text-sm text-brand-muted shadow-card">
+      <aside className="space-y-6 bg-white p-8 text-sm text-brand-muted shadow-card">
         <div>
           <h2 className="text-xl font-semibold text-brand-primary">Compagni di viaggio</h2>
           <ul className="mt-3 space-y-2">
@@ -43,7 +43,7 @@ export default function AboutPage() {
             <li className="font-klee">✦  Honda CB 650R</li>
           </ul>
         </div>
-        <div className="relative h-48 w-full overflow-hidden rounded-2xl">
+        <div className="relative h-48 w-full overflow-hidden">
           <Image src={withBasePath("/images/profile.jpg")} alt="Aurora boreale" fill className="object-cover" />
         </div>
         <div>

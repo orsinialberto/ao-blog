@@ -123,7 +123,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
         </div>
       </div>
 
-      <div className={`relative overflow-hidden rounded-[32px] bg-slate-100 ${HERO_ASPECT}`}>
+      <div className={`relative overflow-hidden bg-slate-100 ${HERO_ASPECT}`}>
         <Image
           key={selectedImage}
           src={selectedImage}
@@ -172,7 +172,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
           )}
           <div
             ref={thumbsRef}
-            className="flex gap-3 overflow-x-auto pb-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-brand-muted/40"
+            className="flex gap-1 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
           {thumbnails.map((image, index) => {
             const isActive = index === selectedIndex;
@@ -181,10 +181,10 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
                 key={image}
                 type="button"
                 onClick={() => setSelectedIndex(index)}
-                className={`relative h-24 w-32 flex-shrink-0 overflow-hidden rounded-2xl border-2 transition ${
+                className={`relative h-24 w-32 flex-shrink-0 overflow-hidden transition ${
                   isActive
-                    ? "border-brand-secondary ring-2 ring-brand-secondary/30"
-                    : "border-transparent opacity-70 hover:opacity-100"
+                    ? "opacity-100"
+                    : "opacity-70 hover:opacity-100"
                 }`}
               >
                 <Image
@@ -250,7 +250,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
               {safeImages.map((image, index) => (
                 <div
                   key={image}
-                  className="relative aspect-[4/3] overflow-hidden rounded-3xl cursor-pointer transition hover:scale-[1.02]"
+                  className="relative aspect-[4/3] overflow-hidden cursor-pointer transition hover:scale-[1.02]"
                   onClick={() => setFullImageOpen(image)}
                 >
                   <Image

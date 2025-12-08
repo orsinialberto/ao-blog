@@ -42,7 +42,7 @@ export function TravelTimeline({ timeline }: TravelTimelineProps) {
   ];
 
   return (
-    <section className="rounded-[32px] bg-white p-8 shadow-card">
+    <section className="bg-white p-8 shadow-card">
       <div className="mb-6">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
           Tappe del cammino

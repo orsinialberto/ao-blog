@@ -9,13 +9,13 @@ interface TravelDetailMapProps {
 
 export function TravelDetailMap({ map, coords, title }: TravelDetailMapProps) {
   return (
-    <section className="space-y-4 rounded-[32px] bg-white p-8 shadow-card">
+    <section className="space-y-4 bg-white p-8 shadow-card">
       <div className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
           Traccia del viaggio
         </p>
       </div>
-      <div className="h-[420px] w-full overflow-hidden rounded-[28px] bg-brand-background">
+      <div className="h-[420px] w-full overflow-hidden bg-brand-background">
         <TravelDetailMapLazy map={map} fallbackCoords={coords} title={title} />
       </div>
     </section>

@@ -19,7 +19,8 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
   // Filtra i viaggi lato client
   const travels = selectedTag
     ? allTravels.filter((travel) =>
-        travel.tags.some((travelTag) => travelTag.toLowerCase() === normalizedTag)
+        travel.tags.some((travelTag) => travelTag.toLowerCase() === normalizedTag) ||
+        travel.location.toLowerCase() === normalizedTag
       )
     : allTravels;
 
@@ -40,7 +41,7 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
       </div>
 
       {!travels.length && (
-        <p className="rounded-2xl border border-dashed border-slate-200 bg-white p-6 text-center text-brand-muted">
+        <p className="border border-dashed border-slate-200 bg-white p-6 text-center text-brand-muted">
           Nessun viaggio con questo tag per ora. Torna presto!
         </p>
       )}

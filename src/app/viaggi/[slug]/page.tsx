@@ -42,68 +42,80 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const previousTravel = travels[currentIndex + 1];
   const nextTravel = travels[currentIndex - 1];
 
-  const meta = [
-    formatDateRange(travel.date, travel.endDate),
-    travel.duration,
-    travel.location,
-    travel.totalKilometers ? `${travel.totalKilometers} km` : undefined,
-  ].filter(Boolean) as string[];
-
-  const heroTitleClass =
-    travel.heroTitleVariant === "dark" ? "text-slate-900" : "text-white";
-
   return (
     <article className="container mx-auto max-w-4xl space-y-12">
-      <div className="overflow-hidden rounded-[40px] bg-white shadow-card">
-        <div className="relative h-[420px] w-full">
-          <Image
-            src={travel.coverImage}
-            alt={travel.title}
-            fill
-            className="object-cover"
-            sizes="100vw"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-          <div className="absolute bottom-10 left-10 text-white">
-            <p className="text-sm uppercase tracking-[0.4em] text-white/80">
-              {travel.location}
-            </p>
-            <h1
-              className={`font-comforter mt-3 max-w-2xl text-5xl font-normal leading-tight md:text-6xl lg:text-7xl md:whitespace-nowrap ${heroTitleClass}`}
-            >
-              {travel.title}
-            </h1>
+      {/* Box unico con titolo, descrizione e copertina */}
+      <div className="overflow-hidden bg-white shadow-card">
+        <div className="px-8 pt-8 pb-4">
+          {/* Meta info sopra il titolo */}
+          <div className="flex flex-wrap items-center gap-4 text-sm text-brand-muted mb-4">
+            <span>{formatDateRange(travel.date, travel.endDate)}</span>
+            <span>•</span>
+            <span>{travel.duration}</span>
+            {travel.totalKilometers && (
+              <>
+                <span>•</span>
+                <span>{travel.totalKilometers} km</span>
+              </>
+            )}
+          </div>
+          
+          {/* Titolo */}
+          <h1 className="font-comforter text-5xl md:text-6xl lg:text-7xl font-normal text-brand-primary pt-6 mb-4">
+            {travel.title}
+          </h1>
+          
+          {/* Descrizione */}
+          <p className="font-klee text-lg text-brand-muted leading-relaxed mb-2">
+            {travel.description}
+          </p>
+        </div>
+        
+        {/* Immagine copertina */}
+        <div className="px-8 pt-2 pb-8">
+          <div className="relative h-[500px] w-full">
+            <Image
+              src={travel.coverImage}
+              alt={travel.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
           </div>
         </div>
-        <div className="space-y-6 p-8 md:p-10">
-          <div className="flex flex-wrap gap-6 text-sm text-brand-muted">
-            {meta.map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-          <div className="flex flex-wrap gap-3">
+        
+        {/* Tag e location */}
+        <div className="px-8 pb-2">
+          <div className="flex flex-wrap items-center gap-2">
             {travel.tags.map((tag) => (
               <Link
                 key={tag}
                 href={`/viaggi?tag=${encodeURIComponent(tag)}`}
-                className="rounded-full bg-brand-background px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted"
+                className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted hover:text-brand-primary transition"
               >
                 #{tag}
               </Link>
             ))}
+            <Link
+              href={`/viaggi?tag=${encodeURIComponent(travel.location)}`}
+              className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted hover:text-brand-primary transition"
+            >
+              #{travel.location}
+            </Link>
           </div>
+        </div>
+        
+        {/* Contenuto del racconto */}
+        <div className="px-8 pb-8">
+          <div
+            className="prose-travel"
+            dangerouslySetInnerHTML={{ __html: travel.content }}
+          />
         </div>
       </div>
 
       {travel.timeline && <TravelTimeline timeline={travel.timeline} />}
-
-      <section className="rounded-[32px] bg-white p-8 shadow-card">
-        <div
-          className="prose-travel"
-          dangerouslySetInnerHTML={{ __html: travel.content }}
-        />
-      </section>
 
       <TravelGallery images={travel.gallery} title={travel.title} />
 
@@ -128,7 +140,7 @@ interface NavigationCardProps {
 function NavigationCard({ label, travel, align = "start" }: NavigationCardProps) {
   if (!travel) {
     return (
-      <div className="rounded-3xl border border-dashed border-slate-200 p-6 text-brand-muted">
+      <div className="border border-dashed border-slate-200 bg-white p-6 text-brand-muted">
         {label}
         <p className="text-sm">Arriverà presto.</p>
       </div>
@@ -138,7 +150,7 @@ function NavigationCard({ label, travel, align = "start" }: NavigationCardProps)
   return (
     <Link
       href={`/viaggi/${travel.slug}`}
-      className={`rounded-3xl bg-white p-6 shadow-card transition hover:-translate-y-1 ${
+      className={`bg-white p-6 shadow-card transition hover:-translate-y-1 ${
         align === "end" ? "text-right" : ""
       }`}
     >
