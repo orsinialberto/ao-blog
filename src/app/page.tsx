@@ -3,12 +3,14 @@ import Link from "next/link";
 
 import { TravelCard } from "@/components/TravelCard";
 import { TravelMap } from "@/components/TravelMap";
-import { getAllTravels } from "@/lib/travels";
+import { TravelStats } from "@/components/TravelStats";
+import { getAllTravels, getTravelStats } from "@/lib/travels";
 import { withBasePath } from "@/lib/paths";
 
 export default async function HomePage() {
   const travels = await getAllTravels();
   const highlights = travels.slice(0, 4);
+  const stats = getTravelStats();
 
   return (
     <div className="space-y-16">
@@ -73,7 +75,7 @@ export default async function HomePage() {
                 <div className="flex justify-center">
                   <Link
                     href="/about"
-                    className="inline-flex w-fit items-center justify-center bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-secondary"
+                    className="inline-flex w-fit items-center justify-center bg-sky-800 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sky-700"
                   >
                     Scopri di più su di me
                   </Link>
@@ -104,6 +106,8 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
+        <TravelStats stats={stats} />
 
         <TravelMap />
       </div>

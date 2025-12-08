@@ -293,3 +293,48 @@ export function sortTravelsByDate(travels: Travel[]): Travel[] {
     return bDate - aDate;
   });
 }
+
+export interface TravelStats {
+  countriesVisited: number;
+  continentsVisited: number;
+  kilometersWalked: number;
+  brokenShoes: number;
+}
+
+export function getTravelStats(): TravelStats {
+  const travels = ensureCache();
+  
+  // Paesi visitati (dalla location)
+  const countries = new Set<string>();
+  travels.forEach((travel) => {
+    if (travel.location && travel.location.trim()) {
+      countries.add(travel.location.trim());
+    }
+  });
+  
+  // Continenti visitati (dai tags)
+  const continents = new Set<string>();
+  const continentTags = ["Europa", "Asia", "Africa", "America", "Nord America", "Sud America", "Oceania", "Antartide"];
+  travels.forEach((travel) => {
+    travel.tags.forEach((tag) => {
+      if (continentTags.includes(tag)) {
+        continents.add(tag);
+      }
+    });
+  });
+  
+  // Km percorsi nei cammini (solo viaggi con tag "Cammini")
+  const kilometersWalked = travels
+    .filter((travel) => 
+      travel.tags.some((tag) => tag.toLowerCase() === "cammini") &&
+      travel.totalKilometers !== undefined
+    )
+    .reduce((sum, travel) => sum + (travel.totalKilometers || 0), 0);
+  
+  return {
+    countriesVisited: countries.size,
+    continentsVisited: continents.size,
+    kilometersWalked: Math.round(kilometersWalked),
+    brokenShoes: 4,
+  };
+}
