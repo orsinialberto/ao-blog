@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { TagFilter } from '@/components/TagFilter';
 import { TravelCard } from '@/components/TravelCard';
+import { filterTravelsByTag, normalizeTag } from '@/lib/tags';
 import type { Travel } from '@/lib/travels';
 
 interface TravelsListClientProps {
@@ -14,14 +15,11 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
   const searchParams = useSearchParams();
   const rawTag = searchParams.get('tag');
   const selectedTag = rawTag ? decodeURIComponent(rawTag) : undefined;
-  const normalizedTag = selectedTag?.toLowerCase();
+  const normalizedTag = selectedTag ? normalizeTag(selectedTag) : undefined;
   
   // Filtra i viaggi lato client
   const travels = selectedTag
-    ? allTravels.filter((travel) =>
-        travel.tags.some((travelTag) => travelTag.toLowerCase() === normalizedTag) ||
-        travel.location.toLowerCase() === normalizedTag
-      )
+    ? filterTravelsByTag(allTravels, selectedTag)
     : allTravels;
 
   return (

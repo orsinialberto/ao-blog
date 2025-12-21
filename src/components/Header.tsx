@@ -3,13 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-
-const links = [
-  { href: "/", label: "HOME" },
-  { href: "/viaggi", label: "VIAGGI" },
-  { href: "/galleria", label: "GALLERIA" },
-  { href: "/about", label: "CHI SONO" },
-];
+import { navigationLinks } from "@/config/navigation";
 
 export function Header() {
   const pathname = usePathname();
@@ -77,7 +71,7 @@ export function Header() {
           }`}
         >
           <ul className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
-            {links.map((link) => (
+            {navigationLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}

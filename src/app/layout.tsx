@@ -1,61 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Comforter, Klee_One, Poiret_One, Schoolbell } from "next/font/google";
 
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MainWrapper } from "@/components/MainWrapper";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const comforter = Comforter({
-  variable: "--font-comforter",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-  preload: true,
-});
-
-const kleeOne = Klee_One({
-  variable: "--font-klee-one",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  display: "swap",
-  preload: true,
-});
-
-const poiretOne = Poiret_One({
-  variable: "--font-poiret-one",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-  preload: true,
-});
-
-const schoolbell = Schoolbell({
-  variable: "--font-schoolbell",
-  subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
-  preload: true,
-});
+import { fontVariables } from "@/config/fonts";
+import { siteMetadata } from "@/config/metadata";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://albertorsini.it"),
-  title: {
-    default: "Diario di Viaggio",
-    template: "%s · Diario di Viaggio",
-  },
-  description:
-    "Itinerari, foto e appunti di viaggio raccontati attraverso un sito veloce e moderno.",
+  metadataBase: new URL(siteMetadata.url),
+  title: siteMetadata.title,
+  description: siteMetadata.description,
 };
 
 export default function RootLayout({
@@ -64,10 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${comforter.variable} ${kleeOne.variable} ${poiretOne.variable} ${schoolbell.variable} bg-brand-background antialiased`}
-      >
+    <html lang={siteMetadata.locale.split("-")[0]}>
+      <body className={`${fontVariables} bg-brand-background antialiased`}>
         <div className="flex min-h-screen flex-col">
           <Header />
           <MainWrapper>{children}</MainWrapper>

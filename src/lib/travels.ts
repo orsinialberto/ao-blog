@@ -4,6 +4,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkBreaks from "remark-breaks";
+import { CONTINENT_TAGS, isContinentTag } from "@/config/continents";
+import { isNonEmptyString, isValidNumber, isObject } from "./typeGuards";
 
 export interface TravelCoords {
   lat: number;
@@ -103,17 +105,12 @@ function parseTravelFromFile(slug: string): Travel {
 }
 
 function parseCoords(rawCoords: unknown): Travel["coords"] {
-  if (
-    !rawCoords ||
-    typeof rawCoords !== "object" ||
-    Array.isArray(rawCoords)
-  ) {
+  if (!isObject(rawCoords)) {
     return undefined;
   }
 
-  const maybeCoords = rawCoords as Record<string, unknown>;
-  const lat = normalizeNumber(maybeCoords.lat);
-  const lng = normalizeNumber(maybeCoords.lng);
+  const lat = normalizeNumber(rawCoords.lat);
+  const lng = normalizeNumber(rawCoords.lng);
 
   if (lat === undefined || lng === undefined) {
     return undefined;
@@ -123,7 +120,7 @@ function parseCoords(rawCoords: unknown): Travel["coords"] {
 }
 
 function normalizeNumber(value: unknown): number | undefined {
-  if (typeof value === "number" && !Number.isNaN(value)) {
+  if (isValidNumber(value)) {
     return value;
   }
 
@@ -146,25 +143,15 @@ function parseHeroTitleVariant(value: unknown): Travel["heroTitleVariant"] {
 }
 
 function parseMap(rawMap: unknown): Travel["map"] {
-  if (!rawMap || typeof rawMap !== "object" || Array.isArray(rawMap)) {
+  if (!isObject(rawMap)) {
     return undefined;
   }
 
-  const mapObject = rawMap as Record<string, unknown>;
-  const gpx =
-    typeof mapObject.gpx === "string" && mapObject.gpx.trim().length > 0
-      ? mapObject.gpx
-      : undefined;
-  const kml =
-    typeof mapObject.kml === "string" && mapObject.kml.trim().length > 0
-      ? mapObject.kml
-      : undefined;
-  const kmz =
-    typeof mapObject.kmz === "string" && mapObject.kmz.trim().length > 0
-      ? mapObject.kmz
-      : undefined;
+  const gpx = isNonEmptyString(rawMap.gpx) ? rawMap.gpx : undefined;
+  const kml = isNonEmptyString(rawMap.kml) ? rawMap.kml : undefined;
+  const kmz = isNonEmptyString(rawMap.kmz) ? rawMap.kmz : undefined;
 
-  const pointsRaw = mapObject.points;
+  const pointsRaw = rawMap.points;
   const points = Array.isArray(pointsRaw)
     ? pointsRaw
         .map(parseMapPoint)
@@ -184,27 +171,21 @@ function parseMap(rawMap: unknown): Travel["map"] {
 }
 
 function parseMapPoint(rawPoint: unknown): TravelMapPoint | undefined {
-  if (!rawPoint || typeof rawPoint !== "object" || Array.isArray(rawPoint)) {
+  if (!isObject(rawPoint)) {
     return undefined;
   }
 
-  const point = rawPoint as Record<string, unknown>;
-  const lat = normalizeNumber(point.lat);
-  const lng = normalizeNumber(point.lng);
-  const name =
-    typeof point.name === "string" && point.name.trim().length > 0
-      ? point.name.trim()
-      : undefined;
+  const lat = normalizeNumber(rawPoint.lat);
+  const lng = normalizeNumber(rawPoint.lng);
+  const name = isNonEmptyString(rawPoint.name) ? rawPoint.name.trim() : undefined;
 
   if (lat === undefined || lng === undefined || !name) {
     return undefined;
   }
 
-  const description =
-    typeof point.description === "string" &&
-    point.description.trim().length > 0
-      ? point.description.trim()
-      : undefined;
+  const description = isNonEmptyString(rawPoint.description) 
+    ? rawPoint.description.trim() 
+    : undefined;
 
   return {
     name,
@@ -231,21 +212,17 @@ function parseTimeline(rawTimeline: unknown): Travel["timeline"] {
 }
 
 function parseTimelineItem(rawItem: unknown): TravelTimelineItem | undefined {
-  if (!rawItem || typeof rawItem !== "object" || Array.isArray(rawItem)) {
+  if (!isObject(rawItem)) {
     return undefined;
   }
 
-  const item = rawItem as Record<string, unknown>;
-  const city =
-    typeof item.city === "string" && item.city.trim().length > 0
-      ? item.city.trim()
-      : undefined;
+  const city = isNonEmptyString(rawItem.city) ? rawItem.city.trim() : undefined;
 
   if (!city) {
     return undefined;
   }
 
-  const km = normalizeNumber(item.km);
+  const km = normalizeNumber(rawItem.km);
 
   return {
     city,
@@ -314,10 +291,9 @@ export function getTravelStats(): TravelStats {
   
   // Continenti visitati (dai tags)
   const continents = new Set<string>();
-  const continentTags = ["Europa", "Asia", "Africa", "America", "Nord America", "Sud America", "Oceania", "Antartide"];
   travels.forEach((travel) => {
     travel.tags.forEach((tag) => {
-      if (continentTags.includes(tag)) {
+      if (isContinentTag(tag)) {
         continents.add(tag);
       }
     });

@@ -5,8 +5,10 @@ import Link from "next/link";
 import { TravelGallery } from "@/components/TravelGallery";
 import { TravelDetailMap } from "@/components/TravelDetailMap";
 import { TravelTimeline } from "@/components/TravelTimeline";
+import { TravelNavigationCard } from "@/components/TravelNavigationCard";
 import { formatDateRange } from "@/lib/dates";
-import { getAllTravels, getTravelBySlug, type Travel } from "@/lib/travels";
+import { getAllTravels, getTravelBySlug } from "@/lib/travels";
+import { getTravelNavigation } from "@/lib/travelNavigation";
 
 interface TravelPageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -38,9 +40,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const resolvedParams = await params;
   const travel = await getTravelBySlug(resolvedParams.slug);
   const travels = await getAllTravels();
-  const currentIndex = travels.findIndex((item) => item.slug === travel.slug);
-  const previousTravel = travels[currentIndex + 1];
-  const nextTravel = travels[currentIndex - 1];
+  const { previous: previousTravel, next: nextTravel } = getTravelNavigation(travels, travel.slug);
 
   return (
     <article className="container mx-auto max-w-4xl space-y-12">
@@ -124,41 +124,9 @@ export default async function TravelPage({ params }: TravelPageProps) {
       )}
 
       <nav className="grid gap-6 md:grid-cols-2">
-        <NavigationCard label="Viaggio precedente" travel={previousTravel} />
-        <NavigationCard label="Viaggio successivo" travel={nextTravel} align="end" />
+        <TravelNavigationCard label="Viaggio precedente" travel={previousTravel} />
+        <TravelNavigationCard label="Viaggio successivo" travel={nextTravel} align="end" />
       </nav>
     </article>
-  );
-}
-
-interface NavigationCardProps {
-  label: string;
-  travel?: Travel;
-  align?: "start" | "end";
-}
-
-function NavigationCard({ label, travel, align = "start" }: NavigationCardProps) {
-  if (!travel) {
-    return (
-      <div className="border border-dashed border-slate-200 bg-white p-6 text-brand-muted">
-        {label}
-        <p className="text-sm">Arriverà presto.</p>
-      </div>
-    );
-  }
-
-  return (
-    <Link
-      href={`/viaggi/${travel.slug}`}
-      className={`bg-white p-6 shadow-card transition hover:-translate-y-1 ${
-        align === "end" ? "text-right" : ""
-      }`}
-    >
-      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-        {label}
-      </p>
-      <p className="mt-2 text-lg font-semibold text-brand-primary">{travel.title}</p>
-      <p className="text-sm text-brand-muted">{formatDateRange(travel.date, travel.endDate)}</p>
-    </Link>
   );
 }
