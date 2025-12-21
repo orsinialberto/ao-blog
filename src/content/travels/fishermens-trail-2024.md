@@ -78,7 +78,6 @@ gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-02_m0zunk.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-03_jexos0.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-04_u9hiix.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-05_ihyz3d.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-06_yrgyp5.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-07_fpq6zx.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-08_prxc1f.jpg"

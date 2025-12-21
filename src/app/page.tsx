@@ -12,6 +12,19 @@ export default async function HomePage() {
   const highlights = travels.slice(0, 4);
   const stats = getTravelStats();
 
+  // Raccogli foto per la gallery preview (prime 6 foto dai viaggi più recenti)
+  const galleryPreview = travels
+    .filter((travel) => travel.gallery && travel.gallery.length > 0)
+    .slice(0, 2) // Prendi i 2 viaggi più recenti con foto
+    .flatMap((travel) =>
+      (travel.gallery || []).slice(0, 3).map((photo) => ({
+        url: photo,
+        travelTitle: travel.title,
+        travelSlug: travel.slug,
+      }))
+    )
+    .slice(0, 6);
+
   return (
     <div className="space-y-16">
       {/* Hero Section Full Width */}
@@ -111,6 +124,44 @@ export default async function HomePage() {
       <TravelStats stats={stats} />
 
       <div className="container space-y-16">
+        {/* Gallery Preview Section */}
+        {galleryPreview.length > 0 && (
+          <section className="space-y-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+                  Galleria fotografica
+                </p>
+              </div>
+              <Link
+                href="/galleria"
+                className="text-sm font-semibold text-brand-secondary hover:underline"
+              >
+                Vedi tutte le foto →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {galleryPreview.map((photo, i) => (
+                <Link
+                  key={`${photo.url}-${i}`}
+                  href="/galleria"
+                  className="relative aspect-[4/3] overflow-hidden hover:scale-[1.02] transition-transform group"
+                >
+                  <Image
+                    src={photo.url}
+                    alt={photo.travelTitle}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
         <TravelMap />
       </div>
     </div>
