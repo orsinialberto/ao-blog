@@ -36,8 +36,8 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-all ${
         headerIsTransparent
-          ? "border-b-0 bg-transparent backdrop-blur-none"
-          : "border-b border-slate-700 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-lg"
+          ? "border-b-0 bg-transparent"
+          : "border-b border-slate-700 bg-slate-900"
       }`}
     >
       <div className="container flex items-center justify-between pt-5 pb-3">
@@ -51,7 +51,7 @@ export function Header() {
           Diario di Viaggio
         </Link>
         <button
-          className={`rounded-lg border px-4 py-2 text-sm font-medium backdrop-blur-sm transition-colors lg:hidden ${
+          className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors lg:hidden ${
             headerIsTransparent
               ? "border-white/30 bg-white/20 text-white hover:bg-white/30"
               : "border-slate-700 bg-slate-800/50 text-white hover:bg-slate-700/50"
@@ -62,12 +62,12 @@ export function Header() {
           {isOpen ? "Chiudi" : "Menu"}
         </button>
         <nav
-          className={`absolute left-0 right-0 top-full border-b px-6 py-5 transition-all lg:static lg:block lg:border-0 lg:bg-transparent lg:backdrop-blur-none lg:p-0 ${
+          className={`absolute left-0 right-0 top-full border-b px-6 py-5 transition-all lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 ${
             isOpen ? "block" : "hidden lg:block"
           } ${
             headerIsTransparent
-              ? "border-white/20 bg-black/40 backdrop-blur-lg lg:bg-transparent"
-              : "border-slate-700 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-lg"
+              ? "border-white/20 bg-black/40 lg:bg-transparent"
+              : "border-slate-700 bg-slate-900"
           }`}
         >
           <ul className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
@@ -75,8 +75,8 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`font-klee text-sm font-medium transition-colors hover:opacity-75 ${
-                    headerIsTransparent ? "text-white" : "text-white"
+                  className={`font-klee text-sm font-medium transition-colors text-white text-opacity-100 hover:opacity-75 ${
+                    headerIsTransparent ? "" : ""
                   }`}
                   onClick={() => setIsOpen(false)}
                 >
