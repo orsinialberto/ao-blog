@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface Photo {
@@ -18,6 +18,27 @@ interface MasonryGalleryProps {
 export default function MasonryGallery({ photos }: MasonryGalleryProps) {
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [distributedColumns, setDistributedColumns] = useState<{
+    mobile: Photo[][];
+    tablet: Photo[][];
+    desktop: Photo[][];
+  } | null>(null);
+
+  const goToNext = useCallback(() => {
+    setSelectedIndex((prevIndex) => {
+      const newIndex = prevIndex + 1 >= photos.length ? 0 : prevIndex + 1;
+      setSelectedPhoto(photos[newIndex]);
+      return newIndex;
+    });
+  }, [photos]);
+
+  const goToPrevious = useCallback(() => {
+    setSelectedIndex((prevIndex) => {
+      const newIndex = prevIndex - 1 < 0 ? photos.length - 1 : prevIndex - 1;
+      setSelectedPhoto(photos[newIndex]);
+      return newIndex;
+    });
+  }, [photos]);
 
   useEffect(() => {
     if (!selectedPhoto) {
@@ -43,24 +64,97 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [selectedPhoto, selectedIndex, photos]);
-
-  const goToNext = () => {
-    const newIndex = selectedIndex + 1 >= photos.length ? 0 : selectedIndex + 1;
-    setSelectedIndex(newIndex);
-    setSelectedPhoto(photos[newIndex]);
-  };
-
-  const goToPrevious = () => {
-    const newIndex = selectedIndex - 1 < 0 ? photos.length - 1 : selectedIndex - 1;
-    setSelectedIndex(newIndex);
-    setSelectedPhoto(photos[newIndex]);
-  };
+  }, [selectedPhoto, goToNext, goToPrevious]);
 
   const handlePhotoClick = (photo: Photo, index: number) => {
     setSelectedPhoto(photo);
     setSelectedIndex(index);
   };
+
+  // Funzione per distribuire ciclicamente (fallback iniziale)
+  const distributeInColumns = useCallback((numColumns: number) => {
+    const columns: Photo[][] = Array.from({ length: numColumns }, () => []);
+    photos.forEach((photo, index) => {
+      columns[index % numColumns].push(photo);
+    });
+    return columns;
+  }, [photos]);
+
+  // Funzione per distribuire le foto in base all'altezza reale
+  const distributeByHeight = useCallback((numColumns: number, imageHeights: Map<string, number>) => {
+    const columns: Photo[][] = Array.from({ length: numColumns }, () => []);
+    const columnHeights: number[] = Array(numColumns).fill(0);
+
+    photos.forEach((photo) => {
+      // Trova la colonna più corta
+      const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+      
+      // Aggiungi la foto alla colonna più corta
+      columns[shortestColumnIndex].push(photo);
+      
+      // Aggiorna l'altezza della colonna (usa altezza reale se disponibile, altrimenti stima)
+      const height = imageHeights.get(photo.url) || 600; // default 600 se non ancora caricata
+      columnHeights[shortestColumnIndex] += height;
+    });
+
+    return columns;
+  }, [photos]);
+
+  // Carica le immagini e misura le altezze per distribuzione ottimale
+  useEffect(() => {
+    if (photos.length === 0) return;
+
+    // Inizializza con distribuzione ciclica
+    setDistributedColumns({
+      mobile: distributeInColumns(1),
+      tablet: distributeInColumns(2),
+      desktop: distributeInColumns(3),
+    });
+
+    const imageHeights = new Map<string, number>();
+    let loadedCount = 0;
+    const totalPhotos = photos.length;
+
+    const checkAndRedistribute = () => {
+      loadedCount++;
+      // Ridistribuisci quando almeno il 50% delle immagini sono caricate o dopo 20 immagini
+      const threshold = Math.min(totalPhotos, Math.max(20, Math.floor(totalPhotos * 0.5)));
+      
+      if (loadedCount >= threshold) {
+        const mobileCols = distributeByHeight(1, imageHeights);
+        const tabletCols = distributeByHeight(2, imageHeights);
+        const desktopCols = distributeByHeight(3, imageHeights);
+        
+        setDistributedColumns({
+          mobile: mobileCols,
+          tablet: tabletCols,
+          desktop: desktopCols,
+        });
+      }
+    };
+
+    // Carica e misura le immagini
+    photos.forEach((photo) => {
+      const img = new window.Image();
+      const optimizedUrl = optimizeCloudinaryUrl(photo.url, { width: 800, quality: 75 });
+      
+      img.onload = () => {
+        // Calcola l'altezza proporzionale per larghezza 800px (larghezza target)
+        const aspectRatio = img.height / img.width;
+        const displayHeight = 800 * aspectRatio;
+        imageHeights.set(photo.url, displayHeight);
+        checkAndRedistribute();
+      };
+      
+      img.onerror = () => {
+        // Fallback se l'immagine non carica
+        imageHeights.set(photo.url, 600);
+        checkAndRedistribute();
+      };
+      
+      img.src = optimizedUrl;
+    });
+  }, [photos, distributeInColumns, distributeByHeight]);
 
   if (photos.length === 0) {
     return (
@@ -70,20 +164,10 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
     );
   }
 
-  // Distribuisci le foto in colonne per mantenere l'ordine e riempire gli spazi
-  const columnCount = { mobile: 1, tablet: 2, desktop: 3 };
-  
-  const distributeInColumns = (numColumns: number) => {
-    const columns: Photo[][] = Array.from({ length: numColumns }, () => []);
-    photos.forEach((photo, index) => {
-      columns[index % numColumns].push(photo);
-    });
-    return columns;
-  };
-
-  const mobileColumns = distributeInColumns(columnCount.mobile);
-  const tabletColumns = distributeInColumns(columnCount.tablet);
-  const desktopColumns = distributeInColumns(columnCount.desktop);
+  // Usa le colonne distribuite o fallback ciclico
+  const mobileColumns = distributedColumns?.mobile || distributeInColumns(1);
+  const tabletColumns = distributedColumns?.tablet || distributeInColumns(2);
+  const desktopColumns = distributedColumns?.desktop || distributeInColumns(3);
 
   const renderColumn = (columnPhotos: Photo[], columnIndex: number, breakpoint: string) => (
     <div key={`${breakpoint}-col-${columnIndex}`} className="flex flex-col gap-2">
@@ -97,7 +181,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
         return (
           <div
             key={`${photo.url}-${index}`}
-            className="relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform group"
+            className="relative overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform group rounded-lg"
             onClick={() => handlePhotoClick(photo, index)}
           >
             <Image
@@ -105,16 +189,16 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
               alt={`${photo.travelTitle} - ${photo.location}`}
               width={800}
               height={600}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover rounded-lg"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               loading={isPriority ? "eager" : "lazy"}
               priority={isPriority}
             />
             {/* Overlay con info al hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 rounded-lg">
               <div className="text-white">
-                <p className="font-semibold text-sm md:text-base">{photo.travelTitle}</p>
-                <p className="text-xs md:text-sm opacity-90">{photo.location}</p>
+                <p className="font-semibold text-sm md:text-base text-white">{photo.travelTitle}</p>
+                <p className="text-xs md:text-sm text-white/90">{photo.location}</p>
               </div>
             </div>
           </div>
