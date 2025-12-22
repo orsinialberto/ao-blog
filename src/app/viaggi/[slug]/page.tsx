@@ -9,6 +9,7 @@ import { TravelNavigationCard } from "@/components/TravelNavigationCard";
 import { formatDateRange } from "@/lib/dates";
 import { getAllTravels, getTravelBySlug } from "@/lib/travels";
 import { getTravelNavigation } from "@/lib/travelNavigation";
+import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface TravelPageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -41,6 +42,11 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const travel = await getTravelBySlug(resolvedParams.slug);
   const travels = await getAllTravels();
   const { previous: previousTravel, next: nextTravel } = getTravelNavigation(travels, travel.slug);
+
+  const optimizedCoverImage = optimizeCloudinaryUrl(travel.coverImage, {
+    width: 1200,
+    quality: 85,
+  });
 
   return (
     <article className="container mx-auto max-w-4xl space-y-12">
@@ -75,11 +81,11 @@ export default async function TravelPage({ params }: TravelPageProps) {
         <div className="px-8 pt-2 pb-8">
           <div className="relative h-[500px] w-full">
             <Image
-              src={travel.coverImage}
+              src={optimizedCoverImage}
               alt={travel.title}
               fill
               className="object-cover"
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
               priority
             />
           </div>

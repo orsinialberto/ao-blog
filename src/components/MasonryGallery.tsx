@@ -267,12 +267,15 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
           )}
 
           <div className="relative max-h-[90vh] max-w-[90vw]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={selectedPhoto.url}
+            <Image
+              src={optimizeCloudinaryUrl(selectedPhoto.url, { width: 1920, quality: 90 })}
               alt={`${selectedPhoto.travelTitle} - ${selectedPhoto.location}`}
+              width={1920}
+              height={1080}
               className="max-h-[90vh] max-w-[90vw] object-contain"
               onClick={(e) => e.stopPropagation()}
+              quality={90}
+              sizes="90vw"
             />
           </div>
 

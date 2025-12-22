@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SectionHeader } from "@/components/SectionHeader";
+import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface GalleryPhoto {
   url: string;
@@ -50,7 +51,7 @@ export function GalleryPreviewSection({ photos }: GalleryPreviewSectionProps) {
             className="relative block aspect-[21/9] overflow-hidden rounded-xl shadow-2xl hover:scale-[1.01] transition-transform duration-300 group"
           >
             <Image
-              src={mainPhoto.url}
+              src={optimizeCloudinaryUrl(mainPhoto.url, { width: 1600, quality: 85 })}
               alt={mainPhoto.travelTitle}
               fill
               className="object-cover"
@@ -73,11 +74,12 @@ export function GalleryPreviewSection({ photos }: GalleryPreviewSectionProps) {
                   className="relative aspect-square overflow-hidden rounded-lg shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300 group"
                 >
                   <Image
-                    src={photo.url}
+                    src={optimizeCloudinaryUrl(photo.url, { width: 400, quality: 75 })}
                     alt={photo.travelTitle}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 33vw, 20vw"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Link>

@@ -3,7 +3,7 @@ import { withBasePath } from "@/lib/paths";
 
 export function HeroSection() {
   return (
-    <section className="relative -mt-[73px] h-[calc(100vh+73px)]">
+    <section className="relative -mt-[73px] h-[calc(110vh+73px)] min-h-[700px]">
       <div className="relative h-full w-full">
         <Image
           src={withBasePath("/images/home-hero.jpg")}

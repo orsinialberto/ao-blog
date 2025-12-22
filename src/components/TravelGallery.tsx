@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface TravelGalleryProps {
   images?: string[];
@@ -126,11 +127,11 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
       <div className={`relative overflow-hidden bg-slate-100 ${HERO_ASPECT}`}>
         <Image
           key={selectedImage}
-          src={selectedImage}
+          src={optimizeCloudinaryUrl(selectedImage, { width: 1200, quality: 85 })}
           alt={`${title} foto ${selectedIndex + 1}`}
           fill
           priority
-          quality={100}
+          quality={85}
           className="object-cover cursor-pointer"
           sizes="(max-width: 768px) 100vw, 80vw"
           onClick={() => setFullImageOpen(selectedImage)}
@@ -188,11 +189,12 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
                 }`}
               >
                 <Image
-                  src={image}
+                  src={optimizeCloudinaryUrl(image, { width: 256, quality: 70 })}
                   alt={`${title} thumbnail ${index + 1}`}
                   fill
                   className="object-cover"
                   sizes="128px"
+                  loading="lazy"
                 />
               </button>
             );
@@ -254,12 +256,13 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
                   onClick={() => setFullImageOpen(image)}
                 >
                   <Image
-                    src={image}
+                    src={optimizeCloudinaryUrl(image, { width: 800, quality: 80 })}
                     alt={`${title} foto ${index + 1}`}
                     fill
-                    quality={100}
+                    quality={85}
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    loading="lazy"
                   />
                 </div>
               ))}
@@ -321,12 +324,15 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
               </div>
             )}
             <div className="relative max-h-[90vh] max-w-[90vw]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={fullImageOpen}
+              <Image
+                src={optimizeCloudinaryUrl(fullImageOpen, { width: 1920, quality: 90 })}
                 alt={`${title} foto a dimensione originale`}
+                width={1920}
+                height={1080}
                 className="max-h-[90vh] max-w-[90vw] object-contain"
                 onClick={(e) => e.stopPropagation()}
+                quality={90}
+                sizes="90vw"
               />
             </div>
             {safeImages.length > 1 && (

@@ -44,7 +44,14 @@ export default function AboutPage() {
           </ul>
         </div>
         <div className="relative h-48 w-full overflow-hidden">
-          <Image src={withBasePath("/images/profile.jpg")} alt="Aurora boreale" fill className="object-cover" />
+          <Image 
+            src={withBasePath("/images/profile.jpg")} 
+            alt="Aurora boreale" 
+            fill 
+            className="object-cover"
+            sizes="320px"
+            loading="lazy"
+          />
         </div>
         <div>
           <h2 className="text-xl font-semibold text-brand-primary">Contatti</h2>

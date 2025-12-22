@@ -24,7 +24,7 @@ export async function TravelMap() {
               Mappa
             </p>
           </div>
-          <div className="h-[420px] w-full overflow-hidden rounded-xl bg-brand-background">
+          <div className="h-[600px] w-full overflow-hidden rounded-xl bg-brand-background">
             <TravelMapLazy travels={travelsWithCoords} />
           </div>
         </div>
