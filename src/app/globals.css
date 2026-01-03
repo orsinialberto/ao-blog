@@ -103,6 +103,17 @@ a {
   border-radius: 0 !important;
 }
 
+/* Apply border-radius to leaflet container when inside homepage map wrapper */
+.homepage-map-wrapper .leaflet-container {
+  border-radius: 0.75rem !important;
+}
+
+/* Ensure Leaflet controls respect the border-radius */
+.homepage-map-wrapper .leaflet-control-container {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
 .travel-marker-wrapper {
   display: flex;
   align-items: center;
