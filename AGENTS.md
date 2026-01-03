@@ -100,6 +100,22 @@ src/
 
 ---
 
+## 🔍 Analysis Guidelines
+
+### Code Suggestions During Analysis
+
+**CRITICAL RULE**: When performing analysis or code review, NEVER suggest code examples or provide code snippets. Analysis should focus on:
+
+- Identifying problems and issues
+- Explaining what's wrong or what could be improved
+- Describing the impact of issues
+- Discussing design patterns and approaches conceptually
+- Providing recommendations in natural language
+
+**Exception**: Only provide code when explicitly asked to implement changes or when the user requests code examples.
+
+---
+
 ## 📝 Coding Standards
 
 ### TypeScript
