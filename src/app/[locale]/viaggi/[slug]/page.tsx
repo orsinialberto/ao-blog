@@ -65,7 +65,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
         <div className="px-8 pt-8 pb-4">
           {/* Meta info sopra il titolo */}
           <div className="flex flex-wrap items-center gap-4 text-sm text-brand-muted mb-4">
-            <span>{formatDateRange(travel.date, travel.endDate)}</span>
+            <span>{formatDateRange(travel.date, travel.endDate, locale)}</span>
             <span>•</span>
             <span>{travel.duration}</span>
             {travel.totalKilometers && (

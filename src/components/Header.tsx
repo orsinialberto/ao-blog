@@ -1,17 +1,24 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import { navigationLinks } from "@/config/navigation";
-import { strings } from "@/config/strings";
+import { useState, useEffect, Suspense } from "react";
+import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { removeLocaleFromPath } from "@/lib/i18n/routing";
 
 export function Header() {
   const pathname = usePathname();
+  const t = useTranslations();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const navigationLinks = [
+    { href: "/", label: t.navigation.links.home },
+    { href: "/viaggi", label: t.navigation.links.travels },
+    { href: "/galleria", label: t.navigation.links.gallery },
+    { href: "/about", label: t.navigation.links.about },
+  ];
 
   const isActive = (href: string) => {
     const cleanPathname = removeLocaleFromPath(pathname || "");
@@ -54,7 +61,7 @@ export function Header() {
           }`}
           onClick={() => setIsOpen(false)}
         >
-          {strings.common.siteName}
+          {t.common.siteName}
         </LocalizedLink>
         <div className="flex items-center gap-4">
           <nav
@@ -82,11 +89,15 @@ export function Header() {
               ))}
             </ul>
             <div className="mt-6 lg:hidden">
-              <LanguageSwitcher isTransparent={headerIsTransparent} />
+              <Suspense fallback={<div className="h-9 w-20 rounded-lg border border-slate-300 bg-slate-50" />}>
+                <LanguageSwitcher isTransparent={headerIsTransparent} />
+              </Suspense>
             </div>
           </nav>
           <div className="hidden lg:block">
-            <LanguageSwitcher isTransparent={headerIsTransparent} />
+            <Suspense fallback={<div className="h-9 w-20 rounded-lg border border-slate-300 bg-slate-50" />}>
+              <LanguageSwitcher isTransparent={headerIsTransparent} />
+            </Suspense>
           </div>
           <button
             className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors lg:hidden ${
@@ -97,7 +108,7 @@ export function Header() {
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
           >
-            {isOpen ? strings.navigation.close : strings.navigation.menu}
+            {isOpen ? t.navigation.close : t.navigation.menu}
           </button>
         </div>
       </div>

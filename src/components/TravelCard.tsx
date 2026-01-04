@@ -1,15 +1,19 @@
+"use client";
+
 import Image from "next/image";
 
 import type { Travel } from "@/lib/travels";
 import { formatDateRange } from "@/lib/dates";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { LocalizedLink } from "./LocalizedLink";
+import { useLocale } from "@/i18n/hooks";
 
 interface TravelCardProps {
   travel: Travel;
 }
 
 export function TravelCard({ travel }: TravelCardProps) {
+  const locale = useLocale();
   const titleColorClass =
     travel.heroTitleVariant === "dark" ? "text-slate-900" : "text-white";
   
@@ -33,7 +37,7 @@ export function TravelCard({ travel }: TravelCardProps) {
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className="flex flex-col justify-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70 mb-1">
-              {formatDateRange(travel.date, travel.endDate)}
+              {formatDateRange(travel.date, travel.endDate, locale)}
             </p>
             <h3 className={`text-2xl font-semibold leading-tight line-clamp-2 ${titleColorClass}`}>
               {travel.title}

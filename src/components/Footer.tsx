@@ -1,7 +1,10 @@
-import { strings } from "@/config/strings";
+"use client";
+
+import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 
 export function Footer() {
+  const t = useTranslations();
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
@@ -46,10 +49,10 @@ export function Footer() {
   ];
 
   const quickLinks = [
-    { href: "/", label: strings.footer.quickLinks.home },
-    { href: "/viaggi", label: strings.footer.quickLinks.allTravels },
-    { href: "/galleria", label: strings.footer.quickLinks.photoGallery },
-    { href: "/about", label: strings.footer.quickLinks.about },
+    { href: "/", label: t.footer.quickLinks.home },
+    { href: "/viaggi", label: t.footer.quickLinks.allTravels },
+    { href: "/galleria", label: t.footer.quickLinks.photoGallery },
+    { href: "/about", label: t.footer.quickLinks.about },
   ];
 
   return (
@@ -60,17 +63,17 @@ export function Footer() {
           {/* Brand & Bio Section */}
           <div className="lg:col-span-5">
             <p className="font-comforter text-3xl font-normal tracking-tight text-brand-primary md:text-4xl mb-4">
-              {strings.common.siteName}
+              {t.common.siteName}
             </p>
             <p className="text-sm leading-relaxed text-brand-muted max-w-md">
-              {strings.footer.description}
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="lg:col-span-3">
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              {strings.footer.navigation}
+              {t.footer.navigation}
             </h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
@@ -89,10 +92,10 @@ export function Footer() {
           {/* Social & Connect */}
           <div className="lg:col-span-4">
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              {strings.footer.follow}
+              {t.footer.follow}
             </h3>
             <p className="mb-4 text-sm text-brand-muted">
-              {strings.footer.followDescription}
+              {t.footer.followDescription}
             </p>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
@@ -117,7 +120,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-slate-200 pt-8 text-center">
           <p className="text-xs text-brand-muted">
-            © {currentYear} {strings.common.siteName} · {strings.common.copyright}
+            © {currentYear} {t.common.siteName} · {t.common.copyright}
           </p>
         </div>
       </div>

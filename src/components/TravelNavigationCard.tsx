@@ -39,7 +39,7 @@ export function TravelNavigationCard({
         {label}
       </p>
       <p className="mt-2 text-lg font-semibold text-brand-primary">{travel.title}</p>
-      <p className="text-sm text-brand-muted">{formatDateRange(travel.date, travel.endDate)}</p>
+      <p className="text-sm text-brand-muted">{formatDateRange(travel.date, travel.endDate, locale)}</p>
     </LocalizedLink>
   );
 }
