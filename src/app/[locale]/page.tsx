@@ -58,7 +58,7 @@ export default async function HomePage({ params }: HomePageProps) {
       </div>
 
       <div className="mt-24">
-        <TravelStats stats={stats} />
+        <TravelStats stats={stats} locale={locale} />
       </div>
 
       <div className="mt-24">

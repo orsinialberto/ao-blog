@@ -51,7 +51,8 @@
       "brokenShoes": "Paia di scarpe rotte"
     },
     "travelTimeline": {
-      "stagesLabel": "Tappe del cammino"
+      "stagesLabel": "Tappe del cammino",
+      "kilometers": "km"
     },
     "travelDetailMap": {
       "trackLabel": "Traccia del viaggio"

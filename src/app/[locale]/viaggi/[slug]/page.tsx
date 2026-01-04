@@ -71,7 +71,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
             {travel.totalKilometers && (
               <>
                 <span>•</span>
-                <span>{travel.totalKilometers} km</span>
+                <span>{travel.totalKilometers} {t.components.travelTimeline.kilometers}</span>
               </>
             )}
           </div>
@@ -131,7 +131,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
         </div>
       </div>
 
-      {travel.timeline && <TravelTimeline timeline={travel.timeline} />}
+      {travel.timeline && <TravelTimeline timeline={travel.timeline} locale={locale as SupportedLocale} />}
 
       <TravelGallery images={travel.gallery} title={travel.title} />
 

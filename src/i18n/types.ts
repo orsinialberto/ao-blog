@@ -63,6 +63,7 @@ export interface TranslationMessages {
     };
     travelTimeline: {
       stagesLabel: string;
+      kilometers: string;
     };
     travelNavigationCard: {
       comingSoon: string;

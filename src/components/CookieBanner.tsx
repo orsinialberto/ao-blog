@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { strings } from "@/config/strings";
+import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
@@ -9,6 +9,7 @@ const COOKIE_CONSENT_KEY = "cookie-consent";
 type CookieConsent = "accepted" | "rejected" | null;
 
 export function CookieBanner() {
+  const t = useTranslations();
   const [showBanner, setShowBanner] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,15 +53,15 @@ export function CookieBanner() {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex-1 space-y-2">
               <p className="text-sm font-semibold text-brand-primary">
-                {strings.components.cookieBanner.title}
+                {t.components.cookieBanner.title}
               </p>
               <p className="text-sm text-brand-muted">
-                {strings.components.cookieBanner.description}{" "}
+                {t.components.cookieBanner.description}{" "}
                 <LocalizedLink
                   href="/about"
                   className="text-brand-accent underline hover:text-brand-accent/80"
                 >
-                  {strings.components.cookieBanner.moreInfo}
+                  {t.components.cookieBanner.moreInfo}
                 </LocalizedLink>
               </p>
             </div>
@@ -68,16 +69,16 @@ export function CookieBanner() {
               <button
                 onClick={handleReject}
                 className="px-4 py-2 text-sm font-medium text-brand-muted hover:text-brand-primary transition-colors whitespace-nowrap"
-                aria-label={strings.components.cookieBanner.rejectAriaLabel}
+                aria-label={t.components.cookieBanner.rejectAriaLabel}
               >
-                {strings.components.cookieBanner.reject}
+                {t.components.cookieBanner.reject}
               </button>
               <button
                 onClick={handleAccept}
                 className="px-6 py-2 text-sm font-semibold text-white bg-brand-accent hover:bg-brand-accent/90 rounded-lg transition-colors whitespace-nowrap"
-                aria-label={strings.components.cookieBanner.acceptAriaLabel}
+                aria-label={t.components.cookieBanner.acceptAriaLabel}
               >
-                {strings.components.cookieBanner.accept}
+                {t.components.cookieBanner.accept}
               </button>
             </div>
           </div>

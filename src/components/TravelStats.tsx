@@ -1,33 +1,40 @@
 import Image from "next/image";
 import type { TravelStats } from "@/lib/travels";
 import { withBasePath } from "@/lib/paths";
-import { strings } from "@/config/strings";
+import { getTranslations } from "@/i18n";
+import type { SupportedLocale } from "@/config/locales";
 
 interface TravelStatsProps {
   stats: TravelStats;
+  locale: SupportedLocale;
 }
 
-export function TravelStats({ stats }: TravelStatsProps) {
+export function TravelStats({ stats, locale }: TravelStatsProps) {
+  const t = getTranslations(locale);
+  
+  // Get locale string for number formatting (e.g., "it-IT", "en-US")
+  const localeString = locale === "it" ? "it-IT" : "en-US";
+  
   const statsItems = [
     {
       value: stats.countriesVisited,
-      label: strings.components.travelStats.countriesVisited,
+      label: t.components.travelStats.countriesVisited,
       icon: withBasePath("/images/icons/countries.png"),
     },
     {
       value: stats.continentsVisited,
-      label: strings.components.travelStats.continentsVisited,
+      label: t.components.travelStats.continentsVisited,
       icon: withBasePath("/images/icons/continents.png"),
     },
     {
       value: stats.kilometersWalked,
-      label: strings.components.travelStats.kilometersWalked,
-      suffix: " km",
+      label: t.components.travelStats.kilometersWalked,
+      suffix: ` ${t.components.travelTimeline.kilometers}`,
       icon: withBasePath("/images/icons/kilometers.png"),
     },
     {
       value: stats.brokenShoes,
-      label: strings.components.travelStats.brokenShoes,
+      label: t.components.travelStats.brokenShoes,
       icon: withBasePath("/images/icons/shoes.png"),
     },
   ];
@@ -50,7 +57,7 @@ export function TravelStats({ stats }: TravelStatsProps) {
                 </div>
               </div>
               <div className="font-klee text-3xl font-semibold text-brand-primary md:text-4xl">
-                {item.value.toLocaleString("it-IT")}
+                {item.value.toLocaleString(localeString)}
                 {item.suffix}
               </div>
               <div className="mt-4 font-klee text-xs text-brand-muted md:text-sm">

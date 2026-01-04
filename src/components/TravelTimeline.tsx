@@ -1,11 +1,14 @@
 import { type TravelTimelineItem } from "@/lib/travels";
-import { strings } from "@/config/strings";
+import { getTranslations } from "@/i18n";
+import type { SupportedLocale } from "@/config/locales";
 
 interface TravelTimelineProps {
   timeline: TravelTimelineItem[];
+  locale: SupportedLocale;
 }
 
-export function TravelTimeline({ timeline }: TravelTimelineProps) {
+export function TravelTimeline({ timeline, locale }: TravelTimelineProps) {
+  const t = getTranslations(locale);
   if (!timeline || timeline.length === 0) {
     return null;
   }
@@ -46,7 +49,7 @@ export function TravelTimeline({ timeline }: TravelTimelineProps) {
     <section className="bg-white p-8 shadow-card">
       <div className="mb-6">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-          {strings.components.travelTimeline.stagesLabel}
+          {t.components.travelTimeline.stagesLabel}
         </p>
       </div>
 
@@ -86,7 +89,7 @@ export function TravelTimeline({ timeline }: TravelTimelineProps) {
                   {nextItem?.km !== undefined && (
                     <div className="absolute top-[38px] right-0 translate-x-1/2">
                       <span className="text-[10px] font-medium text-brand-muted whitespace-nowrap">
-                        {nextItem.km} km
+                        {nextItem.km} {t.components.travelTimeline.kilometers}
                       </span>
                     </div>
                   )}
@@ -132,7 +135,7 @@ export function TravelTimeline({ timeline }: TravelTimelineProps) {
                   {nextItem?.km !== undefined && (
                     <div className="ml-5 mt-2">
                       <span className="text-[10px] font-medium text-brand-muted">
-                        {nextItem.km} km
+                        {nextItem.km} {t.components.travelTimeline.kilometers}
                       </span>
                     </div>
                   )}

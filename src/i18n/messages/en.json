@@ -51,7 +51,8 @@
       "brokenShoes": "Pairs of broken shoes"
     },
     "travelTimeline": {
-      "stagesLabel": "Journey stages"
+      "stagesLabel": "Journey stages",
+      "kilometers": "km"
     },
     "travelDetailMap": {
       "trackLabel": "Travel track"
