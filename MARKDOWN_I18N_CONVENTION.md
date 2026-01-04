@@ -43,28 +43,100 @@ These fields must be **identical** across all language versions of the same trav
 - `location` - Location/country name (used for filtering, not displayed)
 - `coords` - Geographic coordinates (`lat`, `lng`)
 - `map` - Map configuration:
-  - `gpx`, `kml`, `kmz` - Track file paths
-  - `points[].name` - Point names (geographic identifiers)
-  - `points[].lat`, `points[].lng` - Point coordinates
+  - `gpx`, `kml`, `kmz` - Track file paths (must be identical)
+  - `points[].name` - Point names (geographic identifiers, must be identical)
+  - `points[].lat`, `points[].lng` - Point coordinates (must be identical)
+  - `points[].description` - **EXCEPTION**: This field is translated (see Translated Fields below)
 - `gallery` - Array of image URLs
 - `heroTitleVariant` - Hero title variant (`"light"` or `"dark"`)
 - `totalKilometers` - Total kilometers traveled (number)
 - `timeline[].city` - City names in timeline (geographic identifiers)
+  - **Policy**: Not translated (proper names remain unchanged)
+  - **Rationale**: City names are proper nouns and typically not translated
 - `timeline[].km` - Kilometers for timeline items
+  - **Policy**: Not translated (numeric values remain unchanged)
 
 **Rationale**: These fields represent shared metadata, geographic data, or technical configuration that should remain consistent across languages.
+
+## Field-by-Field Translation Policy
+
+This section provides detailed policy for each frontmatter field:
+
+### Fields That Must Be Translated
+
+| Field | Type | Policy | Example |
+|-------|------|--------|---------|
+| `title` | string | Always translate | `"Cambogia"` → `"Cambodia"` |
+| `description` | string | Always translate | Full sentence translation |
+| `content` | markdown | Always translate | Full body content translation |
+| `duration` | string | Always translate (includes units) | `"14 giorni"` → `"14 days"` |
+| `map.points[].description` | string | Always translate | `"Capitale..."` → `"Capital..."` |
+
+### Fields That Must Remain Identical
+
+| Field | Type | Policy | Rationale |
+|-------|------|--------|-----------|
+| `slug` | string | Must match exactly | Unique identifier |
+| `date` | string | Must match exactly | ISO date format |
+| `endDate` | string | Must match exactly | ISO date format |
+| `coverImage` | string | Must match exactly | Image URL |
+| `tags` | array | Must match exactly | Filtering metadata |
+| `location` | string | Must match exactly | Filtering metadata |
+| `coords.lat` | number | Must match exactly | Geographic data |
+| `coords.lng` | number | Must match exactly | Geographic data |
+| `map.gpx` | string | Must match exactly | File path |
+| `map.kml` | string | Must match exactly | File path |
+| `map.kmz` | string | Must match exactly | File path |
+| `map.points[].name` | string | Must match exactly | Geographic identifier |
+| `map.points[].lat` | number | Must match exactly | Geographic data |
+| `map.points[].lng` | number | Must match exactly | Geographic data |
+| `gallery[]` | array | Must match exactly | Image URLs |
+| `heroTitleVariant` | string | Must match exactly | UI configuration |
+| `totalKilometers` | number | Must match exactly | Numeric data |
+| `timeline[].city` | string | Must match exactly | Proper noun (not translated) |
+| `timeline[].km` | number | Must match exactly | Numeric data |
+
+### Special Cases
+
+- **`duration`**: While this field is translated, it can contain numeric values. The format should include units in the target language (e.g., "14 giorni" in Italian, "14 days" in English). Pure numeric formats are also acceptable but less descriptive.
+
+- **`map.points[].description`**: This is the only nested field that is translated. All other fields within `map.points[]` (name, lat, lng) must remain identical.
+
+- **`timeline[].city`**: City names are proper nouns and are not translated. This follows standard internationalization practices where geographic place names remain in their original form.
 
 ### Translated Fields
 
 These fields should be **translated** in each language version:
 
 - `title` - Travel title
-- `description` - Short description/summary
-- `content` - Main Markdown content (body of the post)
-- `duration` - Duration string (e.g., `"14 giorni"` → `"14 days"`)
-- `map.points[].description` - Descriptions for map points
+  - **Policy**: Must be translated to match the target language
+  - **Example**: `"Cambogia"` → `"Cambodia"`
 
-**Rationale**: These fields contain user-facing text that should be localized.
+- `description` - Short description/summary
+  - **Policy**: Must be translated to match the target language
+  - **Example**: `"Viaggio in Cambogia..."` → `"Journey through Cambodia..."`
+
+- `content` - Main Markdown content (body of the post)
+  - **Policy**: Must be fully translated to match the target language
+  - **Note**: This is the main body content after the frontmatter
+
+- `duration` - Duration string
+  - **Policy**: Must be translated to match the target language
+  - **Format**: Can include units (e.g., "days", "giorni", "días")
+  - **Examples**: 
+    - Italian: `"14 giorni"`, `"10 giorni"`, `"3 settimane"`
+    - English: `"14 days"`, `"10 days"`, `"3 weeks"`
+  - **Rationale**: Duration units are language-specific and should be localized
+
+- `map.points[].description` - Descriptions for map points
+  - **Policy**: Must be translated to match the target language
+  - **Note**: Only the `description` field is translated; `name`, `lat`, and `lng` remain unchanged
+  - **Examples**:
+    - Italian: `"Capitale e punto di partenza del viaggio"`
+    - English: `"Capital and starting point of the journey"`
+  - **Rationale**: These descriptions are user-facing text that should be localized
+
+**Rationale**: These fields contain user-facing text that should be localized for better user experience in each language.
 
 ## Example Structure
 

@@ -5,10 +5,24 @@
  * - Italian (default): [slug].md (e.g., cambogia-2025.md)
  * - English: [slug].en.md (e.g., cambogia-2025.en.md)
  * - Slug must be identical across all language versions
- * - Common fields (slug, date, coverImage, tags, coords, map, gallery, etc.) must be identical
- * - Translated fields (title, description, content, duration, map.points[].description) should be localized
  * 
- * See MARKDOWN_I18N_CONVENTION.md for complete documentation.
+ * Field Translation Policy:
+ * 
+ * TRANSLATED FIELDS (must be localized in each language version):
+ * - title: Travel title
+ * - description: Short description/summary
+ * - content: Main Markdown content body
+ * - duration: Duration string with units (e.g., "14 giorni" → "14 days")
+ * - map.points[].description: Map point descriptions
+ * 
+ * COMMON FIELDS (must be identical across all language versions):
+ * - slug, date, endDate, coverImage, tags, location
+ * - coords (lat, lng)
+ * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng
+ * - gallery, heroTitleVariant, totalKilometers
+ * - timeline[].city (proper nouns, not translated), timeline[].km
+ * 
+ * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
  */
 
 import fs from "fs";
@@ -159,16 +173,26 @@ function ensureCache(locale: Locale = "it"): Travel[] {
 /**
  * Parses a travel Markdown file into a Travel object.
  * 
- * Common fields (must be identical across language versions):
- * - slug, date, endDate, coverImage, tags, location, coords, map, gallery,
- *   heroTitleVariant, totalKilometers, timeline
+ * This function reads frontmatter fields and processes the Markdown content.
+ * The parsing logic automatically handles translated fields based on the locale:
  * 
- * Translated fields (should be localized):
- * - title, description, content, duration, map.points[].description
+ * TRANSLATED FIELDS (read from locale-specific file):
+ * - title: Travel title (e.g., "Cambogia" in Italian, "Cambodia" in English)
+ * - description: Short description/summary (fully translated)
+ * - content: Main Markdown content body (fully translated)
+ * - duration: Duration string with localized units (e.g., "14 giorni" → "14 days")
+ * - map.points[].description: Map point descriptions (fully translated)
+ * 
+ * COMMON FIELDS (must be identical in all language versions):
+ * - slug, date, endDate, coverImage, tags, location
+ * - coords (lat, lng)
+ * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng
+ * - gallery, heroTitleVariant, totalKilometers
+ * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
  * @param locale - Locale to load ('it' for Italian, 'en' for English, defaults to 'it')
- * @returns Parsed Travel object
+ * @returns Parsed Travel object with fields appropriate for the specified locale
  * @throws Error if file doesn't exist or mandatory fields are missing
  */
 function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
@@ -277,6 +301,15 @@ function parseMap(rawMap: unknown): Travel["map"] {
   };
 }
 
+/**
+ * Parses a map point from raw frontmatter data.
+ * 
+ * Note: The `description` field is translated (localized per language version),
+ * while `name`, `lat`, and `lng` must remain identical across all language versions.
+ * 
+ * @param rawPoint - Raw point data from frontmatter
+ * @returns Parsed TravelMapPoint or undefined if invalid
+ */
 function parseMapPoint(rawPoint: unknown): TravelMapPoint | undefined {
   if (!isObject(rawPoint)) {
     return undefined;
@@ -290,6 +323,7 @@ function parseMapPoint(rawPoint: unknown): TravelMapPoint | undefined {
     return undefined;
   }
 
+  // Description is a translated field - it will be different in each language version
   const description = isNonEmptyString(rawPoint.description) 
     ? rawPoint.description.trim() 
     : undefined;
