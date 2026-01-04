@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { navigationLinks } from "@/config/navigation";
+import { strings } from "@/config/strings";
 
 export function Header() {
   const pathname = usePathname();
@@ -48,7 +49,7 @@ export function Header() {
           }`}
           onClick={() => setIsOpen(false)}
         >
-          Diario di Viaggio
+          {strings.common.siteName}
         </Link>
         <button
           className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors lg:hidden ${
@@ -59,7 +60,7 @@ export function Header() {
           onClick={() => setIsOpen((prev) => !prev)}
           aria-expanded={isOpen}
         >
-          {isOpen ? "Chiudi" : "Menu"}
+          {isOpen ? strings.navigation.close : strings.navigation.menu}
         </button>
         <nav
           className={`absolute left-0 right-0 top-full border-b px-6 py-5 transition-all lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 ${

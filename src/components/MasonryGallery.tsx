@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { strings } from "@/config/strings";
 
 interface Photo {
   url: string;
@@ -235,15 +236,15 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
             onClick={() => setSelectedPhoto(null)}
             className="absolute right-6 top-6 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80 z-10"
           >
-            Chiudi
+            {strings.components.masonryGallery.close}
           </button>
 
-          {/* Frecce di navigazione */}
+          {/* Navigation arrows */}
           {photos.length > 1 && (
             <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 z-10">
               <button
                 type="button"
-                aria-label="Foto precedente"
+                aria-label={strings.components.masonryGallery.previousPhoto}
                 className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:-translate-x-1"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -254,7 +255,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
               </button>
               <button
                 type="button"
-                aria-label="Foto successiva"
+                aria-label={strings.components.masonryGallery.nextPhoto}
                 className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:translate-x-1"
                 onClick={(e) => {
                   e.stopPropagation();

@@ -1,6 +1,7 @@
 import { TravelCard } from "@/components/TravelCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import type { Travel } from "@/lib/travels";
+import { strings } from "@/config/strings";
 
 interface TravelsHighlightSectionProps {
   travels: Travel[];
@@ -12,8 +13,8 @@ export function TravelsHighlightSection({ travels }: TravelsHighlightSectionProp
       <div className="px-4 lg:px-24">
         <div className="space-y-6">
           <SectionHeader
-            label="Ultime pubblicazioni"
-            linkText="Vedi tutti"
+            label={strings.components.sectionHeader.latestPublications}
+            linkText={strings.components.sectionHeader.seeAll}
             linkHref="/viaggi"
           />
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { strings } from "@/config/strings";
 
 interface TagFilterProps {
   tags: string[];
@@ -14,7 +15,7 @@ export function TagFilter({ tags, activeTag }: TagFilterProps) {
   return (
     <div className="flex flex-wrap gap-3">
       <FilterChip href="/viaggi" active={!activeTag}>
-        Tutti i viaggi
+        {strings.components.tagFilter.allTravels}
       </FilterChip>
       {tags.map((tag) => {
         const normalized = tag.toLowerCase();

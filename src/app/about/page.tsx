@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { withBasePath } from "@/lib/paths";
+import { strings } from "@/config/strings";
 
 export const metadata: Metadata = {
-  title: "Chi sono",
-  description: "Chi sono, perché ho aperto questo diario e come contattarmi.",
+  title: strings.pages.about.title,
+  description: strings.pages.about.description,
 };
 
 export default function AboutPage() {
@@ -13,9 +14,9 @@ export default function AboutPage() {
     <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
       <section className="space-y-6 bg-white p-8 shadow-card">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-          Chi sono
+          {strings.pages.about.sectionLabel}
         </p>
-        <h1 className="text-4xl font-semibold text-brand-primary">Ciao, sono Alberto</h1>
+        <h1 className="text-4xl font-semibold text-brand-primary">{strings.pages.about.heading}</h1>
         <div className="space-y-4 text-brand-muted">
           <p className="font-klee text-lg">
             Da quando ho messo piede sul mio primo Cammino – quello di Santiago portoghese della costa, nel 2019 – non mi sono più fermato. 
@@ -36,7 +37,7 @@ export default function AboutPage() {
       </section>
       <aside className="space-y-6 bg-white p-8 text-sm text-brand-muted shadow-card">
         <div>
-          <h2 className="text-xl font-semibold text-brand-primary">Compagni di viaggio</h2>
+          <h2 className="text-xl font-semibold text-brand-primary">{strings.pages.about.travelCompanions}</h2>
           <ul className="mt-3 space-y-2">
             <li className="font-klee">✦  Iphone 14 Pro</li>
             <li className="font-klee">✦  Sony Alpha 6400</li>
@@ -54,7 +55,7 @@ export default function AboutPage() {
           />
         </div>
         <div>
-          <h2 className="text-xl font-semibold text-brand-primary">Contatti</h2>
+          <h2 className="text-xl font-semibold text-brand-primary">{strings.pages.about.contacts}</h2>
           <p className="mt-3 font-klee">orsini.alberto@hotmail.it</p>
         </div>
       </aside>

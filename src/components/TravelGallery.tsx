@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { strings } from "@/config/strings";
 
 interface TravelGalleryProps {
   images?: string[];
@@ -237,14 +238,14 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
         <div className="fixed inset-0 z-[9999] flex flex-col bg-black/90 backdrop-blur">
           <div className="flex items-center justify-between px-6 py-4 text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.3em]">
-              Galleria completa
+              {strings.components.travelGallery.fullGallery}
             </p>
             <button
               type="button"
               onClick={() => setIsLightboxOpen(false)}
               className="rounded-full border border-white/40 px-3 py-1 text-sm font-semibold"
             >
-              Chiudi
+              {strings.components.travelGallery.close}
             </button>
           </div>
           <div className="flex-1 overflow-y-auto px-6 pb-10">
@@ -295,7 +296,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
               onClick={() => setFullImageOpen(null)}
               className="absolute right-6 top-6 rounded-full border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80"
             >
-              Chiudi
+              {strings.components.travelGallery.close}
             </button>
             {safeImages.length > 1 && (
               <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-6">

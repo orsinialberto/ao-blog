@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { strings } from "@/config/strings";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -45,10 +46,10 @@ export function Footer() {
   ];
 
   const quickLinks = [
-    { href: "/", label: "Home" },
-    { href: "/viaggi", label: "Tutti i Viaggi" },
-    { href: "/galleria", label: "Galleria Foto" },
-    { href: "/about", label: "Chi Sono" },
+    { href: "/", label: strings.footer.quickLinks.home },
+    { href: "/viaggi", label: strings.footer.quickLinks.allTravels },
+    { href: "/galleria", label: strings.footer.quickLinks.photoGallery },
+    { href: "/about", label: strings.footer.quickLinks.about },
   ];
 
   return (
@@ -59,18 +60,17 @@ export function Footer() {
           {/* Brand & Bio Section */}
           <div className="lg:col-span-5">
             <p className="font-comforter text-3xl font-normal tracking-tight text-brand-primary md:text-4xl mb-4">
-              Diario di Viaggio
+              {strings.common.siteName}
             </p>
             <p className="text-sm leading-relaxed text-brand-muted max-w-md">
-              Storie autentiche di viaggi zaino in spalla, trekking e avventure in moto. 
-              Scopri itinerari, consigli pratici e ispirazioni per il tuo prossimo viaggio.
+              {strings.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="lg:col-span-3">
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              Navigazione
+              {strings.footer.navigation}
             </h3>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
@@ -89,10 +89,10 @@ export function Footer() {
           {/* Social & Connect */}
           <div className="lg:col-span-4">
             <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              Seguimi
+              {strings.footer.follow}
             </h3>
             <p className="mb-4 text-sm text-brand-muted">
-              Segui le mie avventure in tempo reale e scopri i miei itinerari.
+              {strings.footer.followDescription}
             </p>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
@@ -117,7 +117,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 border-t border-slate-200 pt-8 text-center">
           <p className="text-xs text-brand-muted">
-            © {currentYear} Diario di Viaggio · Tutti i diritti riservati
+            © {currentYear} {strings.common.siteName} · {strings.common.copyright}
           </p>
         </div>
       </div>

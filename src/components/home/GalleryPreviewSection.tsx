@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeader } from "@/components/SectionHeader";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { strings } from "@/config/strings";
 
 interface GalleryPhoto {
   url: string;
@@ -38,8 +39,8 @@ export function GalleryPreviewSection({ photos }: GalleryPreviewSectionProps) {
       {/* Content */}
       <div className="relative space-y-8 mx-auto px-4 lg:px-24">
         <SectionHeader
-          label="Galleria fotografica"
-          linkText="Vedi tutte le foto"
+          label={strings.components.sectionHeader.photoGallery}
+          linkText={strings.components.sectionHeader.seeAllPhotos}
           linkHref="/galleria"
           dark={false}
         />
