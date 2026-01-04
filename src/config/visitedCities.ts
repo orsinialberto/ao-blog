@@ -64,39 +64,9 @@ export const visitedCities: VisitedCity[] = [
     continent: "Europa",
   },
   {
-    name: "Bergen",
-    country: "Norvegia",
-    coords: { lat: 60.391263, lng: 5.322054 },
-    continent: "Europa",
-  },
-  {
-    name: "Lofoten",
-    country: "Norvegia",
-    coords: { lat: 68.0736, lng: 13.9069 },
-    continent: "Europa",
-  },
-  {
-    name: "Lione",
-    country: "Francia",
-    coords: { lat: 45.764043, lng: 4.835659 },
-    continent: "Europa",
-  },
-  {
     name: "Parigi",
     country: "Francia",
     coords: { lat: 48.856614, lng: 2.352222 },
-    continent: "Europa",
-  },
-  {
-    name: "Mont Saint-Michel",
-    country: "Francia",
-    coords: { lat: 48.636, lng: -1.5115 },
-    continent: "Europa",
-  },
-  {
-    name: "Nizza",
-    country: "Francia",
-    coords: { lat: 43.710173, lng: 7.261953 },
     continent: "Europa",
   },
   {
@@ -116,18 +86,6 @@ export const visitedCities: VisitedCity[] = [
     name: "Sharm el-Sheikh",
     country: "Egitto",
     coords: { lat: 27.915817, lng: 34.32995 },
-    continent: "Africa",
-  },
-  {
-    name: "Hurghada",
-    country: "Egitto",
-    coords: { lat: 27.257895, lng: 33.811607 },
-    continent: "Africa",
-  },
-  {
-    name: "Marsa Alam",
-    country: "Egitto",
-    coords: { lat: 25.0675, lng: 34.878 },
     continent: "Africa",
   },
   // Asia
@@ -191,12 +149,6 @@ export const visitedCities: VisitedCity[] = [
     name: "Porto",
     country: "Portogallo",
     coords: { lat: 41.1496, lng: -8.611 },
-    continent: "Europa",
-  },
-  {
-    name: "Pamplona",
-    country: "Spagna",
-    coords: { lat: 42.8125, lng: -1.6458 },
     continent: "Europa",
   },
   {
