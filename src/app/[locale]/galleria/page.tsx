@@ -37,6 +37,7 @@ interface PhotoWithMetadata {
 export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
+  // Get all travels for the current locale
   const travels = await getAllTravels(locale);
 
   // Filter only travels with gallery

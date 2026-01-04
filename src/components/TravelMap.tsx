@@ -13,10 +13,11 @@ interface TravelMapProps {
 }
 
 export async function TravelMap({ locale }: TravelMapProps) {
+  // Get all travels for the current locale
   const travels = await getAllTravels(locale);
   const travelsWithCoords = travels.filter(hasCoords);
 
-  // Se non ci sono travels con coordinate, controlla se ci sono città visitate
+  // If there are no travels with coordinates, check if there are visited cities
   if (!travelsWithCoords.length && !visitedCities.length) {
     return null;
   }

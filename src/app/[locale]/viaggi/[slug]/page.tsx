@@ -25,6 +25,7 @@ export async function generateStaticParams() {
   const allParams: Array<{ locale: SupportedLocale; slug: string }> = [];
   
   for (const locale of supportedLocales) {
+    // Get all travels for each locale to generate static params
     const travels = await getAllTravels(locale);
     const travelParams = travels.map((travel) => ({ slug: travel.slug }));
     allParams.push(...travelParams.map((params) => ({ locale, ...params })));
@@ -58,6 +59,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const resolvedParams = await params;
   const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
+  // Get all travels for the current locale to enable navigation
   const travels = await getAllTravels(locale);
   const { previous: previousTravel, next: nextTravel } = getTravelNavigation(travels, travel.slug);
   const t = getTranslations(locale as SupportedLocale);
