@@ -143,6 +143,12 @@ export interface TranslationMessages {
       archiveLabel: string;
       heading: string;
     };
+    gallery: {
+      title: string;
+      description: string;
+      heading: string;
+      statistics: string;
+    };
   };
 }
 

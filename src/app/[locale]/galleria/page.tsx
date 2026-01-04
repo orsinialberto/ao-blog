@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
 import MasonryGallery from "@/components/MasonryGallery";
-import { galleryPageMetadata } from "@/config/pageMetadata";
 import { getAllTravels } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
+import { getTranslations } from "@/i18n";
+import type { SupportedLocale } from "@/config/locales";
 
 interface GalleriaPageProps {
   params: Promise<{ locale: string }> | { locale: string };
@@ -14,7 +15,17 @@ export async function generateStaticParams() {
   return getAllLocalizedPaths("/galleria");
 }
 
-export const metadata: Metadata = galleryPageMetadata;
+export async function generateMetadata({
+  params,
+}: GalleriaPageProps): Promise<Metadata> {
+  const locale = await getLocaleFromParams(params);
+  const t = getTranslations(locale as SupportedLocale);
+
+  return {
+    title: t.pages.gallery.title,
+    description: t.pages.gallery.description,
+  };
+}
 
 interface PhotoWithMetadata {
   url: string;
@@ -25,14 +36,15 @@ interface PhotoWithMetadata {
 
 export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
+  const t = getTranslations(locale as SupportedLocale);
   const travels = await getAllTravels();
 
-  // Filtra solo i viaggi con galleria
+  // Filter only travels with gallery
   const travelsWithGallery = travels.filter(
     (travel) => travel.gallery && travel.gallery.length > 0
   );
 
-  // Raccogli tutte le foto mantenendo l'ordine per viaggio
+  // Collect all photos maintaining order by travel
   const allPhotos: PhotoWithMetadata[] = travelsWithGallery.flatMap((travel) =>
     (travel.gallery || []).map((photo) => ({
       url: photo,
@@ -42,14 +54,23 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
     }))
   );
 
+  // Format numbers with locale-specific formatting
+  const photoCount = new Intl.NumberFormat(locale).format(allPhotos.length);
+  const travelCount = new Intl.NumberFormat(locale).format(travelsWithGallery.length);
+
+  // Format statistics text
+  const statisticsText = t.pages.gallery.statistics
+    .replace("{photoCount}", photoCount)
+    .replace("{travelCount}", travelCount);
+
   return (
     <main className="container mx-auto px-4 py-8 md:py-12">
       <div className="mb-8 md:mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-3 text-brand-primary">
-          Galleria Fotografica
+          {t.pages.gallery.heading}
         </h1>
         <p className="text-brand-muted text-lg">
-          {allPhotos.length} foto da {travelsWithGallery.length} viaggi
+          {statisticsText}
         </p>
       </div>
 

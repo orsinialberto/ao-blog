@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
-import { strings } from "@/config/strings";
+import { useTranslations, useLocale } from "@/i18n/hooks";
 
 interface Photo {
   url: string;
@@ -17,6 +17,8 @@ interface MasonryGalleryProps {
 }
 
 export default function MasonryGallery({ photos }: MasonryGalleryProps) {
+  const t = useTranslations();
+  const locale = useLocale();
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [distributedColumns, setDistributedColumns] = useState<{
@@ -160,7 +162,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
   if (photos.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-brand-muted">{strings.components.masonryGallery.noPhotosAvailable}</p>
+        <p className="text-brand-muted">{t.components.masonryGallery.noPhotosAvailable}</p>
       </div>
     );
   }
@@ -236,7 +238,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
             onClick={() => setSelectedPhoto(null)}
             className="absolute right-6 top-6 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80 z-10"
           >
-            {strings.components.masonryGallery.close}
+            {t.components.masonryGallery.close}
           </button>
 
           {/* Navigation arrows */}
@@ -244,7 +246,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
             <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 z-10">
               <button
                 type="button"
-                aria-label={strings.components.masonryGallery.previousPhoto}
+                aria-label={t.components.masonryGallery.previousPhoto}
                 className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:-translate-x-1"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -255,7 +257,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
               </button>
               <button
                 type="button"
-                aria-label={strings.components.masonryGallery.nextPhoto}
+                aria-label={t.components.masonryGallery.nextPhoto}
                 className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:translate-x-1"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -290,7 +292,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
             </div>
             {photos.length > 1 && (
               <div className="text-xs text-white/60">
-                {selectedIndex + 1} / {photos.length}
+                {new Intl.NumberFormat(locale).format(selectedIndex + 1)} / {new Intl.NumberFormat(locale).format(photos.length)}
               </div>
             )}
           </div>

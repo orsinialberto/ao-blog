@@ -131,6 +131,12 @@
       "description": "Complete archive of travel diaries with tag filters.",
       "archiveLabel": "Archive",
       "heading": "All travels"
+    },
+    "gallery": {
+      "title": "Photo Gallery",
+      "description": "All photos from my travels collected in a single photo gallery",
+      "heading": "Photo Gallery",
+      "statistics": "{photoCount} photos from {travelCount} travels"
     }
   }
 }
