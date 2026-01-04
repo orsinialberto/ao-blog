@@ -13,6 +13,7 @@ export interface TranslationMessages {
   common: {
     siteName: string;
     copyright: string;
+    loading: string;
   };
   metadata: {
     title: string;
@@ -110,6 +111,10 @@ export interface TranslationMessages {
       currentLanguage: string;
       language: string;
     };
+    travelsList: {
+      filteredByTag: string;
+      noTravelsWithTag: string;
+    };
   };
   pages: {
     about: {
@@ -126,6 +131,12 @@ export interface TranslationMessages {
       companion2: string;
       companion3: string;
       profileImageAlt: string;
+    };
+    travels: {
+      title: string;
+      description: string;
+      archiveLabel: string;
+      heading: string;
     };
   };
 }

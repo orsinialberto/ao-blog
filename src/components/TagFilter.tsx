@@ -1,5 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { strings } from "@/config/strings";
+import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 
 interface TagFilterProps {
@@ -8,6 +10,8 @@ interface TagFilterProps {
 }
 
 export function TagFilter({ tags, activeTag }: TagFilterProps) {
+  const t = useTranslations();
+
   if (!tags.length) {
     return null;
   }
@@ -15,7 +19,7 @@ export function TagFilter({ tags, activeTag }: TagFilterProps) {
   return (
     <div className="flex flex-wrap gap-3">
       <FilterChip href="/viaggi" active={!activeTag}>
-        {strings.components.tagFilter.allTravels}
+        {t.components.tagFilter.allTravels}
       </FilterChip>
       {tags.map((tag) => {
         const normalized = tag.toLowerCase();

@@ -1,7 +1,8 @@
 {
   "common": {
     "siteName": "Travel Diary",
-    "copyright": "All rights reserved"
+    "copyright": "All rights reserved",
+    "loading": "Loading..."
   },
   "metadata": {
     "title": "Travel Diary",
@@ -98,6 +99,10 @@
       "switchToEnglish": "Switch to English",
       "currentLanguage": "Current language",
       "language": "Language"
+    },
+    "travelsList": {
+      "filteredByTag": "Filtered by tag",
+      "noTravelsWithTag": "No travels with this tag yet. Come back soon!"
     }
   },
   "pages": {
@@ -115,6 +120,12 @@
       "companion2": "Sony Alpha 6400",
       "companion3": "Honda CB 650R",
       "profileImageAlt": "Alberto Orsini"
+    },
+    "travels": {
+      "title": "All travels",
+      "description": "Complete archive of travel diaries with tag filters.",
+      "archiveLabel": "Archive",
+      "heading": "All travels"
     }
   }
 }

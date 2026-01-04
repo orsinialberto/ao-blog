@@ -5,6 +5,7 @@ import { TagFilter } from '@/components/TagFilter';
 import { TravelCard } from '@/components/TravelCard';
 import { filterTravelsByTag, normalizeTag } from '@/lib/tags';
 import type { Travel } from '@/lib/travels';
+import { useTranslations } from '@/i18n/hooks';
 
 interface TravelsListClientProps {
   allTravels: Travel[];
@@ -12,6 +13,7 @@ interface TravelsListClientProps {
 }
 
 export function TravelsListClient({ allTravels, allTags }: TravelsListClientProps) {
+  const t = useTranslations();
   const searchParams = useSearchParams();
   const rawTag = searchParams.get('tag');
   const selectedTag = rawTag ? decodeURIComponent(rawTag) : undefined;
@@ -28,7 +30,7 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
 
       {selectedTag && (
         <p className="text-sm text-brand-muted">
-          Filtrati per tag: <span className="font-semibold text-brand-secondary">#{selectedTag}</span>
+          {t.components.travelsList.filteredByTag}: <span className="font-semibold text-brand-secondary">#{selectedTag}</span>
         </p>
       )}
 
@@ -40,7 +42,7 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
 
       {!travels.length && (
         <p className="border border-dashed border-slate-200 bg-white p-6 text-center text-brand-muted">
-          Nessun viaggio con questo tag per ora. Torna presto!
+          {t.components.travelsList.noTravelsWithTag}
         </p>
       )}
     </>
