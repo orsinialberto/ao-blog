@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { withBasePath } from "@/lib/paths";
+import { aboutPageMetadata } from "@/config/pageMetadata";
 import { strings } from "@/config/strings";
+import { withBasePath } from "@/lib/paths";
 
-export const metadata: Metadata = {
-  title: strings.pages.about.title,
-  description: strings.pages.about.description,
-};
+export const metadata: Metadata = aboutPageMetadata;
 
 export default function AboutPage() {
   return (

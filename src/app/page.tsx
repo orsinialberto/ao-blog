@@ -1,10 +1,15 @@
+import type { Metadata } from "next";
+
 import { HeroSection } from "@/components/home/HeroSection";
 import { AboutPreviewSection } from "@/components/home/AboutPreviewSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
 import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
 import { TravelMap } from "@/components/TravelMap";
 import { TravelStats } from "@/components/TravelStats";
+import { homePageMetadata } from "@/config/pageMetadata";
 import { getAllTravels, getTravelStats } from "@/lib/travels";
+
+export const metadata: Metadata = homePageMetadata;
 
 // Fisher-Yates shuffle algorithm for random array
 function shuffleArray<T>(array: T[]): T[] {

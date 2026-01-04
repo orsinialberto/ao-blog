@@ -2,15 +2,13 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { TravelsListClient } from "@/components/TravelsListClient";
+import { travelsPageMetadata } from "@/config/pageMetadata";
 import {
   getAllTags,
   getAllTravels,
 } from "@/lib/travels";
 
-export const metadata: Metadata = {
-  title: "Tutti i viaggi",
-  description: "Archivio completo dei diari di viaggio con filtri per tag.",
-};
+export const metadata: Metadata = travelsPageMetadata;
 
 export default async function TravelsPage() {
   const allTravels = await getAllTravels();

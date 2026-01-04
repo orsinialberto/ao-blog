@@ -1,11 +1,10 @@
-import { getAllTravels } from "@/lib/travels";
-import MasonryGallery from "@/components/MasonryGallery";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Galleria Fotografica",
-  description: "Tutte le foto dei miei viaggi raccolte in un'unica galleria fotografica",
-};
+import MasonryGallery from "@/components/MasonryGallery";
+import { galleryPageMetadata } from "@/config/pageMetadata";
+import { getAllTravels } from "@/lib/travels";
+
+export const metadata: Metadata = galleryPageMetadata;
 
 interface PhotoWithMetadata {
   url: string;
