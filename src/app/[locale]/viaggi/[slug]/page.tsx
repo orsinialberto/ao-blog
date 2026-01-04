@@ -37,7 +37,7 @@ export async function generateMetadata({
   params,
 }: TravelPageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const locale = await getLocaleFromParams({ locale: resolvedParams.locale });
+  const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
   const t = getTranslations(locale as SupportedLocale);
 
@@ -56,7 +56,7 @@ export async function generateMetadata({
 
 export default async function TravelPage({ params }: TravelPageProps) {
   const resolvedParams = await params;
-  const locale = await getLocaleFromParams({ locale: resolvedParams.locale });
+  const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
   const travels = await getAllTravels(locale);
   const { previous: previousTravel, next: nextTravel } = getTravelNavigation(travels, travel.slug);
