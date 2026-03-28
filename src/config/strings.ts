@@ -52,7 +52,7 @@ export const strings = {
     travelStats: {
       countriesVisited: "Paesi visitati",
       continentsVisited: "Continenti visitati",
-      kilometersWalked: "Km percorsi",
+      kilometersWalked: "Percorsi a piedi",
       brokenShoes: "Paia di scarpe rotte",
     },
     travelTimeline: {
