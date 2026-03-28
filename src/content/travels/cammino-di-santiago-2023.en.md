@@ -66,24 +66,50 @@ map:
       description: "Muxía is a picturesque coastal Galician village famous for its seaside sanctuary."
 timeline:
   - city: "Ferrol"
-  - city: "Neda"
+    from: "Ferrol"
+    to: "Neda"
     km: 15
+    elevationGain: 200
+  - city: "Neda"
+    from: "Neda"
+    to: "Pontedeume"
+    km: 16
+    elevationGain: 350
   - city: "Pontedeume"
-    km: 16
+    from: "Pontedeume"
+    to: "Betanzos"
+    km: 21
+    elevationGain: 400
   - city: "Betanzos"
-    km: 21
-  - city: "Hospital de Bruma"
+    from: "Betanzos"
+    to: "Hospital de Bruma"
     km: 28
-  - city: "Sigüeiro"
+    elevationGain: 820
+  - city: "Hospital de Bruma"
+    from: "Hospital de Bruma"
+    to: "Sigüeiro"
     km: 14
-  - city: "Santiago de Compostela"
+    elevationGain: 200
+  - city: "Sigüeiro"
+    from: "Sigüeiro"
+    to: "Santiago de Compostela"
     km: 16
-  - city: "Negreira"
+    elevationGain: 250
+  - city: "Santiago de Compostela"
+    from: "Santiago de Compostela"
+    to: "Negreira"
     km: 21
-  - city: "Olveiroa"
+    elevationGain: 510
+  - city: "Negreira"
+    from: "Negreira"
+    to: "Olveiroa"
     km: 33
-  - city: "Cabo Finisterre"
+    elevationGain: 720
+  - city: "Olveiroa"
+    from: "Olveiroa"
+    to: "Cabo Finisterre"
     km: 34
+    elevationGain: 600
 gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-01_mpmemj.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-02_bexium.jpg"

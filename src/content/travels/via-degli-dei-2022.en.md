@@ -50,18 +50,35 @@ map:
       description: ""
 timeline:
   - city: "Bologna"
-  - city: "Badolo"
+    from: "Bologna"
+    to: "Badolo"
     km: 29
-  - city: "Madonna dei Fornelli"
+    elevationGain: 900
+  - city: "Badolo"
+    from: "Badolo"
+    to: "Madonna dei Fornelli"
     km: 28
-  - city: "Passo della Futa"
+    elevationGain: 780
+  - city: "Madonna dei Fornelli"
+    from: "Madonna dei Fornelli"
+    to: "Passo della Futa"
     km: 17
-  - city: "San Piero a Sieve"
+    elevationGain: 450
+  - city: "Passo della Futa"
+    from: "Passo della Futa"
+    to: "San Piero a Sieve"
     km: 21
+    elevationGain: 350
+  - city: "San Piero a Sieve"
+    from: "San Piero a Sieve"
+    to: "Bivigliano"
+    km: 18
+    elevationGain: 620
   - city: "Bivigliano"
+    from: "Bivigliano"
+    to: "Firenze"
     km: 18
-  - city: "Firenze"
-    km: 18
+    elevationGain: 250
 gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650881/canali-bologna_xojgd2.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650886/palazzo-del-podest%C3%A0-bologna_h0gzy0.jpg"

@@ -95,28 +95,60 @@ gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847377/photo-21_cyqm4x.jpg"
 timeline:
   - city: "Porto Covo"
-  - city: "Vila Nova de Milfontes"
+    from: "Porto Covo"
+    to: "Vila Nova de Milfontes"
     km: 19.6
-  - city: "Almograve"
+    elevationGain: 350
+  - city: "Vila Nova de Milfontes"
+    from: "Vila Nova de Milfontes"
+    to: "Almograve"
     km: 14.7
-  - city: "Zambujeira do Mar"
+    elevationGain: 280
+  - city: "Almograve"
+    from: "Almograve"
+    to: "Zambujeira do Mar"
     km: 21.5
-  - city: "Odeceixe"
+    elevationGain: 420
+  - city: "Zambujeira do Mar"
+    from: "Zambujeira do Mar"
+    to: "Odeceixe"
     km: 18.7
-  - city: "Aljezur"
+    elevationGain: 350
+  - city: "Odeceixe"
+    from: "Odeceixe"
+    to: "Aljezur"
     km: 22.6
-  - city: "Arrifana"
+    elevationGain: 480
+  - city: "Aljezur"
+    from: "Aljezur"
+    to: "Arrifana"
     km: 17.1
-  - city: "Carrapateira"
+    elevationGain: 320
+  - city: "Arrifana"
+    from: "Arrifana"
+    to: "Carrapateira"
     km: 19.4
-  - city: "Vila do Bispo"
+    elevationGain: 380
+  - city: "Carrapateira"
+    from: "Carrapateira"
+    to: "Vila do Bispo"
     km: 15.3
-  - city: "Sagres"
+    elevationGain: 310
+  - city: "Vila do Bispo"
+    from: "Vila do Bispo"
+    to: "Sagres"
     km: 20.2
-  - city: "Luz"
+    elevationGain: 250
+  - city: "Sagres"
+    from: "Sagres"
+    to: "Luz"
     km: 30.5
-  - city: "Lagos"
+    elevationGain: 480
+  - city: "Luz"
+    from: "Luz"
+    to: "Lagos"
     km: 10.9
+    elevationGain: 150
 ---
 
 ## Rota Vicentina – The Fishermen's Trail

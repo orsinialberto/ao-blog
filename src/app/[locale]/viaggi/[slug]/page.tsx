@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { RelatedWaypoints } from "@/components/RelatedWaypoints";
+import { TravelTabs } from "@/components/TravelTabs";
 import { formatDateRange } from "@/lib/dates";
 import { getAllTravels, getTravelBySlug } from "@/lib/travels";
 import { getRelatedTravels } from "@/lib/travelNavigation";
@@ -100,9 +101,13 @@ export default async function TravelPage({ params }: TravelPageProps) {
       <div className="max-w-screen-2xl mx-auto px-8 md:px-20 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24">
         {/* Main Content */}
         <div className="lg:col-span-8">
-          <div
-            className="prose-travel"
-            dangerouslySetInnerHTML={{ __html: travel.content }}
+          <TravelTabs
+            content={travel.content}
+            gallery={travel.gallery}
+            timeline={travel.timeline}
+            map={travel.map}
+            coords={travel.coords}
+            title={travel.title}
           />
         </div>
 

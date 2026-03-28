@@ -77,16 +77,30 @@ map:
       description: "Buchi di Baschi"
 timeline:
   - city: "Tenaglie"
-  - city: "Melezzole"
+    from: "Tenaglie"
+    to: "Melezzole"
     km: 29
-  - city: "Morre"
+    elevationGain: 620
+  - city: "Melezzole"
+    from: "Melezzole"
+    to: "Morre"
     km: 17.2
-  - city: "Civitella del Lago"
+    elevationGain: 380
+  - city: "Morre"
+    from: "Morre"
+    to: "Civitella del Lago"
     km: 15.3
-  - city: "Baschi"
+    elevationGain: 290
+  - city: "Civitella del Lago"
+    from: "Civitella del Lago"
+    to: "Baschi"
     km: 13
-  - city: "Tenaglie"
+    elevationGain: 210
+  - city: "Baschi"
+    from: "Baschi"
+    to: "Tenaglie"
     km: 16
+    elevationGain: 340
 gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-03_nkm9b9.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-01_q8trbr.jpg"

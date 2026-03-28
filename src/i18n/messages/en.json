@@ -112,6 +112,15 @@
       "totalKilometers": "Distance covered",
       "tags": "Categories"
     },
+    "travelTabs": {
+      "narrative": "Narrative",
+      "itinerary": "Itinerary",
+      "gallery": "Gallery",
+      "stageFrom": "Departure",
+      "stageTo": "Arrival",
+      "stageDistance": "Distance",
+      "stageElevation": "Elevation"
+    },
     "relatedWaypoints": {
       "title": "Related Waypoints",
       "subtitle": "Continue exploring through these connected journals.",

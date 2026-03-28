@@ -56,7 +56,10 @@ export interface TravelMapData {
 
 export interface TravelTimelineItem {
   city: string;
+  from?: string;
+  to?: string;
   km?: number;
+  elevationGain?: number;
 }
 
 export interface Travel {
@@ -433,11 +436,12 @@ function parseTimelineItem(rawItem: unknown): TravelTimelineItem | undefined {
     return undefined;
   }
 
-  const km = normalizeNumber(rawItem.km);
-
   return {
     city,
-    km,
+    from: isNonEmptyString(rawItem.from) ? rawItem.from.trim() : undefined,
+    to: isNonEmptyString(rawItem.to) ? rawItem.to.trim() : undefined,
+    km: normalizeNumber(rawItem.km),
+    elevationGain: normalizeNumber(rawItem.elevationGain),
   };
 }
 

@@ -112,6 +112,15 @@
       "totalKilometers": "Distanza percorsa",
       "tags": "Categorie"
     },
+    "travelTabs": {
+      "narrative": "Racconto",
+      "itinerary": "Tappe",
+      "gallery": "Galleria",
+      "stageFrom": "Partenza",
+      "stageTo": "Arrivo",
+      "stageDistance": "Distanza",
+      "stageElevation": "Dislivello"
+    },
     "relatedWaypoints": {
       "title": "Tappe correlate",
       "subtitle": "Continua l'esplorazione con questi diari collegati.",

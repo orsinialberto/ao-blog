@@ -123,6 +123,15 @@ export interface TranslationMessages {
       totalKilometers: string;
       tags: string;
     };
+    travelTabs: {
+      narrative: string;
+      itinerary: string;
+      gallery: string;
+      stageFrom: string;
+      stageTo: string;
+      stageDistance: string;
+      stageElevation: string;
+    };
     relatedWaypoints: {
       title: string;
       subtitle: string;
