@@ -13,13 +13,6 @@ interface MosaicTravelCardProps {
   variant: CardVariant;
 }
 
-const aspectClasses: Record<CardVariant, string> = {
-  feature: "aspect-[4/3]",
-  sidebar: "aspect-[16/9]",
-  square: "aspect-square",
-  wide: "h-80",
-};
-
 const imageWidths: Record<CardVariant, number> = {
   feature: 1200,
   sidebar: 800,
@@ -29,9 +22,16 @@ const imageWidths: Record<CardVariant, number> = {
 
 const titleClasses: Record<CardVariant, string> = {
   feature: "font-headline text-3xl",
-  sidebar: "font-headline text-xl",
+  sidebar: "font-headline text-lg",
   square: "font-headline text-xl",
-  wide: "font-headline text-xl",
+  wide: "font-headline text-2xl",
+};
+
+const paddingClasses: Record<CardVariant, string> = {
+  feature: "p-6",
+  sidebar: "p-4",
+  square: "p-5",
+  wide: "p-6",
 };
 
 export function MosaicTravelCard({ travel, locale, variant }: MosaicTravelCardProps) {
@@ -41,43 +41,48 @@ export function MosaicTravelCard({ travel, locale, variant }: MosaicTravelCardPr
   });
 
   return (
-    <LocalizedLink href={`/viaggi/${travel.slug}`} className="group block">
-      <article>
-        <div
-          className={`relative overflow-hidden rounded-xl mb-4 bg-brand-surface ${aspectClasses[variant]}`}
-        >
-          <Image
-            src={optimizedCoverImage}
-            alt={travel.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes={variant === "feature" || variant === "wide" ? "(max-width: 768px) 100vw, 58vw" : "(max-width: 768px) 100vw, 42vw"}
-            loading="lazy"
-          />
+    <LocalizedLink href={`/viaggi/${travel.slug}`} className="group block h-full">
+      <article className="relative h-full overflow-hidden rounded-xl bg-brand-surface">
+        <Image
+          src={optimizedCoverImage}
+          alt={travel.title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes={
+            variant === "feature" || variant === "wide"
+              ? "(max-width: 768px) 100vw, 58vw"
+              : "(max-width: 768px) 100vw, 42vw"
+          }
+          loading="lazy"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+        <div className={`absolute bottom-0 left-0 right-0 ${paddingClasses[variant]}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="font-label text-xs font-bold text-white/90 uppercase tracking-tight">
+              {travel.location}
+            </span>
+            <span className="w-1 h-1 rounded-full bg-brand-accent" />
+            <time className="font-label text-xs text-white/70 uppercase tracking-widest">
+              {formatDate(travel.date, locale, {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+            </time>
+          </div>
+          <h3
+            className={`${titleClasses[variant]} leading-snug text-white group-hover:text-white/80 transition-colors line-clamp-2`}
+          >
+            {travel.title}
+          </h3>
+          {variant === "feature" && travel.description && (
+            <p className="font-body text-white/75 leading-relaxed max-w-xl line-clamp-2 mt-2">
+              {travel.description}
+            </p>
+          )}
         </div>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="font-label text-xs font-bold text-brand-primary uppercase tracking-tight">
-            {travel.location}
-          </span>
-          <span className="w-1 h-1 rounded-full bg-brand-accent" />
-          <time className="font-label text-xs text-brand-muted uppercase tracking-widest">
-            {formatDate(travel.date, locale, {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}
-          </time>
-        </div>
-        <h3
-          className={`${titleClasses[variant]} mb-2 leading-snug text-brand-primary group-hover:text-brand-secondary transition-colors line-clamp-2`}
-        >
-          {travel.title}
-        </h3>
-        {variant === "feature" && travel.description && (
-          <p className="font-body text-brand-muted leading-relaxed max-w-xl line-clamp-2">
-            {travel.description}
-          </p>
-        )}
       </article>
     </LocalizedLink>
   );

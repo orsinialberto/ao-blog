@@ -29,9 +29,9 @@ export function TravelsHighlightSection({
           linkHref="/viaggi"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[500px_320px] gap-4">
           {/* Row 1: Feature card (7 cols) + sidebar stack (5 cols) */}
-          <article className="md:col-span-7">
+          <article className="md:col-span-7 md:row-span-1 h-64 md:h-full">
             <MosaicTravelCard
               travel={featured}
               locale={locale}
@@ -39,26 +39,30 @@ export function TravelsHighlightSection({
             />
           </article>
 
-          <div className="md:col-span-5 flex flex-col gap-12">
+          <div className="md:col-span-5 md:row-span-1 flex flex-col gap-4 h-full">
             {rest[0] && (
-              <MosaicTravelCard
-                travel={rest[0]}
-                locale={locale}
-                variant="sidebar"
-              />
+              <div className="flex-1 min-h-0">
+                <MosaicTravelCard
+                  travel={rest[0]}
+                  locale={locale}
+                  variant="sidebar"
+                />
+              </div>
             )}
             {rest[1] && (
-              <MosaicTravelCard
-                travel={rest[1]}
-                locale={locale}
-                variant="sidebar"
-              />
+              <div className="flex-1 min-h-0">
+                <MosaicTravelCard
+                  travel={rest[1]}
+                  locale={locale}
+                  variant="sidebar"
+                />
+              </div>
             )}
           </div>
 
           {/* Row 2: Square card (4 cols) + wide card (8 cols) */}
           {rest[2] && (
-            <article className="md:col-span-4">
+            <article className="md:col-span-4 md:row-span-1 h-64 md:h-full">
               <MosaicTravelCard
                 travel={rest[2]}
                 locale={locale}
@@ -67,7 +71,7 @@ export function TravelsHighlightSection({
             </article>
           )}
           {rest[3] && (
-            <article className="md:col-span-8">
+            <article className="md:col-span-8 md:row-span-1 h-64 md:h-full">
               <MosaicTravelCard
                 travel={rest[3]}
                 locale={locale}
