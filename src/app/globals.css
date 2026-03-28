@@ -48,7 +48,7 @@ a {
 @layer components {
   .prose-travel {
     font-family: var(--font-noto-serif), "Noto Serif", Georgia, serif;
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.8;
     color: #1a1c1b;
   }
@@ -73,12 +73,12 @@ a {
   .prose-travel p {
     line-height: 1.8;
     margin-top: 1.5rem;
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   @media (min-width: 768px) {
     .prose-travel p {
-      font-size: 1.25rem;
+      font-size: 1.125rem;
     }
   }
 
@@ -166,7 +166,7 @@ a {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     line-height: 1.8;
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: #424844;
   }
 
