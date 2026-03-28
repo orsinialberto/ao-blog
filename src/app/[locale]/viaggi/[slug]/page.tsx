@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { TravelDetailMap } from "@/components/TravelDetailMap";
 import { RelatedWaypoints } from "@/components/RelatedWaypoints";
 import { formatDateRange } from "@/lib/dates";
 import { getAllTravels, getTravelBySlug } from "@/lib/travels";
@@ -187,13 +186,6 @@ export default async function TravelPage({ params }: TravelPageProps) {
           </div>
         </aside>
       </div>
-
-      {/* Map */}
-      {travel.map && (
-        <div className="max-w-screen-2xl mx-auto px-8 md:px-20 pb-16 md:pb-24">
-          <TravelDetailMap map={travel.map} coords={travel.coords} title={travel.title} locale={locale as SupportedLocale} />
-        </div>
-      )}
 
       {/* Related Waypoints */}
       <RelatedWaypoints travels={relatedTravels} locale={locale as SupportedLocale} />

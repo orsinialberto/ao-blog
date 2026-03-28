@@ -195,6 +195,76 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * @returns Parsed Travel object with fields appropriate for the specified locale
  * @throws Error if file doesn't exist or mandatory fields are missing
  */
+const IMG_PARAGRAPH_RE = /<p>\s*<img\s+([^>]*)>\s*<\/p>/g;
+
+function wrapImageMosaics(htmlContent: string): string {
+  const tokens: Array<{ type: "html"; value: string } | { type: "img"; attrs: string }> = [];
+  let lastIndex = 0;
+
+  for (const match of htmlContent.matchAll(IMG_PARAGRAPH_RE)) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "html", value: htmlContent.slice(lastIndex, match.index) });
+    }
+    tokens.push({ type: "img", attrs: match[1] });
+    lastIndex = match.index + match[0].length;
+  }
+
+  if (lastIndex < htmlContent.length) {
+    tokens.push({ type: "html", value: htmlContent.slice(lastIndex) });
+  }
+
+  const parts: string[] = [];
+  let i = 0;
+  while (i < tokens.length) {
+    const token = tokens[i];
+    if (token.type === "html") {
+      parts.push(token.value);
+      i++;
+      continue;
+    }
+
+    const imageGroup: string[] = [token.attrs];
+    let j = i + 1;
+    while (j < tokens.length) {
+      const next = tokens[j];
+      if (next.type === "img") {
+        imageGroup.push(next.attrs);
+        j++;
+      } else if (next.type === "html" && next.value.trim() === "") {
+        j++;
+      } else {
+        break;
+      }
+    }
+
+    parts.push(buildMosaicHtml(imageGroup));
+    i = j;
+  }
+
+  return parts.join("");
+}
+
+function buildMosaicHtml(images: string[]): string {
+  const wrap = (attrs: string) => `<div class="img-wrap"><img ${attrs}></div>`;
+
+  if (images.length === 1) {
+    return `<div class="img-mosaic img-mosaic-single">${wrap(images[0])}</div>`;
+  }
+
+  if (images.length === 2) {
+    return `<div class="img-mosaic img-mosaic-pair">${images.map(wrap).join("")}</div>`;
+  }
+
+  const topImages = images.slice(0, 2);
+  const bottomImages = images.slice(2);
+  let html = `<div class="img-mosaic img-mosaic-trio"><div class="img-grid-top">${topImages.map(wrap).join("")}</div>`;
+  for (const img of bottomImages) {
+    html += `<div class="img-grid-bottom">${wrap(img)}</div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
 function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
   const fileName = getTravelFileName(slug, locale);
   const filePath = path.join(travelsDirectory, fileName);
@@ -227,7 +297,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     duration: data.duration ?? "",
     gallery: Array.isArray(data.gallery) ? data.gallery : undefined,
     coords: parseCoords(data.coords),
-    content: processedContent.toString(),
+    content: wrapImageMosaics(processedContent.toString()),
     heroTitleVariant: parseHeroTitleVariant(data.heroTitleVariant),
     map: parseMap(data.map),
     totalKilometers: normalizeNumber(data.totalKilometers),
