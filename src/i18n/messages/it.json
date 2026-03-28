@@ -103,6 +103,20 @@
     "travelsList": {
       "filteredByTag": "Filtrati per tag",
       "noTravelsWithTag": "Nessun viaggio con questo tag per ora. Torna presto!"
+    },
+    "travelLogbook": {
+      "title": "Diario di bordo",
+      "coordinates": "Coordinate",
+      "location": "Destinazione",
+      "duration": "Durata",
+      "totalKilometers": "Distanza percorsa",
+      "tags": "Categorie"
+    },
+    "relatedWaypoints": {
+      "title": "Tappe correlate",
+      "subtitle": "Continua l'esplorazione con questi diari collegati.",
+      "viewAll": "Vedi tutti i viaggi",
+      "journalLabel": "Diario"
     }
   },
   "pages": {

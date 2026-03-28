@@ -115,6 +115,20 @@ export interface TranslationMessages {
       filteredByTag: string;
       noTravelsWithTag: string;
     };
+    travelLogbook: {
+      title: string;
+      coordinates: string;
+      location: string;
+      duration: string;
+      totalKilometers: string;
+      tags: string;
+    };
+    relatedWaypoints: {
+      title: string;
+      subtitle: string;
+      viewAll: string;
+      journalLabel: string;
+    };
   };
   pages: {
     travels: {
