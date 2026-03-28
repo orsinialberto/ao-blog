@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
 import { HeroSection } from "@/components/home/HeroSection";
-import { AboutPreviewSection } from "@/components/home/AboutPreviewSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
 import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
 import { TravelMap } from "@/components/TravelMap";
@@ -54,10 +53,6 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <div>
       <HeroSection locale={locale} />
-
-      <div className="mt-24">
-        <AboutPreviewSection locale={locale} />
-      </div>
 
       <div className="mt-24">
         <TravelStats stats={stats} locale={locale} />

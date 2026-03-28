@@ -52,7 +52,6 @@ export function Footer() {
     { href: "/", label: t.footer.quickLinks.home },
     { href: "/viaggi", label: t.footer.quickLinks.allTravels },
     { href: "/galleria", label: t.footer.quickLinks.photoGallery },
-    { href: "/about", label: t.footer.quickLinks.about },
   ];
 
   return (

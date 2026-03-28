@@ -26,10 +26,6 @@ const pageMetadataConfig: Record<string, PageMetadataConfig> = {
     title: strings.common.siteName,
     description: siteMetadata.description,
   },
-  about: {
-    title: strings.pages.about.title,
-    description: strings.pages.about.description,
-  },
   travels: {
     title: "Tutti i viaggi",
     description: "Archivio completo dei diari di viaggio con filtri per tag.",
@@ -58,7 +54,6 @@ function createPageMetadata(pageKey: keyof typeof pageMetadataConfig): Metadata 
  * These can be directly used in Next.js page metadata exports
  */
 export const homePageMetadata: Metadata = createPageMetadata("home");
-export const aboutPageMetadata: Metadata = createPageMetadata("about");
 export const travelsPageMetadata: Metadata = createPageMetadata("travels");
 export const galleryPageMetadata: Metadata = createPageMetadata("gallery");
 

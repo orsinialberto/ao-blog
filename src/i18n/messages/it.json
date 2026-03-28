@@ -15,8 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "VIAGGI",
-      "gallery": "GALLERIA",
-      "about": "CHI SONO"
+      "gallery": "GALLERIA"
     }
   },
   "footer": {
@@ -27,8 +26,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "Tutti i Viaggi",
-      "photoGallery": "Galleria Foto",
-      "about": "Chi Sono"
+      "photoGallery": "Galleria Foto"
     }
   },
   "components": {
@@ -89,15 +87,7 @@
     },
     "heroSection": {
       "title": "Quella voglia di partire che non passa mai",
-      "subtitle": "Partire, scoprire e raccontare: i viaggi che mi fanno stare bene.",
       "imageAlt": "I miei viaggi"
-    },
-    "aboutPreview": {
-      "title": "Metto lo zaino, seguo la strada e via...",
-      "description1": "Ciao sono Alberto, e da qualche anno ho scoperto che la mia felicità pesa più o meno quanto uno zaino. Cammino, viaggio in moto, esploro quando posso e come posso.",
-      "description2": "Scrivo questo blog per fermare un po' di quella libertà che il viaggio regala, per ricordarmi ciò che ho visto e condividere ciò che mi è rimasto dentro.",
-      "aboutLink": "Chi sono",
-      "imageAlt": "Alberto in moto"
     },
     "languageSwitcher": {
       "switchTo": "Cambia lingua",
@@ -112,21 +102,6 @@
     }
   },
   "pages": {
-    "about": {
-      "title": "Chi sono",
-      "description": "Chi sono, perché ho aperto questo diario e come contattarmi.",
-      "heading": "Ciao, sono Alberto",
-      "sectionLabel": "Chi sono",
-      "travelCompanions": "Compagni di viaggio",
-      "contacts": "Contatti",
-      "bio1": "Da quando ho messo piede sul mio primo Cammino – quello di Santiago portoghese della costa, nel 2019 – non mi sono più fermato. È stato amore a prima… vescica. Da allora cerco ogni anno di regalarmi almeno un viaggio, che sia dietro casa o dall'altra parte del mondo. Basta avere uno zaino in spalla e un sentiero davanti: è lì che sono davvero felice.",
-      "bio2": "Quando non cammino, mi trovi probabilmente in moto, a inseguire curve di montagna e panorami che si aprono all'improvviso come scene di un film.",
-      "bio3": "E poi c'è la parte più \"selvaggia\" di me: quella che ama partire senza un piano preciso, solo con lo zaino, qualche idea vaga e tanta voglia di scoprire posti, culture e persone completamente diverse da quelle a cui sono abituato. Viaggiare è per me un modo di sentirmi vivo, curioso e libero.",
-      "companion1": "Iphone 14 Pro",
-      "companion2": "Sony Alpha 6400",
-      "companion3": "Honda CB 650R",
-      "profileImageAlt": "Alberto Orsini"
-    },
     "travels": {
       "title": "Tutti i viaggi",
       "description": "Archivio completo dei diari di viaggio con filtri per tag.",

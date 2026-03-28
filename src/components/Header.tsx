@@ -17,7 +17,6 @@ export function Header() {
     { href: "/", label: t.navigation.links.home },
     { href: "/viaggi", label: t.navigation.links.travels },
     { href: "/galleria", label: t.navigation.links.gallery },
-    { href: "/about", label: t.navigation.links.about },
   ];
 
   const isActive = (href: string) => {

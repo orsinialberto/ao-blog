@@ -15,8 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "TRAVELS",
-      "gallery": "GALLERY",
-      "about": "ABOUT ME"
+      "gallery": "GALLERY"
     }
   },
   "footer": {
@@ -27,8 +26,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "All Travels",
-      "photoGallery": "Photo Gallery",
-      "about": "About Me"
+      "photoGallery": "Photo Gallery"
     }
   },
   "components": {
@@ -89,15 +87,7 @@
     },
     "heroSection": {
       "title": "That urge to leave that never fades",
-      "subtitle": "To leave, discover and tell: the journeys that make me feel good.",
       "imageAlt": "My travels"
-    },
-    "aboutPreview": {
-      "title": "I pack my backpack, follow the road and go...",
-      "description1": "Hi, I'm Alberto, and for a few years now I've discovered that my happiness weighs more or less like a backpack. I walk, travel by motorcycle, explore when I can and how I can.",
-      "description2": "I write this blog to capture a bit of that freedom that travel gives, to remember what I've seen and share what has stayed with me.",
-      "aboutLink": "About me",
-      "imageAlt": "Alberto on motorcycle"
     },
     "languageSwitcher": {
       "switchTo": "Switch language",
@@ -112,21 +102,6 @@
     }
   },
   "pages": {
-    "about": {
-      "title": "About me",
-      "description": "Who I am, why I opened this diary and how to contact me.",
-      "heading": "Hi, I'm Alberto",
-      "sectionLabel": "About me",
-      "travelCompanions": "Travel companions",
-      "contacts": "Contacts",
-      "bio1": "Since I set foot on my first Camino – the Portuguese coastal route to Santiago, in 2019 – I haven't stopped. It was love at first... blister. Since then, I try to give myself at least one trip every year, whether it's close to home or on the other side of the world. Just having a backpack on my shoulders and a trail ahead: that's where I'm truly happy.",
-      "bio2": "When I'm not walking, you'll probably find me on my motorcycle, chasing mountain curves and panoramas that open up suddenly like scenes from a movie.",
-      "bio3": "And then there's the more \"wild\" side of me: the one that loves to leave without a precise plan, just with a backpack, some vague ideas and a great desire to discover places, cultures and people completely different from what I'm used to. Traveling is for me a way to feel alive, curious and free.",
-      "companion1": "Iphone 14 Pro",
-      "companion2": "Sony Alpha 6400",
-      "companion3": "Honda CB 650R",
-      "profileImageAlt": "Alberto Orsini"
-    },
     "travels": {
       "title": "All travels",
       "description": "Complete archive of travel diaries with tag filters.",

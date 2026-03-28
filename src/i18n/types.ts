@@ -27,7 +27,6 @@ export interface TranslationMessages {
       home: string;
       travels: string;
       gallery: string;
-      about: string;
     };
   };
   footer: {
@@ -39,7 +38,6 @@ export interface TranslationMessages {
       home: string;
       allTravels: string;
       photoGallery: string;
-      about: string;
     };
   };
   components: {
@@ -97,14 +95,6 @@ export interface TranslationMessages {
     };
     heroSection: {
       title: string;
-      subtitle: string;
-      imageAlt: string;
-    };
-    aboutPreview: {
-      title: string;
-      description1: string;
-      description2: string;
-      aboutLink: string;
       imageAlt: string;
     };
     galleryPreviewSection: {
@@ -123,21 +113,6 @@ export interface TranslationMessages {
     };
   };
   pages: {
-    about: {
-      title: string;
-      description: string;
-      heading: string;
-      sectionLabel: string;
-      travelCompanions: string;
-      contacts: string;
-      bio1: string;
-      bio2: string;
-      bio3: string;
-      companion1: string;
-      companion2: string;
-      companion3: string;
-      profileImageAlt: string;
-    };
     travels: {
       title: string;
       description: string;

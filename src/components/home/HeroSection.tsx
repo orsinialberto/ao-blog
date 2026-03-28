@@ -25,13 +25,10 @@ export function HeroSection({ locale }: HeroSectionProps) {
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-full px-4 lg:px-24">
-          <div className="mx-auto max-w-3xl space-y-8 text-center text-white/90 animate-in fade-in duration-1000">
+          <div className="mx-auto max-w-3xl text-center text-white/90 animate-in fade-in duration-1000">
             <h1 className="font-comforter text-6xl font-normal leading-[1.1] text-white md:text-7xl lg:text-8xl">
               {t.components.heroSection.title}
             </h1>
-            <p className="font-klee text-xl leading-relaxed text-white/90 md:text-2xl">
-              {t.components.heroSection.subtitle}
-            </p>
           </div>
         </div>
       </div>

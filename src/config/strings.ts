@@ -20,7 +20,6 @@ export const strings = {
       home: "HOME",
       travels: "VIAGGI",
       gallery: "GALLERIA",
-      about: "CHI SONO",
     },
   },
   footer: {
@@ -34,7 +33,6 @@ export const strings = {
       home: "Home",
       allTravels: "Tutti i Viaggi",
       photoGallery: "Galleria Foto",
-      about: "Chi Sono",
     },
   },
   components: {
@@ -84,24 +82,6 @@ export const strings = {
       seeAll: "Vedi tutti",
       photoGallery: "Galleria fotografica",
       seeAllPhotos: "Vedi tutte le foto",
-    },
-    aboutPreview: {
-      title: "Metto lo zaino, seguo la strada e via...",
-      description1:
-        "Ciao sono Alberto, e da qualche anno ho scoperto che la mia felicità pesa più o meno quanto uno zaino. Cammino, viaggio in moto, esploro quando posso e come posso.",
-      description2:
-        "Scrivo questo blog per fermare un po' di quella libertà che il viaggio regala, per ricordarmi ciò che ho visto e condividere ciò che mi è rimasto dentro.",
-      aboutLink: "Chi sono",
-    },
-  },
-  pages: {
-    about: {
-      title: "Chi sono",
-      description: "Chi sono, perché ho aperto questo diario e come contattarmi.",
-      heading: "Ciao, sono Alberto",
-      sectionLabel: "Chi sono",
-      travelCompanions: "Compagni di viaggio",
-      contacts: "Contatti",
     },
   },
 } as const;
