@@ -11,7 +11,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const t = getTranslations(locale);
 
   return (
-    <section className="relative -mt-[73px] h-[calc(110vh+73px)] min-h-[700px]">
+    <section className="relative -mt-[73px] h-screen">
       <div className="relative h-full w-full">
         <Image
           src={withBasePath("/images/home-hero.jpg")}

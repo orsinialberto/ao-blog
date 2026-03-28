@@ -13,21 +13,17 @@ export function TravelsHighlightSection({ travels, locale }: TravelsHighlightSec
   const t = getTranslations(locale);
 
   return (
-    <section className="relative">
-      <div className="px-4 lg:px-24">
-        <div className="space-y-6">
-          <SectionHeader
-            label={t.components.sectionHeader.latestPublications}
-            linkText={t.components.sectionHeader.seeAll}
-            linkHref="/viaggi"
-          />
+    <section className="space-y-6 px-4 lg:px-24">
+      <SectionHeader
+        label={t.components.sectionHeader.latestPublications}
+        linkText={t.components.sectionHeader.seeAll}
+        linkHref="/viaggi"
+      />
 
-          <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
-            {travels.map((travel) => (
-              <TravelCard key={travel.slug} travel={travel} />
-            ))}
-          </div>
-        </div>
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
+        {travels.map((travel) => (
+          <TravelCard key={travel.slug} travel={travel} />
+        ))}
       </div>
     </section>
   );

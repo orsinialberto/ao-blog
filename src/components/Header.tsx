@@ -42,22 +42,22 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHomePage]);
 
-  const headerIsTransparent = isHomePage && !isScrolled;
+  const transparent = isHomePage && !isScrolled;
+
+  const textColor = transparent ? "text-white" : "text-brand-primary";
+  const headerBg = transparent
+    ? "border-b-0 bg-transparent"
+    : "border-b border-slate-200 bg-slate-50";
+  const navBg = transparent
+    ? "border-white/20 bg-black/40 lg:bg-transparent"
+    : "border-slate-200 bg-slate-50";
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all ${
-        headerIsTransparent
-          ? "border-b-0 bg-transparent"
-          : "border-b border-slate-200 bg-slate-50"
-      }`}
-    >
+    <header className={`sticky top-0 z-50 transition-all ${headerBg}`}>
       <div className="flex items-center justify-between pt-5 pb-3 px-4 lg:px-24">
         <LocalizedLink
           href="/"
-          className={`font-comforter text-3xl font-normal tracking-tight transition-all hover:opacity-75 md:text-4xl ${
-            headerIsTransparent ? "text-white" : "text-brand-primary"
-          }`}
+          className={`font-comforter text-3xl font-normal tracking-tight transition-all hover:opacity-75 md:text-4xl ${textColor}`}
           onClick={() => setIsOpen(false)}
         >
           {t.common.siteName}
@@ -66,20 +66,14 @@ export function Header() {
           <nav
             className={`absolute left-0 right-0 top-full border-b px-6 py-5 transition-all lg:static lg:block lg:border-0 lg:bg-transparent lg:p-0 ${
               isOpen ? "block" : "hidden lg:block"
-            } ${
-              headerIsTransparent
-                ? "border-white/20 bg-black/40 lg:bg-transparent"
-                : "border-slate-200 bg-slate-50"
-            }`}
+            } ${navBg}`}
           >
             <ul className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
                   <LocalizedLink
                     href={link.href}
-                    className={`font-klee text-sm font-medium transition-colors hover:opacity-75 ${
-                      headerIsTransparent ? "text-white" : "text-brand-primary"
-                    }`}
+                    className={`font-klee text-sm font-medium transition-colors hover:opacity-75 ${textColor}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
@@ -89,14 +83,10 @@ export function Header() {
             </ul>
           </nav>
           <Suspense fallback={<div className="h-9 w-20 rounded-lg border border-slate-300 bg-slate-50" />}>
-            <LanguageSwitcher isTransparent={headerIsTransparent} />
+            <LanguageSwitcher isTransparent={transparent} />
           </Suspense>
           <button
-            className={`flex items-center justify-center rounded-lg p-2 transition-opacity lg:hidden ${
-              headerIsTransparent
-                ? "text-white hover:opacity-75"
-                : "text-brand-primary hover:opacity-75"
-            }`}
+            className={`flex items-center justify-center rounded-lg p-2 transition-opacity lg:hidden ${textColor} hover:opacity-75`}
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.navigation.close : t.navigation.menu}

@@ -23,21 +23,15 @@ export async function TravelMap({ locale }: TravelMapProps) {
   }
 
   return (
-    <section className="pb-24">
-      <div className="mx-auto px-4 lg:px-24">
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-              Mappa
-            </p>
-          </div>
-          <div className="homepage-map-wrapper h-[600px] w-full overflow-hidden rounded-xl bg-brand-background">
-            <TravelMapLazy 
-              travels={travelsWithCoords} 
-              visitedCities={visitedCities}
-            />
-          </div>
-        </div>
+    <section className="space-y-6 pb-24 px-4 lg:px-24">
+      <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
+        Mappa
+      </p>
+      <div className="homepage-map-wrapper h-[600px] w-full overflow-hidden rounded-xl bg-brand-background">
+        <TravelMapLazy 
+          travels={travelsWithCoords} 
+          visitedCities={visitedCities}
+        />
       </div>
     </section>
   );

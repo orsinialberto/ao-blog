@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Lightbox } from "@/components/Lightbox";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { useTranslations } from "@/i18n/hooks";
 
@@ -32,36 +33,6 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
       document.body.style.overflow = previousOverflow;
     };
   }, [isLightboxOpen]);
-
-  useEffect(() => {
-    if (!fullImageOpen) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setFullImageOpen(null);
-      } else if (e.key === "ArrowLeft") {
-        const currentIndex = safeImages.findIndex((img) => img === fullImageOpen);
-        const newIndex = currentIndex - 1 < 0 ? safeImages.length - 1 : currentIndex - 1;
-        setFullImageOpen(safeImages[newIndex]);
-      } else if (e.key === "ArrowRight") {
-        const currentIndex = safeImages.findIndex((img) => img === fullImageOpen);
-        const newIndex = currentIndex + 1 >= safeImages.length ? 0 : currentIndex + 1;
-        setFullImageOpen(safeImages[newIndex]);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [fullImageOpen, safeImages]);
 
   const selectedImage = safeImages[selectedIndex];
   const remainingCount = safeImages.length - 1;
@@ -275,74 +246,33 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
 
       {fullImageOpen && (() => {
         const currentFullIndex = safeImages.findIndex((img) => img === fullImageOpen);
-        const goToFullImage = (direction: "next" | "prev") => {
-          const newIndex =
-            direction === "next"
-              ? currentFullIndex + 1 >= safeImages.length
-                ? 0
-                : currentFullIndex + 1
-              : currentFullIndex - 1 < 0
-                ? safeImages.length - 1
-                : currentFullIndex - 1;
+        const goToFullPrev = () => {
+          const newIndex = currentFullIndex - 1 < 0 ? safeImages.length - 1 : currentFullIndex - 1;
+          setFullImageOpen(safeImages[newIndex]);
+        };
+        const goToFullNext = () => {
+          const newIndex = currentFullIndex + 1 >= safeImages.length ? 0 : currentFullIndex + 1;
           setFullImageOpen(safeImages[newIndex]);
         };
 
         return (
-          <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur"
-            onClick={() => setFullImageOpen(null)}
-          >
-            <button
-              type="button"
-              onClick={() => setFullImageOpen(null)}
-              className="absolute right-6 top-6 rounded-full border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80"
-            >
-              {t.components.travelGallery.close}
-            </button>
-            {safeImages.length > 1 && (
-              <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-6">
-                <button
-                  type="button"
-                  aria-label={t.components.travelGallery.previousPhoto}
-                  className="pointer-events-auto rounded-full bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToFullImage("prev");
-                  }}
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  aria-label={t.components.travelGallery.nextPhoto}
-                  className="pointer-events-auto rounded-full bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goToFullImage("next");
-                  }}
-                >
-                  →
-                </button>
-              </div>
-            )}
-            <div className="relative max-h-[90vh] max-w-[90vw]">
-              <Image
-                src={optimizeCloudinaryUrl(fullImageOpen, { width: 1920, quality: 90 })}
-                alt={`${title} foto a dimensione originale`}
-                width={1920}
-                height={1080}
-                className="max-h-[90vh] max-w-[90vw] object-contain"
-                onClick={(e) => e.stopPropagation()}
-                quality={90}
-                sizes="90vw"
-              />
-            </div>
-            {safeImages.length > 1 && (
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-black/60 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
-                {currentFullIndex + 1}/{safeImages.length}
-              </div>
-            )}
-          </div>
+          <Lightbox
+            src={fullImageOpen}
+            alt={`${title} foto a dimensione originale`}
+            onClose={() => setFullImageOpen(null)}
+            onPrevious={safeImages.length > 1 ? goToFullPrev : undefined}
+            onNext={safeImages.length > 1 ? goToFullNext : undefined}
+            closeLabel={t.components.travelGallery.close}
+            previousLabel={t.components.travelGallery.previousPhoto}
+            nextLabel={t.components.travelGallery.nextPhoto}
+            footer={
+              safeImages.length > 1 ? (
+                <div className="rounded-full bg-black/60 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
+                  {currentFullIndex + 1}/{safeImages.length}
+                </div>
+              ) : undefined
+            }
+          />
         );
       })()}
     </section>

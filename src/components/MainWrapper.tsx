@@ -8,7 +8,7 @@ export function MainWrapper({ children }: { children: React.ReactNode }) {
   const isHomePage = removeLocaleFromPath(pathname || "") === "/" || pathname === "/";
 
   return (
-    <main className={`flex-1 ${isHomePage ? "pt-0 pb-0" : "pt-10 pb-16"}`}>
+    <main className={`flex-1 ${isHomePage ? "" : "pt-10 pb-16"}`}>
       {children}
     </main>
   );

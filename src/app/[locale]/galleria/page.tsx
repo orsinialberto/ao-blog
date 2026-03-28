@@ -65,7 +65,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
     .replace("{travelCount}", travelCount);
 
   return (
-    <main className="container mx-auto px-4 py-8 md:py-12">
+    <div className="container mx-auto px-4 py-8 md:py-12">
       <div className="mb-8 md:mb-12 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-3 text-brand-primary">
           {t.pages.gallery.heading}
@@ -76,6 +76,6 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
       </div>
 
       <MasonryGallery photos={allPhotos} />
-    </main>
+    </div>
   );
 }

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
+import { Lightbox } from "@/components/Lightbox";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
@@ -111,32 +112,6 @@ export function GalleryPreviewSection({ photos, locale }: GalleryPreviewSectionP
     }
   }, []);
 
-  useEffect(() => {
-    if (!selectedPhoto) {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedPhoto(null);
-      } else if (e.key === "ArrowLeft") {
-        goToPrevious();
-      } else if (e.key === "ArrowRight") {
-        goToNext();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [selectedPhoto, goToNext, goToPrevious]);
-
   const handlePhotoClick = (photo: GalleryPhoto, index: number) => {
     setSelectedPhoto(photo);
     setSelectedIndex(index);
@@ -224,82 +199,33 @@ export function GalleryPreviewSection({ photos, locale }: GalleryPreviewSectionP
         </div>
       </section>
 
-      {/* Lightbox fullscreen */}
       {selectedPhoto && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur"
-          onClick={() => setSelectedPhoto(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setSelectedPhoto(null)}
-            className="absolute right-6 top-6 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80 z-10"
-          >
-            {t.components.masonryGallery.close}
-          </button>
-
-          {/* Navigation arrows */}
-          {photos.length > 1 && (
-            <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-6 z-10">
-              <button
-                type="button"
-                aria-label={t.components.masonryGallery.previousPhoto}
-                className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:-translate-x-1"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToPrevious();
-                }}
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                aria-label={t.components.masonryGallery.nextPhoto}
-                className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:translate-x-1"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  goToNext();
-                }}
-              >
-                →
-              </button>
-            </div>
-          )}
-
-          <div className="relative max-h-[90vh] max-w-[90vw]">
-            {!imageLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+        <Lightbox
+          src={selectedPhoto.url}
+          alt={selectedPhoto.travelTitle}
+          onClose={() => setSelectedPhoto(null)}
+          onPrevious={photos.length > 1 ? goToPrevious : undefined}
+          onNext={photos.length > 1 ? goToNext : undefined}
+          closeLabel={t.components.masonryGallery.close}
+          previousLabel={t.components.masonryGallery.previousPhoto}
+          nextLabel={t.components.masonryGallery.nextPhoto}
+          loading={!imageLoaded}
+          onImageLoad={() => setImageLoaded(true)}
+          footer={
+            <>
+              <div className="mb-2 bg-black/60 px-4 py-2 backdrop-blur">
+                <p className="text-sm font-semibold text-white">
+                  {selectedPhoto.travelTitle}
+                </p>
               </div>
-            )}
-            <Image
-              src={optimizeCloudinaryUrl(selectedPhoto.url, { width: 1920, quality: 90 })}
-              alt={selectedPhoto.travelTitle}
-              width={1920}
-              height={1080}
-              className={`max-h-[90vh] max-w-[90vw] object-contain transition-opacity duration-300 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
-              onClick={(e) => e.stopPropagation()}
-              onLoad={() => setImageLoaded(true)}
-              quality={90}
-              sizes="90vw"
-              priority
-            />
-          </div>
-
-          {/* Info foto in basso */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center">
-            <div className="bg-black/60 px-4 py-2 backdrop-blur mb-2">
-              <p className="text-sm font-semibold text-white">
-                {selectedPhoto.travelTitle}
-              </p>
-            </div>
-            {photos.length > 1 && (
-              <div className="text-xs text-white/60">
-                {new Intl.NumberFormat(locale).format(selectedIndex + 1)} / {new Intl.NumberFormat(locale).format(photos.length)}
-              </div>
-            )}
-          </div>
-        </div>
+              {photos.length > 1 && (
+                <div className="text-xs text-white/60">
+                  {new Intl.NumberFormat(locale).format(selectedIndex + 1)} / {new Intl.NumberFormat(locale).format(photos.length)}
+                </div>
+              )}
+            </>
+          }
+        />
       )}
     </>
   );
