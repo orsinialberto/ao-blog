@@ -96,7 +96,7 @@ export function TravelTimeline({ timeline, locale }: TravelTimelineProps) {
 
                   {/* Nome città - alternato sopra/sotto la riga con wrapping controllato */}
                   <div className={`absolute ${isEven ? '-top-10' : 'top-24'} left-1/2 -translate-x-1/2 text-center w-[120px] px-1`}>
-                    <p className="text-base font-semibold font-klee text-brand-primary leading-tight break-words hyphens-auto">
+                    <p className="text-base font-semibold font-label text-brand-primary leading-tight break-words hyphens-auto">
                       {item.city}
                     </p>
                   </div>
@@ -127,7 +127,7 @@ export function TravelTimeline({ timeline, locale }: TravelTimelineProps) {
 
                     {/* Nome città */}
                     <div className="flex-1 pt-0.5 ml-5">
-                      <p className="text-sm font-semibold font-klee text-brand-primary">{item.city}</p>
+                      <p className="text-sm font-semibold font-label text-brand-primary">{item.city}</p>
                     </div>
                   </div>
 

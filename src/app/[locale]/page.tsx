@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
-
 import { HeroSection } from "@/components/home/HeroSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
-import { GalleryPreviewSection } from "@/components/home/GalleryPreviewSection";
 import { TravelMap } from "@/components/TravelMap";
 import { TravelStats } from "@/components/TravelStats";
-import { homePageMetadata } from "@/config/pageMetadata";
 import { getAllTravels, getTravelStats } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
-import type { SupportedLocale } from "@/config/locales";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 
 interface HomePageProps {
@@ -19,49 +14,18 @@ export async function generateStaticParams() {
   return getAllLocalizedPaths("/");
 }
 
-// Fisher-Yates shuffle algorithm for random array
-function shuffleArray<T>(array: T[]): T[] {
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
-
 export default async function HomePage({ params }: HomePageProps) {
   const locale = await getLocaleFromParams(params);
-  // Get all travels for the current locale
   const travels = await getAllTravels(locale);
-  const highlights = travels.slice(0, 4);
-  // Get travel statistics for the current locale
+  const highlights = travels.slice(0, 5);
   const stats = getTravelStats(locale);
-
-  // Collect all photos from travels and randomly select 6
-  const allPhotos = travels
-    .filter((travel) => travel.gallery && travel.gallery.length > 0)
-    .flatMap((travel) =>
-      (travel.gallery || []).map((photo) => ({
-        url: photo,
-        travelTitle: travel.title,
-        travelSlug: travel.slug,
-      }))
-    );
-  
-  const galleryPreview = shuffleArray(allPhotos).slice(0, 6);
 
   return (
     <div>
       <HeroSection locale={locale} />
-
       <TravelStats stats={stats} locale={locale} />
-
-      <div className="space-y-16">
-        <TravelsHighlightSection travels={highlights} locale={locale} />
-        <GalleryPreviewSection photos={galleryPreview} locale={locale} />
-        <TravelMap locale={locale} />
-      </div>
-
+      <TravelsHighlightSection travels={highlights} locale={locale} />
+      <TravelMap locale={locale} />
     </div>
   );
 }

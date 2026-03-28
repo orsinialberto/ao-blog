@@ -3,6 +3,7 @@ import { LocalizedLink } from "./LocalizedLink";
 interface SectionHeaderProps {
   label: string;
   title?: string;
+  subtitle?: string;
   linkText?: string;
   linkHref?: string;
   dark?: boolean;
@@ -11,28 +12,34 @@ interface SectionHeaderProps {
 export function SectionHeader({ 
   label, 
   title, 
+  subtitle,
   linkText, 
   linkHref,
   dark = false,
 }: SectionHeaderProps) {
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="flex justify-between items-end mb-16">
       <div>
-        <p className={`text-xs font-semibold uppercase tracking-[0.3em] ${dark ? 'text-slate-400' : 'text-brand-muted'}`}>
+        <h2 className={`font-headline text-4xl mb-2 ${dark ? 'text-white' : 'text-brand-primary'}`}>
           {label}
-        </p>
+        </h2>
         {title && (
-          <h2 className={`text-4xl font-semibold mt-2 ${dark ? 'text-white' : 'text-brand-primary'}`}>
+          <p className={`font-headline text-2xl mt-1 ${dark ? 'text-white/80' : 'text-brand-secondary'}`}>
             {title}
-          </h2>
+          </p>
+        )}
+        {subtitle && (
+          <p className={`font-body mt-1 ${dark ? 'text-slate-400' : 'text-brand-muted'}`}>
+            {subtitle}
+          </p>
         )}
       </div>
       {linkText && linkHref && (
         <LocalizedLink
           href={linkHref}
-          className={`text-sm font-semibold hover:underline ${dark ? 'text-slate-300 hover:text-white' : 'text-brand-secondary'}`}
+          className={`font-label text-sm font-bold border-b-2 pb-1 transition-all ${dark ? 'text-slate-300 border-white/20 hover:border-white' : 'text-brand-primary border-brand-primary/20 hover:border-brand-primary'}`}
         >
-          {linkText} →
+          {linkText}
         </LocalizedLink>
       )}
     </div>

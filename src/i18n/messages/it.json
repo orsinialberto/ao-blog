@@ -43,6 +43,7 @@
       "acceptAriaLabel": "Accetta i cookie"
     },
     "travelStats": {
+      "sectionLabel": "Il viaggio in numeri",
       "countriesVisited": "Paesi visitati",
       "continentsVisited": "Continenti visitati",
       "kilometersWalked": "Km percorsi",
@@ -78,6 +79,7 @@
     },
     "sectionHeader": {
       "latestPublications": "Ultime pubblicazioni",
+      "latestPublicationsSubtitle": "Gli ultimi racconti dal campo.",
       "seeAll": "Vedi tutti",
       "photoGallery": "Galleria fotografica",
       "seeAllPhotos": "Vedi tutte le foto"
@@ -86,7 +88,9 @@
       "imageAlt": "Montagne panorama"
     },
     "heroSection": {
+      "label": "Diario di Viaggio",
       "title": "Quella voglia di partire che non passa mai",
+      "cta": "Esplora i viaggi",
       "imageAlt": "I miei viaggi"
     },
     "languageSwitcher": {

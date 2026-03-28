@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={defaultLocale}>
-      <body className={`${fontVariables} bg-brand-background antialiased`}>
+      <body className={`${fontVariables} bg-brand-background font-body antialiased`}>
         <LangAttributeSetter />
         {children}
       </body>

@@ -1,48 +1,32 @@
-import { Geist, Geist_Mono, Comforter, Poiret_One, Schoolbell } from "next/font/google";
+import { Noto_Serif, Inter, Plus_Jakarta_Sans } from "next/font/google";
 
-// Next.js requires font loaders to be called and assigned to const in module scope
-export const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const notoSerif = Noto_Serif({
+  variable: "--font-noto-serif",
   subsets: ["latin"],
-});
-
-export const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const comforter = Comforter({
-  variable: "--font-comforter",
-  subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
   display: "swap",
   preload: true,
 });
 
-export const poiretOne = Poiret_One({
-  variable: "--font-poiret-one",
+export const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400"],
   display: "swap",
   preload: true,
 });
 
-export const schoolbell = Schoolbell({
-  variable: "--font-schoolbell",
+export const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "600", "700"],
   display: "swap",
   preload: true,
 });
 
-// Utility to get all font variables as a single string
-// Note: kleeOne is loaded via CSS @import instead of Next.js font loader due to Turbopack compatibility
-// The CSS variable --font-klee-one is defined in globals.css and used via Tailwind's font-klee class
 export const fontVariables = [
-  geistSans.variable,
-  geistMono.variable,
-  comforter.variable,
-  poiretOne.variable,
-  schoolbell.variable,
+  notoSerif.variable,
+  inter.variable,
+  plusJakartaSans.variable,
 ].join(" ");
 

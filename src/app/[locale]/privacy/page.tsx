@@ -46,15 +46,15 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.introduction.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.introduction.text}</p>
+            <p className="font-body text-lg">{t.pages.privacy.introduction.text}</p>
           </div>
 
           <div>
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.technicalCookies.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.technicalCookies.text}</p>
-            <ul className="mt-4 space-y-2 pl-6 font-klee text-lg">
+            <p className="font-body text-lg">{t.pages.privacy.technicalCookies.text}</p>
+            <ul className="mt-4 space-y-2 pl-6 font-body text-lg">
               <li className="list-disc">{t.pages.privacy.technicalCookies.list1}</li>
               <li className="list-disc">{t.pages.privacy.technicalCookies.list2}</li>
             </ul>
@@ -64,9 +64,9 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.analyticsCookies.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.analyticsCookies.text}</p>
-            <p className="mt-4 font-klee text-lg">{t.pages.privacy.analyticsCookies.details}</p>
-            <ul className="mt-4 space-y-2 pl-6 font-klee text-lg">
+            <p className="font-body text-lg">{t.pages.privacy.analyticsCookies.text}</p>
+            <p className="mt-4 font-body text-lg">{t.pages.privacy.analyticsCookies.details}</p>
+            <ul className="mt-4 space-y-2 pl-6 font-body text-lg">
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list1}</li>
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list2}</li>
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list3}</li>
@@ -77,16 +77,16 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.management.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.management.text}</p>
-            <p className="mt-4 font-klee text-lg">{t.pages.privacy.management.details}</p>
+            <p className="font-body text-lg">{t.pages.privacy.management.text}</p>
+            <p className="mt-4 font-body text-lg">{t.pages.privacy.management.details}</p>
           </div>
 
           <div>
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.rights.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.rights.text}</p>
-            <ul className="mt-4 space-y-2 pl-6 font-klee text-lg">
+            <p className="font-body text-lg">{t.pages.privacy.rights.text}</p>
+            <ul className="mt-4 space-y-2 pl-6 font-body text-lg">
               <li className="list-disc">{t.pages.privacy.rights.list1}</li>
               <li className="list-disc">{t.pages.privacy.rights.list2}</li>
               <li className="list-disc">{t.pages.privacy.rights.list3}</li>
@@ -97,8 +97,8 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
             <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.contacts.title}
             </h2>
-            <p className="font-klee text-lg">{t.pages.privacy.contacts.text}</p>
-            <p className="mt-2 font-klee text-lg">Email: orsini.alberto@hotmail.it</p>
+            <p className="font-body text-lg">{t.pages.privacy.contacts.text}</p>
+            <p className="mt-2 font-body text-lg">Email: orsini.alberto@hotmail.it</p>
           </div>
 
           <div>

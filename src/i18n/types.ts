@@ -54,6 +54,7 @@ export interface TranslationMessages {
       acceptAriaLabel: string;
     };
     travelStats: {
+      sectionLabel: string;
       countriesVisited: string;
       continentsVisited: string;
       kilometersWalked: string;
@@ -89,12 +90,15 @@ export interface TranslationMessages {
     };
     sectionHeader: {
       latestPublications: string;
+      latestPublicationsSubtitle: string;
       seeAll: string;
       photoGallery: string;
       seeAllPhotos: string;
     };
     heroSection: {
+      label: string;
       title: string;
+      cta: string;
       imageAlt: string;
     };
     galleryPreviewSection: {

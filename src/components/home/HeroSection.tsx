@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { withBasePath } from "@/lib/paths";
 import { getTranslations } from "@/i18n";
+import { LocalizedLink } from "@/components/LocalizedLink";
 import type { SupportedLocale } from "@/config/locales";
 
 interface HeroSectionProps {
@@ -11,25 +12,30 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const t = getTranslations(locale);
 
   return (
-    <section className="relative -mt-[73px] h-screen">
-      <div className="relative h-full w-full">
-        <Image
-          src={withBasePath("/images/home-hero.jpg")}
-          alt={t.components.heroSection.imageAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/70" />
-      </div>
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-full px-4 lg:px-24">
-          <div className="mx-auto max-w-3xl text-center text-white/90 animate-in fade-in duration-1000">
-            <h1 className="font-comforter text-6xl font-normal leading-[1.1] text-white md:text-7xl lg:text-8xl">
-              {t.components.heroSection.title}
-            </h1>
-          </div>
+    <section className="relative h-[870px] w-full overflow-hidden">
+      <Image
+        src={withBasePath("/images/home-hero.jpg")}
+        alt={t.components.heroSection.imageAlt}
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-brand-primary/20" />
+      <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
+        <div className="max-w-4xl">
+          <span className="font-label text-white/90 text-sm uppercase tracking-[0.3em] mb-6 block">
+            {t.components.heroSection.label}
+          </span>
+          <h1 className="font-headline text-5xl md:text-8xl font-normal italic text-white leading-tight mb-8">
+            {t.components.heroSection.title}
+          </h1>
+          <LocalizedLink
+            href="/viaggi"
+            className="inline-flex items-center gap-3 bg-white text-brand-primary px-8 py-4 rounded-lg font-label text-sm uppercase tracking-widest hover:bg-brand-surface-low transition-all duration-300 active:scale-95"
+          >
+            {t.components.heroSection.cta}
+          </LocalizedLink>
         </div>
       </div>
     </section>

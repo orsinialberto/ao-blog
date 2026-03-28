@@ -55,13 +55,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-slate-50 via-white to-slate-50 border-t border-slate-200">
+    <footer className="bg-brand-surface border-t border-brand-outline-variant/30">
       <div className="py-12 md:py-16 px-4 lg:px-24">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           
           {/* Brand & Bio Section */}
           <div className="lg:col-span-5">
-            <p className="font-comforter text-3xl font-normal tracking-tight text-brand-primary md:text-4xl mb-4">
+            <p className="font-headline text-3xl font-bold tracking-tight text-brand-primary md:text-4xl mb-4">
               {t.common.siteName}
             </p>
             <p className="text-sm leading-relaxed text-brand-muted max-w-md">
@@ -103,7 +103,7 @@ export function Footer() {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-brand-secondary backdrop-blur-sm transition hover:border-brand-accent hover:bg-brand-accent/10 hover:text-brand-primary"
+                  className="group flex items-center gap-2 rounded-lg border border-brand-outline-variant/30 bg-brand-background px-4 py-2.5 text-sm font-medium text-brand-secondary backdrop-blur-sm transition hover:border-brand-secondary hover:bg-brand-secondary/10 hover:text-brand-primary"
                   aria-label={social.name}
                 >
                   <span className="transition group-hover:scale-110">
@@ -117,7 +117,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 border-t border-slate-200 pt-8 text-center">
+        <div className="mt-12 border-t border-brand-outline-variant/30 pt-8 text-center">
           <p className="text-xs text-brand-muted">
             © {currentYear} {t.common.siteName} · {t.common.copyright}
           </p>

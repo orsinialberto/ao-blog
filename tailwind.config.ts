@@ -6,20 +6,21 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          background: "#ffffff",
-          primary: "#0f172a",
-          secondary: "#334155",
-          accent: "#14b8a6",
-          muted: "#475569",
+          background: "#faf9f7",
+          primary: "#173124",
+          secondary: "#496455",
+          accent: "#b0cdbb",
+          muted: "#424844",
+          surface: "#efeeec",
+          "surface-low": "#f4f3f1",
+          outline: "#727973",
+          "outline-variant": "#c2c8c2",
         },
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
-        display: ["var(--font-geist-sans)", "Inter", "system-ui", "sans-serif"],
-        comforter: ["var(--font-comforter)", "Brush Script MT", "cursive"],
-        klee: ["var(--font-klee-one)", "cursive"],
-        poiret: ["var(--font-poiret-one)", "sans-serif"],
-        schoolbell: ["var(--font-schoolbell)", "cursive"],
+        headline: ["var(--font-noto-serif)", "Noto Serif", "Georgia", "serif"],
+        body: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        label: ["var(--font-plus-jakarta)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       boxShadow: {
         card: "0 25px 45px rgba(15, 23, 42, 0.08)",

@@ -88,12 +88,12 @@ export default async function TravelPage({ params }: TravelPageProps) {
           </div>
           
           {/* Titolo */}
-          <h1 className="font-comforter text-5xl md:text-6xl lg:text-7xl font-normal text-brand-primary pt-6 mb-4">
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl text-brand-primary pt-6 mb-4">
             {travel.title}
           </h1>
           
           {/* Descrizione */}
-          <p className="font-klee text-lg text-brand-muted leading-relaxed mb-2">
+          <p className="font-body text-lg text-brand-muted leading-relaxed mb-2">
             {travel.description}
           </p>
         </div>

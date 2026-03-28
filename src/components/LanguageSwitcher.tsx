@@ -112,11 +112,11 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
     return t.components.languageSwitcher.switchToEnglish;
   };
 
-  const textColor = isTransparent ? "text-white" : "text-brand-primary";
-  const borderColor = isTransparent ? "border-white/30" : "border-slate-300";
-  const hoverBg = isTransparent ? "hover:bg-white/20" : "hover:bg-slate-100";
-  const activeBg = isTransparent ? "bg-white/10" : "bg-slate-100";
-  const bgColor = isTransparent ? "bg-black/40 backdrop-blur-sm" : "bg-white";
+  const textColor = isTransparent ? "text-white" : "text-brand-muted";
+  const borderColor = isTransparent ? "border-white/30" : "border-brand-outline-variant";
+  const hoverBg = isTransparent ? "hover:bg-white/20" : "hover:bg-brand-surface";
+  const activeBg = isTransparent ? "bg-white/10" : "bg-brand-surface";
+  const bgColor = isTransparent ? "bg-black/40 backdrop-blur-sm" : "bg-brand-background";
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -129,10 +129,8 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
         className={`
           flex items-center justify-center
           rounded-lg p-2 transition-colors
-          focus:outline-none focus:ring-2 focus:ring-offset-2
           ${textColor}
           ${isOpen ? activeBg : `bg-transparent ${hoverBg}`}
-          ${isTransparent ? "focus:ring-white/50" : "focus:ring-brand-primary/50"}
         `}
       >
         {/* Globe SVG Icon */}

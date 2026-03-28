@@ -32,21 +32,26 @@ export function TravelStats({ stats, locale }: TravelStatsProps) {
   ];
 
   return (
-    <section className="relative z-10 -mt-20 px-4 lg:px-24">
-      <div className="mx-auto max-w-5xl rounded-2xl bg-brand-primary px-6 py-10 md:px-12 md:py-14">
-        <div className="grid grid-cols-4 gap-4 md:gap-8">
-          {statsItems.map((item, index) => (
-            <div key={index} className="text-center">
-              <div className="font-klee text-2xl font-semibold text-white md:text-5xl">
-                {item.value.toLocaleString(localeString)}
-                {item.suffix}
-              </div>
-              <div className="mt-1 font-klee text-[10px] text-white/60 md:mt-2 md:text-sm">
-                {item.label}
-              </div>
+    <section className="py-24 px-8 max-w-screen-xl mx-auto text-center">
+      <div className="flex items-center justify-center gap-4 mb-12">
+        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+        <span className="font-label text-brand-secondary text-xs uppercase tracking-widest">
+          {t.components.travelStats.sectionLabel ?? ""}
+        </span>
+        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+        {statsItems.map((item, index) => (
+          <div key={index} className="text-center">
+            <div className="font-headline text-3xl md:text-5xl text-brand-primary">
+              {item.value.toLocaleString(localeString)}
+              {item.suffix}
             </div>
-          ))}
-        </div>
+            <div className="mt-2 font-label text-xs md:text-sm uppercase tracking-widest text-brand-muted">
+              {item.label}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
