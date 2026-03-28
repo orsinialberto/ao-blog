@@ -71,7 +71,7 @@ export function TravelTabs({ content, gallery, timeline, map, coords, title }: T
   };
 
   return (
-    <div>
+    <div className="min-w-0">
       {tabs.length > 1 && (
         <div className="flex items-center gap-10 border-b border-brand-outline-variant/30 mb-12">
           {tabs.map((tab) => (

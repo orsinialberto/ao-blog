@@ -51,6 +51,9 @@ a {
     font-size: 1rem;
     line-height: 1.8;
     color: #1a1c1b;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   .prose-travel > p:first-of-type::first-letter {
@@ -68,6 +71,9 @@ a {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     font-size: 1.75rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
   }
 
   .prose-travel p {
