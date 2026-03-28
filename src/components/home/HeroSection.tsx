@@ -12,7 +12,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const t = getTranslations(locale);
 
   return (
-    <section className="relative h-[870px] w-full overflow-hidden">
+    <section className="relative min-h-[calc(100dvh-var(--header-height))] w-full overflow-hidden">
       <Image
         src={withBasePath("/images/home-hero.jpg")}
         alt={t.components.heroSection.imageAlt}
@@ -22,12 +22,12 @@ export function HeroSection({ locale }: HeroSectionProps) {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-brand-primary/20" />
-      <div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-        <div className="max-w-4xl">
+      <div className="relative z-10 flex min-h-[calc(100dvh-var(--header-height))] w-full max-w-screen-2xl flex-col items-center justify-center px-8 text-center mx-auto">
+        <div className="max-w-4xl w-full">
           <span className="font-label text-white/90 text-sm uppercase tracking-[0.3em] mb-6 block">
             {t.components.heroSection.label}
           </span>
-          <h1 className="font-headline text-5xl md:text-8xl font-normal italic text-white leading-tight mb-8">
+          <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-normal italic text-white leading-tight mb-14">
             {t.components.heroSection.title}
           </h1>
           <LocalizedLink

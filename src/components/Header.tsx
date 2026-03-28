@@ -30,10 +30,10 @@ export function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md">
-      <div className="flex justify-between items-center py-6 px-8 max-w-screen-2xl mx-auto">
+      <div className="flex justify-between items-center py-4 px-8 max-w-screen-2xl mx-auto">
         <LocalizedLink
           href="/"
-          className="whitespace-nowrap font-headline text-2xl font-bold tracking-tight text-brand-primary hover:opacity-80 transition-opacity"
+          className="whitespace-nowrap font-headline text-xl font-bold tracking-tight text-brand-primary hover:opacity-80 transition-opacity"
           onClick={() => setIsOpen(false)}
         >
           {t.common.siteName}
