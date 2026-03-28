@@ -39,12 +39,14 @@ export default async function TravelsPage({ params }: TravelsPageProps) {
   const tags = getAllTags(locale);
 
   return (
-    <div className="container space-y-10">
-      <header className="space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-muted">
-          {t.pages.travels.archiveLabel}
+    <div className="container space-y-16 pb-32">
+      <header className="text-center max-w-2xl mx-auto space-y-6 pt-8">
+        <h1 className="text-5xl md:text-6xl font-bold text-brand-primary tracking-tight">
+          {t.pages.travels.heading}
+        </h1>
+        <p className="text-lg font-headline italic text-brand-muted/80 leading-relaxed">
+          {t.pages.travels.subtitle}
         </p>
-        <h1 className="text-4xl font-semibold text-brand-primary">{t.pages.travels.heading}</h1>
       </header>
 
       <Suspense fallback={<div>{t.common.loading}</div>}>

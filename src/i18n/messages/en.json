@@ -133,7 +133,8 @@
       "title": "All travels",
       "description": "Complete archive of travel diaries with tag filters.",
       "archiveLabel": "Archive",
-      "heading": "All travels"
+      "heading": "Travels",
+      "subtitle": "A curated repository of transient moments and enduring landscapes."
     },
     "gallery": {
       "title": "Photo Gallery",

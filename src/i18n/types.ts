@@ -145,6 +145,7 @@ export interface TranslationMessages {
       description: string;
       archiveLabel: string;
       heading: string;
+      subtitle: string;
     };
     gallery: {
       title: string;
