@@ -94,7 +94,6 @@ gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650892/sedie-con-vista_q5bw3u.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650887/palazzo-vecchio_wctdnm.jpg"
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650888/ponte-vecchio_arkro4.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650878/amici-firenze_sxty4w.jpg"
 
 ---
 
