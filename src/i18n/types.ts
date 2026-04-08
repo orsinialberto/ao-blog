@@ -103,6 +103,19 @@ export interface TranslationMessages {
       cta: string;
       imageAlt: string;
     };
+    onTheRoadSection: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      cta: string;
+      imageAlt: string;
+    };
+    travelMapSection: {
+      title: string;
+      description: string;
+      journalCount: string;
+      otherRegion: string;
+    };
     galleryPreviewSection: {
       imageAlt: string;
     };

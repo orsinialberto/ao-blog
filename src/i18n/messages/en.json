@@ -95,6 +95,19 @@
       "cta": "Explore the journeys",
       "imageAlt": "My travels"
     },
+    "onTheRoadSection": {
+      "eyebrow": "By motorcycle",
+      "title": "On the Road",
+      "description": "Freedom on the move: bends, mountain passes, and open roads from the handlebar—interactive tracks and full travel journals.",
+      "cta": "Explore on-the-road itineraries",
+      "imageAlt": "Bernina Pass by motorcycle, alpine landscape"
+    },
+    "travelMapSection": {
+      "title": "Map of explorations",
+      "description": "Each point on the map is a journal, a photograph, a memory. Browse my travel stories by place.",
+      "journalCount": "{count} travel journals",
+      "otherRegion": "Other itineraries"
+    },
     "languageSwitcher": {
       "switchTo": "Switch language",
       "switchToItalian": "Cambia a Italiano",

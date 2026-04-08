@@ -223,7 +223,7 @@ a {
 
 /* Apply border-radius to leaflet container when inside homepage map wrapper */
 .homepage-map-wrapper .leaflet-container {
-  border-radius: 0.75rem !important;
+  border-radius: 1.5rem !important;
 }
 
 /* Ensure Leaflet controls respect the border-radius */

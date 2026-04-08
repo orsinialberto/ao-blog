@@ -95,6 +95,19 @@
       "cta": "Esplora i viaggi",
       "imageAlt": "I miei viaggi"
     },
+    "onTheRoadSection": {
+      "eyebrow": "In moto",
+      "title": "On the Road",
+      "description": "Esplora la libertà del viaggio in movimento: curve, passi e strade raccontati dal manubrio, con tracce interattive e diari completi.",
+      "cta": "Scopri gli itinerari on the road",
+      "imageAlt": "Passo del Bernina in moto, paesaggio alpino"
+    },
+    "travelMapSection": {
+      "title": "Mappa delle esplorazioni",
+      "description": "Ogni punto sulla mappa è un diario, una fotografia, un ricordo. Naviga tra i racconti di viaggio.",
+      "journalCount": "{count} diari di viaggio",
+      "otherRegion": "Altri itinerari"
+    },
     "languageSwitcher": {
       "switchTo": "Cambia lingua",
       "switchToItalian": "Cambia a Italiano",
