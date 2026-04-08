@@ -15,7 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "VIAGGI",
-      "motorcycleTravels": "IN MOTO",
+      "motorcycleTravels": "ON THE ROAD",
       "gallery": "GALLERIA"
     }
   },
@@ -27,7 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "Tutti i Viaggi",
-      "motorcycleTravels": "Viaggi in moto",
+      "motorcycleTravels": "On The Road",
       "photoGallery": "Galleria Foto"
     }
   },
@@ -130,10 +130,11 @@
       "journalLabel": "Diario"
     },
     "motoTravel": {
+      "sectionLabel": "Il viaggio in moto, in numeri",
       "kmRidden": "Km percorsi",
       "countriesVisited": "Paesi visitati",
       "mountainPasses": "Passi percorsi",
-      "mechanicalCompanion": "Compagne meccaniche",
+      "tiresConsumed": "Gomme consumate",
       "totalDistance": "Distanza totale",
       "duration": "Durata",
       "motorcycle": "Moto",
@@ -161,9 +162,9 @@
       "statistics": "{photoCount} foto da {travelCount} viaggi"
     },
     "motorcycleTravels": {
-      "title": "Viaggi in moto",
+      "title": "On The Road",
       "description": "Diari on the road: chilometri, passi e strade italiane viste dal manubrio.",
-      "heading": "Viaggi in moto",
+      "heading": "On The Road",
       "subtitle": "Percorsi su due ruote, tra curve, panorami e la libertà della strada aperta.",
       "badge": "In moto",
       "viewAllRelated": "Tutti i viaggi in moto",

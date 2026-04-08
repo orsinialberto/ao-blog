@@ -113,7 +113,7 @@ export interface MotoTravelStats {
   totalKm: number;
   countries: number;
   mountainPasses: number;
-  mechanicalCompanions: number;
+  tiresConsumed: number;
 }
 
 export function getMotoTravelStats(locale: Locale = "it"): MotoTravelStats {
@@ -121,22 +121,19 @@ export function getMotoTravelStats(locale: Locale = "it"): MotoTravelStats {
   const locations = new Set<string>();
   let totalKm = 0;
   let mountainPasses = 0;
-  const bikes = new Set<string>();
 
   for (const t of travels) {
     const loc = t.location?.trim();
     if (loc) locations.add(loc);
     if (t.totalKilometers != null) totalKm += t.totalKilometers;
     mountainPasses += t.motoAlpinePasses ?? 0;
-    const bike = t.motorcycle?.trim();
-    if (bike) bikes.add(bike);
   }
 
   return {
     totalKm: Math.round(totalKm),
     countries: locations.size,
     mountainPasses,
-    mechanicalCompanions: bikes.size > 0 ? bikes.size : travels.length > 0 ? 1 : 0,
+    tiresConsumed: 2,
   };
 }
 

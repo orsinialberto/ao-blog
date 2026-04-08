@@ -15,7 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "TRAVELS",
-      "motorcycleTravels": "BY BIKE",
+      "motorcycleTravels": "ON THE ROAD",
       "gallery": "GALLERY"
     }
   },
@@ -27,7 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "All Travels",
-      "motorcycleTravels": "Motorcycle trips",
+      "motorcycleTravels": "On The Road",
       "photoGallery": "Photo Gallery"
     }
   },
@@ -130,10 +130,11 @@
       "journalLabel": "Journal"
     },
     "motoTravel": {
+      "sectionLabel": "Motorcycle travel in numbers",
       "kmRidden": "Kilometers ridden",
       "countriesVisited": "Countries visited",
       "mountainPasses": "Passes ridden",
-      "mechanicalCompanion": "Mechanical companions",
+      "tiresConsumed": "Tires replaced",
       "totalDistance": "Total distance",
       "duration": "Duration",
       "motorcycle": "Motorcycle",
@@ -161,9 +162,9 @@
       "statistics": "{photoCount} photos from {travelCount} travels"
     },
     "motorcycleTravels": {
-      "title": "Motorcycle trips",
+      "title": "On The Road",
       "description": "On-the-road journals: miles, mountain passes, and Italian roads from the handlebars.",
-      "heading": "Motorcycle trips",
+      "heading": "On The Road",
       "subtitle": "Two-wheeled routes through bends, views, and the freedom of the open road.",
       "badge": "By motorcycle",
       "viewAllRelated": "All motorcycle trips",

@@ -9,31 +9,50 @@ interface MotoStatsBannerProps {
 
 export function MotoStatsBanner({ stats, locale }: MotoStatsBannerProps) {
   const t = getTranslations(locale);
-  const nf = new Intl.NumberFormat(locale === "it" ? "it-IT" : "en-US");
+  const localeString = locale === "it" ? "it-IT" : "en-US";
   const m = t.components.motoTravel;
 
-  const items = [
-    { value: nf.format(stats.totalKm), label: m.kmRidden },
-    { value: nf.format(stats.countries), label: m.countriesVisited },
-    { value: nf.format(stats.mountainPasses), label: m.mountainPasses },
-    { value: nf.format(stats.mechanicalCompanions), label: m.mechanicalCompanion },
+  const statsItems = [
+    {
+      value: stats.totalKm,
+      label: m.kmRidden,
+      suffix: ` ${t.components.travelTimeline.kilometers}`,
+    },
+    {
+      value: stats.countries,
+      label: m.countriesVisited,
+    },
+    {
+      value: stats.mountainPasses,
+      label: m.mountainPasses,
+    },
+    {
+      value: stats.tiresConsumed,
+      label: m.tiresConsumed,
+    },
   ];
 
   return (
-    <section className="bg-brand-surface-low py-12">
-      <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {items.map((item) => (
-            <div key={item.label} className="flex flex-col">
-              <span className="font-headline text-2xl font-bold text-brand-primary md:text-3xl">
-                {item.value}
-              </span>
-              <span className="font-label text-xs uppercase tracking-widest text-brand-muted">
-                {item.label}
-              </span>
+    <section className="mx-auto max-w-screen-xl px-8 py-10 text-center md:py-12">
+      <div className="mb-6 flex items-center justify-center gap-4 md:mb-8">
+        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+        <span className="font-label text-xs uppercase tracking-widest text-brand-secondary">
+          {m.sectionLabel}
+        </span>
+        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+      </div>
+      <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-4">
+        {statsItems.map((item, index) => (
+          <div key={index} className="text-center">
+            <div className="font-headline text-2xl text-brand-primary tabular-nums md:text-3xl">
+              {item.value.toLocaleString(localeString)}
+              {item.suffix ?? ""}
             </div>
-          ))}
-        </div>
+            <div className="mt-1.5 font-label text-xs uppercase tracking-widest text-brand-muted">
+              {item.label}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

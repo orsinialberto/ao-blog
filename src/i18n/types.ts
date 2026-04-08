@@ -141,10 +141,11 @@ export interface TranslationMessages {
       journalLabel: string;
     };
     motoTravel: {
+      sectionLabel: string;
       kmRidden: string;
       countriesVisited: string;
       mountainPasses: string;
-      mechanicalCompanion: string;
+      tiresConsumed: string;
       totalDistance: string;
       duration: string;
       motorcycle: string;
