@@ -15,6 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "VIAGGI",
+      "motorcycleTravels": "IN MOTO",
       "gallery": "GALLERIA"
     }
   },
@@ -26,6 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "Tutti i Viaggi",
+      "motorcycleTravels": "Viaggi in moto",
       "photoGallery": "Galleria Foto"
     }
   },
@@ -126,6 +128,22 @@
       "subtitle": "Continua l'esplorazione con questi diari collegati.",
       "viewAll": "Vedi tutti i viaggi",
       "journalLabel": "Diario"
+    },
+    "motoTravel": {
+      "kmRidden": "Km percorsi",
+      "countriesVisited": "Paesi visitati",
+      "mountainPasses": "Passi percorsi",
+      "mechanicalCompanion": "Compagne meccaniche",
+      "totalDistance": "Distanza totale",
+      "duration": "Durata",
+      "motorcycle": "Moto",
+      "regions": "Regioni",
+      "routeTitle": "Il percorso dettagliato",
+      "routeSubtitle": "Traccia interattiva sul territorio e file della traccia da scaricare.",
+      "downloadTrack": "Scarica la traccia",
+      "featuredPassLabel": "In evidenza",
+      "elevation": "Elevazione",
+      "notSpecified": "—"
     }
   },
   "pages": {
@@ -141,6 +159,15 @@
       "description": "Tutte le foto dei miei viaggi raccolte in un'unica galleria fotografica",
       "heading": "Galleria Fotografica",
       "statistics": "{photoCount} foto da {travelCount} viaggi"
+    },
+    "motorcycleTravels": {
+      "title": "Viaggi in moto",
+      "description": "Diari on the road: chilometri, passi e strade italiane viste dal manubrio.",
+      "heading": "Viaggi in moto",
+      "subtitle": "Percorsi su due ruote, tra curve, panorami e la libertà della strada aperta.",
+      "badge": "In moto",
+      "viewAllRelated": "Tutti i viaggi in moto",
+      "readFullStory": "Leggi il racconto completo"
     },
     "privacy": {
       "title": "Privacy e Cookie Policy",

@@ -14,12 +14,22 @@ tags:
 location: "Italia"
 duration: "6 days"
 totalKilometers: 1500
+motorcycle: "Honda CB 650 R"
+motoRegions: "Lombardia, Veneto, Emilia-Romagna, Tuscany"
+featuredPass:
+  name: "Abetone"
+  elevationM: 1388
+motoAlpinePasses: 1
 coords:
   lat: 43.061299
   lng: 11.605087
 map:
   kmz: "/tracks/italia-on-the-road.kmz"
   points:
+    - name: "Milano"
+      lat: 45.464296315425315
+      lng: 9.189953940109598
+      description: "Milan, the starting point of my adventures"
     - name: "Altopiano di Asiago"
       lat: 45.875503 
       lng: 11.509895
@@ -44,6 +54,10 @@ map:
       lat: 43.054624 
       lng: 11.489108
       description: "Medieval Tuscan village, famous for Brunello and views of Val d'Orcia."
+    - name: "Castiglione della Pescaia"
+      lat: 42.762737
+      lng: 10.877469
+      description: "Renowned seaside resort of the Maremma, with golden beaches and crystal clear sea."
     - name: "Pisa"
       lat: 43.720343
       lng: 10.396643
@@ -52,14 +66,36 @@ map:
       lat: 44.145286
       lng: 10.664313
       description: "Mountain resort in the Tuscan-Emilian Apennines, ideal for excursions and nature."
-    - name: "Castiglione della Pescaia"
-      lat: 42.762737
-      lng: 10.877469
-      description: "Renowned seaside resort of the Maremma, with golden beaches and crystal clear sea."
     - name: "Maranello"
       lat: 44.526761
       lng: 10.866535
       description: "Emilian city home of Ferrari, temple of motorsport and Italian excellence."
+
+timeline:
+  - city: "Milan - Asiago plateau - Bassano del Grappa"
+    from: "Milan"
+    to: "Bassano del Grappa"
+    km: 302
+  - city: "Bassano del Grappa - Chioggia - Marina di Ravenna"
+    from: "Bassano del Grappa"
+    to: "Marina di Ravenna"
+    km: 235
+  - city: "Marina di Ravenna - Crete Senesi - Arezzo"
+    from: "Marina di Ravenna"
+    to: "Arezzo"
+    km: 271
+  - city: "Arezzo - Val d'Orcia - Castiglione della Pescaia"
+    from: "Arezzo"
+    to: "Castiglione della Pescaia"
+    km: 203
+  - city: "Castiglione della Pescaia - Pisa - Lucca - Abetone"
+    from: "Castiglione della Pescaia"
+    to: "Passo dell'Abetone"
+    km: 231
+  - city: "Abetone - Maranello - Milan"
+    from: "Passo dell'Abetone"
+    to: "Milan"
+    km: 258
 
 gallery:
   - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098305/bassano-01_jtt2ec.jpg"

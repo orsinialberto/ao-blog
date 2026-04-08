@@ -15,6 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "TRAVELS",
+      "motorcycleTravels": "BY BIKE",
       "gallery": "GALLERY"
     }
   },
@@ -26,6 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "All Travels",
+      "motorcycleTravels": "Motorcycle trips",
       "photoGallery": "Photo Gallery"
     }
   },
@@ -126,6 +128,22 @@
       "subtitle": "Continue exploring through these connected journals.",
       "viewAll": "View all travels",
       "journalLabel": "Journal"
+    },
+    "motoTravel": {
+      "kmRidden": "Kilometers ridden",
+      "countriesVisited": "Countries visited",
+      "mountainPasses": "Passes ridden",
+      "mechanicalCompanion": "Mechanical companions",
+      "totalDistance": "Total distance",
+      "duration": "Duration",
+      "motorcycle": "Motorcycle",
+      "regions": "Regions",
+      "routeTitle": "The route in detail",
+      "routeSubtitle": "Interactive track on the map and a downloadable route file.",
+      "downloadTrack": "Download track",
+      "featuredPassLabel": "Highlight",
+      "elevation": "Elevation",
+      "notSpecified": "—"
     }
   },
   "pages": {
@@ -141,6 +159,15 @@
       "description": "All photos from my travels collected in a single photo gallery",
       "heading": "Photo Gallery",
       "statistics": "{photoCount} photos from {travelCount} travels"
+    },
+    "motorcycleTravels": {
+      "title": "Motorcycle trips",
+      "description": "On-the-road journals: miles, mountain passes, and Italian roads from the handlebars.",
+      "heading": "Motorcycle trips",
+      "subtitle": "Two-wheeled routes through bends, views, and the freedom of the open road.",
+      "badge": "By motorcycle",
+      "viewAllRelated": "All motorcycle trips",
+      "readFullStory": "Read the full story"
     },
     "privacy": {
       "title": "Privacy and Cookie Policy",

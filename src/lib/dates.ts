@@ -42,3 +42,12 @@ export function formatDateRange(start: string, end?: string, locale?: string) {
 
   return `${startDate} - ${endDate}`;
 }
+
+/** Month and year for travel list rows (e.g. "aprile 2024"). */
+export function formatTravelMonthYear(date: string, locale?: string) {
+  const intlLocale = getIntlLocale(locale);
+  return new Date(date).toLocaleDateString(intlLocale, {
+    month: "long",
+    year: "numeric",
+  });
+}

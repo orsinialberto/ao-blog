@@ -19,12 +19,19 @@ export function Header() {
 
   const isActive = (href: string) => {
     if (href === "/") return cleanPath === "/" || cleanPath === "";
+    if (href === "/viaggi") {
+      return (
+        cleanPath.startsWith("/viaggi") &&
+        !cleanPath.startsWith("/viaggi-in-moto")
+      );
+    }
     return cleanPath.startsWith(href);
   };
 
   const links = [
     { href: "/", label: t.navigation.links.home },
     { href: "/viaggi", label: t.navigation.links.travels },
+    { href: "/viaggi-in-moto", label: t.navigation.links.motorcycleTravels },
     { href: "/galleria", label: t.navigation.links.gallery },
   ];
 

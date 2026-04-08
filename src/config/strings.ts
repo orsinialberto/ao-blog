@@ -19,6 +19,7 @@ export const strings = {
     links: {
       home: "HOME",
       travels: "VIAGGI",
+      motorcycleTravels: "IN MOTO",
       gallery: "GALLERIA",
     },
   },
@@ -32,6 +33,7 @@ export const strings = {
     quickLinks: {
       home: "Home",
       allTravels: "Tutti i Viaggi",
+      motorcycleTravels: "Viaggi in moto",
       photoGallery: "Galleria Foto",
     },
   },

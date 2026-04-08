@@ -51,6 +51,7 @@ export function Footer() {
   const quickLinks = [
     { href: "/", label: t.footer.quickLinks.home },
     { href: "/viaggi", label: t.footer.quickLinks.allTravels },
+    { href: "/viaggi-in-moto", label: t.footer.quickLinks.motorcycleTravels },
     { href: "/galleria", label: t.footer.quickLinks.photoGallery },
   ];
 

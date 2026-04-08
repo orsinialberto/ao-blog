@@ -4,9 +4,16 @@ import "leaflet/dist/leaflet.css";
 import * as togeojson from "@tmcw/togeojson";
 import type { FeatureCollection, Geometry, Position } from "geojson";
 import { useEffect, useMemo, useState } from "react";
-import type { LatLngBounds, LatLngExpression } from "leaflet";
+import type { FitBoundsOptions, LatLngBounds, LatLngExpression } from "leaflet";
 import L from "leaflet";
-import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  GeoJSON,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+} from "react-leaflet";
 import JSZip from "jszip";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
@@ -17,18 +24,74 @@ interface TravelDetailMapClientProps {
   map: TravelMapData;
   fallbackCoords?: TravelCoords;
   title: string;
+  /** When false, no pan/zoom UI (e.g. list thumbnails behind a link). Default true. */
+  interactive?: boolean;
+  /** When false, map.points markers are not shown (e.g. list route preview). Default true. */
+  showMarkers?: boolean;
+  /** Geographic padding around bounds (Leaflet `pad`). Default 0.2. */
+  boundsPadRatio?: number;
+  /** Extra options for `fitBounds` (e.g. pixel padding in list thumbnails). */
+  boundsOptions?: FitBoundsOptions;
 }
 
-const DEFAULT_CENTER: LatLngExpression = [20, 0];
+/** Default view while a track file is loading (Italy). */
+const TRACK_LOADING_CENTER: LatLngExpression = [42.8, 12.5];
+const TRACK_LOADING_ZOOM = 6;
 const MIN_ZOOM = 2;
+
+function MapFitBounds({
+  bounds,
+  boundsOptions,
+}: {
+  bounds: LatLngBounds | undefined;
+  boundsOptions?: FitBoundsOptions;
+}) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!bounds?.isValid()) {
+      return;
+    }
+
+    const sw = bounds.getSouthWest();
+    const ne = bounds.getNorthEast();
+    const isSinglePoint = sw.lat === ne.lat && sw.lng === ne.lng;
+
+    const apply = () => {
+      map.invalidateSize();
+      if (isSinglePoint) {
+        map.setView(sw, 10);
+        return;
+      }
+      map.fitBounds(bounds, boundsOptions ?? {});
+    };
+
+    apply();
+    const t1 = window.setTimeout(apply, 50);
+    const t2 = window.setTimeout(apply, 250);
+    return () => {
+      window.clearTimeout(t1);
+      window.clearTimeout(t2);
+    };
+  }, [map, bounds, boundsOptions]);
+
+  return null;
+}
 
 export default function TravelDetailMapClient({
   map,
   fallbackCoords,
   title,
+  interactive = true,
+  showMarkers = true,
+  boundsPadRatio = 0.2,
+  boundsOptions,
 }: TravelDetailMapClientProps) {
   const [track, setTrack] = useState<FeatureCollection | null>(null);
-  const markers = useMemo(() => map.points ?? [], [map.points]);
+  const markers = useMemo(
+    () => (showMarkers ? (map.points ?? []) : []),
+    [map.points, showMarkers],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -104,70 +167,63 @@ export default function TravelDetailMapClient({
 
   const trackLatLngs = useMemo(() => extractLatLngsFromTrack(track), [track]);
 
-  // Campiona i punti del tracci per calcolare i bounds in modo più efficiente
-  // Usa un massimo di 100 punti per evitare zoom eccessivo con tracci molto lunghi
-  const sampledTrackLatLngs = useMemo(() => {
-    if (trackLatLngs.length <= 100) {
-      return trackLatLngs;
-    }
-    
-    // Prendi sempre il primo e l'ultimo punto
-    const first = trackLatLngs[0];
-    const last = trackLatLngs[trackLatLngs.length - 1];
-    
-    // Campiona i punti intermedi
-    const step = Math.ceil((trackLatLngs.length - 2) / 98);
-    const sampled: [number, number][] = [first];
-    
-    for (let i = step; i < trackLatLngs.length - 1; i += step) {
-      sampled.push(trackLatLngs[i]);
-    }
-    
-    sampled.push(last);
-    return sampled;
-  }, [trackLatLngs]);
+  const expectsTrackFile = !!(map.gpx || map.kml || map.kmz);
 
-  const latLngCollection = useMemo(() => {
+  const bounds = useMemo<LatLngBounds | undefined>(() => {
     const coords: [number, number][] = [];
     markers.forEach((point) => coords.push([point.lat, point.lng]));
-    sampledTrackLatLngs.forEach((coord) => coords.push(coord));
+    for (const c of trackLatLngs) {
+      coords.push(c);
+    }
+
+    if (coords.length >= 2) {
+      return L.latLngBounds(coords).pad(boundsPadRatio);
+    }
+
+    if (expectsTrackFile && trackLatLngs.length === 0) {
+      return undefined;
+    }
 
     if (!coords.length && fallbackCoords) {
       coords.push([fallbackCoords.lat, fallbackCoords.lng]);
     }
-
-    return coords;
-  }, [markers, sampledTrackLatLngs, fallbackCoords]);
-
-  const bounds = useMemo<LatLngBounds | undefined>(() => {
-    if (!latLngCollection.length) {
+    if (!coords.length) {
       return undefined;
     }
 
-    // Aumentato il padding da 0.1 a 0.2 (20%) per una migliore visualizzazione
-    return L.latLngBounds(latLngCollection).pad(0.2);
-  }, [latLngCollection]);
+    return L.latLngBounds(coords).pad(boundsPadRatio);
+  }, [
+    markers,
+    trackLatLngs,
+    fallbackCoords,
+    boundsPadRatio,
+    expectsTrackFile,
+  ]);
 
-  const center: LatLngExpression =
-    bounds?.getCenter() ??
-    (fallbackCoords
-      ? [fallbackCoords.lat, fallbackCoords.lng]
-      : markers[0]
+  const initialCenter: LatLngExpression = fallbackCoords
+    ? [fallbackCoords.lat, fallbackCoords.lng]
+    : markers[0]
       ? [markers[0].lat, markers[0].lng]
-      : DEFAULT_CENTER);
+      : TRACK_LOADING_CENTER;
+
+  const initialZoom = TRACK_LOADING_ZOOM;
 
   const markerIcon = useMemo(() => createTravelMarkerIcon(), []);
 
   return (
     <MapContainer
-      center={center}
-      zoom={bounds ? undefined : 6}
-      bounds={bounds}
+      center={initialCenter}
+      zoom={initialZoom}
       className="h-full w-full"
-      scrollWheelZoom
+      scrollWheelZoom={interactive}
+      dragging={interactive}
+      doubleClickZoom={interactive}
+      zoomControl={interactive}
+      keyboard={interactive}
       minZoom={MIN_ZOOM}
       aria-label={`Mappa dettagliata del viaggio ${title}`}
     >
+      <MapFitBounds bounds={bounds} boundsOptions={boundsOptions} />
       <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors · © <a href="https://carto.com/attribution">CARTO</a>'

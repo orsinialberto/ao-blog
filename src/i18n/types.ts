@@ -26,6 +26,7 @@ export interface TranslationMessages {
     links: {
       home: string;
       travels: string;
+      motorcycleTravels: string;
       gallery: string;
     };
   };
@@ -37,6 +38,7 @@ export interface TranslationMessages {
     quickLinks: {
       home: string;
       allTravels: string;
+      motorcycleTravels: string;
       photoGallery: string;
     };
   };
@@ -138,6 +140,22 @@ export interface TranslationMessages {
       viewAll: string;
       journalLabel: string;
     };
+    motoTravel: {
+      kmRidden: string;
+      countriesVisited: string;
+      mountainPasses: string;
+      mechanicalCompanion: string;
+      totalDistance: string;
+      duration: string;
+      motorcycle: string;
+      regions: string;
+      routeTitle: string;
+      routeSubtitle: string;
+      downloadTrack: string;
+      featuredPassLabel: string;
+      elevation: string;
+      notSpecified: string;
+    };
   };
   pages: {
     travels: {
@@ -152,6 +170,15 @@ export interface TranslationMessages {
       description: string;
       heading: string;
       statistics: string;
+    };
+    motorcycleTravels: {
+      title: string;
+      description: string;
+      heading: string;
+      subtitle: string;
+      badge: string;
+      viewAllRelated: string;
+      readFullStory: string;
     };
     privacy: {
       title: string;
