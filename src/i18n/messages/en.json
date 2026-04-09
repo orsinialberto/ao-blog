@@ -153,7 +153,7 @@
       "motorcycle": "Motorcycle",
       "regions": "Regions",
       "routeTitle": "The route in detail",
-      "routeSubtitle": "Interactive track on the map and a downloadable route file.",
+      "routeSubtitle": "",
       "downloadTrack": "Download track",
       "downloadTrackLoading": "Preparing…",
       "downloadTrackError": "Could not build the file. Check that the GPX files are reachable.",

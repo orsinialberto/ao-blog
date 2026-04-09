@@ -34,7 +34,9 @@ export function MotoRouteSection({
           <h2 className="font-headline text-3xl font-bold tracking-tight text-brand-primary md:text-4xl">
             {m.routeTitle}
           </h2>
-          <p className="font-body italic text-brand-muted">{m.routeSubtitle}</p>
+          {m.routeSubtitle ? (
+            <p className="font-body italic text-brand-muted">{m.routeSubtitle}</p>
+          ) : null}
         </div>
         {showDownload && <MotoTrackDownload map={map} slug={slug} trackTitle={title} />}
       </div>
