@@ -155,6 +155,8 @@
       "routeTitle": "Il percorso dettagliato",
       "routeSubtitle": "Traccia interattiva sul territorio e file della traccia da scaricare.",
       "downloadTrack": "Scarica la traccia",
+      "downloadTrackLoading": "Preparazione…",
+      "downloadTrackError": "Impossibile preparare il file. Controlla che i GPX siano raggiungibili.",
       "featuredPassLabel": "In evidenza",
       "elevation": "Elevazione",
       "notSpecified": "—"

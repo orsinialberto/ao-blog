@@ -3,7 +3,7 @@ import { OnTheRoadHomeSection } from "@/components/home/OnTheRoadHomeSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
 import { TravelMap } from "@/components/TravelMap";
 import { TravelStats } from "@/components/TravelStats";
-import { getAllTravels, getTravelStats } from "@/lib/travels";
+import { getTravelStats, getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export default async function HomePage({ params }: HomePageProps) {
   const locale = await getLocaleFromParams(params);
-  const travels = await getAllTravels(locale);
+  const travels = await getTravelsForArchive(locale);
   const highlights = travels.slice(0, 5);
   const stats = getTravelStats(locale);
 

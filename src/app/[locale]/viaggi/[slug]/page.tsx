@@ -5,7 +5,12 @@ import Link from "next/link";
 import { RelatedWaypoints } from "@/components/RelatedWaypoints";
 import { TravelTabs } from "@/components/TravelTabs";
 import { formatDateRange } from "@/lib/dates";
-import { getAllTravels, getTravelBySlug } from "@/lib/travels";
+import {
+  getAllTravels,
+  getMotoTravels,
+  getTravelBySlug,
+  getTravelsForArchive,
+} from "@/lib/travels";
 import { getRelatedTravels } from "@/lib/travelNavigation";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { getLocaleFromParams, getAllLocalizedPaths, createLocalizedPath } from "@/lib/i18n/routing";
@@ -51,8 +56,10 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const resolvedParams = await params;
   const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
-  const travels = await getAllTravels(locale);
-  const relatedTravels = getRelatedTravels(travels, travel.slug);
+  const relatedPool = travel.motoOnly
+    ? getMotoTravels(locale)
+    : getTravelsForArchive(locale);
+  const relatedTravels = getRelatedTravels(relatedPool, travel.slug);
   const t = getTranslations(locale as SupportedLocale);
 
   const optimizedCoverImage = optimizeCloudinaryUrl(travel.coverImage, {

@@ -32,11 +32,18 @@ export function TravelTabs({
 }: TravelTabsProps) {
   const t = useTranslations();
   const hasGallery = (gallery?.length ?? 0) > 0;
-  const hasMap = !!(map?.gpx || map?.kml || map?.kmz || (map?.points?.length ?? 0) > 0);
+  const hasMap = !!(
+    map?.gpx ||
+    map?.kml ||
+    map?.kmz ||
+    (map?.gpxSegments?.length ?? 0) > 0 ||
+    (map?.points?.length ?? 0) > 0
+  );
   const hasItinerary =
     (timeline?.length ?? 0) > 0 ||
     (map?.points?.length ?? 0) > 0 ||
-    (!hideItineraryMap && !!(map?.gpx || map?.kml || map?.kmz));
+    (!hideItineraryMap &&
+      !!(map?.gpx || map?.kml || map?.kmz || (map?.gpxSegments?.length ?? 0) > 0));
 
   const [activeTab, setActiveTab] = useState<Tab>("narrative");
 

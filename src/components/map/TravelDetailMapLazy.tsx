@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import type { FitBoundsOptions } from "leaflet";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
 
@@ -20,18 +21,24 @@ interface TravelDetailMapLazyProps {
   map: TravelMapData;
   fallbackCoords?: TravelCoords;
   title: string;
+  boundsPadRatio?: number;
+  boundsOptions?: FitBoundsOptions;
 }
 
 export function TravelDetailMapLazy({
   map,
   fallbackCoords,
   title,
+  boundsPadRatio,
+  boundsOptions,
 }: TravelDetailMapLazyProps) {
   return (
     <TravelDetailMapClient
       map={map}
       fallbackCoords={fallbackCoords}
       title={title}
+      boundsPadRatio={boundsPadRatio}
+      boundsOptions={boundsOptions}
     />
   );
 }

@@ -166,6 +166,8 @@ export interface TranslationMessages {
       routeTitle: string;
       routeSubtitle: string;
       downloadTrack: string;
+      downloadTrackLoading: string;
+      downloadTrackError: string;
       featuredPassLabel: string;
       elevation: string;
       notSpecified: string;

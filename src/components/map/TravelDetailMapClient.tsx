@@ -17,7 +17,12 @@ import {
 import JSZip from "jszip";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
+import {
+  fetchGpxAsRouteFeatureCollection,
+  mergeRouteFeatureCollections,
+} from "@/lib/gpxTrackClient";
 import { withBasePath } from "@/lib/paths";
+import { OSM_CLASSIC_TILE_ATTRIBUTION, OSM_CLASSIC_TILE_URL } from "./osmClassicTiles";
 import { createTravelMarkerIcon } from "./markerIcon";
 
 interface TravelDetailMapClientProps {
@@ -97,6 +102,26 @@ export default function TravelDetailMapClient({
     let cancelled = false;
 
     async function loadTrack() {
+      const segmentPaths = map.gpxSegments?.filter(Boolean) ?? [];
+
+      if (segmentPaths.length > 0) {
+        try {
+          const collections = await Promise.all(
+            segmentPaths.map((path) => fetchGpxAsRouteFeatureCollection(path)),
+          );
+          const merged = mergeRouteFeatureCollections(collections);
+          if (!cancelled) {
+            setTrack(merged);
+          }
+        } catch (error) {
+          console.error("Impossibile caricare i segmenti GPX", error);
+          if (!cancelled) {
+            setTrack(null);
+          }
+        }
+        return;
+      }
+
       const trackFile = map.gpx || map.kml || map.kmz;
       if (!trackFile) {
         setTrack(null);
@@ -163,11 +188,23 @@ export default function TravelDetailMapClient({
     return () => {
       cancelled = true;
     };
-  }, [map.gpx, map.kml, map.kmz]);
+  }, [map.gpx, map.kml, map.kmz, map.gpxSegments?.join("|")]);
 
   const trackLatLngs = useMemo(() => extractLatLngsFromTrack(track), [track]);
 
-  const expectsTrackFile = !!(map.gpx || map.kml || map.kmz);
+  const expectsTrackFile = !!(
+    map.gpx ||
+    map.kml ||
+    map.kmz ||
+    (map.gpxSegments?.length ?? 0) > 0
+  );
+
+  const trackLayerKey =
+    map.gpx ||
+    map.kml ||
+    map.kmz ||
+    map.gpxSegments?.join("|") ||
+    "track";
 
   const bounds = useMemo<LatLngBounds | undefined>(() => {
     const coords: [number, number][] = [];
@@ -224,18 +261,15 @@ export default function TravelDetailMapClient({
       aria-label={`Mappa dettagliata del viaggio ${title}`}
     >
       <MapFitBounds bounds={bounds} boundsOptions={boundsOptions} />
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors · © <a href="https://carto.com/attribution">CARTO</a>'
-      />
+      <TileLayer url={OSM_CLASSIC_TILE_URL} attribution={OSM_CLASSIC_TILE_ATTRIBUTION} />
       {track && (
         <GeoJSON
-          key={map.gpx || map.kml || map.kmz}
+          key={trackLayerKey}
           data={track}
           style={() => ({
-            color: "#14b8a6",
+            color: "#0369a1",
             weight: 4,
-            opacity: 0.9,
+            opacity: 0.95,
           })}
         />
       )}

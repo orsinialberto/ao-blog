@@ -11,7 +11,11 @@ import { supportedLocales } from "@/config/locales";
 import type { SupportedLocale } from "@/config/locales";
 import { getTranslations } from "@/i18n";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
-import { getMotoTravelBySlug, getMotoTravels } from "@/lib/travels";
+import {
+  getMotoTravelBySlug,
+  getMotoTravels,
+  hasTravelNarrativeContent,
+} from "@/lib/travels";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface PageProps {
@@ -65,8 +69,11 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
     travel.map?.gpx ||
     travel.map?.kml ||
     travel.map?.kmz ||
+    (travel.map?.gpxSegments?.length ?? 0) > 0 ||
     (travel.map?.points?.length ?? 0) > 0
   );
+
+  const showFullStoryLink = hasTravelNarrativeContent(travel);
 
   return (
     <article className="min-w-0">
@@ -95,12 +102,14 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
             <p className="mt-4 max-w-2xl font-body text-lg italic leading-relaxed text-white/85 md:text-xl break-words">
               {travel.description}
             </p>
-            <LocalizedLink
-              href={`/viaggi/${travel.slug}`}
-              className="mt-6 inline-block rounded-sm font-label text-xs font-bold uppercase tracking-widest text-white/95 border-b border-white/55 pb-0.5 outline-none transition-colors hover:border-white hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
-            >
-              {t.pages.motorcycleTravels.readFullStory}
-            </LocalizedLink>
+            {showFullStoryLink && (
+              <LocalizedLink
+                href={`/viaggi/${travel.slug}`}
+                className="mt-6 inline-block rounded-sm font-label text-xs font-bold uppercase tracking-widest text-white/95 border-b border-white/55 pb-0.5 outline-none transition-colors hover:border-white hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+              >
+                {t.pages.motorcycleTravels.readFullStory}
+              </LocalizedLink>
+            )}
           </div>
         </div>
       </header>
@@ -111,9 +120,10 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
         <MotoRouteSection
           map={travel.map}
           coords={travel.coords}
+          slug={travel.slug}
           title={travel.title}
           locale={locale as SupportedLocale}
-          featuredPass={travel.featuredPass}
+          featuredPasses={travel.featuredPasses}
         />
       )}
 

@@ -32,8 +32,8 @@ export function MotoTravelMapPreview({ map, coords, title }: MotoTravelMapPrevie
         title={title}
         interactive={false}
         showMarkers={false}
-        boundsPadRatio={0.45}
-        boundsOptions={{ padding: [24, 24] }}
+        boundsPadRatio={0.1}
+        boundsOptions={{ padding: [16, 16] }}
       />
     </div>
   );

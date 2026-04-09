@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { TravelsListClient } from "@/components/TravelsListClient";
-import {
-  getAllTags,
-  getAllTravels,
-} from "@/lib/travels";
+import { getArchiveTags, getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
@@ -35,8 +32,8 @@ export default async function TravelsPage({ params }: TravelsPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
   // Get all travels and tags for the current locale
-  const allTravels = await getAllTravels(locale);
-  const tags = getAllTags(locale);
+  const allTravels = await getTravelsForArchive(locale);
+  const tags = getArchiveTags(locale);
 
   return (
     <div className="container space-y-16 pb-32">

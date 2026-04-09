@@ -1,4 +1,9 @@
-import { getAllTravels, type Travel, type Locale } from "@/lib/travels";
+import {
+  getTravelsForArchive,
+  isMotoTravel,
+  type Travel,
+  type Locale,
+} from "@/lib/travels";
 import { TravelMapLazy } from "@/components/map/TravelMapLazy";
 import { visitedCities } from "@/config/visitedCities";
 import { isContinentTag } from "@/config/continents";
@@ -31,8 +36,10 @@ interface TravelMapProps {
 }
 
 export async function TravelMap({ locale }: TravelMapProps) {
-  const travels = await getAllTravels(locale);
-  const travelsWithCoords = travels.filter(hasCoords);
+  const travels = await getTravelsForArchive(locale);
+  /** Moto trips use /viaggi-in-moto and route maps; omit from the global pin map. */
+  const travelsForWorldMap = travels.filter((t) => !isMotoTravel(t));
+  const travelsWithCoords = travelsForWorldMap.filter(hasCoords);
   const t = getTranslations(locale);
   const copy = t.components.travelMapSection;
 
@@ -40,7 +47,7 @@ export async function TravelMap({ locale }: TravelMapProps) {
     return null;
   }
 
-  const highlights = topContinentsByTravelCount(travels, 2);
+  const highlights = topContinentsByTravelCount(travelsForWorldMap, 2);
 
   return (
     <section className="bg-brand-surface py-24 px-8">

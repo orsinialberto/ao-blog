@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import MasonryGallery from "@/components/MasonryGallery";
-import { getAllTravels } from "@/lib/travels";
+import { getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
@@ -38,7 +38,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
   // Get all travels for the current locale
-  const travels = await getAllTravels(locale);
+  const travels = await getTravelsForArchive(locale);
 
   // Filter only travels with gallery
   const travelsWithGallery = travels.filter(

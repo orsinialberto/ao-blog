@@ -8,6 +8,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 import type { Travel } from "@/lib/travels";
 import type { VisitedCity } from "@/config/visitedCities";
+import { OSM_CLASSIC_TILE_ATTRIBUTION, OSM_CLASSIC_TILE_URL } from "./osmClassicTiles";
 import { createTravelMarkerIcon } from "./markerIcon";
 import { LocalizedLink } from "../LocalizedLink";
 
@@ -52,10 +53,7 @@ export default function TravelMapClient({ travels, visitedCities = [] }: TravelM
         [85, 180],
       ]}
     >
-      <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        attribution='© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors · © <a href="https://carto.com/attribution">CARTO</a>'
-      />
+      <TileLayer url={OSM_CLASSIC_TILE_URL} attribution={OSM_CLASSIC_TILE_ATTRIBUTION} />
       {/* Marker per i travels del blog */}
       {travels.map((travel) => (
         <Marker

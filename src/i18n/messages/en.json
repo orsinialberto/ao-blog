@@ -155,6 +155,8 @@
       "routeTitle": "The route in detail",
       "routeSubtitle": "Interactive track on the map and a downloadable route file.",
       "downloadTrack": "Download track",
+      "downloadTrackLoading": "Preparing…",
+      "downloadTrackError": "Could not build the file. Check that the GPX files are reachable.",
       "featuredPassLabel": "Highlight",
       "elevation": "Elevation",
       "notSpecified": "—"

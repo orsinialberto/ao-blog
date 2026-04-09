@@ -19,10 +19,10 @@
  * COMMON FIELDS (must be identical across all language versions):
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
- * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng
- * - gallery, heroTitleVariant, totalKilometers, motoAlpinePasses
- * - timeline[].city (proper nouns, not translated), timeline[].km
- * - featuredPass.name, featuredPass.elevationM
+ * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng
+ * - gallery, heroTitleVariant, totalKilometers, motoAlpinePasses, motoOnly
+ * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
+ * - featuredPasses[].name, featuredPasses[].elevationM (or legacy single featuredPass)
  * 
  * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
  */
@@ -36,7 +36,7 @@ import remarkBreaks from "remark-breaks";
 import { CONTINENT_TAGS, isContinentTag } from "@/config/continents";
 import { visitedCities } from "@/config/visitedCities";
 import { isNonEmptyString, isValidNumber, isObject } from "./typeGuards";
-import { withBasePath } from "@/lib/paths";
+export { getTrackFileDownloadUrl } from "./trackFileUrl";
 
 export interface TravelCoords {
   lat: number;
@@ -54,6 +54,8 @@ export interface TravelMapData {
   gpx?: string;
   kml?: string;
   kmz?: string;
+  /** GPX paths in timeline order; merged on the detail map when set. */
+  gpxSegments?: string[];
   points?: TravelMapPoint[];
 }
 
@@ -63,6 +65,8 @@ export interface TravelTimelineItem {
   to?: string;
   km?: number;
   elevationGain?: number;
+  /** Per-day GPX path (same in all locales); combined on the route map. */
+  gpx?: string;
 }
 
 /** Optional highlight for motorcycle travel route map (e.g. highest pass). */
@@ -92,10 +96,15 @@ export interface Travel {
   motorcycle?: string;
   /** Regions crossed, display string (localized). */
   motoRegions?: string;
-  /** Highlight card on the route map section. */
-  featuredPass?: MotoFeaturedPass;
+  /** Highlight card(s) on the route map section. Legacy frontmatter: single `featuredPass` object. */
+  featuredPasses?: MotoFeaturedPass[];
   /** Count of mountain passes for moto section aggregate stats (per travel). */
   motoAlpinePasses?: number;
+  /**
+   * When true, the travel appears under /viaggi-in-moto only (not in /viaggi archive,
+   * home highlights, map, or gallery). Must stay identical across language files.
+   */
+  motoOnly?: boolean;
 }
 
 /** Lowercase tag value used to mark motorcycle trips. */
@@ -107,6 +116,24 @@ export function isMotoTravel(travel: Travel): boolean {
 
 export function getMotoTravels(locale: Locale = "it"): Travel[] {
   return ensureCache(locale).filter(isMotoTravel);
+}
+
+/** True if the travel should appear in the general archive (home, /viaggi, map, gallery). */
+export function isListedInTravelArchive(travel: Travel): boolean {
+  return travel.motoOnly !== true;
+}
+
+export function getTravelsForArchive(locale: Locale = "it"): Travel[] {
+  return ensureCache(locale).filter(isListedInTravelArchive);
+}
+
+export function getArchiveTags(locale: Locale = "it"): string[] {
+  const travels = getTravelsForArchive(locale);
+  const tags = new Set<string>();
+  travels.forEach((travel) => {
+    travel.tags.forEach((tag) => tags.add(tag));
+  });
+  return Array.from(tags).sort((a, b) => a.localeCompare(b));
 }
 
 export interface MotoTravelStats {
@@ -137,17 +164,25 @@ export function getMotoTravelStats(locale: Locale = "it"): MotoTravelStats {
   };
 }
 
-/** Public URL to download GPX/KML/KMZ track (same file used by the map). */
-export function getTrackFileDownloadUrl(map?: TravelMapData): string | undefined {
-  const file = map?.gpx || map?.kml || map?.kmz;
-  if (!file) return undefined;
-  return file.startsWith("http") ? file : withBasePath(file);
-}
-
 /** True if the travel has enough map data to render a route or markers. */
 export function hasTravelMapContent(map?: TravelMapData | null): boolean {
   if (!map) return false;
-  return !!(map.gpx || map.kml || map.kmz || (map.points?.length ?? 0) > 0);
+  return !!(
+    map.gpx ||
+    map.kml ||
+    map.kmz ||
+    (map.gpxSegments?.length ?? 0) > 0 ||
+    (map.points?.length ?? 0) > 0
+  );
+}
+
+/** True when the travel page has narrative body text (not only frontmatter / empty HTML). */
+export function hasTravelNarrativeContent(travel: Travel): boolean {
+  const plain = travel.content
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return plain.length > 0;
 }
 
 const travelsDirectory = path.join(process.cwd(), "src", "content", "travels");
@@ -259,7 +294,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng
- * - gallery, heroTitleVariant, totalKilometers
+ * - gallery, heroTitleVariant, totalKilometers, motoOnly
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
@@ -357,6 +392,8 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     );
   }
 
+  const timeline = parseTimeline(data.timeline);
+
   return {
     slug: data.slug ?? slug,
     title: data.title,
@@ -371,17 +408,18 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     coords: parseCoords(data.coords),
     content: wrapImageMosaics(processedContent.toString()),
     heroTitleVariant: parseHeroTitleVariant(data.heroTitleVariant),
-    map: parseMap(data.map),
     totalKilometers: normalizeNumber(data.totalKilometers),
-    timeline: parseTimeline(data.timeline),
+    timeline,
+    map: attachGpxSegmentsFromTimeline(parseMap(data.map), timeline),
     motorcycle: isNonEmptyString(data.motorcycle) ? data.motorcycle.trim() : undefined,
     motoRegions: isNonEmptyString(data.motoRegions) ? data.motoRegions.trim() : undefined,
-    featuredPass: parseFeaturedPass(data.featuredPass),
+    featuredPasses: parseFeaturedPasses(data as Record<string, unknown>),
     motoAlpinePasses: normalizeNumber(data.motoAlpinePasses),
+    motoOnly: data.motoOnly === true ? true : undefined,
   } satisfies Travel;
 }
 
-function parseFeaturedPass(raw: unknown): MotoFeaturedPass | undefined {
+function parseOneFeaturedPass(raw: unknown): MotoFeaturedPass | undefined {
   if (!isObject(raw)) {
     return undefined;
   }
@@ -393,6 +431,18 @@ function parseFeaturedPass(raw: unknown): MotoFeaturedPass | undefined {
     name,
     elevationM: normalizeNumber(raw.elevationM),
   };
+}
+
+function parseFeaturedPasses(data: Record<string, unknown>): MotoFeaturedPass[] | undefined {
+  const list = data.featuredPasses;
+  if (Array.isArray(list)) {
+    const passes = list
+      .map(parseOneFeaturedPass)
+      .filter((p): p is MotoFeaturedPass => p !== undefined);
+    return passes.length > 0 ? passes : undefined;
+  }
+  const one = parseOneFeaturedPass(data.featuredPass);
+  return one ? [one] : undefined;
 }
 
 function parseCoords(rawCoords: unknown): Travel["coords"] {
@@ -529,7 +579,27 @@ function parseTimelineItem(rawItem: unknown): TravelTimelineItem | undefined {
     to: isNonEmptyString(rawItem.to) ? rawItem.to.trim() : undefined,
     km: normalizeNumber(rawItem.km),
     elevationGain: normalizeNumber(rawItem.elevationGain),
+    gpx: isNonEmptyString(rawItem.gpx) ? rawItem.gpx.trim() : undefined,
   };
+}
+
+function attachGpxSegmentsFromTimeline(
+  map: Travel["map"],
+  timeline: Travel["timeline"],
+): Travel["map"] {
+  if (!timeline?.length) {
+    return map;
+  }
+  const paths = timeline
+    .map((item) => (isNonEmptyString(item.gpx) ? item.gpx.trim() : undefined))
+    .filter((s): s is string => Boolean(s));
+  if (paths.length === 0) {
+    return map;
+  }
+  if (map) {
+    return { ...map, gpxSegments: paths };
+  }
+  return { gpxSegments: paths };
 }
 
 /**
@@ -631,7 +701,7 @@ export interface TravelStats {
  * @returns TravelStats object with aggregated statistics
  */
 export function getTravelStats(locale: Locale = "it"): TravelStats {
-  const travels = ensureCache(locale);
+  const travels = getTravelsForArchive(locale);
   
   // Paesi visitati (dalla location dei travels + dalle città visitate)
   const countries = new Set<string>();
