@@ -18,18 +18,22 @@ coords:
 map:
   points:
     - name: "Phnom Penh"
+      kind: city
       lat: 11.5564
       lng: 104.9282
       description: "Capital and starting point of the journey"
     - name: "Battambang"
+      kind: city
       lat: 13.0957
       lng: 103.2022
       description: "Cambodian countryside and artisan villages"
     - name: "Siem Reap"
+      kind: city
       lat: 13.3633
       lng: 103.8564
       description: "Gateway to Angkor Wat and Khmer temples"
     - name: "Kampot"
+      kind: city
       lat: 10.605058
       lng: 104.179955
       description: "Seahorse statue"

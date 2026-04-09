@@ -33,18 +33,22 @@ map:
   gpx: "/tracks/milano_turchino_faiallo.gpx"
   points:
     - name: "Milano"
+      kind: city
       lat: 45.497096369557234 
       lng: 9.181625944688259
       description: "Punto di partenza della gita"
     - name: "Passo del Turchino"
+      kind: pass
       lat: 44.48797
       lng: 8.73380
       description: "Valico a 508 m tra Piemonte e Liguria sulla strada verso Genova; spesso vento e nebbia, ma vista verso la costa quando si apre."
     - name: "Passo del Faiallo"
+      kind: pass
       lat: 44.46157
       lng: 8.66744
       description: "A 1.052 m nel Parco del Beigua: curve e panorami sul Mar Ligure e sul Geoparco mondiale UNESCO."
     - name: "Passo del Tiglieto"
+      kind: pass
       lat: 44.53480
       lng: 8.61918
       description: "Valico a 604 m tra Val Vobbia e Sassello, boschi e tornanti nell’Appennino ligure."

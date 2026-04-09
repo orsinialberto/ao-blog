@@ -21,57 +21,69 @@ map:
   gpx: "/tracks/cammino-dei-borghi-silenti.gpx"
   points:
     - name: "Tenaglie"
+      kind: city
       lat: 42.649433 
       lng: 12.283140
       description: "Official starting point of the journey"
     - name: "Guardea"
+      kind: city
       lat: 42.626137 
       lng: 12.297390
       description: "First village encountered after departure"
       direction: "Sud"
     - name: "Santa Restituta"
+      kind: city
       lat: 42.644395
       lng: 12.343681
       description: "Tiny welcoming village"
       direction: "Sud-Est"
     - name: "Toscolano"
+      kind: city
       lat: 42.658471
       lng: 12.349891
       description: "Well-preserved village, crossed after the cyclamen estate"
       direction: "Nord-Est"
     - name: "Collelungo"
+      kind: city
       lat: 42.713526
       lng: 12.354000
       description: "Small village visited as a deviation from Morre"
       direction: "Nord-Est"
     - name: "Acqualoreto"
+      kind: city
       lat: 42.728067
       lng: 12.335467
       description: "Charming village with a small library"
       direction: "Nord-Ovest"
     - name: "Cerreto"
+      kind: city
       lat: 42.693900
       lng: 12.255400
       description: "Village crossed before the winery"
       direction: "Ovest"
     - name: "Montecchio"
+      kind: city
       lat: 42.676330
       lng: 12.265000
       description: "Last village before returning to Tenaglie"
       direction: "Sud-Ovest"
     - name: "Melezzole"
+      kind: city
       lat: 42.668161 
       lng: 12.338199
       description: "Panoramic stage between beech forests and villages"
     - name: "Morre"
+      kind: city
       lat: 42.709748 
       lng: 12.344700
       description: "Ancient castle and the church of Sant'Andrea"
     - name: "Civitella del Lago"
+      kind: city
       lat: 42.710465 
       lng: 12.281258
       description: "View of Lake Corbara"
     - name: "Baschi"
+      kind: city
       lat: 42.669538 
       lng: 12.216297
       description: "Buchi di Baschi"

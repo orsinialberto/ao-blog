@@ -27,46 +27,57 @@ map:
   kmz: "/tracks/italia-on-the-road.kmz"
   points:
     - name: "Milano"
+      kind: city
       lat: 45.464296315425315
       lng: 9.189953940109598
       description: "Milano, punto di partenza delle mie avventure"
     - name: "Altopiano di Asiago"
+      kind: pass
       lat: 45.875503 
       lng: 11.509895
       description: "Altopiano montuoso del Veneto, famoso per i suoi pascoli e i panorami mozzafiato."
     - name: "Bassano del Grappa"
+      kind: city
       lat: 45.764741
       lng: 11.729698
       description: "Città veneta celebre per il Ponte Vecchio sul Brenta e la produzione della grappa."
     - name: "Chioggia"
+      kind: city
       lat: 45.218422
       lng: 12.278294
       description: "Affascinante città lagunare, conosciuta come la 'piccola Venezia' per i suoi canali."
     - name: "Arezzo"
+      kind: city
       lat: 43.464519
       lng: 11.884534
       description: "Antica città d'arte toscana, ricca di storia e patrimonio artistico."
     - name: "Pienza"
+      kind: city
       lat: 43.079586
       lng: 11.673602
       description: "Perla rinascimentale della Val d'Orcia, patrimonio UNESCO e città ideale del Rinascimento."
     - name: "Montalcino"
+      kind: city
       lat: 43.054624 
       lng: 11.489108
       description: "Borgo medievale toscano, celebre per il Brunello e i panorami sulla Val d'Orcia."
     - name: "Castiglione della Pescaia"
+      kind: city
       lat: 42.762737
       lng: 10.877469
       description: "Rinomata località balneare della Maremma, con spiagge dorate e mare cristallino."
     - name: "Pisa"
+      kind: city
       lat: 43.720343
       lng: 10.396643
       description: "Città della Torre pendente e di Piazza dei Miracoli, gioiello dell'arte medievale."
     - name: "Abetone"
+      kind: pass
       lat: 44.145286
       lng: 10.664313
       description: "Località montana dell'Appennino tosco-emiliano, ideale per escursioni e natura."
     - name: "Maranello"
+      kind: city
       lat: 44.526761
       lng: 10.866535
       description: "Città emiliana sede della Ferrari, tempio del motorsport e dell'eccellenza italiana."

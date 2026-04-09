@@ -23,7 +23,7 @@ import {
 } from "@/lib/gpxTrackClient";
 import { withBasePath } from "@/lib/paths";
 import { OSM_CLASSIC_TILE_ATTRIBUTION, OSM_CLASSIC_TILE_URL } from "./osmClassicTiles";
-import { createTravelMarkerIcon } from "./markerIcon";
+import { getTravelMarkerIconForKind } from "./markerIcon";
 
 interface TravelDetailMapClientProps {
   map: TravelMapData;
@@ -245,8 +245,6 @@ export default function TravelDetailMapClient({
 
   const initialZoom = TRACK_LOADING_ZOOM;
 
-  const markerIcon = useMemo(() => createTravelMarkerIcon(), []);
-
   return (
     <MapContainer
       center={initialCenter}
@@ -277,7 +275,7 @@ export default function TravelDetailMapClient({
         <Marker
           key={`${point.lat}-${point.lng}-${point.name}`}
           position={[point.lat, point.lng]}
-          icon={markerIcon}
+          icon={getTravelMarkerIconForKind(point.kind)}
         >
           <Popup>
             <div className="space-y-1 text-sm">

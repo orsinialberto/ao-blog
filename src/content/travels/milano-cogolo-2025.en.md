@@ -28,14 +28,17 @@ map:
   gpx: "/tracks/milano_cogolo.gpx"
   points:
     - name: "Milano"
+      kind: city
       lat: 45.497096369557234
       lng: 9.181625944688259
       description: "Starting point of the ride."
     - name: "Passo del Tonale"
+      kind: pass
       lat: 46.259874
       lng: 10.585975
       description: "Alpine pass at 1,884 m between Lombardy and Trentino."
     - name: "Cogolo"
+      kind: city
       lat: 46.353082599309666
       lng: 10.692434095170606
       description: "Arrival in Val di Pejo, among the Ortler-Cevedale peaks."

@@ -18,18 +18,22 @@ coords:
 map:
   points:
     - name: "Phnom Penh"
+      kind: city
       lat: 11.5564
       lng: 104.9282
       description: "Capitale e punto di partenza del viaggio"
     - name: "Battambang"
+      kind: city
       lat: 13.0957
       lng: 103.2022
       description: "Campagna cambogiana e villaggi artigiani"
     - name: "Siem Reap"
+      kind: city
       lat: 13.3633
       lng: 103.8564
       description: "Accesso ad Angkor Wat e ai templi Khmer"
     - name: "Kampot"
+      kind: city
       lat: 10.605058
       lng: 104.179955
       description: "Statua del cavalluccio marino"

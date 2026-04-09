@@ -36,34 +36,42 @@ coords:
 map:
   points:
     - name: "Cogolo"
+      kind: city
       lat: 46.353082599309666 
       lng: 10.692434095170606
       description: "Partenza dalla Val di Peio, tra le cime dell’Ortles-Cevedale."
     - name: "Passo delle Palade"
+      kind: pass
       lat: 46.5305925638811
       lng: 11.112297660413061
       description: "Salita verso l’Alta Val di Non e le vallate dell’Alto Adige."
     - name: "Passo del Rombo"
+      kind: pass
       lat: 46.900448 
       lng: 11.102270
       description: "Il Timmelsjoch: uno dei passi più spettacolari tra Italia e Austria."
     - name: "Passo del Brennero"
+      kind: pass
       lat: 47.003185 
       lng: 11.504265
       description: "Valico storico sulla cresta alpina, poi verso valle."
     - name: "Trento"
+      kind: city
       lat: 46.076012 
       lng: 11.122355
       description: "Punto di sosta tra il primo e il secondo giorno in sella."
     - name: "Passo Sommo"
+      kind: pass
       lat: 45.9196174992143
       lng: 11.206442196967053
       description: "Tra il Trentino e le Prealpi vicentine, curve e panorama aperti."
     - name: "Passo Pian delle Fugazze"
+      kind: pass
       lat: 45.760865461453534
       lng: 11.172987968533658
       description: "Valico tra Vicenza e Trento, alle porte del massiccio del Pasubio."
     - name: "Rovereto"
+      kind: city
       lat: 45.8909
       lng: 11.0427
       description: "Vallagarina e Marte di pace, ultima tappa prima del rientro."

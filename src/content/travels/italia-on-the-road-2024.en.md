@@ -27,46 +27,57 @@ map:
   kmz: "/tracks/italia-on-the-road.kmz"
   points:
     - name: "Milano"
+      kind: city
       lat: 45.464296315425315
       lng: 9.189953940109598
       description: "Milan, the starting point of my adventures"
     - name: "Altopiano di Asiago"
+      kind: pass
       lat: 45.875503 
       lng: 11.509895
       description: "Mountain plateau of Veneto, famous for its pastures and breathtaking views."
     - name: "Bassano del Grappa"
+      kind: city
       lat: 45.764741
       lng: 11.729698
       description: "Venetian city famous for the Old Bridge on the Brenta and grappa production."
     - name: "Chioggia"
+      kind: city
       lat: 45.218422
       lng: 12.278294
       description: "Fascinating lagoon city, known as 'little Venice' for its canals."
     - name: "Arezzo"
+      kind: city
       lat: 43.464519
       lng: 11.884534
       description: "Ancient Tuscan art city, rich in history and artistic heritage."
     - name: "Pienza"
+      kind: city
       lat: 43.079586
       lng: 11.673602
       description: "Renaissance gem of Val d'Orcia, UNESCO heritage and ideal city of the Renaissance."
     - name: "Montalcino"
+      kind: city
       lat: 43.054624 
       lng: 11.489108
       description: "Medieval Tuscan village, famous for Brunello and views of Val d'Orcia."
     - name: "Castiglione della Pescaia"
+      kind: city
       lat: 42.762737
       lng: 10.877469
       description: "Renowned seaside resort of the Maremma, with golden beaches and crystal clear sea."
     - name: "Pisa"
+      kind: city
       lat: 43.720343
       lng: 10.396643
       description: "City of the Leaning Tower and Piazza dei Miracoli, jewel of medieval art."
     - name: "Abetone"
+      kind: pass
       lat: 44.145286
       lng: 10.664313
       description: "Mountain resort in the Tuscan-Emilian Apennines, ideal for excursions and nature."
     - name: "Maranello"
+      kind: city
       lat: 44.526761
       lng: 10.866535
       description: "Emilian city home of Ferrari, temple of motorsport and Italian excellence."

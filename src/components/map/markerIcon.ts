@@ -1,14 +1,12 @@
+import type { TravelMapPointKind } from "@/lib/travels";
 import L from "leaflet";
 
-export function createTravelMarkerIcon() {
+const PIN_OUTLINE =
+  "M14 0C6.268 0 0 6.268 0 14C0 24.5 14 36 14 36C14 36 28 24.5 28 14C28 6.268 21.732 0 14 0Z";
+
+function divIconForHtml(html: string): L.DivIcon {
   return L.divIcon({
-    html: `
-      <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 0C6.268 0 0 6.268 0 14C0 24.5 14 36 14 36C14 36 28 24.5 28 14C28 6.268 21.732 0 14 0Z" fill="#dc2626"/>
-        <circle cx="14" cy="14" r="6" fill="#ffffff"/>
-        <path d="M14 0C6.268 0 0 6.268 0 14C0 24.5 14 36 14 36C14 36 28 24.5 28 14C28 6.268 21.732 0 14 0Z" stroke="#ffffff" stroke-width="2"/>
-      </svg>
-    `,
+    html,
     className: "travel-marker-wrapper",
     iconSize: [28, 36],
     iconAnchor: [14, 36],
@@ -16,3 +14,52 @@ export function createTravelMarkerIcon() {
   });
 }
 
+/** Classic red pin (default when `kind` is omitted on a map point). */
+export function createTravelMarkerIcon(): L.DivIcon {
+  return divIconForHtml(`
+      <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="${PIN_OUTLINE}" fill="#dc2626"/>
+        <circle cx="14" cy="14" r="6" fill="#ffffff"/>
+        <path d="${PIN_OUTLINE}" stroke="#ffffff" stroke-width="2"/>
+      </svg>
+    `);
+}
+
+function createPassMarkerIcon(): L.DivIcon {
+  return divIconForHtml(`
+      <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="${PIN_OUTLINE}" fill="#0d9488"/>
+        <circle cx="14" cy="14" r="6" fill="#ffffff"/>
+        <path d="M9.2 16.2 L11.9 11 L13.7 13.8 L16.1 10.3 L18.8 16.2 Z" fill="#0f766e"/>
+        <path d="${PIN_OUTLINE}" stroke="#ffffff" stroke-width="2"/>
+      </svg>
+    `);
+}
+
+function createCityMarkerIcon(): L.DivIcon {
+  return divIconForHtml(`
+      <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="${PIN_OUTLINE}" fill="#2563eb"/>
+        <circle cx="14" cy="14" r="6" fill="#ffffff"/>
+        <path fill="#1d4ed8" d="M9.5 17.2h1.9v2.4H9.5zm3-1.2h2.1v3.6h-2.1zm3.3-1.8h2.4v5.4h-2.4z"/>
+        <path d="${PIN_OUTLINE}" stroke="#ffffff" stroke-width="2"/>
+      </svg>
+    `);
+}
+
+let defaultIcon: L.DivIcon | undefined;
+let passIcon: L.DivIcon | undefined;
+let cityIcon: L.DivIcon | undefined;
+
+export function getTravelMarkerIconForKind(kind?: TravelMapPointKind): L.DivIcon {
+  if (kind === "pass") {
+    passIcon ??= createPassMarkerIcon();
+    return passIcon;
+  }
+  if (kind === "city") {
+    cityIcon ??= createCityMarkerIcon();
+    return cityIcon;
+  }
+  defaultIcon ??= createTravelMarkerIcon();
+  return defaultIcon;
+}

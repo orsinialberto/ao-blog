@@ -19,7 +19,7 @@
  * COMMON FIELDS (must be identical across all language versions):
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
- * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng
+ * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
  * - gallery, heroTitleVariant, totalKilometers, motoAlpinePasses, motoOnly
  * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
  * - featuredPasses[].name, featuredPasses[].elevationM (or legacy single featuredPass)
@@ -43,11 +43,15 @@ export interface TravelCoords {
   lng: number;
 }
 
+/** Map marker shape on the travel detail map; omit for the classic pin. */
+export type TravelMapPointKind = "pass" | "city";
+
 export interface TravelMapPoint {
   name: string;
   description?: string;
   lat: number;
   lng: number;
+  kind?: TravelMapPointKind;
 }
 
 export interface TravelMapData {
@@ -293,7 +297,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * COMMON FIELDS (must be identical in all language versions):
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
- * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng
+ * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
  * - gallery, heroTitleVariant, totalKilometers, motoOnly
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
@@ -538,11 +542,18 @@ function parseMapPoint(rawPoint: unknown): TravelMapPoint | undefined {
     ? rawPoint.description.trim() 
     : undefined;
 
+  const kindRaw = rawPoint.kind;
+  let kind: TravelMapPointKind | undefined;
+  if (kindRaw === "pass" || kindRaw === "city") {
+    kind = kindRaw;
+  }
+
   return {
     name,
     description,
     lat,
     lng,
+    ...(kind ? { kind } : {}),
   };
 }
 

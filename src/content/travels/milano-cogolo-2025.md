@@ -28,14 +28,17 @@ map:
   gpx: "/tracks/milano_cogolo.gpx"
   points:
     - name: "Milano"
+      kind: city
       lat: 45.497096369557234 
       lng: 9.181625944688259
       description: "Punto di partenza della gita"
     - name: "Passo del Tonale"
+      kind: pass
       lat: 46.259874
       lng: 10.585975
       description: "Valico alpino a 1.884 m tra Lombardia e Trentino"
     - name: "Cogolo"
+      kind: city
       lat: 46.353082599309666 
       lng: 10.692434095170606
       description: "Arrivo nella Val di Peio, tra le cime dell’Ortles-Cevedale."

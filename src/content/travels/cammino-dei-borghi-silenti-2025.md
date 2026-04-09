@@ -21,57 +21,69 @@ map:
   gpx: "/tracks/cammino-dei-borghi-silenti.gpx"
   points:
     - name: "Tenaglie"
+      kind: city
       lat: 42.649433 
       lng: 12.283140
       description: "Partenza ufficiale del cammino"
     - name: "Guardea"
+      kind: city
       lat: 42.626137 
       lng: 12.297390
       description: "Primo paese incontrato dopo la partenza"
       direction: "Sud"
     - name: "Santa Restituta"
+      kind: city
       lat: 42.644395
       lng: 12.343681
       description: "Minuscolo borgo accogliente"
       direction: "Sud-Est"
     - name: "Toscolano"
+      kind: city
       lat: 42.658471
       lng: 12.349891
       description: "Borgo conservato, attraversato dopo la tenuta dei ciclamini"
       direction: "Nord-Est"
     - name: "Collelungo"
+      kind: city
       lat: 42.713526
       lng: 12.354000
       description: "Piccolo borgo visitato come deviazione da Morre"
       direction: "Nord-Est"
     - name: "Acqualoreto"
+      kind: city
       lat: 42.728067
       lng: 12.335467
       description: "Borgo suggestivo con piccola biblioteca"
       direction: "Nord-Ovest"
     - name: "Cerreto"
+      kind: city
       lat: 42.693900
       lng: 12.255400
       description: "Borgo attraversato prima della cantina"
       direction: "Ovest"
     - name: "Montecchio"
+      kind: city
       lat: 42.676330
       lng: 12.265000
       description: "Ultimo borgo prima del rientro a Tenaglie"
       direction: "Sud-Ovest"
     - name: "Melezzole"
+      kind: city
       lat: 42.668161 
       lng: 12.338199
       description: "Tappa panoramica tra faggete e borghi"
     - name: "Morre"
+      kind: city
       lat: 42.709748 
       lng: 12.344700
       description: "Castello antico e la chiesa di Sant’Andrea"
     - name: "Civitella del Lago"
+      kind: city
       lat: 42.710465 
       lng: 12.281258
       description: "Vista sul Lago di Corbara"
     - name: "Baschi"
+      kind: city
       lat: 42.669538 
       lng: 12.216297
       description: "Buchi di Baschi"

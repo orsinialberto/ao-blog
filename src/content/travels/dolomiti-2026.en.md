@@ -18,26 +18,32 @@ coords:
 map:
   points:
     - name: "Corvara"
+      kind: city
       lat: 46.5476
       lng: 11.8754
       description: "Village in Alta Badia, one of the starting points of the Sellaronda."
     - name: "Marmolada"
+      kind: pass
       lat: 46.4345
       lng: 11.8500
       description: "Queen of the Dolomites and the range's only glacier."
     - name: "Cortina"
+      kind: city
       lat: 46.5369
       lng: 12.1356
       description: "Cortina d'Ampezzo, the Pearl of the Dolomites."
     - name: "Falzarego"
+      kind: pass
       lat: 46.5183
       lng: 12.0086
       description: "Mountain pass and ski area between Cortina and Alta Badia."
     - name: "5 Torri"
+      kind: pass
       lat: 46.5083
       lng: 12.0583
       description: "Distinctive group of rock towers and ski area."
     - name: "Seceda"
+      kind: pass
       lat: 46.59855687564947 
       lng: 11.724296599918498
       description: "The Seceda is a spectacular Dolomite ridge with breathtaking views of jagged peaks and alpine meadows."

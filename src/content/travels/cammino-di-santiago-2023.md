@@ -21,46 +21,57 @@ map:
   kmz: "/tracks/Cammino-inglese-finisterre.kmz"
   points:
     - name: "Ferrol"
+      kind: city
       lat: 43.478484 
       lng: -8.244141
       description: "Ferrol è una città portuale della Galizia nota per il suo storico arsenale navale e le eleganti fortificazioni sul mare."
     - name: "Neda"
+      kind: city
       lat: 43.513438
       lng: -8.152204
       description: "Piccolo comune galiziano lungo il Cammino Inglese, attraversato dal fiume Xubia e caratterizzato da un'atmosfera tranquilla e rurale."
     - name: "Pontedeume"
+      kind: city
       lat: 43.407482
       lng: -8.172163
       description: "Affascinante cittadina galiziana situata alla foce del fiume Eume, nota per il suo ponte medievale e il centro storico ben conservato."
     - name: "Betanzos"
+      kind: city
       lat: 43.282230
       lng: -8.211660
       description: "Antica città medievale della Galizia, conosciuta come la 'Roma galiziana' per le sue chiese romaniche e il ricco patrimonio storico."
     - name: "Hospital de Bruma"
+      kind: city
       lat: 43.152920
       lng: -8.363170
       description: "Piccola località rurale del Cammino Inglese, situata in una zona collinare della Galizia, caratterizzata da paesaggi verdi e tranquillità."
     - name: "Sigüeiro"
+      kind: city
       lat: 42.968803
       lng: -8.441988
       description: "Ultima tappa del Cammino Inglese prima di Santiago, piccolo centro abitato immerso nella campagna galiziana."
     - name: "Santiago de Compostela"
+      kind: city
       lat: 42.880718
       lng: -8.545445
       description: "Meta finale del Cammino, celebre per la sua maestosa cattedrale che custodisce le reliquie di San Giacomo. Il centro storico è Patrimonio dell'Umanità UNESCO."
     - name: "Negreira"
+      kind: city
       lat: 42.910041
       lng: -8.735167
       description: "Prima tappa del Cammino di Finisterre, cittadina galiziana circondata da colline verdi e caratterizzata da un'atmosfera tranquilla."
     - name: "Olveiroa"
+      kind: city
       lat: 42.968411 
       lng: -9.037574
       description: "Piccolo villaggio rurale lungo il Cammino di Finisterre, immerso nella campagna galiziana e circondato da paesaggi naturali."
     - name: "Cabo Finisterre"
+      kind: pass
       lat: 42.882341
       lng: -9.271661
       description: "Il leggendario 'finis terrae', considerato dagli antichi romani la fine del mondo conosciuto. Spettacolare promontorio roccioso che si affaccia sull'Oceano Atlantico."
     - name: "Muxia"
+      kind: city
       lat: 43.106511
       lng: -9.216523
       description: "Muxía è un pittoresco villaggio costiero galiziano famoso per il santuario sul mare."

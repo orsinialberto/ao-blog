@@ -21,30 +21,37 @@ map:
   kmz: "/tracks/via-degli-dei.kmz"
   points:
     - name: "Bologna"
+      kind: city
       lat: 44.493741
       lng: 11.343138
       description: "Official start of the Via degli Dei: from the arcades of the city centre up to San Luca on Europe’s longest portico."
     - name: "Badolo"
+      kind: city
       lat: 44.360264 
       lng: 11.278143
       description: "Hub of the first stage, after the Reno and Sasso Marconi: a tiny hamlet with an osteria, at the end of the day’s final climb."
     - name: "Madonna dei Fornelli"
+      kind: city
       lat: 44.200523
       lng: 11.260068
       description: "Apennine village after Monte Adone and the chestnut woods of Monzuno; a memorable stop for walkers, chestnuts, and inn hospitality."
     - name: "Passo della Futa"
+      kind: pass
       lat: 44.094637
       lng: 11.275775
       description: "Pass between Emilia-Romagna and Tuscany, Roman road and summit of the Banditacce; home to the German war cemetery memorial."
     - name: "San Piero a Sieve"
+      kind: city
       lat: 43.964881
       lng: 11.324453
       description: "Heart of the Mugello where the route grows flatter: woods, Sant’Agata, and the nearby motor racing circuit."
     - name: "Bivigliano"
+      kind: city
       lat: 43.896104
       lng: 11.321043
       description: "Hillside hamlet toward Florence, among olive groves and paths toward Monte Senario; often the last stop before the city."
     - name: "Firenze"
+      kind: city
       lat: 43.769637 
       lng: 11.256168
       description: "End of the walk in the historic centre: after Vetta le Croci and Fiesole, Palazzo Vecchio for the pilgrim credential and certificate."

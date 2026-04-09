@@ -21,54 +21,67 @@ map:
   gpx: "/tracks/fishermen-trail.gpx"
   points:
     - name: "Porto Covo"
+      kind: city
       lat: 37.8526
       lng: -8.7902
       description: "Coastal village famous for its rocky coves."
     - name: "Vila Nova de Milfontes"
+      kind: city
       lat: 37.7238
       lng: -8.7828
       description: "Town at the mouth of the Mira River, quiet beaches."
     - name: "Almograve"
+      kind: city
       lat: 37.652687 
       lng: -8.792615
       description: "Small village with a long wild beach."
     - name: "Zambujeira do Mar"
+      kind: city
       lat: 37.525
       lng: -8.7851
       description: "Panoramic cliffs and one of the most iconic sunsets in the Alentejo."
     - name: "Odeceixe"
+      kind: city
       lat: 37.4323
       lng: -8.7711
       description: "Famous for its crescent-shaped beach on the Seixe River."
     - name: "Aljezur"
+      kind: city
       lat: 37.3191
       lng: -8.8033
       description: "Ancient Moorish village dominated by a panoramic castle."
     - name: "Arrifana"
+      kind: city
       lat: 37.321
       lng: -8.8761
       description: "Protected bay loved by surfers and dramatic landscapes."
     - name: "Carrapateira"
+      kind: city
       lat: 37.1835
       lng: -8.8944
       description: "Dunes, cliffs and spectacular paths towards the sea."
     - name: "Vila do Bispo"
+      kind: city
       lat: 37.083459 
       lng: -8.912230
       description: "Small rural town in the Algarve hinterland."
     - name: "Sagres"
+      kind: city
       lat: 37.0086
       lng: -8.9431
       description: "Windy and historic cape, near the spectacular Fortaleza."
     - name: "Salema"
+      kind: city
       lat: 37.072
       lng: -8.951
       description: "Fishing village with a quiet beach."
     - name: "Luz"
+      kind: city
       lat: 37.085945
       lng: -8.730625
       description: "Seaside resort with a charming sandy bay."
     - name: "Lagos"
+      kind: city
       lat: 37.108550
       lng: -8.671962
       description: "Lively city known for the caves and cliffs of Ponta da Piedade."

@@ -21,46 +21,57 @@ map:
   kmz: "/tracks/Cammino-inglese-finisterre.kmz"
   points:
     - name: "Ferrol"
+      kind: city
       lat: 43.478484 
       lng: -8.244141
       description: "Ferrol is a port city in Galicia known for its historic naval arsenal and elegant seaside fortifications."
     - name: "Neda"
+      kind: city
       lat: 43.513438
       lng: -8.152204
       description: "Small Galician town along the English Way, crossed by the Xubia River and characterized by a quiet, rural atmosphere."
     - name: "Pontedeume"
+      kind: city
       lat: 43.407482
       lng: -8.172163
       description: "Charming Galician town located at the mouth of the Eume River, known for its medieval bridge and well-preserved historic center."
     - name: "Betanzos"
+      kind: city
       lat: 43.282230
       lng: -8.211660
       description: "Ancient medieval city of Galicia, known as the 'Galician Rome' for its Romanesque churches and rich historical heritage."
     - name: "Hospital de Bruma"
+      kind: city
       lat: 43.152920
       lng: -8.363170
       description: "Small rural town on the English Way, located in a hilly area of Galicia, characterized by green landscapes and tranquility."
     - name: "Sigüeiro"
+      kind: city
       lat: 42.968803
       lng: -8.441988
       description: "Last stop on the English Way before Santiago, small inhabited center immersed in the Galician countryside."
     - name: "Santiago de Compostela"
+      kind: city
       lat: 42.880718
       lng: -8.545445
       description: "Final destination of the Way, famous for its majestic cathedral that houses the relics of St. James. The historic center is a UNESCO World Heritage Site."
     - name: "Negreira"
+      kind: city
       lat: 42.910041
       lng: -8.735167
       description: "First stop on the Finisterre Way, Galician town surrounded by green hills and characterized by a tranquil atmosphere."
     - name: "Olveiroa"
+      kind: city
       lat: 42.968411 
       lng: -9.037574
       description: "Small rural village along the Finisterre Way, immersed in the Galician countryside and surrounded by natural landscapes."
     - name: "Cabo Finisterre"
+      kind: pass
       lat: 42.882341
       lng: -9.271661
       description: "The legendary 'finis terrae', considered by the ancient Romans the end of the known world. Spectacular rocky promontory overlooking the Atlantic Ocean."
     - name: "Muxia"
+      kind: city
       lat: 43.106511
       lng: -9.216523
       description: "Muxía is a picturesque coastal Galician village famous for its seaside sanctuary."

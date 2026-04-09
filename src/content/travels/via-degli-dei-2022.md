@@ -21,30 +21,37 @@ map:
   kmz: "/tracks/via-degli-dei.kmz"
   points:
     - name: "Bologna"
+      kind: city
       lat: 44.493741
       lng: 11.343138
       description: "Partenza ufficiale della Via degli Dei: dai portici del centro alla salita verso San Luca sul porticato più lungo d’Europa."
     - name: "Badolo"
+      kind: city
       lat: 44.360264 
       lng: 11.278143
       description: "Caposaldo della prima tappa, dopo Reno e Sasso Marconi: un minuscolo borgo con osteria, meta della salita finale della giornata."
     - name: "Madonna dei Fornelli"
+      kind: city
       lat: 44.200523
       lng: 11.260068
       description: "Borgo appenninico dopo Monte Adone e il castagneto di Monzuno; tappa forte per camminatori, castagne e accoglienza in locanda."
     - name: "Passo della Futa"
+      kind: pass
       lat: 44.094637
       lng: 11.275775
       description: "Valico tra Emilia-Romagna e Toscana, strada romana e cima delle Banditacce; qui il memoriale del cimitero di guerra tedesco."
     - name: "San Piero a Sieve"
+      kind: city
       lat: 43.964881
       lng: 11.324453
       description: "Centro del Mugello dove il percorso si fa più pianeggiante: boschi, Sant’Agata e vicinanza al circuito automobilistico."
     - name: "Bivigliano"
+      kind: city
       lat: 43.896104
       lng: 11.321043
       description: "Frazione collinare verso Firenze, tra ulivi e sentieri verso Monte Senario; spesso ultima sosta prima dell’arrivo in città."
     - name: "Firenze"
+      kind: city
       lat: 43.769637 
       lng: 11.256168
       description: "Fine del cammino in centro storico: dopo Vetta le Croci e Fiesole, Palazzo Vecchio per credenziale e attestato."
