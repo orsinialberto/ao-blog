@@ -6,7 +6,7 @@ import { LocalizedLink } from "@/components/LocalizedLink";
 import { MotoDetailStatsCards } from "@/components/moto/MotoDetailStatsCards";
 import { MotoRouteSection } from "@/components/moto/MotoRouteSection";
 import { TravelItineraryAccordion } from "@/components/TravelItineraryAccordion";
-import { hasItineraryAccordionItems } from "@/lib/itineraryAccordion";
+import { hasMotoItineraryAccordionItems } from "@/lib/itineraryAccordion";
 import { supportedLocales } from "@/config/locales";
 import type { SupportedLocale } from "@/config/locales";
 import { getTranslations } from "@/i18n";
@@ -127,7 +127,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
         />
       )}
 
-      {hasItineraryAccordionItems(travel.timeline, travel.map) && (
+      {hasMotoItineraryAccordionItems(travel.timeline) && (
         <section className="relative z-[2] mx-auto max-w-screen-2xl border-t border-brand-outline-variant/30 px-6 pt-12 pb-16 md:px-12 md:pb-20">
           <TravelItineraryAccordion
             timeline={travel.timeline}

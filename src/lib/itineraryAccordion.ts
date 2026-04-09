@@ -8,3 +8,10 @@ export function hasItineraryAccordionItems(
   if (timeline && timeline.length > 0) return true;
   return (map?.points?.length ?? 0) > 0;
 }
+
+/** Moto (on the road): itinerary accordion only when `timeline` is set in frontmatter. */
+export function hasMotoItineraryAccordionItems(
+  timeline?: TravelTimelineItem[],
+): boolean {
+  return (timeline?.length ?? 0) > 0;
+}
