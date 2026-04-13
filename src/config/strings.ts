@@ -3,8 +3,6 @@
  * All application strings organized by namespace for easy internationalization
  */
 
-import type { SupportedLocale } from "./locales";
-
 /**
  * String structure organized by namespace
  */
@@ -93,28 +91,3 @@ export const strings = {
  * Usage: strings.navigation.menu
  */
 export type Strings = typeof strings;
-
-/**
- * Get string by path (for future i18n implementation)
- * @param locale - The locale to use (currently only 'it' is implemented)
- * @param path - Dot-separated path to the string (e.g., 'navigation.menu')
- */
-export function getString(
-  locale: SupportedLocale,
-  path: string
-): string | undefined {
-  // For now, only Italian is implemented
-  // This function will be expanded when i18n is fully implemented
-  const keys = path.split(".");
-  let value: any = strings;
-
-  for (const key of keys) {
-    if (value && typeof value === "object" && key in value) {
-      value = value[key as keyof typeof value];
-    } else {
-      return undefined;
-    }
-  }
-
-  return typeof value === "string" ? value : undefined;
-}

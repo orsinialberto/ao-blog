@@ -42,59 +42,8 @@ export function getTranslations(
   return messages[locale] || messages[defaultLocale];
 }
 
-/**
- * Get a nested translation value by dot-separated path
- * Useful for dynamic key access
- *
- * @param locale - The locale to get translation for
- * @param path - Dot-separated path to the translation (e.g., 'navigation.menu')
- * @returns The translation string or undefined if not found
- *
- * @example
- * ```tsx
- * const menuText = getTranslation('it', 'navigation.menu');
- * ```
- */
-export function getTranslation(
-  locale: SupportedLocale,
-  path: string
-): string | undefined {
-  const translations = getTranslations(locale);
-  const keys = path.split(".");
-
-  let value: any = translations;
-  for (const key of keys) {
-    if (value && typeof value === "object" && key in value) {
-      value = value[key as keyof typeof value];
-    } else {
-      return undefined;
-    }
-  }
-
-  return typeof value === "string" ? value : undefined;
-}
-
 // Note: useTranslations hook is exported from './hooks' for client components
 // Import it from '@/i18n/hooks' in client components
-
-/**
- * Check if a locale is supported
- *
- * @param locale - Locale code to check
- * @returns True if the locale is supported
- */
-export function isSupportedLocale(locale: string): locale is SupportedLocale {
-  return locale in messages;
-}
-
-/**
- * Get all available locales
- *
- * @returns Array of supported locale codes
- */
-export function getAvailableLocales(): SupportedLocale[] {
-  return Object.keys(messages) as SupportedLocale[];
-}
 
 // Re-export types for convenience
 export type { TranslationMessages, Translations, TranslationKey } from "./types";
