@@ -10,14 +10,13 @@
   },
   "dependencies": {
     "@tmcw/togeojson": "^7.1.2",
-    "@types/leaflet": "^1.9.21",
     "gray-matter": "^4.0.3",
     "jszip": "^3.10.1",
-    "leaflet": "^1.9.4",
+    "maplibre-gl": "^4.7.1",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-leaflet": "^5.0.0",
+    "react-map-gl": "^8.1.0",
     "remark": "^15.0.1",
     "remark-breaks": "^4.0.0",
     "remark-html": "^16.0.1"

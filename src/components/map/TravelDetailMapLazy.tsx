@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { FitBoundsOptions } from "leaflet";
+import type { FitBoundsOptions } from "maplibre-gl";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
 

@@ -1,19 +1,15 @@
 "use client";
 
-import "leaflet/dist/leaflet.css";
+import "maplibre-gl/dist/maplibre-gl.css";
+import { setWorkerUrl } from "maplibre-gl";
 import * as togeojson from "@tmcw/togeojson";
 import type { FeatureCollection, Geometry, Position } from "geojson";
-import { useEffect, useMemo, useState } from "react";
-import type { FitBoundsOptions, LatLngBounds, LatLngExpression } from "leaflet";
-import L from "leaflet";
-import {
-  GeoJSON,
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMap,
-} from "react-leaflet";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Map, { Layer, Marker, NavigationControl, Popup, Source } from "react-map-gl/maplibre";
+import type { MapRef } from "react-map-gl/maplibre";
+import type { FitBoundsOptions } from "maplibre-gl";
+
+setWorkerUrl("/maplibre-gl-csp-worker.js");
 import JSZip from "jszip";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
@@ -22,8 +18,7 @@ import {
   mergeRouteFeatureCollections,
 } from "@/lib/gpxTrackClient";
 import { withBasePath } from "@/lib/paths";
-import { OSM_CLASSIC_TILE_ATTRIBUTION, OSM_CLASSIC_TILE_URL } from "./osmClassicTiles";
-import { getTravelMarkerIconForKind } from "./markerIcon";
+import { getMarkerSvgForKind } from "./markerIcon";
 
 interface TravelDetailMapClientProps {
   map: TravelMapData;
@@ -33,54 +28,46 @@ interface TravelDetailMapClientProps {
   interactive?: boolean;
   /** When false, map.points markers are not shown (e.g. list route preview). Default true. */
   showMarkers?: boolean;
-  /** Geographic padding around bounds (Leaflet `pad`). Default 0.2. */
+  /** Geographic padding around bounds (fraction of span). Default 0.2. */
   boundsPadRatio?: number;
-  /** Extra options for `fitBounds` (e.g. pixel padding in list thumbnails). */
+  /** Extra options for fitBounds (e.g. pixel padding in list thumbnails). */
   boundsOptions?: FitBoundsOptions;
 }
 
 /** Default view while a track file is loading (Italy). */
-const TRACK_LOADING_CENTER: LatLngExpression = [42.8, 12.5];
+const ITALY_LNG = 12.5;
+const ITALY_LAT = 42.8;
 const TRACK_LOADING_ZOOM = 6;
 const MIN_ZOOM = 2;
 
-function MapFitBounds({
-  bounds,
-  boundsOptions,
-}: {
-  bounds: LatLngBounds | undefined;
-  boundsOptions?: FitBoundsOptions;
-}) {
-  const map = useMap();
+/** [[minLng, minLat], [maxLng, maxLat]] */
+type LngLatBounds = [[number, number], [number, number]];
 
-  useEffect(() => {
-    if (!bounds?.isValid()) {
-      return;
-    }
+const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
 
-    const sw = bounds.getSouthWest();
-    const ne = bounds.getNorthEast();
-    const isSinglePoint = sw.lat === ne.lat && sw.lng === ne.lng;
+function computePaddedBounds(
+  coords: [number, number][],
+  padRatio: number,
+): LngLatBounds | undefined {
+  if (coords.length === 0) return undefined;
 
-    const apply = () => {
-      map.invalidateSize();
-      if (isSinglePoint) {
-        map.setView(sw, 10);
-        return;
-      }
-      map.fitBounds(bounds, boundsOptions ?? {});
-    };
+  let minLng = Infinity, minLat = Infinity;
+  let maxLng = -Infinity, maxLat = -Infinity;
 
-    apply();
-    const t1 = window.setTimeout(apply, 50);
-    const t2 = window.setTimeout(apply, 250);
-    return () => {
-      window.clearTimeout(t1);
-      window.clearTimeout(t2);
-    };
-  }, [map, bounds, boundsOptions]);
+  for (const [lng, lat] of coords) {
+    if (lng < minLng) minLng = lng;
+    if (lat < minLat) minLat = lat;
+    if (lng > maxLng) maxLng = lng;
+    if (lat > maxLat) maxLat = lat;
+  }
 
-  return null;
+  const lngSpan = maxLng - minLng;
+  const latSpan = maxLat - minLat;
+
+  return [
+    [minLng - lngSpan * padRatio, minLat - latSpan * padRatio],
+    [maxLng + lngSpan * padRatio, maxLat + latSpan * padRatio],
+  ];
 }
 
 export default function TravelDetailMapClient({
@@ -92,7 +79,11 @@ export default function TravelDetailMapClient({
   boundsPadRatio = 0.2,
   boundsOptions,
 }: TravelDetailMapClientProps) {
+  const mapRef = useRef<MapRef>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
   const [track, setTrack] = useState<FeatureCollection | null>(null);
+  const [activeMarkerKey, setActiveMarkerKey] = useState<string | null>(null);
+
   const markers = useMemo(
     () => (showMarkers ? (map.points ?? []) : []),
     [map.points, showMarkers],
@@ -110,14 +101,10 @@ export default function TravelDetailMapClient({
             segmentPaths.map((path) => fetchGpxAsRouteFeatureCollection(path)),
           );
           const merged = mergeRouteFeatureCollections(collections);
-          if (!cancelled) {
-            setTrack(merged);
-          }
+          if (!cancelled) setTrack(merged);
         } catch (error) {
           console.error("Impossibile caricare i segmenti GPX", error);
-          if (!cancelled) {
-            setTrack(null);
-          }
+          if (!cancelled) setTrack(null);
         }
         return;
       }
@@ -129,216 +116,230 @@ export default function TravelDetailMapClient({
       }
 
       try {
-        // Aggiungi il basePath al percorso se è un percorso locale
-        const trackPath = trackFile.startsWith('http') ? trackFile : withBasePath(trackFile);
+        const trackPath = trackFile.startsWith("http") ? trackFile : withBasePath(trackFile);
         const response = await fetch(trackPath);
-        
+
         let xmlText: string;
-        
-        // Se è un file KMZ, decomprimilo prima
+
         if (map.kmz) {
           const arrayBuffer = await response.arrayBuffer();
           const zip = await JSZip.loadAsync(arrayBuffer);
-          
-          // Cerca il file KML all'interno del KMZ (di solito è il primo file .kml)
-          const kmlFile = Object.keys(zip.files).find(name => 
-            name.toLowerCase().endsWith('.kml')
+          const kmlFile = Object.keys(zip.files).find((name) =>
+            name.toLowerCase().endsWith(".kml"),
           );
-          
-          if (!kmlFile) {
-            throw new Error("Nessun file KML trovato nel KMZ");
-          }
-          
-          xmlText = await zip.files[kmlFile].async('string');
+          if (!kmlFile) throw new Error("Nessun file KML trovato nel KMZ");
+          xmlText = await zip.files[kmlFile].async("string");
         } else {
           xmlText = await response.text();
         }
-        
+
         const dom = new DOMParser().parseFromString(xmlText, "application/xml");
-        
-        // Usa togeojson.kml per KML/KMZ, togeojson.gpx per GPX
-        const geojson = (map.kml || map.kmz) 
+        const geojson = (map.kml || map.kmz)
           ? (togeojson.kml(dom) as FeatureCollection)
           : (togeojson.gpx(dom) as FeatureCollection);
-        
-        // Filtra i Point features per evitare marker indesiderati con "?"
-        // Manteniamo solo LineString, MultiLineString e altre geometrie di percorso
+
         const filteredGeoJson: FeatureCollection = {
           ...geojson,
           features: geojson.features.filter(
-            (feature) => 
-              feature.geometry.type !== "Point" && 
-              feature.geometry.type !== "MultiPoint"
+            (feature) =>
+              feature.geometry.type !== "Point" &&
+              feature.geometry.type !== "MultiPoint",
           ),
         };
-        
-        if (!cancelled) {
-          setTrack(filteredGeoJson);
-        }
+
+        if (!cancelled) setTrack(filteredGeoJson);
       } catch (error) {
         console.error(`Impossibile caricare il file tracciato (${trackFile})`, error);
-        if (!cancelled) {
-          setTrack(null);
-        }
+        if (!cancelled) setTrack(null);
       }
     }
 
     loadTrack();
-
     return () => {
       cancelled = true;
     };
   }, [map.gpx, map.kml, map.kmz, map.gpxSegments?.join("|")]);
 
-  const trackLatLngs = useMemo(() => extractLatLngsFromTrack(track), [track]);
+  const trackLngLats = useMemo(() => extractLngLatsFromTrack(track), [track]);
 
   const expectsTrackFile = !!(
-    map.gpx ||
-    map.kml ||
-    map.kmz ||
-    (map.gpxSegments?.length ?? 0) > 0
+    map.gpx || map.kml || map.kmz || (map.gpxSegments?.length ?? 0) > 0
   );
 
-  const trackLayerKey =
-    map.gpx ||
-    map.kml ||
-    map.kmz ||
-    map.gpxSegments?.join("|") ||
-    "track";
+  const trackSourceKey =
+    map.gpx || map.kml || map.kmz || map.gpxSegments?.join("|") || "track";
 
-  const bounds = useMemo<LatLngBounds | undefined>(() => {
+  const bounds = useMemo<LngLatBounds | undefined>(() => {
     const coords: [number, number][] = [];
-    markers.forEach((point) => coords.push([point.lat, point.lng]));
-    for (const c of trackLatLngs) {
-      coords.push(c);
-    }
+    markers.forEach((point) => coords.push([point.lng, point.lat]));
+    for (const c of trackLngLats) coords.push(c);
 
     if (coords.length >= 2) {
-      return L.latLngBounds(coords).pad(boundsPadRatio);
+      return computePaddedBounds(coords, boundsPadRatio);
     }
 
-    if (expectsTrackFile && trackLatLngs.length === 0) {
+    // Track expected but not yet loaded — don't snap to a wrong view yet.
+    if (expectsTrackFile && trackLngLats.length === 0) {
       return undefined;
     }
 
     if (!coords.length && fallbackCoords) {
-      coords.push([fallbackCoords.lat, fallbackCoords.lng]);
+      coords.push([fallbackCoords.lng, fallbackCoords.lat]);
     }
-    if (!coords.length) {
-      return undefined;
-    }
+    if (!coords.length) return undefined;
 
-    return L.latLngBounds(coords).pad(boundsPadRatio);
-  }, [
-    markers,
-    trackLatLngs,
-    fallbackCoords,
-    boundsPadRatio,
-    expectsTrackFile,
-  ]);
+    return computePaddedBounds(coords, boundsPadRatio);
+  }, [markers, trackLngLats, fallbackCoords, boundsPadRatio, expectsTrackFile]);
 
-  const initialCenter: LatLngExpression = fallbackCoords
-    ? [fallbackCoords.lat, fallbackCoords.lng]
-    : markers[0]
-      ? [markers[0].lat, markers[0].lng]
-      : TRACK_LOADING_CENTER;
+  // Fit the map once loaded, and re-fit whenever bounds change (e.g. after track loads).
+  useEffect(() => {
+    const m = mapRef.current;
+    if (!mapLoaded || !m || !bounds) return;
 
-  const initialZoom = TRACK_LOADING_ZOOM;
+    const [[minLng, minLat], [maxLng, maxLat]] = bounds;
+    const isSinglePoint = minLng === maxLng && minLat === maxLat;
+
+    const apply = () => {
+      m.resize();
+      if (isSinglePoint) {
+        m.flyTo({ center: [minLng, minLat], zoom: 10 });
+      } else {
+        m.fitBounds(bounds, boundsOptions ?? {});
+      }
+    };
+
+    apply();
+    // One deferred retry handles cases where the container is still measuring.
+    const t = window.setTimeout(apply, 250);
+    return () => window.clearTimeout(t);
+  }, [mapLoaded, bounds, boundsOptions]);
+
+  const initialLng = fallbackCoords?.lng ?? markers[0]?.lng ?? ITALY_LNG;
+  const initialLat = fallbackCoords?.lat ?? markers[0]?.lat ?? ITALY_LAT;
+
+  const activePoint = useMemo(
+    () => markers.find((p) => `${p.lat}-${p.lng}-${p.name}` === activeMarkerKey) ?? null,
+    [markers, activeMarkerKey],
+  );
 
   return (
-    <MapContainer
-      center={initialCenter}
-      zoom={initialZoom}
-      className="h-full w-full"
-      scrollWheelZoom={interactive}
-      dragging={interactive}
+    <Map
+      ref={mapRef}
+      initialViewState={{
+        longitude: initialLng,
+        latitude: initialLat,
+        zoom: TRACK_LOADING_ZOOM,
+      }}
+      style={{ width: "100%", height: "100%" }}
+      mapStyle={MAP_STYLE}
+      scrollZoom={interactive}
+      dragPan={interactive}
       doubleClickZoom={interactive}
-      zoomControl={interactive}
       keyboard={interactive}
       minZoom={MIN_ZOOM}
+      onLoad={() => setMapLoaded(true)}
+      onClick={() => setActiveMarkerKey(null)}
       aria-label={`Mappa dettagliata del viaggio ${title}`}
     >
-      <MapFitBounds bounds={bounds} boundsOptions={boundsOptions} />
-      <TileLayer url={OSM_CLASSIC_TILE_URL} attribution={OSM_CLASSIC_TILE_ATTRIBUTION} />
+      {interactive && <NavigationControl position="top-right" />}
+
       {track && (
-        <GeoJSON
-          key={trackLayerKey}
-          data={track}
-          style={() => ({
-            color: "#0369a1",
-            weight: 4,
-            opacity: 0.95,
-          })}
-        />
+        <Source key={trackSourceKey} id="track" type="geojson" data={track}>
+          <Layer
+            id="track-line"
+            type="line"
+            paint={{
+              "line-color": "#0369a1",
+              "line-width": 4,
+              "line-opacity": 0.95,
+            }}
+            layout={{
+              "line-join": "round",
+              "line-cap": "round",
+            }}
+          />
+        </Source>
       )}
-      {markers.map((point) => (
-        <Marker
-          key={`${point.lat}-${point.lng}-${point.name}`}
-          position={[point.lat, point.lng]}
-          icon={getTravelMarkerIconForKind(point.kind)}
+
+      {markers.map((point) => {
+        const key = `${point.lat}-${point.lng}-${point.name}`;
+        return (
+          <Marker
+            key={key}
+            longitude={point.lng}
+            latitude={point.lat}
+            anchor="bottom"
+            onClick={(e) => {
+              e.originalEvent.stopPropagation();
+              setActiveMarkerKey(key);
+            }}
+          >
+            <div
+              className="travel-marker-wrapper"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{ __html: getMarkerSvgForKind(point.kind) }}
+              style={{ cursor: "pointer" }}
+            />
+          </Marker>
+        );
+      })}
+
+      {activePoint && (
+        <Popup
+          longitude={activePoint.lng}
+          latitude={activePoint.lat}
+          anchor="bottom"
+          offset={[0, -40]}
+          onClose={() => setActiveMarkerKey(null)}
+          closeButton
         >
-          <Popup>
-            <div className="space-y-1 text-sm">
-              <p className="text-base font-semibold text-brand-primary">
-                {point.name}
-              </p>
-              {point.description && (
-                <p className="text-brand-muted">{point.description}</p>
-              )}
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+          <div className="space-y-1 text-sm">
+            <p className="text-base font-semibold text-brand-primary">
+              {activePoint.name}
+            </p>
+            {activePoint.description && (
+              <p className="text-brand-muted">{activePoint.description}</p>
+            )}
+          </div>
+        </Popup>
+      )}
+    </Map>
   );
 }
 
-function extractLatLngsFromTrack(
+function extractLngLatsFromTrack(
   track: FeatureCollection | null,
 ): [number, number][] {
-  if (!track) {
-    return [];
-  }
-
+  if (!track) return [];
   const coords: [number, number][] = [];
   track.features.forEach((feature) => {
-    coords.push(...extractLatLngsFromGeometry(feature.geometry));
+    coords.push(...extractLngLatsFromGeometry(feature.geometry));
   });
   return coords;
 }
 
-function extractLatLngsFromGeometry(
+function extractLngLatsFromGeometry(
   geometry?: Geometry | null,
 ): [number, number][] {
-  if (!geometry) {
-    return [];
-  }
-
+  if (!geometry) return [];
   switch (geometry.type) {
     case "LineString":
-      return geometry.coordinates.map(coordToLatLng);
+      return geometry.coordinates.map(posToLngLat);
     case "MultiLineString":
-      return geometry.coordinates.flatMap((segment) =>
-        segment.map(coordToLatLng),
-      );
-    case "Point":
-      return [coordToLatLng(geometry.coordinates)];
-    case "MultiPoint":
-      return geometry.coordinates.map(coordToLatLng);
+      return geometry.coordinates.flatMap((seg) => seg.map(posToLngLat));
     case "GeometryCollection":
       return geometry.geometries.flatMap((child) =>
-        extractLatLngsFromGeometry(child),
+        extractLngLatsFromGeometry(child),
       );
     default:
       return [];
   }
 }
 
-function coordToLatLng(position: Position): [number, number] {
+function posToLngLat(position: Position): [number, number] {
   const [lng, lat] = position;
-  if (typeof lat !== "number" || typeof lng !== "number") {
-    return [0, 0];
-  }
-  return [lat, lng];
+  return [
+    typeof lng === "number" ? lng : 0,
+    typeof lat === "number" ? lat : 0,
+  ];
 }
-

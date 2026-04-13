@@ -1,7 +1,6 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { OnTheRoadHomeSection } from "@/components/home/OnTheRoadHomeSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
-import { TravelMap } from "@/components/TravelMap";
 import { TravelStats } from "@/components/TravelStats";
 import { getTravelStats, getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
@@ -27,7 +26,6 @@ export default async function HomePage({ params }: HomePageProps) {
       <TravelStats stats={stats} locale={locale} />
       <TravelsHighlightSection travels={highlights} locale={locale} />
       <OnTheRoadHomeSection locale={locale} />
-      <TravelMap locale={locale} />
     </div>
   );
 }
