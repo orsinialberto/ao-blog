@@ -237,6 +237,7 @@ export default function TravelDetailMapClient({
       doubleClickZoom={interactive}
       keyboard={interactive}
       minZoom={MIN_ZOOM}
+      attributionControl={false}
       onLoad={() => setMapLoaded(true)}
       onClick={() => setActiveMarkerKey(null)}
       aria-label={`Mappa dettagliata del viaggio ${title}`}

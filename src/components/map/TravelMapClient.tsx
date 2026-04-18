@@ -60,6 +60,7 @@ export default function TravelMapClient({ travels, visitedCities = [] }: TravelM
       scrollZoom={false}
       minZoom={MIN_ZOOM}
       maxBounds={WORLD_MAX_BOUNDS}
+      attributionControl={false}
       onLoad={(e) => e.target.resize()}
       onClick={() => setActivePopup(null)}
     >
