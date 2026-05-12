@@ -37,15 +37,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md">
-      <div className="flex justify-between items-center py-4 px-8 max-w-screen-2xl mx-auto">
-        <LocalizedLink
-          href="/"
-          className="whitespace-nowrap font-headline text-xl font-bold tracking-tight text-brand-primary hover:opacity-80 transition-opacity"
-          onClick={() => setIsOpen(false)}
-        >
-          {t.common.siteName}
-        </LocalizedLink>
-
+      <div className="relative flex justify-center items-center py-4 px-8 max-w-screen-2xl mx-auto">
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
             <LocalizedLink
@@ -58,7 +50,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="absolute right-8 flex items-center gap-4">
           <button
             className="flex items-center justify-center rounded-lg p-2 text-brand-muted transition-colors hover:text-brand-primary md:hidden"
             onClick={() => setIsOpen((prev) => !prev)}
