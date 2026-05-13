@@ -20,18 +20,16 @@ export function TravelsHighlightSection({
   const [featured, ...rest] = travels;
 
   return (
-    <section className="bg-brand-surface-low py-24 px-8">
-      <div className="max-w-screen-2xl mx-auto">
+    <section className="py-24 px-6">
+      <div className="max-w-4xl mx-auto">
         <SectionHeader
           label={t.components.sectionHeader.latestPublications}
-          subtitle={t.components.sectionHeader.latestPublicationsSubtitle}
           linkText={t.components.sectionHeader.seeAll}
           linkHref="/viaggi"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-[500px_320px] gap-4">
-          {/* Row 1: Feature card (7 cols) + sidebar stack (5 cols) */}
-          <article className="md:col-span-7 md:row-span-1 h-64 md:h-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <article className="md:col-span-2 h-72 md:h-96">
             <MosaicTravelCard
               travel={featured}
               locale={locale}
@@ -39,43 +37,21 @@ export function TravelsHighlightSection({
             />
           </article>
 
-          <div className="md:col-span-5 md:row-span-1 flex flex-col gap-4 h-full">
-            {rest[0] && (
-              <div className="flex-1 min-h-0">
-                <MosaicTravelCard
-                  travel={rest[0]}
-                  locale={locale}
-                  variant="sidebar"
-                />
-              </div>
-            )}
-            {rest[1] && (
-              <div className="flex-1 min-h-0">
-                <MosaicTravelCard
-                  travel={rest[1]}
-                  locale={locale}
-                  variant="sidebar"
-                />
-              </div>
-            )}
-          </div>
-
-          {/* Row 2: Square card (4 cols) + wide card (8 cols) */}
-          {rest[2] && (
-            <article className="md:col-span-4 md:row-span-1 h-64 md:h-full">
+          {rest[0] && (
+            <article className="h-56 md:h-64">
               <MosaicTravelCard
-                travel={rest[2]}
+                travel={rest[0]}
                 locale={locale}
                 variant="square"
               />
             </article>
           )}
-          {rest[3] && (
-            <article className="md:col-span-8 md:row-span-1 h-64 md:h-full">
+          {rest[1] && (
+            <article className="h-56 md:h-64">
               <MosaicTravelCard
-                travel={rest[3]}
+                travel={rest[1]}
                 locale={locale}
-                variant="wide"
+                variant="square"
               />
             </article>
           )}

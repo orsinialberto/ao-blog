@@ -96,6 +96,18 @@
       "cta": "Explore the journeys",
       "imageAlt": "My travels"
     },
+    "heroQuote": {
+      "lines": [
+        "Life takes on a stark simplicity when you walk.",
+        "Time loses its usual significance.",
+        "When it's dark you sleep,",
+        "when it's light you rise,",
+        "and everything in between simply is.",
+        "It really is a wonderful thing."
+      ],
+      "author": "Bill Bryson",
+      "source": "A Walk in the Woods"
+    },
     "onTheRoadSection": {
       "eyebrow": "By motorcycle",
       "title": "On the Road",

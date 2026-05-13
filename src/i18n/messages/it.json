@@ -96,6 +96,18 @@
       "cta": "Esplora i viaggi",
       "imageAlt": "I miei viaggi"
     },
+    "heroQuote": {
+      "lines": [
+        "La vita assume una drastica semplicità quando si cammina.",
+        "Il tempo perde il suo consueto significato.",
+        "Quando è buio si va a dormire,",
+        "quando fa giorno ci si alza,",
+        "e tutto ciò che sta in mezzo sta semplicemente nel mezzo.",
+        "In realtà è una cosa fantastica."
+      ],
+      "author": "Bill Bryson",
+      "source": "Una passeggiata nei boschi"
+    },
     "onTheRoadSection": {
       "eyebrow": "In moto",
       "title": "On the Road",

@@ -104,6 +104,11 @@ export interface TranslationMessages {
       cta: string;
       imageAlt: string;
     };
+    heroQuote: {
+      lines: string[];
+      author: string;
+      source: string;
+    };
     onTheRoadSection: {
       eyebrow: string;
       title: string;
