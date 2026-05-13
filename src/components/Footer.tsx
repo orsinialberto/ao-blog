@@ -6,14 +6,14 @@ import { LocalizedLink } from "./LocalizedLink";
 export function Footer() {
   const t = useTranslations();
   const currentYear = new Date().getFullYear();
-  
+
   const socialLinks = [
     {
       name: "Instagram",
       url: "https://www.instagram.com/albertorsini/",
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -31,7 +31,7 @@ export function Footer() {
       url: "https://www.komoot.com/it-it/user/4517229241749",
       icon: (
         <svg
-          className="h-5 w-5"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
@@ -56,73 +56,47 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-brand-surface border-t border-brand-outline-variant/30">
-      <div className="py-12 md:py-16 px-4 lg:px-24">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          
-          {/* Brand & Bio Section */}
-          <div className="lg:col-span-5">
-            <p className="font-headline text-3xl font-bold tracking-tight text-brand-primary md:text-4xl mb-4">
-              {t.common.siteName}
-            </p>
-            <p className="text-sm leading-relaxed text-brand-muted max-w-md">
-              {t.footer.description}
-            </p>
-          </div>
+    <footer className="bg-white border-t border-stone-100 py-16 px-6">
+      <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-10">
 
-          {/* Quick Links */}
-          <div className="lg:col-span-3">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              {t.footer.navigation}
-            </h3>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <LocalizedLink
-                    href={link.href}
-                    className="text-sm text-brand-secondary transition hover:text-brand-accent"
-                  >
-                    {link.label}
-                  </LocalizedLink>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <p className="font-hero text-4xl italic text-stone-800">
+          {t.common.siteName}
+        </p>
 
-          {/* Social & Connect */}
-          <div className="lg:col-span-4">
-            <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-brand-muted">
-              {t.footer.follow}
-            </h3>
-            <p className="mb-4 text-sm text-brand-muted">
-              {t.footer.followDescription}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 rounded-lg border border-brand-outline-variant/30 bg-brand-background px-4 py-2.5 text-sm font-medium text-brand-secondary backdrop-blur-sm transition hover:border-brand-secondary hover:bg-brand-secondary/10 hover:text-brand-primary"
-                  aria-label={social.name}
+        <nav aria-label="Footer navigation">
+          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2">
+            {quickLinks.map((link, i) => (
+              <li key={link.href} className="flex items-center gap-4">
+                {i > 0 && <span className="text-stone-300 select-none">·</span>}
+                <LocalizedLink
+                  href={link.href}
+                  className="font-label text-xs uppercase tracking-[0.2em] text-stone-400 hover:text-stone-700 transition-colors"
                 >
-                  <span className="transition group-hover:scale-110">
-                    {social.icon}
-                  </span>
-                  <span>{social.name}</span>
-                </a>
-              ))}
-            </div>
-          </div>
+                  {link.label}
+                </LocalizedLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex items-center gap-6">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.name}
+              className="text-stone-400 hover:text-stone-700 transition-colors"
+            >
+              {social.icon}
+            </a>
+          ))}
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 border-t border-brand-outline-variant/30 pt-8 text-center">
-          <p className="text-xs text-brand-muted">
-            © {currentYear} {t.common.siteName} · {t.common.copyright}
-          </p>
-        </div>
+        <p className="font-label text-xs tracking-wider text-stone-300">
+          © {currentYear} {t.common.siteName}
+        </p>
       </div>
     </footer>
   );
