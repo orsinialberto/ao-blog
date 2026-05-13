@@ -40,7 +40,7 @@ export function OnTheRoadHomeSection({ locale }: OnTheRoadHomeSectionProps) {
 
   return (
     <section className="py-10 px-6 mb-12">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="relative flex min-h-[540px] items-center overflow-hidden rounded-[2rem] bg-slate-900">
           <Image
             src={BACKGROUND_IMAGE}

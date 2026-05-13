@@ -11,7 +11,7 @@ export function HeroQuoteSection({ locale }: HeroQuoteSectionProps) {
 
   return (
     <section className="py-20 px-6 bg-white">
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center">
         <blockquote>
           <p className="font-hero text-2xl md:text-3xl lg:text-4xl italic text-stone-700 leading-loose">
             {lines.map((line, i) => (
