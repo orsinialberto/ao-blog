@@ -22,8 +22,6 @@ export function TravelsHighlightSection({
       <div className="max-w-6xl mx-auto">
         <SectionHeader
           label={t.components.sectionHeader.latestPublications}
-          linkText={t.components.sectionHeader.seeAll}
-          linkHref="/viaggi"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

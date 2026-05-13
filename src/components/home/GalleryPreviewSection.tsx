@@ -144,8 +144,6 @@ export function GalleryPreviewSection({ photos, locale }: GalleryPreviewSectionP
         <div className="relative space-y-8 mx-auto px-4 lg:px-24">
           <SectionHeader
             label={t.components.sectionHeader.photoGallery}
-            linkText={t.components.sectionHeader.seeAllPhotos}
-            linkHref="/galleria"
             dark={false}
           />
 
