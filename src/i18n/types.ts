@@ -99,7 +99,8 @@ export interface TranslationMessages {
     };
     heroSection: {
       label: string;
-      title: string;
+      titleLine1: string;
+      titleLine2: string;
       cta: string;
       imageAlt: string;
     };

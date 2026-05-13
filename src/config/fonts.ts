@@ -1,4 +1,4 @@
-import { Noto_Serif, Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Noto_Serif, Inter, Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 
 export const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -24,9 +24,19 @@ export const plusJakartaSans = Plus_Jakarta_Sans({
   preload: true,
 });
 
+export const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
+});
+
 export const fontVariables = [
   notoSerif.variable,
   inter.variable,
   plusJakartaSans.variable,
+  cormorantGaramond.variable,
 ].join(" ");
 

@@ -23,6 +23,7 @@ const config: Config = {
       },
       fontFamily: {
         headline: ["var(--font-noto-serif)", "Noto Serif", "Georgia", "serif"],
+        hero: ["var(--font-cormorant)", "Cormorant Garamond", "Georgia", "serif"],
         body: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
         label: ["var(--font-plus-jakarta)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },

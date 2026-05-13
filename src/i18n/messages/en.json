@@ -91,7 +91,8 @@
     },
     "heroSection": {
       "label": "Travel Journal",
-      "title": "That urge to leave that never fades",
+      "titleLine1": "That urge to leave",
+      "titleLine2": "that never fades.",
       "cta": "Explore the journeys",
       "imageAlt": "My travels"
     },

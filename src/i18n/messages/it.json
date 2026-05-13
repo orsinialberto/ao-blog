@@ -91,7 +91,8 @@
     },
     "heroSection": {
       "label": "Diario di Viaggio",
-      "title": "Quella voglia di partire che non passa mai",
+      "titleLine1": "Quella voglia di partire",
+      "titleLine2": "che non passa mai.",
       "cta": "Esplora i viaggi",
       "imageAlt": "I miei viaggi"
     },
