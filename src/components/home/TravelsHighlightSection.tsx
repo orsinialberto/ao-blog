@@ -20,7 +20,7 @@ export function TravelsHighlightSection({
   const [featured, ...rest] = travels;
 
   return (
-    <section className="py-24 px-6">
+    <section className="pt-2 pb-24 px-6">
       <div className="max-w-4xl mx-auto">
         <SectionHeader
           label={t.components.sectionHeader.latestPublications}
