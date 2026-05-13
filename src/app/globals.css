@@ -6,7 +6,7 @@
   color-scheme: light;
   background-color: #faf9f7;
   /* Fixed header offset: keep in sync with Header vertical padding + row height */
-  --header-height: 72px;
+  --header-height: 96px;
 }
 
 body {
