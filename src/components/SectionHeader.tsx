@@ -13,7 +13,7 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className="mb-16 text-center">
-      <h2 className={`font-label text-4xl mb-2 ${dark ? 'text-white' : 'text-brand-primary'}`}>
+      <h2 className={`font-headline text-4xl mb-2 ${dark ? 'text-white' : 'text-brand-primary'}`}>
         {label}
       </h2>
       {title && (
