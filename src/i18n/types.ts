@@ -97,6 +97,11 @@ export interface TranslationMessages {
       photoGallery: string;
       seeAllPhotos: string;
     };
+    aboutSection: {
+      eyebrow: string;
+      name: string;
+      bio: string[];
+    };
     heroSection: {
       label: string;
       titleLine1: string;

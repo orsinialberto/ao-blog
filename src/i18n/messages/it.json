@@ -80,7 +80,7 @@
       "noPhotosAvailable": "Nessuna foto disponibile"
     },
     "sectionHeader": {
-      "latestPublications": "Ultime pubblicazioni",
+      "latestPublications": "Scopri i miei ultimi viaggi",
       "latestPublicationsSubtitle": "Gli ultimi racconti dal campo.",
       "seeAll": "Vedi tutti",
       "photoGallery": "Galleria fotografica",
@@ -88,6 +88,14 @@
     },
     "galleryPreviewSection": {
       "imageAlt": "Montagne panorama"
+    },
+    "aboutSection": {
+      "eyebrow": "Chi sono",
+      "name": "Ciao sono Alberto",
+      "bio": [
+        "Vivo a Milano e faccio il programmatore. La passione per i viaggi me l'hanno trasmessa i miei genitori — ho ricordi di partenze prima ancora di sapere leggere.",
+        "Con gli anni sono cambiati i compagni di strada: la famiglia prima, gli amici poi, infine me stesso. Negli ultimi anni mi sono innamorato dei cammini. Questo blog non lo scrivo per nessuno in particolare: è il posto dove conservo le cose che voglio ricordare."
+      ]
     },
     "heroSection": {
       "label": "Diario di Viaggio",

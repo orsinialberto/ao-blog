@@ -18,7 +18,7 @@ export function TravelsHighlightSection({
   if (travels.length === 0) return null;
 
   return (
-    <section className="pt-2 pb-24 px-6">
+    <section className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
           label={t.components.sectionHeader.latestPublications}
