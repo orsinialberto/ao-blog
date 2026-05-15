@@ -11,7 +11,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
   const t = getTranslations(locale);
 
   return (
-    <section className="relative min-h-[100dvh] w-full overflow-hidden">
+    <section className="relative min-h-[100dvh] w-full overflow-hidden bg-brand-primary">
       <Image
         src={withBasePath("/images/home-hero.jpg")}
         alt={t.components.heroSection.imageAlt}

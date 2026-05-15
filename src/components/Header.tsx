@@ -7,8 +7,7 @@ import { LocalizedLink } from "./LocalizedLink";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { removeLocaleFromPath } from "@/lib/i18n/routing";
 
-const baseLinkClass =
-  "font-label text-sm uppercase tracking-widest pb-1 transition-colors";
+const baseLinkClass = "font-label text-sm uppercase tracking-widest pb-1";
 
 export function Header() {
   const t = useTranslations();
@@ -20,7 +19,11 @@ export function Header() {
   const isHome = cleanPath === "/" || cleanPath === "";
 
   useEffect(() => {
-    if (!isHome) return;
+    if (!isHome) {
+      setScrolled(false);
+      return;
+    }
+    setScrolled(window.scrollY > 40);
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -48,7 +51,7 @@ export function Header() {
 
   const linkColor = transparent
     ? "text-white/90 hover:text-white"
-    : "text-brand-muted hover:text-brand-primary";
+    : "transition-colors text-brand-muted hover:text-brand-primary";
 
   const activeLinkClass = transparent
     ? "font-semibold text-white border-b-2 border-white"
@@ -56,10 +59,10 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 ${
         transparent
           ? "bg-transparent"
-          : "bg-white/70 backdrop-blur-md"
+          : "transition-all duration-300 bg-white/70 backdrop-blur-md"
       }`}
     >
       <div className="relative flex justify-center items-center py-7 px-8 max-w-screen-2xl mx-auto">
