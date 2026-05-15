@@ -13,7 +13,7 @@ import {
 } from "@/lib/travels";
 import { getRelatedTravels } from "@/lib/travelNavigation";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
-import { getLocaleFromParams, getAllLocalizedPaths, createLocalizedPath } from "@/lib/i18n/routing";
+import { getLocaleFromParams, createLocalizedPath } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 import { supportedLocales } from "@/config/locales";
@@ -70,7 +70,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
   return (
     <article>
       {/* Hero Section — full-bleed */}
-      <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-end pb-16 md:pb-24 px-8 md:px-20 min-w-0">
+      <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-end pb-16 md:pb-24 min-w-0">
         <Image
           src={optimizedCoverImage}
           alt={travel.title}
@@ -81,31 +81,33 @@ export default async function TravelPage({ params }: TravelPageProps) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 via-transparent to-transparent" />
 
-        <div className="relative z-10 w-full min-w-0 max-w-5xl">
-          <div className="flex flex-wrap items-center gap-2 mb-6 w-full min-w-0">
-            {travel.tags.map((tag) => (
-              <Link
-                key={tag}
-                href={`${createLocalizedPath("/viaggi", locale)}?tag=${encodeURIComponent(tag)}`}
-                className="font-label text-white/90 uppercase tracking-[0.2em] text-[10px] bg-brand-primary/40 backdrop-blur-sm px-3 py-1 rounded hover:bg-brand-primary/60 transition-colors max-w-full break-words"
-              >
-                {tag}
-              </Link>
-            ))}
+        <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto px-8 md:px-20">
+          <div className="max-w-5xl">
+            <div className="flex flex-wrap items-center gap-2 mb-6 w-full min-w-0">
+              {travel.tags.map((tag) => (
+                <Link
+                  key={tag}
+                  href={`${createLocalizedPath("/viaggi", locale)}?tag=${encodeURIComponent(tag)}`}
+                  className="font-label text-white/90 uppercase tracking-[0.2em] text-[10px] bg-brand-primary/40 backdrop-blur-sm px-3 py-1 rounded hover:bg-brand-primary/60 transition-colors max-w-full break-words"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-6 md:mb-8 font-bold tracking-tight break-words">
+              {travel.title}
+            </h1>
+
+            <p className="font-body text-lg md:text-xl text-brand-surface-high max-w-2xl w-full min-w-0 leading-relaxed break-words">
+              {travel.description}
+            </p>
           </div>
-
-          <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] mb-6 md:mb-8 font-bold tracking-tight break-words">
-            {travel.title}
-          </h1>
-
-          <p className="font-body text-lg md:text-xl text-brand-surface-high max-w-2xl w-full min-w-0 leading-relaxed break-words">
-            {travel.description}
-          </p>
         </div>
       </section>
 
       {/* Article Layout — 8 + 4 grid */}
-      <div className="max-w-screen-2xl mx-auto px-8 md:px-20 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 min-w-0">
+      <div className="max-w-7xl mx-auto px-8 md:px-20 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 min-w-0">
         {/* Main Content */}
         <div className="lg:col-span-8 min-w-0">
           <TravelTabs

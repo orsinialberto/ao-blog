@@ -89,7 +89,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-20">
-          <div className="mx-auto max-w-screen-2xl min-w-0">
+          <div className="mx-auto max-w-7xl min-w-0">
             <LocalizedLink
               href="/viaggi-in-moto"
               className="mb-6 inline-flex items-center rounded-full border border-white/25 bg-white/15 px-4 py-1 font-label text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md transition-colors hover:bg-white/25"
@@ -128,7 +128,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
       )}
 
       {hasMotoItineraryAccordionItems(travel.timeline) && (
-        <section className="relative z-[2] mx-auto max-w-screen-2xl border-t border-brand-outline-variant/30 px-6 pt-12 pb-16 md:px-12 md:pb-20">
+        <section className="relative z-[2] mx-auto max-w-7xl border-t border-brand-outline-variant/30 px-6 pt-12 pb-16 md:px-12 md:pb-20">
           <TravelItineraryAccordion
             timeline={travel.timeline}
             map={travel.map}

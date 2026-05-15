@@ -5,6 +5,7 @@ import type { Travel } from "@/lib/travels";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { createLocalizedPath } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
+import { formatDate } from "@/lib/dates";
 import type { SupportedLocale } from "@/config/locales";
 
 interface RelatedWaypointsProps {
@@ -32,16 +33,13 @@ export function RelatedWaypoints({
   if (travels.length === 0) return null;
 
   return (
-    <section className="bg-brand-surface-low py-24 px-8 md:px-20">
-      <div className="max-w-screen-2xl mx-auto">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-16">
+    <section className="bg-brand-surface-low py-12">
+      <div className="max-w-7xl mx-auto px-8 md:px-20">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
           <div>
-            <h2 className="font-headline text-4xl mb-4">
+            <h2 className="font-headline text-4xl">
               {t.components.relatedWaypoints.title}
             </h2>
-            <p className="font-body text-brand-muted">
-              {t.components.relatedWaypoints.subtitle}
-            </p>
           </div>
           <Link
             href={createLocalizedPath(viewAllPath, locale)}
@@ -56,23 +54,36 @@ export function RelatedWaypoints({
             <Link
               key={travel.slug}
               href={createLocalizedPath(`${detailBase}/${travel.slug}`, locale)}
-              className="group block"
+              className="group flex flex-col"
             >
-              <div className="aspect-[4/5] overflow-hidden rounded-xl mb-6">
+              <div className="relative aspect-[3/2] overflow-hidden">
                 <Image
-                  src={optimizeCloudinaryUrl(travel.coverImage, { width: 600, quality: 80 })}
+                  src={optimizeCloudinaryUrl(travel.coverImage, { width: 800, quality: 80 })}
                   alt={travel.title}
-                  width={600}
-                  height={750}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
-              <span className="font-label text-[10px] uppercase tracking-[0.2em] text-brand-outline">
-                {t.components.relatedWaypoints.journalLabel} &bull; {travel.location}
-              </span>
-              <h3 className="font-headline text-xl mt-2 group-hover:text-brand-secondary transition-colors">
-                {travel.title}
-              </h3>
+              <div className="pt-6 pb-4 px-1 flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="font-label text-[10px] font-bold text-foreground/50 uppercase tracking-tight">
+                    {travel.location}
+                  </span>
+                  <span className="w-0.5 h-0.5 rounded-full bg-brand-accent" />
+                  <time className="font-label text-[10px] text-foreground/40 uppercase tracking-widest">
+                    {formatDate(travel.date, locale, { month: "short", year: "numeric" })}
+                  </time>
+                </div>
+                <h3 className="font-label text-lg leading-snug text-foreground group-hover:text-foreground/70 transition-colors line-clamp-2 uppercase">
+                  {travel.title}
+                </h3>
+                {travel.description && (
+                  <p className="font-body text-xs text-foreground/50 leading-relaxed line-clamp-2">
+                    {travel.description}
+                  </p>
+                )}
+              </div>
             </Link>
           ))}
         </div>

@@ -70,7 +70,7 @@ a {
   .prose-travel h2 {
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
@@ -80,12 +80,6 @@ a {
     line-height: 1.8;
     margin-top: 1.5rem;
     font-size: 1rem;
-  }
-
-  @media (min-width: 768px) {
-    .prose-travel p {
-      font-size: 1.125rem;
-    }
   }
 
   .prose-travel .img-mosaic {
@@ -201,7 +195,7 @@ a {
   .prose-travel blockquote p {
     font-style: italic;
     font-family: var(--font-noto-serif), "Noto Serif", Georgia, serif;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1.3;
     color: #173124;
     margin-top: 0;
@@ -209,7 +203,7 @@ a {
 
   @media (min-width: 768px) {
     .prose-travel blockquote p {
-      font-size: 2.25rem;
+      font-size: 1.75rem;
     }
   }
 }
