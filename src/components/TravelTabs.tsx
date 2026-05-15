@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TravelGallery } from "@/components/TravelGallery";
 import { TravelDetailMapLazy } from "@/components/map/TravelDetailMapLazy";
 import { TravelItineraryAccordion } from "@/components/TravelItineraryAccordion";
-import { hasItineraryAccordionItems } from "@/lib/itineraryAccordion";
 import { useTranslations } from "@/i18n/hooks";
 import type { TravelCoords, TravelMapData, TravelTimelineItem } from "@/lib/travels";
 
@@ -20,6 +19,22 @@ interface TravelTabsProps {
 }
 
 type Tab = "narrative" | "itinerary" | "gallery";
+
+function IconExpand() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+    </svg>
+  );
+}
+
+function IconCompress() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+    </svg>
+  );
+}
 
 export function TravelTabs({
   content,
@@ -46,8 +61,18 @@ export function TravelTabs({
       !!(map?.gpx || map?.kml || map?.kmz || (map?.gpxSegments?.length ?? 0) > 0));
 
   const [activeTab, setActiveTab] = useState<Tab>("narrative");
+  const [isMapFullscreen, setIsMapFullscreen] = useState(false);
 
-  const hasAccordionItems = hasItineraryAccordionItems(timeline, map);
+  useEffect(() => {
+    if (!isMapFullscreen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setIsMapFullscreen(false); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [isMapFullscreen]);
 
   const tabs = [
     { id: "narrative" as Tab, label: t.components.travelTabs.narrative, show: true },
@@ -84,17 +109,27 @@ export function TravelTabs({
       )}
 
       {activeTab === "itinerary" && hasItinerary && (
-        <div
-          className={`grid grid-cols-1 gap-12 ${!hideItineraryMap && hasMap && map ? "md:grid-cols-2" : ""}`}
-        >
-          <TravelItineraryAccordion timeline={timeline} map={map} />
+        <div className="flex flex-col gap-12">
           {!hideItineraryMap && hasMap && map && (
             <div
-              className={`h-[480px] overflow-hidden rounded-xl bg-brand-surface-low${!hasAccordionItems ? " md:col-span-2" : ""}`}
+              className={
+                isMapFullscreen
+                  ? "fixed inset-0 z-50 bg-brand-surface-low"
+                  : "relative h-[520px] overflow-hidden rounded-xl bg-brand-surface-low"
+              }
             >
               <TravelDetailMapLazy map={map} fallbackCoords={coords} title={title} />
+              <button
+                type="button"
+                onClick={() => setIsMapFullscreen((v) => !v)}
+                aria-label={isMapFullscreen ? "Riduci mappa" : "Ingrandisci mappa a tutto schermo"}
+                className="absolute bottom-3 right-3 z-10 rounded-md bg-white/90 p-1.5 shadow-md hover:bg-white transition-colors"
+              >
+                {isMapFullscreen ? <IconCompress /> : <IconExpand />}
+              </button>
             </div>
           )}
+          <TravelItineraryAccordion timeline={timeline} map={map} />
         </div>
       )}
 
