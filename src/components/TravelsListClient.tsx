@@ -4,12 +4,14 @@ import { useSearchParams } from 'next/navigation';
 import { TravelCard } from '@/components/TravelCard';
 import { isContinentTag } from '@/config/continents';
 import type { Travel } from '@/lib/travels';
+import type { SupportedLocale } from '@/config/locales';
 import { useTranslations } from '@/i18n/hooks';
 import { LocalizedLink } from './LocalizedLink';
 
 interface TravelsListClientProps {
   allTravels: Travel[];
   allTags: string[];
+  locale: SupportedLocale;
 }
 
 interface ContinentGroup {
@@ -42,7 +44,7 @@ function formatEntryCount(count: number): string {
   return String(count).padStart(2, '0');
 }
 
-export function TravelsListClient({ allTravels, allTags }: TravelsListClientProps) {
+export function TravelsListClient({ allTravels, allTags, locale }: TravelsListClientProps) {
   const t = useTranslations();
   const searchParams = useSearchParams();
   const selectedContinent = searchParams.get('continente') ?? undefined;
@@ -56,44 +58,39 @@ export function TravelsListClient({ allTravels, allTags }: TravelsListClientProp
   const groups = groupByContinent(filtered);
 
   return (
-    <div className="space-y-24">
+    <div className="space-y-12">
       {/* Filtro continenti */}
-      <div className="border-y border-brand-outline-variant/20 py-5 flex justify-center">
-        <div className="flex flex-wrap justify-center gap-10">
+      <div className="flex flex-wrap gap-8">
+        <ContinentButton href="/viaggi" active={!selectedContinent}>
+          {t.components.tagFilter.allTravels}
+        </ContinentButton>
+        {continentTags.map((tag) => (
           <ContinentButton
-            href="/viaggi"
-            active={!selectedContinent}
+            key={tag}
+            href={`/viaggi?continente=${encodeURIComponent(tag)}`}
+            active={selectedContinent === tag}
           >
-            {t.components.tagFilter.allTravels}
+            {tag}
           </ContinentButton>
-          {continentTags.map((tag) => (
-            <ContinentButton
-              key={tag}
-              href={`/viaggi?continente=${encodeURIComponent(tag)}`}
-              active={selectedContinent === tag}
-            >
-              {tag}
-            </ContinentButton>
-          ))}
-        </div>
+        ))}
       </div>
 
       {/* Sezioni per continente */}
       {groups.length > 0 ? (
         groups.map(({ continent, travels }) => (
           <section key={continent}>
-            <div className="flex items-center gap-6 mb-12">
-              <h2 className="text-2xl font-bold text-brand-primary tracking-tight shrink-0">
-                {continent}
-              </h2>
-              <div className="h-px flex-grow bg-brand-outline-variant/20" />
-              <span className="text-[10px] font-bold text-brand-muted/50 tracking-[0.2em] uppercase shrink-0">
+            <div className="flex items-center gap-6 mb-10">
+              <span className="font-label text-[10px] font-bold tracking-[0.25em] uppercase text-brand-muted/50 shrink-0">
                 {formatEntryCount(travels.length)} {travels.length === 1 ? 'viaggio' : 'viaggi'}
               </span>
+              <div className="h-px flex-grow bg-brand-outline-variant/15" />
+              <h2 className="font-hero italic text-2xl text-brand-primary shrink-0">
+                {continent}
+              </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {travels.map((travel) => (
-                <TravelCard key={travel.slug} travel={travel} />
+                <TravelCard key={travel.slug} travel={travel} locale={locale} />
               ))}
             </div>
           </section>
@@ -117,10 +114,10 @@ function ContinentButton({ href, active, children }: ContinentButtonProps) {
   return (
     <LocalizedLink
       href={href}
-      className={`text-[10px] font-bold tracking-[0.25em] uppercase transition-colors ${
+      className={`font-label text-[10px] font-bold tracking-[0.25em] uppercase transition-colors ${
         active
           ? 'text-brand-primary border-b border-brand-primary pb-0.5'
-          : 'text-brand-muted/60 hover:text-brand-primary'
+          : 'text-brand-muted/40 hover:text-brand-primary'
       }`}
     >
       {children}

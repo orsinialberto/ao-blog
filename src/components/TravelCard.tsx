@@ -3,39 +3,54 @@
 import Image from "next/image";
 
 import type { Travel } from "@/lib/travels";
+import type { SupportedLocale } from "@/config/locales";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { formatDate } from "@/lib/dates";
 import { LocalizedLink } from "./LocalizedLink";
 
 interface TravelCardProps {
   travel: Travel;
+  locale: SupportedLocale;
 }
 
-export function TravelCard({ travel }: TravelCardProps) {
+export function TravelCard({ travel, locale }: TravelCardProps) {
   const optimizedCoverImage = optimizeCloudinaryUrl(travel.coverImage, {
     width: 800,
     quality: 80,
   });
 
   return (
-    <LocalizedLink href={`/viaggi/${travel.slug}`}>
-      <article className="group cursor-pointer">
-        <div className="relative aspect-[4/3] overflow-hidden bg-brand-surface mb-6">
+    <LocalizedLink href={`/viaggi/${travel.slug}`} className="group flex h-full">
+      <article className="flex flex-col w-full">
+        <div className="relative aspect-[3/2] overflow-hidden">
           <Image
             src={optimizedCoverImage}
             alt={travel.title}
             fill
-            className="object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading="lazy"
           />
         </div>
-        <div className="flex flex-col items-center text-center px-2">
-          <span className="text-[9px] font-bold tracking-[0.3em] text-brand-muted/60 uppercase mb-3">
-            {travel.location}
-          </span>
-          <h3 className="text-xl md:text-2xl font-bold leading-tight group-hover:text-brand-primary transition-colors">
+
+        <div className="pt-6 pb-4 px-1 flex-1 flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <span className="font-label text-[10px] font-bold text-foreground/50 uppercase tracking-tight">
+              {travel.location}
+            </span>
+            <span className="w-0.5 h-0.5 rounded-full bg-brand-accent" />
+            <time className="font-label text-[10px] text-foreground/40 uppercase tracking-widest">
+              {formatDate(travel.date, locale, { month: "short", year: "numeric" })}
+            </time>
+          </div>
+          <h3 className="font-label text-lg leading-snug text-foreground group-hover:text-foreground/70 transition-colors line-clamp-2 uppercase">
             {travel.title}
           </h3>
+          {travel.description && (
+            <p className="font-body text-xs text-foreground/50 leading-relaxed line-clamp-2">
+              {travel.description}
+            </p>
+          )}
         </div>
       </article>
     </LocalizedLink>
