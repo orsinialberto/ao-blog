@@ -80,7 +80,7 @@ export function Header() {
 
         <div className="absolute right-8 flex items-center gap-4">
           <button
-            className={`flex items-center justify-center rounded-lg p-2 transition-colors md:hidden ${transparent ? "text-white/90 hover:text-white" : "text-brand-muted hover:text-brand-primary"}`}
+            className={`flex items-center justify-center rounded-lg p-2 md:hidden ${transparent ? "text-white/90 hover:text-white" : "transition-colors text-brand-muted hover:text-brand-primary"}`}
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
             aria-label={isOpen ? t.navigation.close : t.navigation.menu}

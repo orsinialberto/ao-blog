@@ -128,7 +128,8 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
         aria-haspopup="true"
         className={`
           flex items-center justify-center
-          rounded-lg p-2 transition-colors
+          rounded-lg p-2
+          ${isTransparent ? "" : "transition-colors"}
           ${textColor}
           ${isOpen ? activeBg : `bg-transparent ${hoverBg}`}
         `}
