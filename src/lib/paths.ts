@@ -3,7 +3,7 @@
  * Deve corrispondere al basePath in next.config.ts
  * Per dominio personalizzato, lasciare vuoto
  */
-export const BASE_PATH = '';
+const BASE_PATH = '';
 
 /**
  * Aggiunge il basePath a un percorso se necessario

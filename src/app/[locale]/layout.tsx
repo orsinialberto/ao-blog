@@ -9,7 +9,6 @@ import { Header } from "@/components/Header";
 import { MainWrapper } from "@/components/MainWrapper";
 import { getSiteMetadata, getAlternateLanguageLinks } from "@/config/metadata";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
-import { supportedLocales } from "@/config/locales";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -67,8 +66,6 @@ export default async function LocaleLayout({
   children,
   params,
 }: LocaleLayoutProps) {
-  const locale = await getLocaleFromParams(params);
-
   return (
     <>
       <ConsentModeInitializer />

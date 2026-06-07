@@ -3,8 +3,6 @@
  * Provides type safety for translation keys and values
  */
 
-import type { SupportedLocale } from "@/config/locales";
-
 /**
  * Translation messages structure
  * This type matches the JSON structure in messages/*.json files
@@ -256,19 +254,3 @@ export interface TranslationMessages {
  * Provides nested object access with full type safety
  */
 export type Translations = TranslationMessages;
-
-/**
- * Helper type to extract nested keys from translation object
- * Used for type-safe path access
- */
-export type NestedKeyOf<ObjectType extends object> = {
-  [Key in keyof ObjectType & (string | number)]: ObjectType[Key] extends object
-    ? `${Key}` | `${Key}.${NestedKeyOf<ObjectType[Key]>}`
-    : `${Key}`;
-}[keyof ObjectType & (string | number)];
-
-/**
- * Translation key path type
- * Represents all valid dot-separated paths to translation strings
- */
-export type TranslationKey = NestedKeyOf<TranslationMessages>;

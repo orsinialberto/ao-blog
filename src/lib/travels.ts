@@ -33,8 +33,6 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkBreaks from "remark-breaks";
-import { CONTINENT_TAGS, isContinentTag } from "@/config/continents";
-import { visitedCities } from "@/config/visitedCities";
 import { isNonEmptyString, isValidNumber, isObject } from "./typeGuards";
 export { getTrackFileDownloadUrl } from "./trackFileUrl";
 
@@ -659,37 +657,6 @@ export async function getMotoTravelBySlug(
   }
 }
 
-/**
- * Gets all unique tags from travels for a specific locale.
- * 
- * @param locale - Locale to get tags for (defaults to 'it' for backward compatibility)
- * @returns Sorted array of unique tag strings
- */
-export function getAllTags(locale: Locale = "it"): string[] {
-  const travels = ensureCache(locale);
-  const tags = new Set<string>();
-  travels.forEach((travel) => {
-    travel.tags.forEach((tag) => tags.add(tag));
-  });
-
-  return Array.from(tags).sort((a, b) => a.localeCompare(b));
-}
-
-/**
- * Gets all travels matching a specific tag for a locale.
- * 
- * @param tag - Tag to filter by
- * @param locale - Locale to filter travels for (defaults to 'it' for backward compatibility)
- * @returns Array of Travel objects matching the tag
- */
-export function getTravelsByTag(tag: string, locale: Locale = "it"): Travel[] {
-  const travels = ensureCache(locale);
-  const normalized = tag.toLowerCase();
-  return travels.filter((travel) =>
-    travel.tags.some((travelTag) => travelTag.toLowerCase() === normalized)
-  );
-}
-
 export function sortTravelsByDate(travels: Travel[]): Travel[] {
   return [...travels].sort((a, b) => {
     const aDate = new Date(a.date).getTime();
@@ -698,62 +665,3 @@ export function sortTravelsByDate(travels: Travel[]): Travel[] {
   });
 }
 
-export interface TravelStats {
-  countriesVisited: number;
-  continentsVisited: number;
-  kilometersWalked: number;
-  brokenShoes: number;
-}
-
-/**
- * Gets travel statistics for a specific locale.
- * 
- * @param locale - Locale to get stats for (defaults to 'it' for backward compatibility)
- * @returns TravelStats object with aggregated statistics
- */
-export function getTravelStats(locale: Locale = "it"): TravelStats {
-  const travels = getTravelsForArchive(locale);
-  
-  // Paesi visitati (dalla location dei travels + dalle città visitate)
-  const countries = new Set<string>();
-  travels.forEach((travel) => {
-    if (travel.location && travel.location.trim()) {
-      countries.add(travel.location.trim());
-    }
-  });
-  // Aggiungi paesi dalle città visitate
-  visitedCities.forEach((city) => {
-    countries.add(city.country);
-  });
-  
-  // Continenti visitati (dai tags dei travels + dalle città visitate)
-  const continents = new Set<string>();
-  travels.forEach((travel) => {
-    travel.tags.forEach((tag) => {
-      if (isContinentTag(tag)) {
-        continents.add(tag);
-      }
-    });
-  });
-  // Aggiungi continenti dalle città visitate
-  visitedCities.forEach((city) => {
-    if (city.continent && isContinentTag(city.continent)) {
-      continents.add(city.continent);
-    }
-  });
-  
-  // Km percorsi nei cammini (solo viaggi con tag "Cammini")
-  const kilometersWalked = travels
-    .filter((travel) => 
-      travel.tags.some((tag) => tag.toLowerCase() === "cammini") &&
-      travel.totalKilometers !== undefined
-    )
-    .reduce((sum, travel) => sum + (travel.totalKilometers || 0), 0);
-  
-  return {
-    countriesVisited: countries.size,
-    continentsVisited: continents.size,
-    kilometersWalked: Math.round(kilometersWalked),
-    brokenShoes: 4,
-  };
-}

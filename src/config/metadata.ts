@@ -47,9 +47,3 @@ export function getAlternateLanguageLinks(pathname: string) {
   }));
 }
 
-/**
- * Legacy export for backward compatibility
- * @deprecated Use getSiteMetadata() instead
- */
-export const siteMetadata = getSiteMetadata("it");
-

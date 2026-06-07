@@ -46,4 +46,4 @@ export function getTranslations(
 // Import it from '@/i18n/hooks' in client components
 
 // Re-export types for convenience
-export type { TranslationMessages, Translations, TranslationKey } from "./types";
+export type { TranslationMessages, Translations } from "./types";

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useLocale } from "@/i18n/hooks";
-import { createLocalizedPath, removeLocaleFromPath } from "@/lib/i18n/routing";
+import { createLocalizedPath } from "@/lib/i18n/routing";
 import { supportedLocales } from "@/config/locales";
 
 interface LocalizedLinkProps extends Omit<React.ComponentProps<typeof Link>, "href"> {

@@ -8,7 +8,6 @@
 import { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import type { SupportedLocale } from "@/config/locales";
-import { defaultLocale } from "@/config/locales";
 import { getLocaleFromPath } from "@/lib/i18n/routing";
 import { getTranslations } from "./index";
 import type { Translations } from "./types";

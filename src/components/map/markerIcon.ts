@@ -25,24 +25,6 @@ const CITY_MARKER_SVG = `<svg width="28" height="36" viewBox="0 0 28 36" fill="n
   <path d="${PIN_OUTLINE}" stroke="#ffffff" stroke-width="2"/>
 </svg>`;
 
-function createMarkerElement(svg: string): HTMLElement {
-  const el = document.createElement("div");
-  el.className = "travel-marker-wrapper";
-  el.innerHTML = svg;
-  return el;
-}
-
-/** Classic red pin (default when `kind` is omitted on a map point). */
-export function createTravelMarkerIcon(): HTMLElement {
-  return createMarkerElement(TRAVEL_MARKER_SVG);
-}
-
-export function getTravelMarkerIconForKind(kind?: TravelMapPointKind): HTMLElement {
-  if (kind === "pass") return createMarkerElement(PASS_MARKER_SVG);
-  if (kind === "city") return createMarkerElement(CITY_MARKER_SVG);
-  return createMarkerElement(TRAVEL_MARKER_SVG);
-}
-
 /** Returns the raw SVG string for a given kind — use with dangerouslySetInnerHTML in React. */
 export function getMarkerSvgForKind(kind?: TravelMapPointKind): string {
   if (kind === "pass") return PASS_MARKER_SVG;

@@ -66,7 +66,7 @@ Travels with `motoOnly: true` appear exclusively in `/viaggi-in-moto` and are ex
 
 ### Map components
 
-Maps use **Leaflet** + **react-leaflet**, which require browser APIs. The pattern used throughout:
+Maps use **MapLibre GL** + **react-map-gl**, which require browser APIs. The pattern used throughout:
 - `*Client.tsx` — actual Leaflet component (e.g. `TravelMapClient.tsx`)
 - `*Lazy.tsx` — wraps the client component with `next/dynamic` + `ssr: false`
 - Server component imports only the `*Lazy` wrapper
