@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { MAP_INITIAL_VIEW, MAP_STYLE_URL, MAP_ZOOM_RANGE } from '@/config/map';
+import { findView } from '@/config/on-the-road-nav';
 import { findPlace, findRoute } from '@/data/routes';
 import { useRouteLayers, type MapLibreModule } from './useRouteLayers';
 import { useStickerRide } from './useStickerRide';
@@ -34,7 +35,7 @@ export default function MapCanvas({ label, errorMessage }: Props) {
   const params = useSearchParams();
   const place = findPlace(params.get('place'));
   const route = findRoute(params.get('route'));
-  const hasPanel = params.get('view') !== null;
+  const hasPanel = findView(params.get('view') ?? undefined) !== undefined;
 
   const selection = { route, place, hasPanel };
   useRouteLayers(map, lib, selection);
