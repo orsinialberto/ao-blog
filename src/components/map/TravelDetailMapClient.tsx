@@ -9,7 +9,7 @@ import Map, { Layer, Marker, NavigationControl, Popup, Source } from "react-map-
 import type { MapRef } from "react-map-gl/maplibre";
 import type { FitBoundsOptions } from "maplibre-gl";
 
-setWorkerUrl("/maplibre-gl-csp-worker.js");
+setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 import JSZip from "jszip";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
