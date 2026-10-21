@@ -214,5 +214,69 @@
         "text": "Per qualsiasi domanda riguardo alla privacy e alla gestione dei cookie, puoi contattarci all'indirizzo email:"
       }
     }
+  },
+  "onTheRoad": {
+    "mapLabel": "Mappa interattiva dei viaggi",
+    "mapError": "La mappa non è disponibile al momento.",
+    "navLabel": "Sezioni di on the road",
+    "closePanel": "Chiudi il pannello",
+    "bikePrev": "Moto precedente",
+    "bikeNext": "Moto successiva",
+    "bikeGoTo": "Vai a {name}",
+    "infoCarouselLabel": "Moto possedute",
+    "km": "{km} km",
+    "metres": "{m} m",
+    "routesLabel": "Itinerari percorsi",
+    "placesLabel": "Luoghi sulla mappa",
+    "routes": {
+      "ticino-vallese": "Ticino-Vallese in un giorno",
+      "giau-falzarego-pordoi": "Giau, Falzarego, Pordoi",
+      "grigioni-trentino": "Grigioni-Trentino in un giorno",
+      "mortirolo-sanmarco-taleggio": "Mortirolo, Passo San Marco e Val Taleggio",
+      "palade-rombo-brennero": "Palade, Rombo e Brennero",
+      "sommo-pian-delle-fugazze": "Passo Sommo e Pian delle Fugazze",
+      "parco-del-beigua": "Parco del Beigua",
+      "maloja-stelvio-palade": "Maloja, Stelvio e Palade",
+      "presolana-vivione": "Presolana e Vivione",
+      "fedaia-sellaronda-mendola": "Fedaia, Sellaronda e Mendola in un giorno",
+      "monte-baldo-forra": "Monte Baldo e Strada della Forra",
+      "crocedomini": "Crocedomini",
+      "oropa-panoramica-zegna": "Oropa e Panoramica Zegna",
+      "costa-azzurra-verdon-bonette": "Costa Azzurra, Verdon e Bonette",
+      "delta-po-valdorcia": "Delta del Po' e Val d'Orcia"
+    },
+    "nav": {
+      "saved": "Luoghi salvati",
+      "routes": "Itinerari",
+      "passes": "Passi",
+      "info": "Info"
+    },
+    "bikes": {
+      "bike-2": {
+        "name": "Minimoto",
+        "caption": "Minimoto cfx-1 · 1997",
+        "text": "Maglia da cross autografata dalle leggende del motocross Chicco Chiodi e Jeremy McGrath, faccia da teppa pronta a usare solo l'acceleratore e mai il freno, un'altezza della moto che sembrava di dover scalare l'Everest per salirci sopra e un'accensione a pedivella che richiedeva l'intervento di papà per avviarla.\n\nQuesta moto mi ha regalato le prime gioie sulle due ruote motorizzate.\n\nCome dimenticare il primo giro sulla pista del Fast Cross di Arsago Seprio? Prendo la rincorsa, gas a martello per affrontare il salto, ma la moto non ce la fa… e finisco ribaltato a terra."
+      },
+      "bike-3": {
+        "name": "HM Derapage 50",
+        "caption": "HM Derapage 50 · 2003",
+        "text": "Carene bianche con i fiori hawaiani, giusto per farsi riconoscere dal quartiere, il parafango nero sostituito dopo essermi schiantato contro un albero nel bosco, la marmitta LeoVince che faceva un rumore peggiore delle vuvuzela del mondiale 2010.\n\nLa carburazione non era mai a punto e per accenderti dovevo fare uno sprint alla Usain Bolt.\n\nQuando la spingevo al limite, la lancetta del tacchimetro usciva dal quadrante e mi indicava come a dire 'mo son cazzi tuoi'.\n\nMi ha accompagnato a scuola per anni, in qualsiasi condizione: caldo, freddo, pioggia, ghiaccio e neve. Ne abbiamo viste di tutte, ma non ci siamo mai fermati."
+      },
+      "bike-4": {
+        "name": "KTM 125 exc",
+        "caption": "KTM 125 exc · 2006",
+        "text": "La moto migliore che abbia mai avuto. La accendevo, spalancavo il gas ed ero già su una ruota. Con le gomme tassellate sull'asfalto era come stare seduti su un martello pneumatico. Bastava vedere un po’ di ghiaia sulla strada ed eravamo per terra. \n\nOgni giorno si entrava nel bosco da qualche parte, senza sapere mai dove saremmo usciti. Nessun ostacolo poteva fermarci. In curva la buttavi giù e lei scodava come un labrador quando vede una palla. Quando sgasavo, aravi i campi come un trattore. Si arrampicava sulle salite meglio di Alex Honnold e, quando arrivava il momento di scendere, dovevamo solo stare attenti a schivare gli alberi.\n\nTi ho portato in pista, in quel fast cross di Arsago Seprio dove da piccolo vedevo i campioni girare. Ho provato a imitarli, abbiamo fatto i primi salti e abbiamo preso le botte a terra quando esageravamo. Divertimento e adrenalina pura.\n\nÈ stata la moto che mi ha insegnato davvero a guidare, senza paura di niente: gas aperto e via.\n\nÈ la moto che mi è dispiaciuto di più vendere e che, ancora oggi, riprenderei senza pensarci due volte."
+      },
+      "bike-5": {
+        "name": "Honda CB650R",
+        "caption": "Honda CB650R · 2019",
+        "text": "Diventato grande era il momento di passare ad una moto seria. Honda CB650R, 4 cilindri, 95 cavalli, 205kg di peso a secco. Non una moto da guidare ma un toro. L'accendevi con il pensiero, bastava un tocco sul pulsante di accensione e lei iniziava a cantare. Quando la portavi su di giri lanciava un urlo liberatorio che sembrava dire 'guidami sempre così!!'. 210 km/h di velocità massima raggiunta, senza un cupolino e con l'aria che ti prendeva a schiaffi.\n\nCon te ho percorso 24000km, sui passi alpini, nel centro Italia e fino in Francia. Ti ho caricata con le borse che sembravi un mulo nepalese che aiuta i trekkers a scalare l'Everest. Eri una moto facile da guidare, assecondavi tutte le mie decisioni anche quella di andare in sesta a 50 km/h perchè in quel momento eri stanco e volevi una guida più tranquilla. Eri scomoda, dopo 400km trovavo sollievo nel sederimi sull'asfalto. A fine giornata mi sfinivi. Però che divertimento tra le curve della val taleggio, che panorami abbiamo visto sulle Dolomiti, nella Val d'Orcia fino in Francia. Sei stata un ottima compagna di viaggio."
+      },
+      "bike-6": {
+        "name": "Mv Agusta Turismo Veloce 800",
+        "caption": "Mv Agusta Turismo Veloce 800 Lusso SCS · 2026",
+        "text": "Sei l’ultima arrivata, una scelta di cuore, dettata prima di tutto dalla tua bellezza. Una moto varesina per uno che è cresciuto nel Varesotto. Un marchio che è leggenda e un nome, MV Agusta Turismo Veloce Lusso SCS, che racconta esattamente quello che vorrei fare con te: mototurismo, ma veloce.\n\nCi stiamo ancora conoscendo. Il primo viaggio insieme è stato sicuramente entusiasmante: hai resistito al caldo, al freddo e ai passi di montagna, senza mai fare una piega. E, come ogni vera compagna di viaggio, sei stata subito battezzata con la prima multa in Svizzera."
+      }
+    }
   }
 }

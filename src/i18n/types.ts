@@ -1,3 +1,5 @@
+import type { OnTheRoadView } from "@/config/on-the-road-nav";
+
 /**
  * Type definitions for i18n translations
  * Provides type safety for translation keys and values
@@ -214,7 +216,30 @@ export interface TranslationMessages {
       };
     };
   };
+  onTheRoad: {
+    mapLabel: string;
+    mapError: string;
+    navLabel: string;
+    closePanel: string;
+    bikePrev: string;
+    bikeNext: string;
+    /** Contains the `{name}` placeholder. */
+    bikeGoTo: string;
+    infoCarouselLabel: string;
+    /** Contains the `{km}` placeholder. */
+    km: string;
+    /** Contains the `{m}` placeholder. */
+    metres: string;
+    routesLabel: string;
+    placesLabel: string;
+    nav: Record<OnTheRoadView, string>;
+    /** Keyed by route slug (`ROUTES` slugs are typed `string`, so not checked at build time). */
+    routes: Record<string, string>;
+    /** Keyed by bike id (`bikes` ids are typed `string`). */
+    bikes: Record<string, { name: string; caption: string; text: string }>;
+  };
 }
+
 
 /**
  * Type-safe translation accessor

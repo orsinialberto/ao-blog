@@ -214,5 +214,69 @@
         "text": "For any questions regarding privacy and cookie management, you can contact us at the email address:"
       }
     }
+  },
+  "onTheRoad": {
+    "mapLabel": "Interactive travel map",
+    "mapError": "The map is unavailable right now.",
+    "navLabel": "On the road sections",
+    "closePanel": "Close panel",
+    "bikePrev": "Previous bike",
+    "bikeNext": "Next bike",
+    "bikeGoTo": "Go to {name}",
+    "infoCarouselLabel": "Bikes owned",
+    "km": "{km} km",
+    "metres": "{m} m",
+    "routesLabel": "Routes ridden",
+    "placesLabel": "Places on the map",
+    "routes": {
+      "ticino-vallese": "Ticino–Valais in a Day",
+      "giau-falzarego-pordoi": "Giau, Falzarego, Pordoi",
+      "grigioni-trentino": "Grigioni–Trentino in a Day",
+      "mortirolo-sanmarco-taleggio": "Mortirolo, San Marco and Val Taleggio",
+      "palade-rombo-brennero": "Palade, Rombo and Brennero",
+      "sommo-pian-delle-fugazze": "Passo Sommo and Pian delle Fugazze",
+      "parco-del-beigua": "Parco del Beigua",
+      "maloja-stelvio-palade": "Maloja, Stelvio and Palade",
+      "presolana-vivione": "Presolana and Vivione",
+      "fedaia-sellaronda-mendola": "Fedaia, Sellaronda and Mendola in a Day",
+      "monte-baldo-forra": "Monte Baldo and the Forra Road",
+      "crocedomini": "Crocedomini",
+      "oropa-panoramica-zegna": "Oropa and Panoramica Zegna",
+      "costa-azzurra-verdon-bonette": "French Riviera, Verdon and Bonette",
+      "delta-po-valdorcia": "Po Delta and Val d'Orcia"
+    },
+    "nav": {
+      "saved": "Saved places",
+      "routes": "Routes",
+      "passes": "Passes",
+      "info": "Info"
+    },
+    "bikes": {
+      "bike-2": {
+        "name": "Minimoto",
+        "caption": "Minimoto cfx-1 · 1997",
+        "text": "A motocross jersey autographed by motocross legends Chicco Chiodi and Jeremy McGrath, a troublemaker's face ready to use only the throttle and never the brake, a bike so tall it felt like climbing Everest just to get on it, and a kickstart ignition that needed Dad's help to fire up.\n\nThis bike gave me my first joys on two motorized wheels.\n\nHow could I forget the first lap on the Fast Cross track in Arsago Seprio? I take the run-up, full throttle to tackle the jump, but the bike can't make it… and I end up flipped on the ground."
+      },
+      "bike-3": {
+        "name": "HM Derapage 50",
+        "caption": "HM Derapage 50 · 2003",
+        "text": "White fairings with Hawaiian flowers, just so the whole neighborhood would recognize me, the black fender replaced after I crashed into a tree in the woods, a LeoVince exhaust that sounded worse than the vuvuzelas at the 2010 World Cup.\n\nThe carburetion was never quite right, and starting it took a sprint worthy of Usain Bolt.\n\nPushed to the limit, the speedometer needle would go right off the dial, pointing at me like it was saying 'you're screwed now'.\n\nIt got me to school for years, in any weather: heat, cold, rain, ice and snow. We saw it all together, and we never stopped."
+      },
+      "bike-4": {
+        "name": "KTM 125 exc",
+        "caption": "KTM 125 exc · 2006",
+        "text": "The best bike I've ever had. I'd start it up, crack the throttle wide open, and I was already up on one wheel. With those knobby tires, riding on asphalt felt like sitting on a jackhammer. All it took was a bit of gravel on the road and we were on the ground.\n\nEvery day we'd head into the woods somewhere, never knowing where we'd come out. Nothing could stop us. Lean it into a corner and it would wag its tail like a labrador spotting a ball. Gas it, and it would plow the fields like a tractor. It climbed hills better than Alex Honnold, and when it was time to come down we just had to watch out for the trees.\n\nI took you to the track, to that Fast Cross in Arsago Seprio where, as a kid, I used to watch the champions ride. I tried to imitate them — we took our first jumps and took some spills when we pushed it too far. Pure fun and adrenaline.\n\nIt's the bike that truly taught me how to ride, without fear of anything: throttle open and go.\n\nIt's the bike I regretted selling the most, and one I'd get back today without a second thought."
+      },
+      "bike-5": {
+        "name": "Honda CB650R",
+        "caption": "Honda CB650R · 2019",
+        "text": "Grown up now, it was time to move to a serious bike. Honda CB650R, 4 cylinders, 95 horsepower, 205kg dry weight. Not a bike to ride so much as a bull. You'd start it just by thinking about it — one touch of the ignition button and it started singing. Push it up through the revs and it let out a liberating roar that seemed to say 'ride me like this forever!!'. Top speed reached: 210 km/h, no fairing, the wind slapping you in the face.\n\nI rode 24,000km with you — across the Alpine passes, through central Italy, all the way to France. I loaded you up with bags until you looked like a Nepalese mule helping trekkers climb Everest. You were an easy bike to ride, going along with every decision I made — even riding in sixth gear at 50 km/h because in that moment you were tired and wanted a calmer ride. You were uncomfortable — after 400km I'd find relief sitting on the asphalt. By the end of the day you'd wear me out. But what fun through the curves of Val Taleggio, what views we saw on the Dolomites, in Val d'Orcia all the way to France. You were a great travel companion."
+      },
+      "bike-6": {
+        "name": "Mv Agusta Turismo Veloce 800",
+        "caption": "Mv Agusta Turismo Veloce 800 Lusso SCS · 2026",
+        "text": "You're the latest arrival, a choice made with the heart, dictated above all by your beauty. A bike from Varese for someone who grew up in the Varese area. A brand that's legendary, and a name — MV Agusta Turismo Veloce Lusso SCS — that says exactly what I'd like to do with you: motorcycle touring, but fast.\n\nWe're still getting to know each other. Our first trip together was certainly exciting: you held up through the heat, the cold, and the mountain passes without ever flinching. And, like every true travel companion, you were immediately baptized with your first fine — in Switzerland."
+      }
+    }
   }
 }
