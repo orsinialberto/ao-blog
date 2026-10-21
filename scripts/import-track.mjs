@@ -3,8 +3,7 @@
 // strips elevation/time, rounds to 5 decimals (~1.1m), and simplifies with
 // Ramer-Douglas-Peucker so a multi-thousand-point GPS log becomes a track the
 // map bundle can afford. Default tolerance (0.0001deg, ~9m at mid latitudes)
-// sits below hairpin scale — see docs/superpowers/specs for the sweep that
-// picked it over the 0.0006deg this project used to hardcode by hand.
+// sits below hairpin scale; raise it with --tolerance only if the file is too big.
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { resolve } from 'node:path';

@@ -4,13 +4,12 @@ import { LocalizedLink } from '@/components/LocalizedLink';
 import { useTranslations } from '@/i18n/hooks';
 
 type Props = {
-  /** Appended to the cluster: the Finder puts it in the title bar, Maps puts
-      it inside a floating panel. */
+  /** Appended to the cluster: the Maps window puts it inside a floating
+      panel (or a floating pill on small screens). */
   className?: string;
 };
 
-/** The red dot is the only way back to the board, in every window of this
-    project. The other two are decoration and are hidden from assistive tech. */
+/** The red dot is the only way back to the home page. The other two are decoration and are hidden from assistive tech. */
 export default function TrafficLights({ className = '' }: Props) {
   const t = useTranslations();
 

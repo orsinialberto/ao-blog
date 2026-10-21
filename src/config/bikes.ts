@@ -2,9 +2,8 @@
  *  a photo, a caption and a short text. Order here is carousel order.
  *
  *  `image` is a `v<version>/<publicId>.<format>` path, the same shape
- *  `collections.ts` uses for its covers, and for the same reason: the asset
- *  carries no `library` tag (nor any collection tag), so it never appears in
- *  the gallery, and the page renders without querying Cloudinary.
+ *  the gallery's covers use: the asset carries no gallery tag, so it never
+ *  appears in the gallery, and the page renders without querying Cloudinary.
  *
  *  `onTheRoad.bikes.<id>.{name,caption,text}` must exist in BOTH message
  *  files — nothing links `id` to the messages at compile time, so the

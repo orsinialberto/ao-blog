@@ -13,8 +13,7 @@ export type Place = {
       route ever visits the same place. */
   id: string;
   kind: 'pass' | 'poi';
-  /** A proper noun, so it is never translated — same rule as the lettering on
-      the board's licence plate. */
+  /** A proper noun, so it is never translated — so there is nothing to translate. */
   name: string;
   /** Metres above sea level. Passes carry it, points of interest do not. */
   elevation?: number;
@@ -26,8 +25,8 @@ export type Route = {
       message files. A slug without its two titles fails the build
       (`components/maps/assertTranslations.ts`). */
   slug: string;
-  /** Written by hand. The track is drawn, not recorded, so measuring it would
-      under-report every hairpin — see the spec's decision table. */
+  /** Written by hand. Not measured from the track: a distance computed
+      from simplified points would under-report every hairpin. */
   km: number;
   /** The actual ridden GPX track. Comes from the sibling `<slug>.track.json`
       via `trackFrom()` (see `track.ts`) — not written by hand. That file is

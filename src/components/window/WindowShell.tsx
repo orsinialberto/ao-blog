@@ -6,12 +6,11 @@ type Props = {
   children: ReactNode;
 };
 
-/** The window box itself: one place for the size every window in this project
-    shares. `FinderWindow` and `MapsWindow` both hang off it, so the gallery and
-    the map cannot drift to different dimensions. */
+/** The window box itself: one place for the size of a window. `MapsWindow`
+    hangs off it, so any future window shares the same dimensions. */
 /* Height: the blog's MainWrapper already pads the page by --header-height at
    the top, so the window takes the viewport minus that. On md+ the window is
-   88dvh like in ao-board, minus half the header so it sits optically centred
+   88dvh minus half the header so it sits optically centred
    in the space between Header and Footer. */
 export default function WindowShell({ className = '', children }: Props) {
   return (

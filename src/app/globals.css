@@ -278,7 +278,7 @@
 }
 
 /* ==========================================================================
-   Maps window (ported from ao-board). Appended; nothing above is changed.
+   Maps window styles. Everything above is the blog's own.
    MapLibre overrides are scoped under `.maps-window` (set on the window root
    in MapsWindow.tsx) so they do not touch TravelDetailMapClient's maps.
    ========================================================================== */
@@ -404,9 +404,9 @@
 }
 
 /* Enter transition for the windows. Enter-only, for the same reason as
-   .panel-enter: leaving is a navigation to the board, which is already
-   complete. Below md the window is full-bleed, so scaling it would expose the
-   board behind it; there it only fades. Without @starting-style support
+   .panel-enter: leaving is a navigation to another page, which is
+   already complete. Below md the window is full-bleed, so scaling it would
+   expose the page behind it; there it only fades. Without @starting-style support
    (Firefox < 129) the window just appears. */
 .window-enter {
   transform-origin: center;
@@ -444,8 +444,8 @@
    panel, same ink, same soft shadow. Kept in one block so the day the map
    library changes, there is one place to look.
 
-   General rule, now proven three times over in this file (.maplibregl-map
-   above, .yarl__root, the focus-ring override below): maplibre-gl.css is
+   General rule, proven more than once in this file (.maplibregl-map
+   above, the focus-ring override below): maplibre-gl.css is
    bundled and linked after this stylesheet in the production output, so at
    equal specificity its own declarations win the cascade. Every property
    below that collides with a value MapLibre's stylesheet also sets needs
@@ -647,7 +647,7 @@
   border-bottom-color: color-mix(in srgb, var(--color-panel) 92%, transparent);
 }
 
-/* The board's moto sticker, riding a selected track. A background image rather
+/* The moto sticker, riding a selected track. A background image rather
    than an <img> so the element can be rotated by MapLibre without fighting the
    image's own box, and `pointer-events: none` so it never intercepts a click
    meant for a marker underneath it. */

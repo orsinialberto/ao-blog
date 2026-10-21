@@ -84,7 +84,7 @@ export const ALL_PLACES: readonly PlaceWithRoutes[] = (() => {
   return [...byId.values()];
 })();
 
-/** Allow-list for `?route=`. Same contract as `findView` and `findCollection`:
+/** Allow-list for `?route=`. Same contract as `findView`:
     a value that is not in the list means "nothing selected", not "a selection
     with a made-up title". */
 export function findRoute(slug?: string | null): Route | undefined {

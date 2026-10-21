@@ -4,7 +4,7 @@ import type { MapLibreModule, Selection } from './useRouteLayers';
 import { RIDE_DURATION_MS } from '@/config/map';
 import { cumulativeDistances, pointAt } from '@/lib/track';
 
-/** The moto sticker from the board rides the selected track, once, from start
+/** The moto sticker rides the selected track, once, from start
     to finish, and parks at the end.
 
     It runs only when a route is selected *without* a place. Arriving at a
@@ -14,7 +14,7 @@ import { cumulativeDistances, pointAt } from '@/lib/track';
     moving the map under someone who is reading it is worse than the flourish
     is worth.
 
-    The sticker keeps its board artwork's fixed heading rather than turning to
+    The sticker keeps its artwork's fixed heading rather than turning to
     face each bend — it is a sticker riding along a line on a map, not a
     vehicle being steered, and constant rotation on a hairpin-heavy track like
     the Swiss passes read as jittery rather than alive. */
