@@ -7,8 +7,9 @@
  *  the gallery, and the page renders without querying Cloudinary.
  *
  *  `onTheRoad.bikes.<id>.{name,caption,text}` must exist in BOTH message
- *  files — nothing links `id` to the messages at compile time, so a missing
- *  key renders as the raw key, same contract as routes and collections. */
+ *  files — nothing links `id` to the messages at compile time, so the
+ *  on-the-road page checks it at build time (`assertTranslations.ts`) and a
+ *  missing key fails the build. */
 export type Bike = {
   id: string;
   image: string;

@@ -23,7 +23,8 @@ export type Place = {
 
 export type Route = {
   /** The value of `?route=`, and the key under `onTheRoad.routes` in BOTH
-      message files. A slug without its two titles renders the raw key. */
+      message files. A slug without its two titles fails the build
+      (`components/maps/assertTranslations.ts`). */
   slug: string;
   /** Written by hand. The track is drawn, not recorded, so measuring it would
       under-report every hairpin — see the spec's decision table. */

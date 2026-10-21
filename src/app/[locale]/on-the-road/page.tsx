@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { assertOnTheRoadTranslations } from "@/components/maps/assertTranslations";
 import MapsWindow from "@/components/maps/MapsWindow";
 import { getLocaleFromParams, getAllLocalizedPaths } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
@@ -10,6 +11,7 @@ interface OnTheRoadPageProps {
 }
 
 export async function generateStaticParams() {
+  assertOnTheRoadTranslations();
   return getAllLocalizedPaths("/on-the-road");
 }
 
