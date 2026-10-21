@@ -48,15 +48,15 @@ Consecutive inline images in the Markdown body are automatically grouped into mo
 - 2 images → `img-mosaic-pair`
 - 3+ images → `img-mosaic-trio` (top row 2, overflow below)
 
-### Home page stats
+### Continent filter
 
-`getTravelStats()` aggregates stats shown on the home page. Countries and continents pull from two sources: travel `location`/`tags` fields **and** `src/config/visitedCities.ts` (a static list of cities with `country`/`continent`). Continent tags are validated against `src/config/continents.ts`.
+The `/viaggi` archive filters by continent tags, validated against `src/config/continents.ts` (`isContinentTag`, used in `TravelsListClient.tsx`).
 
 ### Map components
 
 Maps use **MapLibre GL** + **react-map-gl**, which require browser APIs. The pattern used throughout:
-- `*Client.tsx` — actual Leaflet component (e.g. `TravelMapClient.tsx`)
-- `*Lazy.tsx` — wraps the client component with `next/dynamic` + `ssr: false`
+- `*Client.tsx` — the actual MapLibre component (e.g. `src/components/map/TravelDetailMapClient.tsx`)
+- `*Lazy.tsx` — wraps the client component with `next/dynamic` + `ssr: false` (e.g. `TravelDetailMapLazy.tsx`)
 - Server component imports only the `*Lazy` wrapper
 
 GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets. URLs are resolved via `src/lib/trackFileUrl.ts` and parsed client-side in `src/lib/gpxTrackClient.ts`. If a `timeline` has per-day `gpx` fields, they are collected into `map.gpxSegments` automatically in `parseTravelFromFile`.
@@ -67,7 +67,7 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 
 - State lives in the URL: `?view=`, `?route=`, `?place=`. With a static export there is no server-side `searchParams`, so `MapsPanels` and `MapCanvas` read them client-side with `useSearchParams`; unknown values mean "nothing selected". `config/on-the-road-nav.ts` is the list and allow-list of views.
 - **`MapCanvas` must never remount:** it is the first child of `MapsWindow`, has its own `Suspense`, no `key`, and no prop derived from the URL. It imports `maplibre-gl` lazily inside its effect, so hooks that need the library take it as an argument.
-- MapLibre's worker is copied out of `node_modules` into `public/maplibre/` by `scripts/copy-maplibre-worker.mjs` (run at `predev`/`prebuild`; the folder is gitignored and ignored by eslint) and `MapCanvas` calls `setWorkerUrl`. Without it Turbopack breaks the worker URL and the map is half drawn (no vector tiles, no tracks).
+- MapLibre's worker is copied out of `node_modules` into `public/maplibre/` by `scripts/copy-maplibre-worker.mjs` (run at `predev`/`prebuild`; the folder is gitignored and ignored by eslint) and both `MapCanvas` and `TravelDetailMapClient.tsx` call `setWorkerUrl('/maplibre/maplibre-gl-worker.mjs')` (the two must stay identical). Without it Turbopack breaks the worker URL and the map is half drawn (no vector tiles, no tracks).
 - Tiles come from OpenFreeMap (`src/config/map.ts`), no API key. The OSM/OpenFreeMap attribution must stay visible. If the map fails before first load, a translated `mapError` line replaces it.
 - Routes live in `src/data/routes/` (one module per trip, `satisfies Route`, coordinates `[lon, lat]`, registered in `index.ts`). **Adding a trip**: `npm run track:import <file> <slug>` writes `<slug>.track.json` (simplified), then write `<slug>.ts` (`trackFrom()`, `slug`, `km`, `places`), add one import in `index.ts`, and add `onTheRoad.routes.<slug>` to **both** `it.json` and `en.json`. Routes and bikes are typed `Record<string, ...>`, so the compiler cannot see a missing translation; `assertOnTheRoadTranslations()` (`src/components/maps/assertTranslations.ts`, called from the page's `generateStaticParams`) fails the build naming the missing key and locale.
 - Bikes for the Info carousel are in `src/config/bikes.ts`; each needs `onTheRoad.bikes.<id>.{name,caption,text}` in both message files.
