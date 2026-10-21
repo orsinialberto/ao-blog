@@ -42,27 +42,17 @@ export function cumulativeDistances(track: readonly Position[]): number[] {
   return distances;
 }
 
-/** Degrees clockwise from north, the convention MapLibre's `setRotation` uses. */
-function bearingBetween([lonA, latA]: Position, [lonB, latB]: Position): number {
-  const dLon = toRadians(lonB - lonA);
-  const y = Math.sin(dLon) * Math.cos(toRadians(latB));
-  const x =
-    Math.cos(toRadians(latA)) * Math.sin(toRadians(latB)) -
-    Math.sin(toRadians(latA)) * Math.cos(toRadians(latB)) * Math.cos(dLon);
-  return (Math.atan2(y, x) * 180) / Math.PI;
-}
-
 /** The point `metres` along the track, interpolated inside whichever segment it
-    falls in, plus that segment's bearing. Past the end it returns the finish. */
+    falls in. Past the end it returns the finish. */
 export function pointAt(
   track: readonly Position[],
   cumulative: readonly number[],
   metres: number,
-): { at: Position; bearing: number } {
+): { at: Position } {
   const last = track.length - 1;
-  if (metres <= 0) return { at: track[0], bearing: bearingBetween(track[0], track[1]) };
+  if (metres <= 0) return { at: track[0] };
   if (metres >= cumulative[last]) {
-    return { at: track[last], bearing: bearingBetween(track[last - 1], track[last]) };
+    return { at: track[last] };
   }
 
   let segment = 1;
@@ -75,6 +65,5 @@ export function pointAt(
 
   return {
     at: [from[0] + (to[0] - from[0]) * t, from[1] + (to[1] - from[1]) * t],
-    bearing: bearingBetween(from, to),
   };
 }
