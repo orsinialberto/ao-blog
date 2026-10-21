@@ -116,7 +116,7 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
   const borderColor = isTransparent ? "border-white/30" : "border-brand-outline-variant";
   const hoverBg = isTransparent ? "hover:bg-white/20" : "hover:bg-brand-surface";
   const activeBg = isTransparent ? "bg-white/10" : "bg-brand-surface";
-  const bgColor = isTransparent ? "bg-black/40 backdrop-blur-sm" : "bg-brand-background";
+  const bgColor = isTransparent ? "bg-black/40 backdrop-blur-xs" : "bg-brand-background";
 
   return (
     <div className="relative" ref={dropdownRef}>

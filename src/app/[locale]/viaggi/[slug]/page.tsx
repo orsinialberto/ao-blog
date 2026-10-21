@@ -88,7 +88,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
                 <Link
                   key={tag}
                   href={`${createLocalizedPath("/viaggi", locale)}?tag=${encodeURIComponent(tag)}`}
-                  className="font-label text-white/90 uppercase tracking-[0.2em] text-[10px] bg-brand-primary/40 backdrop-blur-sm px-3 py-1 rounded hover:bg-brand-primary/60 transition-colors max-w-full wrap-break-word"
+                  className="font-label text-white/90 uppercase tracking-[0.2em] text-[10px] bg-brand-primary/40 backdrop-blur-xs px-3 py-1 rounded hover:bg-brand-primary/60 transition-colors max-w-full wrap-break-word"
                 >
                   {tag}
                 </Link>

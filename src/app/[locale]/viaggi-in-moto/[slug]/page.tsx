@@ -105,7 +105,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
             {showFullStoryLink && (
               <LocalizedLink
                 href={`/viaggi/${travel.slug}`}
-                className="mt-6 inline-block rounded-sm font-label text-xs font-bold uppercase tracking-widest text-white/95 border-b border-white/55 pb-0.5 outline-none transition-colors hover:border-white hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
+                className="mt-6 inline-block rounded-xs font-label text-xs font-bold uppercase tracking-widest text-white/95 border-b border-white/55 pb-0.5 outline-none transition-colors hover:border-white hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black/40"
               >
                 {t.pages.motorcycleTravels.readFullStory}
               </LocalizedLink>
