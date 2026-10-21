@@ -20,7 +20,7 @@ const IMAGE_WIDTH = 1000;
 
     The outer element is a `<section aria-labelledby="maps-panel-title">`,
     the exact tag/attribute pair `MapsPanel` renders — that is what the
-    MapLibre-control margin rules in globals.css key off (`.bg-board:has(>
+    MapLibre-control margin rules in globals.css key off (`.maps-window:has(>
     section[aria-labelledby="maps-panel-title"])`), so Info gets the same
     "make room for the open panel" treatment as every other section without
     a new CSS rule. Info and MapsPanel never render at the same time, so the

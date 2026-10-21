@@ -270,3 +270,387 @@ a {
 .maplibregl-popup-tip {
   background: #ffffff;
 }
+
+/* ==========================================================================
+   Maps window (ported from ao-board). Appended; nothing above is changed.
+   MapLibre overrides are scoped under `.maps-window` (set on the window root
+   in MapsWindow.tsx) so they do not touch TravelDetailMapClient's maps.
+   ========================================================================== */
+
+@theme {
+  --color-board: #faf8f5;
+  --color-ink: #1c1917;
+  --color-ink-soft: #57534e;
+  --color-tape: #ded1b0;
+  /* Kept for the Maps window's accents (nav highlight, POI pins), which
+     borrowed it from the plate's old CSS lettering. */
+  --color-plate-blue: #1b3a8a;
+  /* The Maps window's frosted surface, its shadow tint and its pass pins.
+     Alpha variants are made at the point of use with `color-mix`, so each
+     colour is written once. */
+  --color-panel: rgb(247 252 240);
+  --color-panel-shadow: rgb(30 40 20);
+  --color-pin-pass: #2f5233;
+  --color-pin-pass-soft: #6fa377;
+
+  /* A stronger ease-out than the built-in one: fast start, long soft landing.
+     Used by the hover transitions so they respond the instant the pointer does. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Interactive list rows (sidebars, route/pass/place lists). The row eases its
+   tint and its active fill, and presses in slightly. 120ms: these are clicked
+   constantly, so it has to stay near-imperceptible. The press is movement and
+   is dropped under reduced motion; the colour change is kept. */
+.row-press {
+  transition:
+    background-color 120ms var(--ease-out-strong),
+    color 120ms var(--ease-out-strong),
+    scale 120ms var(--ease-out-strong);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .row-press:active {
+    scale: 0.98;
+  }
+}
+
+/* MapCanvas needs its container to stretch and fill WindowShell via
+   `absolute inset-0`. maplibre-gl.css ships `.maplibregl-map { position:
+   relative }`, and MapLibre stamps that class directly onto the container
+   it's given once the map mounts — same specificity as the `absolute`
+   utility, and the library's stylesheet is bundled after globals.css, so
+   without !important that rule wins the cascade. A `position: relative`
+   block box ignores `inset`, so its height falls back to its (empty)
+   content, collapsing the map to 0 height (verified via computed style). */
+.maps-window .maplibregl-map {
+  position: absolute !important;
+  inset: 0;
+}
+
+/* The floating panels of the Maps window. Frosted like the macOS original;
+   where `backdrop-filter` is unsupported the flat rgba background stays and
+   only the blur is lost, which costs nothing in legibility. */
+.panel-glass {
+  background: color-mix(in srgb, var(--color-panel) 90%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 24px color-mix(in srgb, var(--color-panel-shadow) 18%, transparent),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.6);
+}
+
+/* On a phone the panels sit over a live WebGL map, and a backdrop blur there
+   re-samples that canvas every frame it moves. The fill is already 90% opaque,
+   so dropping the blur costs almost nothing visible and saves the GPU work on
+   the devices least able to spare it. */
+@media (width < 48rem) {
+  .panel-glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Enter transition for the Maps panels. Enter-only: the panels are removed by
+   a soft navigation, so there is no node left to animate out. Origin is the
+   edge the panel grows from: the sidebar on desktop, the nav bar on phones.
+   Without @starting-style support (Firefox < 129) the panel just appears. */
+.panel-enter {
+  transform-origin: center bottom;
+  transition: opacity 120ms var(--ease-out-strong);
+}
+
+@starting-style {
+  .panel-enter {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .panel-enter {
+    transition:
+      opacity 200ms var(--ease-out-strong),
+      transform 200ms var(--ease-out-strong);
+  }
+
+  @starting-style {
+    .panel-enter {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+}
+
+@media (width >= 48rem) {
+  .panel-enter {
+    transform-origin: left center;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @starting-style {
+      .panel-enter {
+        opacity: 0;
+        transform: translateX(-8px) scale(0.98);
+      }
+    }
+  }
+}
+
+/* Enter transition for the windows. Enter-only, for the same reason as
+   .panel-enter: leaving is a navigation to the board, which is already
+   complete. Below md the window is full-bleed, so scaling it would expose the
+   board behind it; there it only fades. Without @starting-style support
+   (Firefox < 129) the window just appears. */
+.window-enter {
+  transform-origin: center;
+  transition: opacity 150ms var(--ease-out-strong);
+}
+
+@starting-style {
+  .window-enter {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .window-enter {
+    transition: opacity 200ms var(--ease-out-strong);
+  }
+}
+
+@media (width >= 48rem) and (prefers-reduced-motion: no-preference) {
+  .window-enter {
+    transition:
+      opacity 200ms var(--ease-out-strong),
+      transform 250ms var(--ease-out-strong);
+  }
+
+  @starting-style {
+    .window-enter {
+      opacity: 0;
+      transform: scale(0.97);
+    }
+  }
+}
+
+/* MapLibre's own chrome, pulled onto this project's surface: same frosted
+   panel, same ink, same soft shadow. Kept in one block so the day the map
+   library changes, there is one place to look.
+
+   General rule, now proven three times over in this file (.maplibregl-map
+   above, .yarl__root, the focus-ring override below): maplibre-gl.css is
+   bundled and linked after this stylesheet in the production output, so at
+   equal specificity its own declarations win the cascade. Every property
+   below that collides with a value MapLibre's stylesheet also sets needs
+   !important; the properties that don't collide (backdrop-filter, the
+   group's box-shadow, the scale bar's font-family/border-radius, the
+   attribution's font-size) are left alone. */
+.maps-window .maplibregl-ctrl-group {
+  background: color-mix(in srgb, var(--color-panel) 82%, transparent) !important;
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border-radius: 9px !important;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--color-panel-shadow) 20%, transparent);
+}
+
+.maps-window .maplibregl-ctrl-group button + button {
+  border-top: 0.5px solid color-mix(in srgb, var(--color-ink) 18%, transparent) !important;
+}
+
+.maps-window .maplibregl-ctrl-group button:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -2px;
+  /* MapLibre's own stylesheet targets this same state with
+     `button:focus:focus-visible`, one pseudo-class more specific than this
+     selector, so its blue box-shadow wins the cascade without !important
+     here — same class of problem as the .maplibregl-map override above. */
+  box-shadow: none !important;
+}
+
+.maps-window .maplibregl-ctrl-scale {
+  background: color-mix(in srgb, var(--color-panel) 72%, transparent) !important;
+  border-color: color-mix(in srgb, var(--color-ink) 35%, transparent) !important;
+  color: var(--color-ink) !important;
+  font-family: var(--font-mono);
+  border-radius: 0 0 4px 4px;
+}
+
+/* Attribution stays legible — it is a condition of using the tiles, not
+   decoration. Toned down, never hidden.
+
+   The !important on `background` is also enough to win against MapLibre's
+   compact-attribution state (`.maplibregl-ctrl-attrib.maplibregl-compact`,
+   the default here since MapCanvas passes `attributionControl: { compact:
+   true }`), even though that compound selector is more specific than this
+   one: importance is compared before specificity in the cascade, and a
+   single !important author declaration outranks any number of normal-weight
+   ones regardless of selector weight. Checked maplibre-gl.css directly —
+   nothing under .maplibregl-ctrl-attrib carries !important of its own — so
+   no `.maplibregl-compact` selector is needed here. */
+.maps-window .maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--color-panel) 72%, transparent) !important;
+  font-size: 11px;
+}
+
+.maps-window .maplibregl-ctrl-attrib a {
+  color: var(--color-ink-soft) !important;
+}
+
+/* MapLibre's floating controls (top/bottom-left/right) sit at z-index: 2
+   with pointer-events: auto on the control itself, above the project's
+   panels in default stacking order — the scale bar can draw over the
+   sidebar's corner, and the attribution box can sit on top of (and
+   intercept taps meant for) the bottom sheet's nav entries. Raising
+   .panel-glass's z-index instead is not an option: the attribution must
+   stay visible, never hidden behind a panel. So the controls move instead,
+   clear of the panels they'd otherwise overlap.
+
+   MapsSidebar (panel one) is always on screen; MapsPanel (panel two, the
+   detail section) only joins it once a ?view= is active, and is wider
+   (desktop) or taller (phone) than panel one alone — so a margin sized only
+   for panel one still lets the scale bar land on panel two's corner the
+   moment a view opens (caught by screenshotting with ?view=info, not
+   visible in the base state). `:has(> section[aria-labelledby=
+   "maps-panel-title"])` on MapsWindow's own root (the `.maps-window` div that
+   is the direct parent of both panels and, several levels down, of these
+   controls) detects that state without touching the React tree — the
+   selector is scoped to the `.maps-window` root that also has a
+   `.maplibregl-ctrl-bottom-*` descendant, so it can't stray onto the
+   other windows or the blog's own maps. */
+@media (width >= 48rem) {
+  /* Sidebar (panel one) is w-[186px] at left-3 (12px), so its right edge
+     sits at ~198px; the control's own built-in 10px margin adds a bit more
+     air. */
+  .maps-window .maplibregl-ctrl-bottom-left {
+    margin-left: 198px;
+  }
+
+  /* Panel two (the detail section) sits at left-[206px] w-[232px], so its
+     right edge reaches ~438px — clear that instead once it's open. */
+  .maps-window:has(> section[aria-labelledby='maps-panel-title'])
+    .maplibregl-ctrl-bottom-left {
+    margin-left: 438px;
+  }
+}
+
+@media (width < 48rem) {
+  /* The bottom-sheet nav bar (panel one) sits bottom-3 (12px) and is ~64px
+     tall (see the 76px = 12 + 64 offset MapsPanel uses to sit above it), so
+     its top edge is 76px above the viewport bottom. margin-bottom here
+     clears that, plus the control's own built-in 10px margin for a visible
+     gap. */
+  .maps-window .maplibregl-ctrl-bottom-left,
+  .maps-window .maplibregl-ctrl-bottom-right {
+    margin-bottom: 80px;
+  }
+
+  /* Panel two (the detail sheet) sits bottom-[76px] h-[38dvh] above panel
+     one once a view is open, so its top edge is 76px + 38dvh above the
+     viewport bottom — clear that instead, plus a 12px gap. */
+  .maps-window:has(> section[aria-labelledby='maps-panel-title'])
+    .maplibregl-ctrl-bottom-left,
+  .maps-window:has(> section[aria-labelledby='maps-panel-title'])
+    .maplibregl-ctrl-bottom-right {
+    margin-bottom: calc(38dvh + 88px);
+  }
+}
+
+/* Route markers. They are DOM elements handed to MapLibre, not React nodes, so
+   they get plain classes rather than utilities — nothing in the build can see
+   these class names to sort or purge them, which is also why they live here
+   and not in a component. */
+.map-pin {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-panel) 92%, transparent);
+  box-shadow:
+    0 2px 6px color-mix(in srgb, var(--color-panel-shadow) 30%, transparent),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.7);
+  cursor: pointer;
+  /* Above any collapsed dot regardless of DOM/insertion order, so a full
+     icon sitting next to a dot never gets clipped under it. */
+  z-index: 1;
+}
+
+.map-pin--pass {
+  color: var(--color-pin-pass);
+}
+
+.map-pin--poi {
+  color: var(--color-plate-blue);
+}
+
+/* Applied by useRouteLayers when this marker's screen position lands too
+   close to one already kept full-size — swaps the white icon-on-circle for a
+   solid dot in the marker's own kind color, so a cluster of overlapping pins
+   reads as one icon plus clutter-free dots instead of stacked icons. */
+.map-pin--collapsed {
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border: 1.5px solid rgb(255 255 255 / 0.85);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--color-panel-shadow) 35%, transparent);
+  z-index: 0;
+}
+
+/* `.map-pin--pass`'s --color-pin-pass is tuned for a stroke on a pale circle — as a
+   solid fill at 8px it reads almost black, so the collapsed dot gets its own
+   lighter tint instead of inheriting it via currentColor. */
+.map-pin--pass.map-pin--collapsed {
+  background: var(--color-pin-pass-soft);
+}
+
+.map-pin--collapsed svg {
+  display: none;
+}
+
+/* The popup, pulled onto the same frosted surface as the panels. Same rule as
+   the controls above: maplibre-gl.css is specific, so these override rather
+   than extend. maplibre-gl.css sets no z-index on `.maplibregl-popup` itself,
+   so it stacks by DOM order against `.maplibregl-marker` — and since markers
+   sit earlier in the DOM than a popup that opens later, that usually puts
+   the popup on top anyway, except a nearby marker's own `.map-pin` carries
+   z-index: 1, which escapes into the map's outer stacking context and can
+   still paint over an open popup's label at low zoom, where several markers
+   land within one popup's footprint. An explicit z-index here — clearing its
+   own stacking context — settles it regardless of DOM order or a neighbour's
+   z-index. */
+.maps-window .maplibregl-popup {
+  z-index: 2;
+}
+
+.maps-window .maplibregl-popup-content {
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-panel) 92%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-panel-shadow) 22%, transparent);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.maps-window .maplibregl-popup-tip {
+  border-top-color: color-mix(in srgb, var(--color-panel) 92%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--color-panel) 92%, transparent);
+}
+
+/* The board's moto sticker, riding a selected track. A background image rather
+   than an <img> so the element can be rotated by MapLibre without fighting the
+   image's own box, and `pointer-events: none` so it never intercepts a click
+   meant for a marker underneath it. */
+.moto-rider {
+  width: 34px;
+  height: 34px;
+  background: url('/moto-sticker.png') center / contain no-repeat;
+  filter: drop-shadow(
+    0 2px 4px color-mix(in srgb, var(--color-panel-shadow) 35%, transparent)
+  );
+  pointer-events: none;
+}

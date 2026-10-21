@@ -18,7 +18,7 @@ export default function MapsWindow({ locale }: Props) {
   const t = getTranslations(locale).onTheRoad;
 
   return (
-    <WindowShell className="bg-board relative">
+    <WindowShell className="maps-window bg-board relative">
       {/* MapCanvas and MapsPanels call useSearchParams, which needs a Suspense
           boundary under static export. The boundary is a stable first child
           and never suspends on a search-param change, so the map instance is
