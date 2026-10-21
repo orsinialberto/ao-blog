@@ -39,3 +39,13 @@ export function optimizeCloudinaryUrl(
   return `${beforeUpload}${transformations}${afterUpload}`;
 }
 
+
+/** Cloudinary cloud that hosts the on-the-road bike photos. */
+const CLOUDINARY_CLOUD_NAME = "dx6hrvg6l";
+
+/**
+ * Builds an optimized Cloudinary URL from a `v<version>/<publicId>.<format>` path.
+ */
+export function cloudinaryUrlFromPath(path: string, width: number): string {
+  return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/f_auto,q_auto,w_${Math.round(width)}/${path}`;
+}
