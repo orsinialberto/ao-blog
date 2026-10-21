@@ -19,9 +19,14 @@ export default function MapsWindow({ locale }: Props) {
 
   return (
     <WindowShell className="bg-board relative">
-      <MapCanvas label={t.mapLabel} errorMessage={t.mapError} />
+      {/* MapCanvas and MapsPanels call useSearchParams, which needs a Suspense
+          boundary under static export. The boundary is a stable first child
+          and never suspends on a search-param change, so the map instance is
+          kept. */}
+      <Suspense fallback={null}>
+        <MapCanvas label={t.mapLabel} errorMessage={t.mapError} />
+      </Suspense>
       <TrafficLights className="panel-glass absolute top-3 left-3 z-10 px-2.5 py-2 md:hidden" />
-      {/* useSearchParams needs a Suspense boundary under static export. */}
       <Suspense fallback={null}>
         <MapsPanels locale={locale} />
       </Suspense>
