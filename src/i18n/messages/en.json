@@ -216,6 +216,8 @@
     }
   },
   "onTheRoad": {
+    "metaTitle": "On the road",
+    "metaDescription": "Interactive map of my motorcycle rides: routes, alpine passes and saved places.",
     "mapLabel": "Interactive travel map",
     "mapError": "The map is unavailable right now.",
     "navLabel": "On the road sections",

@@ -217,6 +217,8 @@ export interface TranslationMessages {
     };
   };
   onTheRoad: {
+    metaTitle: string;
+    metaDescription: string;
     mapLabel: string;
     mapError: string;
     navLabel: string;

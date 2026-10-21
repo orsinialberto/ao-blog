@@ -216,6 +216,8 @@
     }
   },
   "onTheRoad": {
+    "metaTitle": "On the road",
+    "metaDescription": "Mappa interattiva dei miei giri in moto: percorsi, passi alpini e luoghi salvati.",
     "mapLabel": "Mappa interattiva dei viaggi",
     "mapError": "La mappa non è disponibile al momento.",
     "navLabel": "Sezioni di on the road",
