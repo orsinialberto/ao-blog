@@ -23,7 +23,7 @@ const icons: Record<OnTheRoadView, ComponentType> = {
 };
 
 const entry =
-  'row-press flex shrink-0 items-center gap-2.5 rounded-md px-2.5 py-1.5 pointer-coarse:py-3 text-[13px] text-ink hover:bg-ink/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink';
+  'row-press flex items-center gap-1.5 rounded-md px-1.5 max-md:min-w-0 max-md:flex-1 max-md:justify-center md:shrink-0 md:gap-2.5 md:px-2.5 py-1.5 pointer-coarse:py-3 text-[13px] text-ink hover:bg-ink/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ink';
 const activeEntry = 'bg-plate-blue font-semibold text-white hover:bg-plate-blue';
 
 /** Panel one: the traffic lights and the four sections. No search field and no
