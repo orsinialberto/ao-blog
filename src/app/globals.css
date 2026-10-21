@@ -39,24 +39,24 @@
   --header-height: 96px;
 }
 
-body {
-  min-height: 100vh;
-  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
-  background: #faf9f7;
-  color: #1a1c1b;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-}
-
-main {
-  flex: 1;
-}
-
-a {
-  color: inherit;
-}
-
 @layer base {
+  body {
+    min-height: 100vh;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+    background: #faf9f7;
+    color: #1a1c1b;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  a {
+    color: inherit;
+  }
+
   h1,
   h2,
   h3,
