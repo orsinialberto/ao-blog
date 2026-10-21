@@ -15,7 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "VIAGGI",
-      "motorcycleTravels": "ON THE ROAD",
+      "onTheRoad": "On the road",
       "gallery": "GALLERIA"
     }
   },
@@ -27,7 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "Tutti i Viaggi",
-      "motorcycleTravels": "On The Road",
+      "onTheRoad": "On the road",
       "photoGallery": "Galleria Foto"
     }
   },
@@ -118,13 +118,6 @@
       "author": "Bill Bryson",
       "source": "Una passeggiata nei boschi"
     },
-    "onTheRoadSection": {
-      "eyebrow": "In moto",
-      "title": "On the Road",
-      "description": "Indosso la giacca, allaccio il casco, accendo la moto, ingrano la prima. E via.",
-      "cta": "Esplora gli itinerari",
-      "imageAlt": "Passo del Bernina in moto, paesaggio alpino"
-    },
     "travelMapSection": {
       "title": "Mappa delle esplorazioni",
       "description": "Ogni punto sulla mappa è un diario, una fotografia, un ricordo. Naviga tra i racconti di viaggio.",
@@ -164,25 +157,6 @@
       "subtitle": "Continua l'esplorazione con questi diari collegati.",
       "viewAll": "Vedi tutti i viaggi",
       "journalLabel": "Diario"
-    },
-    "motoTravel": {
-      "sectionLabel": "Il viaggio in moto, in numeri",
-      "kmRidden": "Km percorsi",
-      "countriesVisited": "Paesi visitati",
-      "mountainPasses": "Passi percorsi",
-      "tiresConsumed": "Gomme consumate",
-      "totalDistance": "Distanza totale",
-      "duration": "Durata",
-      "motorcycle": "Moto",
-      "regions": "Regioni",
-      "routeTitle": "Il percorso dettagliato",
-      "routeSubtitle": "",
-      "downloadTrack": "Scarica la traccia",
-      "downloadTrackLoading": "Preparazione…",
-      "downloadTrackError": "Impossibile preparare il file. Controlla che i GPX siano raggiungibili.",
-      "featuredPassLabel": "In evidenza",
-      "elevation": "Elevazione",
-      "notSpecified": "—"
     }
   },
   "pages": {
@@ -198,15 +172,6 @@
       "description": "Tutte le foto dei miei viaggi raccolte in un'unica galleria fotografica",
       "heading": "Galleria Fotografica",
       "statistics": "{photoCount} foto da {travelCount} viaggi"
-    },
-    "motorcycleTravels": {
-      "title": "On The Road",
-      "description": "Diari on the road: chilometri, passi e strade italiane viste dal manubrio.",
-      "heading": "On The Road",
-      "subtitle": "Percorsi su due ruote, tra curve, panorami e la libertà della strada aperta.",
-      "badge": "In moto",
-      "viewAllRelated": "Tutti i viaggi in moto",
-      "readFullStory": "Leggi il racconto completo"
     },
     "privacy": {
       "title": "Privacy e Cookie Policy",

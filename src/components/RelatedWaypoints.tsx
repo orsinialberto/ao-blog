@@ -11,24 +11,13 @@ import type { SupportedLocale } from "@/config/locales";
 interface RelatedWaypointsProps {
   travels: Travel[];
   locale: SupportedLocale;
-  /** Detail URL base without slug, e.g. "/viaggi-in-moto". Default "/viaggi". */
-  travelBasePath?: string;
-  /** "View all" link path. Default "/viaggi". */
-  viewAllPath?: string;
-  /** Override label for the "view all" link. */
-  viewAllLabel?: string;
 }
 
 export function RelatedWaypoints({
   travels,
   locale,
-  travelBasePath = "/viaggi",
-  viewAllPath = "/viaggi",
-  viewAllLabel,
 }: RelatedWaypointsProps) {
   const t = getTranslations(locale);
-  const detailBase = travelBasePath.replace(/\/$/, "");
-  const viewAll = viewAllLabel ?? t.components.relatedWaypoints.viewAll;
 
   if (travels.length === 0) return null;
 
@@ -42,10 +31,10 @@ export function RelatedWaypoints({
             </h2>
           </div>
           <Link
-            href={createLocalizedPath(viewAllPath, locale)}
+            href={createLocalizedPath("/viaggi", locale)}
             className="font-label text-xs uppercase tracking-[0.2em] text-brand-primary font-bold border-b-2 border-brand-primary pb-1 whitespace-nowrap"
           >
-            {viewAll}
+            {t.components.relatedWaypoints.viewAll}
           </Link>
         </div>
 
@@ -53,7 +42,7 @@ export function RelatedWaypoints({
           {travels.map((travel) => (
             <Link
               key={travel.slug}
-              href={createLocalizedPath(`${detailBase}/${travel.slug}`, locale)}
+              href={createLocalizedPath(`/viaggi/${travel.slug}`, locale)}
               className="group flex flex-col"
             >
               <div className="relative aspect-3/2 overflow-hidden">

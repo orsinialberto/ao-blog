@@ -15,7 +15,7 @@
     "links": {
       "home": "HOME",
       "travels": "TRAVELS",
-      "motorcycleTravels": "ON THE ROAD",
+      "onTheRoad": "On the road",
       "gallery": "GALLERY"
     }
   },
@@ -27,7 +27,7 @@
     "quickLinks": {
       "home": "Home",
       "allTravels": "All Travels",
-      "motorcycleTravels": "On The Road",
+      "onTheRoad": "On the road",
       "photoGallery": "Photo Gallery"
     }
   },
@@ -118,13 +118,6 @@
       "author": "Bill Bryson",
       "source": "A Walk in the Woods"
     },
-    "onTheRoadSection": {
-      "eyebrow": "By motorcycle",
-      "title": "On the Road",
-      "description": "I put on my jacket, strap on my helmet, start the engine, slip into first gear. And go.",
-      "cta": "Explore the itineraries",
-      "imageAlt": "Bernina Pass by motorcycle, alpine landscape"
-    },
     "travelMapSection": {
       "title": "Map of explorations",
       "description": "Each point on the map is a journal, a photograph, a memory. Browse my travel stories by place.",
@@ -164,25 +157,6 @@
       "subtitle": "Continue exploring through these connected journals.",
       "viewAll": "View all travels",
       "journalLabel": "Journal"
-    },
-    "motoTravel": {
-      "sectionLabel": "Motorcycle travel in numbers",
-      "kmRidden": "Kilometers ridden",
-      "countriesVisited": "Countries visited",
-      "mountainPasses": "Passes ridden",
-      "tiresConsumed": "Tires replaced",
-      "totalDistance": "Total distance",
-      "duration": "Duration",
-      "motorcycle": "Motorcycle",
-      "regions": "Regions",
-      "routeTitle": "The route in detail",
-      "routeSubtitle": "",
-      "downloadTrack": "Download track",
-      "downloadTrackLoading": "Preparing…",
-      "downloadTrackError": "Could not build the file. Check that the GPX files are reachable.",
-      "featuredPassLabel": "Highlight",
-      "elevation": "Elevation",
-      "notSpecified": "—"
     }
   },
   "pages": {
@@ -198,15 +172,6 @@
       "description": "All photos from my travels collected in a single photo gallery",
       "heading": "Photo Gallery",
       "statistics": "{photoCount} photos from {travelCount} travels"
-    },
-    "motorcycleTravels": {
-      "title": "On The Road",
-      "description": "On-the-road journals: miles, mountain passes, and Italian roads from the handlebars.",
-      "heading": "On The Road",
-      "subtitle": "Two-wheeled routes through bends, views, and the freedom of the open road.",
-      "badge": "By motorcycle",
-      "viewAllRelated": "All motorcycle trips",
-      "readFullStory": "Read the full story"
     },
     "privacy": {
       "title": "Privacy and Cookie Policy",

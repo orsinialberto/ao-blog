@@ -14,15 +14,13 @@
  * - content: Main Markdown content body
  * - duration: Duration string with units (e.g., "14 giorni" → "14 days")
  * - map.points[].description: Map point descriptions
- * - motorcycle, motoRegions: moto trip labels (localized)
  * 
  * COMMON FIELDS (must be identical across all language versions):
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroTitleVariant, totalKilometers, motoAlpinePasses, motoOnly
+ * - gallery, heroTitleVariant, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
- * - featuredPasses[].name, featuredPasses[].elevationM (or legacy single featuredPass)
  * 
  * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
  */
@@ -71,12 +69,6 @@ export interface TravelTimelineItem {
   gpx?: string;
 }
 
-/** Optional highlight for motorcycle travel route map (e.g. highest pass). */
-export interface MotoFeaturedPass {
-  name: string;
-  elevationM?: number;
-}
-
 export interface Travel {
   slug: string;
   title: string;
@@ -94,39 +86,10 @@ export interface Travel {
   map?: TravelMapData;
   totalKilometers?: number;
   timeline?: TravelTimelineItem[];
-  /** Motorcycle model (localized label in each language file). */
-  motorcycle?: string;
-  /** Regions crossed, display string (localized). */
-  motoRegions?: string;
-  /** Highlight card(s) on the route map section. Legacy frontmatter: single `featuredPass` object. */
-  featuredPasses?: MotoFeaturedPass[];
-  /** Count of mountain passes for moto section aggregate stats (per travel). */
-  motoAlpinePasses?: number;
-  /**
-   * When true, the travel appears under /viaggi-in-moto only (not in /viaggi archive,
-   * home highlights, map, or gallery). Must stay identical across language files.
-   */
-  motoOnly?: boolean;
-}
-
-/** Lowercase tag value used to mark motorcycle trips. */
-export const MOTO_TAG = "moto";
-
-export function isMotoTravel(travel: Travel): boolean {
-  return travel.tags.some((tag) => tag.toLowerCase() === MOTO_TAG);
-}
-
-export function getMotoTravels(locale: Locale = "it"): Travel[] {
-  return ensureCache(locale).filter(isMotoTravel);
-}
-
-/** True if the travel should appear in the general archive (home, /viaggi, map, gallery). */
-export function isListedInTravelArchive(travel: Travel): boolean {
-  return travel.motoOnly !== true;
 }
 
 export function getTravelsForArchive(locale: Locale = "it"): Travel[] {
-  return ensureCache(locale).filter(isListedInTravelArchive);
+  return ensureCache(locale);
 }
 
 export function getArchiveTags(locale: Locale = "it"): string[] {
@@ -136,34 +99,6 @@ export function getArchiveTags(locale: Locale = "it"): string[] {
     travel.tags.forEach((tag) => tags.add(tag));
   });
   return Array.from(tags).sort((a, b) => a.localeCompare(b));
-}
-
-export interface MotoTravelStats {
-  totalKm: number;
-  countries: number;
-  mountainPasses: number;
-  tiresConsumed: number;
-}
-
-export function getMotoTravelStats(locale: Locale = "it"): MotoTravelStats {
-  const travels = getMotoTravels(locale);
-  const locations = new Set<string>();
-  let totalKm = 0;
-  let mountainPasses = 0;
-
-  for (const t of travels) {
-    const loc = t.location?.trim();
-    if (loc) locations.add(loc);
-    if (t.totalKilometers != null) totalKm += t.totalKilometers;
-    mountainPasses += t.motoAlpinePasses ?? 0;
-  }
-
-  return {
-    totalKm: Math.round(totalKm),
-    countries: locations.size,
-    mountainPasses,
-    tiresConsumed: 2,
-  };
 }
 
 /** True if the travel has enough map data to render a route or markers. */
@@ -296,7 +231,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroTitleVariant, totalKilometers, motoOnly
+ * - gallery, heroTitleVariant, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
@@ -413,38 +348,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     totalKilometers: normalizeNumber(data.totalKilometers),
     timeline,
     map: attachGpxSegmentsFromTimeline(parseMap(data.map), timeline),
-    motorcycle: isNonEmptyString(data.motorcycle) ? data.motorcycle.trim() : undefined,
-    motoRegions: isNonEmptyString(data.motoRegions) ? data.motoRegions.trim() : undefined,
-    featuredPasses: parseFeaturedPasses(data as Record<string, unknown>),
-    motoAlpinePasses: normalizeNumber(data.motoAlpinePasses),
-    motoOnly: data.motoOnly === true ? true : undefined,
   } satisfies Travel;
-}
-
-function parseOneFeaturedPass(raw: unknown): MotoFeaturedPass | undefined {
-  if (!isObject(raw)) {
-    return undefined;
-  }
-  const name = isNonEmptyString(raw.name) ? raw.name.trim() : undefined;
-  if (!name) {
-    return undefined;
-  }
-  return {
-    name,
-    elevationM: normalizeNumber(raw.elevationM),
-  };
-}
-
-function parseFeaturedPasses(data: Record<string, unknown>): MotoFeaturedPass[] | undefined {
-  const list = data.featuredPasses;
-  if (Array.isArray(list)) {
-    const passes = list
-      .map(parseOneFeaturedPass)
-      .filter((p): p is MotoFeaturedPass => p !== undefined);
-    return passes.length > 0 ? passes : undefined;
-  }
-  const one = parseOneFeaturedPass(data.featuredPass);
-  return one ? [one] : undefined;
 }
 
 function parseCoords(rawCoords: unknown): Travel["coords"] {
@@ -643,18 +547,6 @@ export async function getTravelBySlug(
   }
 
   return travel;
-}
-
-export async function getMotoTravelBySlug(
-  slug: string,
-  locale: Locale = "it"
-): Promise<Travel | null> {
-  try {
-    const travel = await getTravelBySlug(slug, locale);
-    return isMotoTravel(travel) ? travel : null;
-  } catch {
-    return null;
-  }
 }
 
 export function sortTravelsByDate(travels: Travel[]): Travel[] {

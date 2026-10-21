@@ -33,9 +33,9 @@ Travel entries are Markdown files in `src/content/travels/`. Naming convention:
 - `[slug].md` → Italian (default)
 - `[slug].en.md` → English
 
-**Translated fields** (localized per file): `title`, `description`, `content`, `duration`, `map.points[].description`, `motorcycle`, `motoRegions`.
+**Translated fields** (localized per file): `title`, `description`, `content`, `duration`, `map.points[].description`.
 
-**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroTitleVariant`, `totalKilometers`, `motoAlpinePasses`, `motoOnly`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
+**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroTitleVariant`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
 
 Parsing and caching logic is in `src/lib/travels.ts`. In-memory cache (`travelCache`) is keyed by locale and populated lazily.
 
@@ -47,18 +47,6 @@ Consecutive inline images in the Markdown body are automatically grouped into mo
 - 1 image → `img-mosaic-single`
 - 2 images → `img-mosaic-pair`
 - 3+ images → `img-mosaic-trio` (top row 2, overflow below)
-
-#### Motorcycle-specific frontmatter
-
-- `featuredPasses` — array of `{ name, elevationM }` objects; displayed as highlight cards on the route map. Legacy single-object form `featuredPass` is also supported and normalized to an array.
-- `motoAlpinePasses` — integer count of passes for aggregate stats.
-
-### Two content sections
-
-- `/viaggi` — general travel archive. Includes all travels where `motoOnly` is not `true`.
-- `/viaggi-in-moto` — motorcycle-only section. Includes travels tagged `moto`.
-
-Travels with `motoOnly: true` appear exclusively in `/viaggi-in-moto` and are excluded from the home highlights, general archive, map, and gallery.
 
 ### Home page stats
 

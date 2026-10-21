@@ -7,7 +7,6 @@ import { TravelTabs } from "@/components/TravelTabs";
 import { formatDateRange } from "@/lib/dates";
 import {
   getAllTravels,
-  getMotoTravels,
   getTravelBySlug,
   getTravelsForArchive,
 } from "@/lib/travels";
@@ -56,10 +55,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const resolvedParams = await params;
   const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
-  const relatedPool = travel.motoOnly
-    ? getMotoTravels(locale)
-    : getTravelsForArchive(locale);
-  const relatedTravels = getRelatedTravels(relatedPool, travel.slug);
+  const relatedTravels = getRelatedTravels(getTravelsForArchive(locale), travel.slug);
   const t = getTranslations(locale as SupportedLocale);
 
   const optimizedCoverImage = optimizeCloudinaryUrl(travel.coverImage, {

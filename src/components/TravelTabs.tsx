@@ -14,8 +14,6 @@ interface TravelTabsProps {
   map?: TravelMapData;
   coords?: TravelCoords;
   title: string;
-  /** When true, the map is not repeated in the Itinerary tab (e.g. shown above on moto pages). */
-  hideItineraryMap?: boolean;
 }
 
 type Tab = "narrative" | "itinerary" | "gallery";
@@ -43,7 +41,6 @@ export function TravelTabs({
   map,
   coords,
   title,
-  hideItineraryMap = false,
 }: TravelTabsProps) {
   const t = useTranslations();
   const hasGallery = (gallery?.length ?? 0) > 0;
@@ -57,8 +54,7 @@ export function TravelTabs({
   const hasItinerary =
     (timeline?.length ?? 0) > 0 ||
     (map?.points?.length ?? 0) > 0 ||
-    (!hideItineraryMap &&
-      !!(map?.gpx || map?.kml || map?.kmz || (map?.gpxSegments?.length ?? 0) > 0));
+    !!(map?.gpx || map?.kml || map?.kmz || (map?.gpxSegments?.length ?? 0) > 0);
 
   const [activeTab, setActiveTab] = useState<Tab>("narrative");
   const [isMapFullscreen, setIsMapFullscreen] = useState(false);
@@ -110,7 +106,7 @@ export function TravelTabs({
 
       {activeTab === "itinerary" && hasItinerary && (
         <div className="flex flex-col gap-12">
-          {!hideItineraryMap && hasMap && map && (
+          {hasMap && map && (
             <div
               className={
                 isMapFullscreen
