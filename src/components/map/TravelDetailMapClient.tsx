@@ -9,7 +9,6 @@ import Map, { Layer, Marker, NavigationControl, Popup, Source } from "react-map-
 import type { MapRef } from "react-map-gl/maplibre";
 import type { FitBoundsOptions } from "maplibre-gl";
 
-setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 import JSZip from "jszip";
 
 import type { TravelCoords, TravelMapData } from "@/lib/travels";
@@ -17,8 +16,12 @@ import {
   fetchGpxAsRouteFeatureCollection,
   mergeRouteFeatureCollections,
 } from "@/lib/gpxTrackClient";
+import { MAP_STYLE_URL } from "@/config/map";
 import { withBasePath } from "@/lib/paths";
 import { getMarkerSvgForKind } from "./markerIcon";
+
+// Same worker as MapCanvas: see scripts/copy-maplibre-worker.mjs.
+setWorkerUrl("/maplibre/maplibre-gl-worker.mjs");
 
 interface TravelDetailMapClientProps {
   map: TravelMapData;
@@ -42,8 +45,6 @@ const MIN_ZOOM = 2;
 
 /** [[minLng, minLat], [maxLng, maxLat]] */
 type LngLatBounds = [[number, number], [number, number]];
-
-const MAP_STYLE = "https://tiles.openfreemap.org/styles/liberty";
 
 function computePaddedBounds(
   coords: [number, number][],
@@ -231,7 +232,7 @@ export default function TravelDetailMapClient({
         zoom: TRACK_LOADING_ZOOM,
       }}
       style={{ width: "100%", height: "100%" }}
-      mapStyle={MAP_STYLE}
+      mapStyle={MAP_STYLE_URL}
       scrollZoom={interactive}
       dragPan={interactive}
       doubleClickZoom={interactive}
