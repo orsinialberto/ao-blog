@@ -99,9 +99,11 @@
     },
     "heroSection": {
       "label": "Diario di Viaggio",
+      "subtitle": "viaggi · cammini · in moto on the road · fotografia",
+      "byline": "di",
       "titleLine1": "Quella voglia di partire",
       "titleLine2": "che non passa mai.",
-      "cta": "Esplora i viaggi",
+      "cta": "I miei viaggi",
       "imageAlt": "I miei viaggi"
     },
     "heroQuote": {

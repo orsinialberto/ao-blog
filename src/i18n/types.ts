@@ -102,6 +102,8 @@ export interface TranslationMessages {
     };
     heroSection: {
       label: string;
+      subtitle: string;
+      byline: string;
       titleLine1: string;
       titleLine2: string;
       cta: string;

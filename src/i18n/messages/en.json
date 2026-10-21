@@ -99,9 +99,11 @@
     },
     "heroSection": {
       "label": "Travel Journal",
+      "subtitle": "travels · walks · motorcycle on the road · photography",
+      "byline": "by",
       "titleLine1": "That urge to leave",
       "titleLine2": "that never fades.",
-      "cta": "Explore the journeys",
+      "cta": "My travels",
       "imageAlt": "My travels"
     },
     "heroQuote": {

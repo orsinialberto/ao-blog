@@ -24,6 +24,7 @@ const config: Config = {
       fontFamily: {
         headline: ["var(--font-noto-serif)", "Noto Serif", "Georgia", "serif"],
         hero: ["var(--font-cormorant)", "Cormorant Garamond", "Georgia", "serif"],
+        hand: ["var(--font-waiting-for-the-sunrise)", "Waiting for the Sunrise", "cursive"],
         body: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
         label: ["var(--font-plus-jakarta)", "Plus Jakarta Sans", "system-ui", "sans-serif"],
       },

@@ -1,4 +1,4 @@
-import { Noto_Serif, Inter, Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
+import { Noto_Serif, Inter, Plus_Jakarta_Sans, Cormorant_Garamond, Waiting_for_the_Sunrise } from "next/font/google";
 
 export const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -33,10 +33,19 @@ export const cormorantGaramond = Cormorant_Garamond({
   preload: true,
 });
 
+export const waitingForTheSunrise = Waiting_for_the_Sunrise({
+  variable: "--font-waiting-for-the-sunrise",
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  preload: true,
+});
+
 export const fontVariables = [
   notoSerif.variable,
   inter.variable,
   plusJakartaSans.variable,
   cormorantGaramond.variable,
+  waitingForTheSunrise.variable,
 ].join(" ");
 

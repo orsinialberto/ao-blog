@@ -1,5 +1,7 @@
-import Image from "next/image";
 import { withBasePath } from "@/lib/paths";
+import Image from "next/image";
+import { LocalizedLink } from "@/components/LocalizedLink";
+import { WigglyText } from "@/components/WigglyText";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 
@@ -7,36 +9,69 @@ interface HeroSectionProps {
   locale: SupportedLocale;
 }
 
+const LINE_HEIGHT = 32;
+
+const notebookPaper = {
+  backgroundColor: "#fff",
+  backgroundImage: `repeating-linear-gradient(to bottom, transparent 0, transparent ${LINE_HEIGHT - 1}px, rgba(120, 150, 190, 0.12) ${LINE_HEIGHT - 1}px, rgba(120, 150, 190, 0.12) ${LINE_HEIGHT}px)`,
+};
+
 export function HeroSection({ locale }: HeroSectionProps) {
   const t = getTranslations(locale);
 
   return (
-    <section className="relative min-h-[100dvh] w-full overflow-hidden bg-brand-primary">
-      <Image
-        src={withBasePath("/images/home-hero.jpg")}
-        alt={t.components.heroSection.imageAlt}
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
+    <section
+      className="relative min-h-[100dvh] w-full overflow-hidden"
+      style={notebookPaper}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+        style={{
+          backgroundImage: `url(${withBasePath("/images/hero-sketch.jpg")})`,
+          backgroundSize: "100% auto",
+          backgroundPosition: "center bottom",
+          backgroundRepeat: "no-repeat",
+        }}
       />
-      <div className="absolute inset-0 bg-black/35" />
-      <div className="relative z-10 flex min-h-[100dvh] w-full max-w-screen-2xl flex-col items-center justify-center px-8 text-center mx-auto">
-        <div className="max-w-4xl w-full">
-          <span className="font-label text-white/90 text-sm uppercase tracking-[0.3em] mb-6 block">
-            {t.components.heroSection.label}
-          </span>
-          <h1 className="mb-14">
-            <span className="font-hero block text-6xl md:text-7xl lg:text-8xl font-bold italic text-white leading-none tracking-tight">
-              {t.components.heroSection.titleLine1}
+      <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-screen-2xl items-center justify-center px-8 pb-16">
+        <div className="relative isolate text-center font-hand text-5xl md:text-7xl lg:text-8xl">
+          <div
+            aria-hidden
+            className="absolute -inset-x-12 -inset-y-10 -z-10 bg-[radial-gradient(closest-side,rgba(255,255,255,0.7),transparent)] md:-inset-x-32 md:-inset-y-16"
+          />
+          <p className="leading-none text-brand-primary">
+            <WigglyText text={t.components.heroSection.label} />
+          </p>
+          <p className="mt-6 text-[max(1rem,0.28em)] leading-tight text-brand-muted md:mt-9 lg:mt-12">
+            <WigglyText text={t.components.heroSection.subtitle} />
+          </p>
+          <p className="mt-3 leading-tight text-brand-primary md:mt-4">
+            <span className="mb-2 block text-[max(0.875rem,0.2em)] text-brand-muted md:mb-3">
+              <WigglyText text={t.components.heroSection.byline} />
             </span>
-            <span className="font-hero block text-3xl md:text-4xl lg:text-5xl font-light italic text-white/90 leading-snug mt-2">
-              {t.components.heroSection.titleLine2}
+            <span className="block text-[max(1.25rem,0.4em)]">
+              <WigglyText text="Alberto Orsini" />
             </span>
-          </h1>
+          </p>
+          <LocalizedLink
+            href="/viaggi"
+            className="mt-6 inline-block -rotate-6 transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none md:mt-8"
+          >
+            <Image
+              src={withBasePath("/images/hero-stamp.png")}
+              alt={t.components.heroSection.cta}
+              width={583}
+              height={600}
+              className="w-32 md:w-40"
+            />
+          </LocalizedLink>
         </div>
+        <h1 className="sr-only">
+          {t.components.heroSection.titleLine1}{" "}
+          {t.components.heroSection.titleLine2}
+        </h1>
       </div>
     </section>
   );
 }
-
