@@ -173,7 +173,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
               priority={isPriority}
             />
             {/* Overlay con info al hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 rounded-lg">
+            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4 rounded-lg">
               <div className="text-white">
                 <p className="font-semibold text-sm md:text-base text-white">{photo.travelTitle}</p>
                 <p className="text-xs md:text-sm text-white/90">{photo.location}</p>

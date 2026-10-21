@@ -56,7 +56,7 @@ export function RelatedWaypoints({
               href={createLocalizedPath(`${detailBase}/${travel.slug}`, locale)}
               className="group flex flex-col"
             >
-              <div className="relative aspect-[3/2] overflow-hidden">
+              <div className="relative aspect-3/2 overflow-hidden">
                 <Image
                   src={optimizeCloudinaryUrl(travel.coverImage, { width: 800, quality: 80 })}
                   alt={travel.title}

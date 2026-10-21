@@ -41,7 +41,7 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 w-full z-50 bg-gradient-to-b from-white to-transparent"
+      className="fixed top-0 w-full z-50 bg-linear-to-b from-white to-transparent"
     >
       <div className="relative flex justify-center items-center py-4 px-8 max-w-screen-2xl mx-auto">
         <nav className="hidden md:flex items-center gap-10">

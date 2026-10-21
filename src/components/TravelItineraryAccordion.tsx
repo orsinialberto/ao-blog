@@ -82,7 +82,7 @@ export function TravelItineraryAccordion({
                 <span className="shrink-0 font-label text-[10px] uppercase tracking-widest text-brand-outline">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="font-headline text-lg font-bold text-brand-primary break-words">
+                <span className="font-headline text-lg font-bold text-brand-primary wrap-break-word">
                   {item.title}
                 </span>
               </div>

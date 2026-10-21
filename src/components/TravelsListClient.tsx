@@ -83,7 +83,7 @@ export function TravelsListClient({ allTravels, allTags, locale }: TravelsListCl
               <span className="font-label text-[10px] font-bold tracking-[0.25em] uppercase text-brand-muted/50 shrink-0">
                 {formatEntryCount(travels.length)} {travels.length === 1 ? 'viaggio' : 'viaggi'}
               </span>
-              <div className="h-px flex-grow bg-brand-outline-variant/15" />
+              <div className="h-px grow bg-brand-outline-variant/15" />
               <h2 className="font-hero italic text-2xl text-brand-primary shrink-0">
                 {continent}
               </h2>

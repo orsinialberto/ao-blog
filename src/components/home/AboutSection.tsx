@@ -15,7 +15,7 @@ export function AboutSection({ locale }: AboutSectionProps) {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center">
 
-          <div className="relative h-[300px] md:h-[440px] w-full md:w-[48%] flex-shrink-0 overflow-hidden">
+          <div className="relative h-[300px] md:h-[440px] w-full md:w-[48%] shrink-0 overflow-hidden">
             <Image
               src="/images/profile.jpg"
               alt={name}

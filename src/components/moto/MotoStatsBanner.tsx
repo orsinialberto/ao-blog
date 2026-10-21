@@ -35,11 +35,11 @@ export function MotoStatsBanner({ stats, locale }: MotoStatsBannerProps) {
   return (
     <section className="mx-auto max-w-screen-xl px-8 py-10 text-center md:py-12">
       <div className="mb-6 flex items-center justify-center gap-4 md:mb-8">
-        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+        <span className="h-px w-12 bg-brand-outline-variant/50" />
         <span className="font-label text-xs uppercase tracking-widest text-brand-secondary">
           {m.sectionLabel}
         </span>
-        <span className="h-[1px] w-12 bg-brand-outline-variant/50" />
+        <span className="h-px w-12 bg-brand-outline-variant/50" />
       </div>
       <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-4">
         {statsItems.map((item, index) => (

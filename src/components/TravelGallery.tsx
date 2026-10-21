@@ -11,7 +11,7 @@ interface TravelGalleryProps {
   title: string;
 }
 
-const HERO_ASPECT = "aspect-[4/3]";
+const HERO_ASPECT = "aspect-4/3";
 
 export function TravelGallery({ images, title }: TravelGalleryProps) {
   const t = useTranslations();
@@ -140,13 +140,13 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
         <div className="relative">
           {canScrollThumbs && (
             <>
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-white via-white/70 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-white via-white/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-linear-to-r from-white via-white/70 to-transparent" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-linear-to-l from-white via-white/70 to-transparent" />
             </>
           )}
           <div
             ref={thumbsRef}
-            className="flex gap-1 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="flex gap-1 overflow-x-auto pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none"
           >
           {thumbnails.map((image, index) => {
             const isActive = index === selectedIndex;
@@ -155,7 +155,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
                 key={image}
                 type="button"
                 onClick={() => setSelectedIndex(index)}
-                className={`relative h-24 w-32 flex-shrink-0 overflow-hidden transition ${
+                className={`relative h-24 w-32 shrink-0 overflow-hidden transition ${
                   isActive
                     ? "opacity-100"
                     : "opacity-70 hover:opacity-100"
@@ -207,7 +207,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
       )}
 
       {isLightboxOpen && (
-        <div className="fixed inset-0 z-[9999] flex flex-col bg-black/90 backdrop-blur">
+        <div className="fixed inset-0 z-9999 flex flex-col bg-black/90 backdrop-blur">
           <div className="flex items-center justify-between px-6 py-4 text-white">
             <p className="text-sm font-semibold uppercase tracking-[0.3em]">
               {t.components.travelGallery.fullGallery}
@@ -225,7 +225,7 @@ export function TravelGallery({ images, title }: TravelGalleryProps) {
               {safeImages.map((image, index) => (
                 <div
                   key={image}
-                  className="relative aspect-[4/3] overflow-hidden cursor-pointer transition hover:scale-[1.02]"
+                  className="relative aspect-4/3 overflow-hidden cursor-pointer transition hover:scale-[1.02]"
                   onClick={() => setFullImageOpen(image)}
                 >
                   <Image

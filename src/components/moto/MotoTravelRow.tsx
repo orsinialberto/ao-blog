@@ -38,7 +38,7 @@ export function MotoTravelRow({ travel, locale }: MotoTravelRowProps) {
           <span className="font-label text-xs font-bold uppercase tracking-[0.2em] text-brand-primary">
             {period}
           </span>
-          <div className="h-px flex-grow bg-brand-outline-variant/40" />
+          <div className="h-px grow bg-brand-outline-variant/40" />
           {kmLabel && (
             <div className="flex items-center gap-1.5 text-brand-primary">
               <svg

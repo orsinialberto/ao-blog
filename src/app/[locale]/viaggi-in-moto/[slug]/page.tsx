@@ -86,7 +86,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/25 to-transparent" />
 
         <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 lg:p-20">
           <div className="mx-auto max-w-7xl min-w-0">
@@ -96,10 +96,10 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
             >
               {t.pages.motorcycleTravels.badge}
             </LocalizedLink>
-            <h1 className="max-w-4xl font-headline text-4xl font-bold leading-none tracking-tight text-white md:text-6xl lg:text-7xl break-words">
+            <h1 className="max-w-4xl font-headline text-4xl font-bold leading-none tracking-tight text-white md:text-6xl lg:text-7xl wrap-break-word">
               {travel.title}
             </h1>
-            <p className="mt-4 max-w-2xl font-body text-lg italic leading-relaxed text-white/85 md:text-xl break-words">
+            <p className="mt-4 max-w-2xl font-body text-lg italic leading-relaxed text-white/85 md:text-xl wrap-break-word">
               {travel.description}
             </p>
             {showFullStoryLink && (
@@ -128,7 +128,7 @@ export default async function MotorcycleTravelDetailPage({ params }: PageProps) 
       )}
 
       {hasMotoItineraryAccordionItems(travel.timeline) && (
-        <section className="relative z-[2] mx-auto max-w-7xl border-t border-brand-outline-variant/30 px-6 pt-12 pb-16 md:px-12 md:pb-20">
+        <section className="relative z-2 mx-auto max-w-7xl border-t border-brand-outline-variant/30 px-6 pt-12 pb-16 md:px-12 md:pb-20">
           <TravelItineraryAccordion
             timeline={travel.timeline}
             map={travel.map}
