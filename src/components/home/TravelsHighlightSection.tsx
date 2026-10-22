@@ -18,9 +18,10 @@ export function TravelsHighlightSection({
   if (travels.length === 0) return null;
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-20 px-6 overflow-x-clip">
       <div className="max-w-6xl mx-auto">
         <SectionHeader
+          plane
           label={t.components.sectionHeader.latestPublications}
         />
 
