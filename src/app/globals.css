@@ -767,3 +767,42 @@
     opacity: 1;
   }
 }
+
+/* Travels world map pins: tip sits on the (left, top) point, drop in from above */
+.world-pin {
+  position: absolute;
+  width: clamp(18px, 2.4vw, 28px);
+  aspect-ratio: 24 / 32;
+  transform: translate(-50%, -100%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .world-pin {
+    opacity: 0;
+    animation: pin-drop 700ms var(--ease-out-strong) forwards;
+  }
+}
+
+@keyframes pin-drop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 60px));
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+  70% {
+    transform: translate(-50%, calc(-100% - 12px));
+  }
+  85% {
+    transform: translate(-50%, -100%);
+  }
+  92% {
+    transform: translate(-50%, calc(-100% - 4px));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 
+import { TravelsWorldMap } from "@/components/TravelsWorldMap";
 import { TravelsListClient } from "@/components/TravelsListClient";
 import { getArchiveTags, getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
@@ -36,6 +37,7 @@ export default async function TravelsPage({ params }: TravelsPageProps) {
 
   return (
     <div className="max-w-6xl mx-auto px-6 pt-8 pb-32">
+      <TravelsWorldMap />
       <Suspense fallback={<div>{t.common.loading}</div>}>
         <TravelsListClient allTravels={allTravels} allTags={tags} locale={locale} />
       </Suspense>
