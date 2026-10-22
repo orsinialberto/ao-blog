@@ -36,11 +36,11 @@ export function TravelCard({ travel, locale }: TravelCardProps) {
 
         <div className="pt-3 pb-4 px-1 flex-1 flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-label text-[10px] font-bold text-foreground/50 uppercase tracking-tight">
+            <span className="font-label text-[10px] font-bold text-brand-muted uppercase tracking-tight">
               {travel.location}
             </span>
             <span className="w-0.5 h-0.5 rounded-full bg-brand-accent" />
-            <time className="font-label text-[10px] text-foreground/40 uppercase tracking-widest">
+            <time className="font-label text-[10px] text-brand-outline uppercase tracking-widest">
               {formatDate(travel.date, locale, { month: "short", year: "numeric" })}
             </time>
           </div>
@@ -48,7 +48,7 @@ export function TravelCard({ travel, locale }: TravelCardProps) {
             {travel.title}
           </h3>
           {travel.description && (
-            <p className="font-body text-xs text-foreground/50 leading-relaxed line-clamp-2">
+            <p className="font-body text-xs text-brand-muted leading-relaxed line-clamp-2">
               {travel.description}
             </p>
           )}

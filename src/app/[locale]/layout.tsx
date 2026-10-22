@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import "./../globals.css";
+import { fontVariables } from "@/config/fonts";
+import { supportedLocales } from "@/config/locales";
 import { ConsentModeInitializer } from "@/components/ConsentModeInitializer";
 import { CookieBanner } from "@/components/CookieBanner";
 import { Footer } from "@/components/Footer";
@@ -62,17 +64,26 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   };
 }
 
-export default async function LocaleLayout({ children }: LocaleLayoutProps) {
+export function generateStaticParams() {
+  return supportedLocales.map((locale) => ({ locale }));
+}
+
+/** Root layout for every localized page: <html lang> is set per locale at build time. */
+export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
+  const locale = await getLocaleFromParams(params);
+
   return (
-    <>
-      <ConsentModeInitializer />
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <MainWrapper>{children}</MainWrapper>
-        <Footer />
-      </div>
-      <CookieBanner />
-      {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
-    </>
+    <html lang={locale}>
+      <body className={`${fontVariables} bg-white font-body antialiased`}>
+        <ConsentModeInitializer />
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <MainWrapper>{children}</MainWrapper>
+          <Footer />
+        </div>
+        <CookieBanner />
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics />}
+      </body>
+    </html>
   );
 }

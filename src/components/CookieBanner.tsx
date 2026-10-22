@@ -56,7 +56,7 @@ export function CookieBanner() {
         isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
       }`}
       role="dialog"
-      aria-label="Cookie consent banner"
+      aria-label={t.components.cookieBanner.title}
     >
       <div className="bg-white border-t border-gray-200 shadow-lg">
         <div className="container mx-auto max-w-6xl px-4 py-4">

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useCallback, type ReactNode } from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@/components/maps/icons";
+import { useEffect, useCallback, useRef, type ReactNode } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface LightboxProps {
@@ -18,6 +19,20 @@ interface LightboxProps {
   onImageLoad?: () => void;
 }
 
+function trapFocus(e: KeyboardEvent, dialog: HTMLElement | null) {
+  const focusable = dialog?.querySelectorAll<HTMLElement>("button");
+  if (!focusable?.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
 export function Lightbox({
   src,
   alt,
@@ -32,15 +47,26 @@ export function Lightbox({
   onImageLoad,
 }: LightboxProps) {
   const showNavigation = Boolean(onPrevious && onNext);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       else if (e.key === "ArrowLeft" && onPrevious) onPrevious();
       else if (e.key === "ArrowRight" && onNext) onNext();
+      else if (e.key === "Tab") trapFocus(e, dialogRef.current);
     },
     [onClose, onPrevious, onNext]
   );
+
+  useEffect(() => {
+    const opener = document.activeElement;
+    closeButtonRef.current?.focus();
+    return () => {
+      if (opener instanceof HTMLElement) opener.focus();
+    };
+  }, []);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -55,13 +81,18 @@ export function Lightbox({
 
   return (
     <div
+      ref={dialogRef}
+      role="dialog"
+      aria-modal="true"
+      aria-label={alt}
       className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95 backdrop-blur"
       onClick={onClose}
     >
       <button
+        ref={closeButtonRef}
         type="button"
         onClick={onClose}
-        className="absolute right-6 top-6 z-10 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80"
+        className="absolute right-6 top-6 z-10 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         {closeLabel}
       </button>
@@ -71,24 +102,24 @@ export function Lightbox({
           <button
             type="button"
             aria-label={previousLabel}
-            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:-translate-x-1"
+            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 [&>svg]:size-6 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={(e) => {
               e.stopPropagation();
               onPrevious?.();
             }}
           >
-            ←
+            <ChevronLeftIcon />
           </button>
           <button
             type="button"
             aria-label={nextLabel}
-            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 hover:translate-x-1"
+            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 [&>svg]:size-6 hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={(e) => {
               e.stopPropagation();
               onNext?.();
             }}
           >
-            →
+            <ChevronRightIcon />
           </button>
         </div>
       )}

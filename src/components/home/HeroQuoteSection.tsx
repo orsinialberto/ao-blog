@@ -27,7 +27,7 @@ export function HeroQuoteSection({ locale }: HeroQuoteSectionProps) {
             ))}
           </p>
           <footer className="mt-6">
-            <cite className="not-italic font-label text-xs uppercase tracking-[0.25em] text-stone-400">
+            <cite className="not-italic font-label text-xs uppercase tracking-[0.25em] text-stone-600">
               {author}
               <span className="mx-2 text-stone-300">/</span>
               {source}

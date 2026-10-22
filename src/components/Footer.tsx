@@ -66,14 +66,14 @@ export function Footer() {
           {t.common.siteName}
         </p>
 
-        <nav aria-label="Footer navigation">
+        <nav aria-label={t.footer.navigation}>
           <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2">
             {quickLinks.map((link, i) => (
               <li key={link.href} className="flex items-center gap-4">
                 {i > 0 && <span className="text-stone-300 select-none">·</span>}
                 <LocalizedLink
                   href={link.href}
-                  className="font-label text-xs uppercase tracking-[0.2em] text-stone-400 hover:text-stone-700 transition-colors"
+                  className="font-label text-xs uppercase tracking-[0.2em] text-stone-600 hover:text-stone-900 transition-colors"
                 >
                   {link.label}
                 </LocalizedLink>
@@ -97,7 +97,7 @@ export function Footer() {
           ))}
         </div>
 
-        <p className="font-label text-xs tracking-wider text-stone-300">
+        <p className="font-label text-xs tracking-wider text-stone-500">
           © {currentYear} {t.common.siteName}
         </p>
       </div>

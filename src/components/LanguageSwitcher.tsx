@@ -163,7 +163,7 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
                 className={`
                   w-full px-4 py-2 text-left text-sm font-medium transition-colors
                   first:rounded-t-lg last:rounded-b-lg
-                  focus:outline-none
+                  focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-current
                   ${textColor}
                   ${isActive ? activeBg : hoverBg}
                   ${isActive ? "cursor-default font-semibold" : "cursor-pointer"}

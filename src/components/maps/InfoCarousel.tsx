@@ -54,7 +54,7 @@ export default function InfoCarousel({
 }: Props) {
   const [index, setIndex] = useState(0);
   const [fading, setFading] = useState(false);
-  const touchStartX = useRef<number | null>(null);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const page = pages[index];
 
   function go(next: number) {
@@ -69,7 +69,7 @@ export default function InfoCarousel({
 
   return (
     <div
-      className="flex min-h-0 flex-1 flex-col p-4 pt-3.5"
+      className="flex min-h-0 flex-1 touch-pan-y flex-col p-4 pt-3.5"
       role="group"
       aria-label={groupLabel}
       tabIndex={0}
@@ -78,13 +78,19 @@ export default function InfoCarousel({
         if (event.key === 'ArrowLeft') go(index - 1);
       }}
       onPointerDown={(event) => {
-        touchStartX.current = event.clientX;
+        swipeStart.current = { x: event.clientX, y: event.clientY };
       }}
       onPointerUp={(event) => {
-        if (touchStartX.current === null) return;
-        const dx = event.clientX - touchStartX.current;
-        if (Math.abs(dx) > SWIPE_THRESHOLD_PX) go(index + (dx < 0 ? 1 : -1));
-        touchStartX.current = null;
+        if (!swipeStart.current) return;
+        const dx = event.clientX - swipeStart.current.x;
+        const dy = event.clientY - swipeStart.current.y;
+        swipeStart.current = null;
+        if (Math.abs(dx) > SWIPE_THRESHOLD_PX && Math.abs(dx) > Math.abs(dy)) {
+          go(index + (dx < 0 ? 1 : -1));
+        }
+      }}
+      onPointerCancel={() => {
+        swipeStart.current = null;
       }}
     >
       <div className="bg-ink/5 relative aspect-[4/3] flex-none overflow-hidden rounded-lg">

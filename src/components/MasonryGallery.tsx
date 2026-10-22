@@ -221,7 +221,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
                 <p className="text-xs text-white/80">{selectedPhoto.location}</p>
               </div>
               {photos.length > 1 && (
-                <div className="text-xs text-white/60">
+                <div className="text-xs text-white/80">
                   {new Intl.NumberFormat(locale).format(selectedIndex + 1)} / {new Intl.NumberFormat(locale).format(photos.length)}
                 </div>
               )}

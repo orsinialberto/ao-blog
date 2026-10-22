@@ -15,7 +15,7 @@ interface HeroSectionProps {
 const LINE_HEIGHT = 32;
 
 const notebookPaper = {
-  backgroundColor: "#fff",
+  backgroundColor: "var(--color-white)",
   backgroundImage: `repeating-linear-gradient(to bottom, transparent 0, transparent ${LINE_HEIGHT - 1}px, rgba(120, 150, 190, 0.12) ${LINE_HEIGHT - 1}px, rgba(120, 150, 190, 0.12) ${LINE_HEIGHT}px)`,
 };
 

@@ -16,7 +16,7 @@ export function AboutSection({ locale }: AboutSectionProps) {
 
   return (
     <section className="bg-white">
-      <div className="md:hidden notebook-paper px-6 py-12 text-center text-[#173124]">
+      <div className="md:hidden notebook-paper px-6 py-12 text-center text-brand-primary">
         <div className="relative mx-auto w-3/5 max-w-[240px] aspect-[2080/2456] -rotate-2">
           <Image
             src="/images/polaroid.png"
@@ -70,13 +70,13 @@ export function AboutSection({ locale }: AboutSectionProps) {
         }
         rightPage={
           <>
-          <h2 className="absolute left-[68%] top-[19.5%] w-fit -translate-x-1/2 whitespace-nowrap px-[1cqw] isolate before:absolute before:-inset-x-[0.5cqw] before:-inset-y-[0.3cqw] before:-z-10 before:rounded-full before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[4.2cqw] leading-none text-[#173124]/90">
+          <h2 className="absolute left-[68%] top-[19.5%] w-fit -translate-x-1/2 whitespace-nowrap px-[1cqw] isolate before:absolute before:-inset-x-[0.5cqw] before:-inset-y-[0.3cqw] before:-z-10 before:rounded-full before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[4.2cqw] leading-none text-brand-primary/90">
             <HandHighlight />
             <HandwrittenText text={name} />
           </h2>
 
           {/* Line height matches the notebook's ruled-line pitch (28.4px of 1280) so each text line sits on a rule */}
-          <div className="absolute left-[53%] top-[calc(27.4%+2.22cqw)] w-[30%] text-center isolate before:absolute before:-inset-x-[1cqw] before:-inset-y-[0.5cqw] before:-z-10 before:rounded-[2cqw] before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[1.85cqw] leading-[2.22cqw] text-[#173124]/90">
+          <div className="absolute left-[53%] top-[calc(27.4%+2.22cqw)] w-[30%] text-center isolate before:absolute before:-inset-x-[1cqw] before:-inset-y-[0.5cqw] before:-z-10 before:rounded-[2cqw] before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[1.85cqw] leading-[2.22cqw] text-brand-primary/90">
             {bio.map((paragraph, i) => (
               <p
                 key={i}

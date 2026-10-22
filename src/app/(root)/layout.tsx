@@ -1,13 +1,11 @@
 /**
- * Root layout - provides base HTML structure
- * Next.js requires <html> and <body> tags in the root layout
- * The [locale]/layout.tsx handles locale-specific metadata and page structure
+ * Root layout for "/" only, which redirects to the default locale.
+ * Every other route is rendered by [locale]/layout.tsx, which is its own root layout.
  */
 
-import "./globals.css";
+import "../globals.css";
 import { defaultLocale } from "@/config/locales";
 import { fontVariables } from "@/config/fonts";
-import { LangAttributeSetter } from "@/components/LangAttributeSetter";
 
 export default function RootLayout({
   children,
@@ -17,7 +15,6 @@ export default function RootLayout({
   return (
     <html lang={defaultLocale}>
       <body className={`${fontVariables} bg-white font-body antialiased`}>
-        <LangAttributeSetter />
         {children}
       </body>
     </html>

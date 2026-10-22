@@ -17,7 +17,7 @@ const config: Config = {
           "surface-low": "#f4f3f1",
           "surface-high": "#e9e8e6",
           "surface-lowest": "#ffffff",
-          outline: "#727973",
+          outline: "#646b66",
           "outline-variant": "#c2c8c2",
         },
       },

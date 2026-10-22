@@ -18,7 +18,7 @@ export default function TrafficLights({ className = '' }: Props) {
       <LocalizedLink
         href="/"
         aria-label={t.navigation.close}
-        className="focus-visible:outline-ink relative block h-3 w-3 rounded-full border border-black/15 bg-[#ff5f57] before:absolute before:-inset-y-4 before:-right-1 before:-left-3 before:content-[''] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+        className="focus-visible:outline-ink relative block h-3 w-3 rounded-full border border-black/15 bg-[#ff5f57] before:absolute before:-inset-y-4 before:-right-1 before:-left-3 pointer-coarse:before:-right-4 pointer-coarse:before:-left-4 before:content-[''] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
       >
         {null}
       </LocalizedLink>
