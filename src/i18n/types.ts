@@ -98,7 +98,6 @@ export interface TranslationMessages {
       seeAllPhotos: string;
     };
     aboutSection: {
-      eyebrow: string;
       name: string;
       bio: string[];
     };
