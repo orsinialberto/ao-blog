@@ -60,7 +60,7 @@ export function Footer() {
     <footer className="bg-white border-t border-stone-100 py-16 px-6">
       <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-5">
 
-        <CheersBear className="-mb-2 w-32" />
+        <CheersBear className="-mb-2 w-36" />
 
         <p className="font-hero text-4xl italic text-stone-800">
           {t.common.siteName}

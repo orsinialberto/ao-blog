@@ -16,6 +16,35 @@ export function AboutSection({ locale }: AboutSectionProps) {
 
   return (
     <section className="bg-white">
+      <div className="md:hidden notebook-paper px-6 py-12 text-center text-[#173124]">
+        <div className="relative mx-auto w-3/5 max-w-[240px] aspect-[2080/2456] -rotate-2">
+          <Image
+            src="/images/polaroid.png"
+            alt=""
+            fill
+            className="object-contain"
+            sizes="240px"
+          />
+        </div>
+        <h2 className="mt-8 font-hand text-3xl font-bold uppercase leading-tight">
+          {name}
+        </h2>
+        <div className="mt-4 space-y-4 font-hand text-lg font-bold uppercase leading-8">
+          {bio.map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+        </div>
+        <div className="relative mx-auto mt-8 w-36 aspect-[900/576]">
+          <Image
+            src={BEARS.tent.src}
+            alt=""
+            fill
+            className="object-contain"
+            sizes="144px"
+          />
+        </div>
+      </div>
+      <div className="hidden md:block">
       <NotebookReveal
         leftPage={
           <>
@@ -57,6 +86,7 @@ export function AboutSection({ locale }: AboutSectionProps) {
           </>
         }
       />
+      </div>
     </section>
   );
 }

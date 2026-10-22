@@ -34,7 +34,7 @@ export function HeroQuoteSection({ locale }: HeroQuoteSectionProps) {
             </cite>
           </footer>
         </blockquote>
-        <BearReveal bear="rest" id={REST_BEAR_ID} className="mx-auto mt-10 w-48 md:w-64" />
+        <BearReveal bear="rest" id={REST_BEAR_ID} className="mx-auto mt-10 w-36 md:w-64" />
       </div>
     </section>
   );

@@ -84,7 +84,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
       <BearReveal
         bear="wave"
         variant="wave"
-        className="absolute right-3 bottom-6 w-28 sm:w-36 md:right-[6%] md:bottom-10 md:w-48 lg:w-60"
+        className="absolute right-3 bottom-6 w-36 md:right-[6%] md:bottom-10 md:w-48 lg:w-60"
       />
     </section>
   );
