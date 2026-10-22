@@ -15,20 +15,20 @@ export function OnTheRoadHomeSection({ locale }: OnTheRoadHomeSectionProps) {
 
   return (
     <section className="notebook-paper px-6 py-16 md:py-24">
-      <div className="flex w-full flex-col items-center gap-10 md:flex-row md:gap-8">
-        <div className="w-full max-w-md md:ml-16 md:w-2/5 md:max-w-none md:shrink-0 lg:ml-32">
+      <div className="flex w-full flex-col items-center gap-10 xl:flex-row xl:gap-8">
+        <div className="w-full max-w-md md:max-w-lg xl:ml-32 xl:w-2/5 xl:max-w-none xl:shrink-0">
           <Image
             src={withBasePath("/images/on-the-road-sketch.jpg")}
             alt={imageAlt}
             width={1100}
             height={733}
             className="h-auto w-full mix-blend-multiply"
-            sizes="(max-width: 768px) 100vw, 40vw"
+            sizes="(max-width: 1280px) 100vw, 40vw"
           />
         </div>
 
-        <div className="flex w-full flex-col items-center text-center font-hand md:w-auto md:flex-none">
-          <h2 className="mx-auto max-w-lg font-hand text-4xl leading-tight text-brand-primary md:text-5xl lg:text-[3.5rem]">
+        <div className="flex w-full flex-col items-center text-center font-hand xl:w-auto xl:flex-none">
+          <h2 className="mx-auto max-w-lg text-balance font-hand xl:text-wrap text-4xl leading-tight text-brand-primary md:text-5xl xl:text-[3.5rem]">
             <WigglyText text={title} />
           </h2>
           <LocalizedLink
