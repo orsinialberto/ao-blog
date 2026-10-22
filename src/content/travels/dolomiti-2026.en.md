@@ -4,7 +4,7 @@ slug: "sellaronda-2026"
 date: "2026-01-10"
 endDate: "2026-01-17"
 description: "A week of snowboarding up and down the Dolomites, a UNESCO World Heritage site"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1769031244/16-IMG_3476_eb3lcy.jpg"
+coverImage: "/images/sellaronda-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Italia

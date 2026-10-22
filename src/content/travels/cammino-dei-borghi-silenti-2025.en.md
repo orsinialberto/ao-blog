@@ -4,7 +4,7 @@ slug: "cammino-dei-borghi-silenti-2025"
 date: "2025-09-16"
 endDate: "2025-09-20"
 description: "Discovering Umbria on foot: 90 km among silent villages, nature and unforgettable encounters"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-02_igqu4p.jpg"
+coverImage: "/images/borghi-silenti-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Italia

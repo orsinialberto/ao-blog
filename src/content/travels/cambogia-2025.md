@@ -4,7 +4,7 @@ slug: "cambogia-2025"
 date: "2025-06-02"
 endDate: "2025-06-15"
 description: "Viaggio in Cambogia sulle tracce di una civiltà antica e leggendaria"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763735049/photo-14_plunxb.jpg"
+coverImage: "/images/cambogia-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Cambogia
