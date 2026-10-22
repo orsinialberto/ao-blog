@@ -56,14 +56,14 @@ export function HeroSection({ locale }: HeroSectionProps) {
           </p>
           <LocalizedLink
             href="/viaggi"
-            className="mt-6 inline-block -rotate-6 transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none md:mt-8"
+            className="mt-6 mb-8 inline-block translate-y-6 -rotate-6 transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none md:mt-8 md:translate-y-8"
           >
             <Image
               src={withBasePath("/images/hero-stamp.png")}
               alt={t.components.heroSection.cta}
               width={583}
               height={600}
-              className="w-32 md:w-40"
+              className="w-24 md:w-32"
             />
           </LocalizedLink>
         </div>
