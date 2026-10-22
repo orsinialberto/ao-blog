@@ -67,11 +67,11 @@ function routesToGeoJson() {
 }
 
 /** Room to leave around a fitted track, so the panels do not cover it. On a
-    phone the sheet eats the bottom of the window instead of the left. */
+    phone the sheet eats the top of the window instead of the left. */
 function fitPadding(map: MapLibreMap, hasPanel: boolean) {
   const { clientWidth, clientHeight } = map.getContainer();
   if (clientWidth < 768) {
-    return { top: 40, right: 24, bottom: Math.round(clientHeight * 0.45), left: 24 };
+    return { top: Math.round(clientHeight * 0.45), right: 24, bottom: 96, left: 24 };
   }
   // Sidebar is 186px at inset 12, the detail panel another 232px after it.
   return { top: 40, right: 60, bottom: 40, left: hasPanel ? 470 : 230 };

@@ -23,7 +23,7 @@ export default function MapsPanel({ title, closeLabel, children }: Props) {
   return (
     <section
       aria-labelledby="maps-panel-title"
-      className="panel-glass panel-enter absolute inset-x-3 bottom-[76px] z-10 flex h-[38dvh] flex-col p-3 md:inset-x-auto md:top-3 md:bottom-3 md:left-[206px] md:h-auto md:w-[232px]"
+      className="panel-glass panel-enter absolute inset-x-3 top-[76px] z-10 flex h-[38dvh] flex-col p-3 md:inset-x-auto md:top-3 md:bottom-3 md:left-[206px] md:h-auto md:w-[232px]"
     >
       <header className="flex items-start justify-between gap-2 pb-2">
         <h2 id="maps-panel-title" className="text-ink text-base font-bold">

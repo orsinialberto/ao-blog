@@ -57,7 +57,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-white border-t border-stone-100 py-16 px-6">
+    <footer className="bg-white border-t border-stone-100 pt-16 pb-32 md:pb-16 px-6">
       <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-5">
 
         <CheersBear className="-mb-2 w-36" />

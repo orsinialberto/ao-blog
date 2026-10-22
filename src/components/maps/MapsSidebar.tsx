@@ -38,11 +38,11 @@ export default function MapsSidebar({ locale, active }: Props) {
   const t = getTranslations(locale).onTheRoad;
 
   return (
-    <div className="panel-glass absolute inset-x-3 bottom-3 z-10 flex flex-col gap-1 p-2.5 md:inset-x-auto md:top-3 md:bottom-3 md:left-3 md:w-[186px]">
+    <div className="panel-glass absolute inset-x-3 top-3 z-10 flex flex-col gap-1 p-2.5 max-md:h-16 md:inset-x-auto md:top-3 md:bottom-3 md:left-3 md:w-[186px]">
       <TrafficLights className="hidden px-1 pt-1 pb-3 md:flex" />
       <nav
         aria-label={t.navLabel}
-        className="flex flex-row gap-1 overflow-x-auto md:flex-col md:gap-0.5"
+        className="flex flex-row gap-1 overflow-x-auto max-md:min-h-0 max-md:flex-1 md:flex-col md:gap-0.5"
       >
         {ON_THE_ROAD_VIEWS.map((view) => {
           const Icon = icons[view];

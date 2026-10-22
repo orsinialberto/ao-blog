@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import type { SupportedLocale } from '@/config/locales';
 import { getTranslations } from '@/i18n';
 import WindowShell from '@/components/window/WindowShell';
-import TrafficLights from '@/components/window/TrafficLights';
 import MapCanvas from './MapCanvas';
 import MapsPanels from './MapsPanels';
 import MapsSidebar from './MapsSidebar';
@@ -28,7 +27,6 @@ export default function MapsWindow({ locale }: Props) {
       <Suspense fallback={null}>
         <MapCanvas label={t.mapLabel} errorMessage={t.mapError} />
       </Suspense>
-      <TrafficLights className="panel-glass absolute top-3 left-3 z-10 px-2.5 py-2 md:hidden" />
       <Suspense fallback={<MapsSidebar locale={locale} />}>
         <MapsPanels locale={locale} />
       </Suspense>

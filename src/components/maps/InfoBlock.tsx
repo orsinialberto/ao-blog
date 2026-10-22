@@ -51,9 +51,9 @@ export default function InfoBlock({ locale }: Props) {
   return (
     <section
       aria-labelledby="maps-panel-title"
-      className="panel-enter absolute inset-x-3 top-[52px] bottom-[76px] z-10 flex items-center justify-center md:inset-x-auto md:top-3 md:right-3 md:bottom-3 md:left-[206px]"
+      className="panel-enter absolute inset-x-3 top-[76px] bottom-24 z-10 flex items-start justify-center md:inset-x-auto md:items-center md:top-3 md:right-3 md:bottom-3 md:left-[206px]"
     >
-      <div className="panel-glass flex max-h-full w-[min(500px,100%)] flex-col overflow-hidden md:h-[min(720px,100%)]">
+      <div className="panel-glass flex max-h-full w-full flex-col overflow-hidden md:h-[min(720px,100%)] md:w-[min(500px,100%)]">
         <h2 id="maps-panel-title" className="sr-only">
           {t.nav.info}
         </h2>

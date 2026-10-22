@@ -360,10 +360,10 @@
 
 /* Enter transition for the Maps panels. Enter-only: the panels are removed by
    a soft navigation, so there is no node left to animate out. Origin is the
-   edge the panel grows from: the sidebar on desktop, the nav bar on phones.
+   edge the panel grows from: the sidebar on desktop, the nav bar on phones (above the panel).
    Without @starting-style support (Firefox < 129) the panel just appears. */
 .panel-enter {
-  transform-origin: center bottom;
+  transform-origin: center top;
   transition: opacity 120ms var(--ease-out-strong);
 }
 
@@ -383,7 +383,7 @@
   @starting-style {
     .panel-enter {
       opacity: 0;
-      transform: translateY(12px) scale(0.98);
+      transform: translateY(-12px) scale(0.98);
     }
   }
 }
@@ -541,24 +541,20 @@
 }
 
 @media (width < 48rem) {
-  /* The bottom-sheet nav bar (panel one) sits bottom-3 (12px) and is ~64px
-     tall (see the 76px = 12 + 64 offset MapsPanel uses to sit above it), so
-     its top edge is 76px above the viewport bottom. margin-bottom here
-     clears that, plus the control's own built-in 10px margin for a visible
-     gap. */
+  /* On phones the nav bar and the detail sheet sit at the top; the blog's
+     fixed bottom tab bar (Header) is ~72px tall, so clear it. */
   .maps-window .maplibregl-ctrl-bottom-left,
   .maps-window .maplibregl-ctrl-bottom-right {
     margin-bottom: 80px;
   }
+}
 
-  /* Panel two (the detail sheet) sits bottom-[76px] h-[38dvh] above panel
-     one once a view is open, so its top edge is 76px + 38dvh above the
-     viewport bottom — clear that instead, plus a 12px gap. */
-  .maps-window:has(> section[aria-labelledby='maps-panel-title'])
-    .maplibregl-ctrl-bottom-left,
-  .maps-window:has(> section[aria-labelledby='maps-panel-title'])
-    .maplibregl-ctrl-bottom-right {
-    margin-bottom: calc(38dvh + 88px);
+/* On phones the on-the-road page is full screen: no top bar (language
+   switcher) and no footer. The fixed bottom tab bar stays, it is the navigation. */
+@media (width < 48rem) {
+  body:has(.on-the-road-page) .site-top-bar,
+  body:has(.on-the-road-page) footer {
+    display: none;
   }
 }
 

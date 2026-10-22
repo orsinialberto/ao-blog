@@ -31,9 +31,10 @@ export default async function OnTheRoadPage({ params }: OnTheRoadPageProps) {
   const locale = await getLocaleFromParams(params);
 
   // MainWrapper pads the page top and bottom; the negative margins let the
-  // paper run behind the header and up to the footer.
+  // paper run behind the header and up to the footer. On phones the padding is
+  // dropped so the map fills the screen (globals.css hides header bar + footer).
   return (
-    <div className="notebook-paper -mt-(--header-height) -mb-16 pt-(--header-height) pb-16">
+    <div className="on-the-road-page notebook-paper -mt-(--header-height) -mb-16 md:pt-(--header-height) md:pb-16">
       <MapsWindow locale={locale as SupportedLocale} />
     </div>
   );
