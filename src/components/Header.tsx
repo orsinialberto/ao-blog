@@ -54,7 +54,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="absolute right-8 flex items-center gap-4">
+        <div className="absolute left-8 md:hidden">
           <button
             className={`flex items-center justify-center rounded-lg p-2 md:hidden transition-colors text-brand-muted hover:text-brand-primary`}
             onClick={() => setIsOpen((prev) => !prev)}
@@ -75,6 +75,9 @@ export function Header() {
               />
             </svg>
           </button>
+        </div>
+
+        <div className="absolute right-8 flex items-center gap-4">
           <Suspense fallback={<div className="h-9 w-20 rounded-lg border border-brand-outline-variant bg-brand-surface-low" />}>
             <LanguageSwitcher />
           </Suspense>
