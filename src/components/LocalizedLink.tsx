@@ -40,7 +40,7 @@ export function LocalizedLink({ href, children, ...props }: LocalizedLinkProps) 
   // Check if path already has a locale prefix
   const pathSegments = path.split("/").filter(Boolean);
   const firstSegment = pathSegments[0];
-  const hasLocalePrefix = firstSegment && supportedLocales.includes(firstSegment as any);
+  const hasLocalePrefix = firstSegment && (supportedLocales as readonly string[]).includes(firstSegment);
   
   let localizedHref: string;
   

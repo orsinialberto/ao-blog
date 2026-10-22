@@ -17,11 +17,15 @@ export function CookieBanner() {
     // Check if user has already given consent
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY) as CookieConsent;
     
-    if (!consent) {
-      setShowBanner(true);
-      // Small delay for smooth animation
-      setTimeout(() => setIsVisible(true), 100);
-    }
+    if (consent) return;
+
+    // Timers keep setState out of the effect body; the delay lets the fade-in animate
+    const showTimer = setTimeout(() => setShowBanner(true), 0);
+    const fadeTimer = setTimeout(() => setIsVisible(true), 100);
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(fadeTimer);
+    };
   }, []);
 
   const handleAccept = () => {

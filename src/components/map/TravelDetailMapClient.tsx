@@ -85,6 +85,8 @@ export default function TravelDetailMapClient({
   const [track, setTrack] = useState<FeatureCollection | null>(null);
   const [activeMarkerKey, setActiveMarkerKey] = useState<string | null>(null);
 
+  const gpxSegmentsKey = map.gpxSegments?.join("|") ?? "";
+
   const markers = useMemo(
     () => (showMarkers ? (map.points ?? []) : []),
     [map.points, showMarkers],
@@ -94,7 +96,7 @@ export default function TravelDetailMapClient({
     let cancelled = false;
 
     async function loadTrack() {
-      const segmentPaths = map.gpxSegments?.filter(Boolean) ?? [];
+      const segmentPaths = gpxSegmentsKey.split("|").filter(Boolean);
 
       if (segmentPaths.length > 0) {
         try {
@@ -159,7 +161,7 @@ export default function TravelDetailMapClient({
     return () => {
       cancelled = true;
     };
-  }, [map.gpx, map.kml, map.kmz, map.gpxSegments?.join("|")]);
+  }, [map.gpx, map.kml, map.kmz, gpxSegmentsKey]);
 
   const trackLngLats = useMemo(() => extractLngLatsFromTrack(track), [track]);
 
@@ -168,7 +170,7 @@ export default function TravelDetailMapClient({
   );
 
   const trackSourceKey =
-    map.gpx || map.kml || map.kmz || map.gpxSegments?.join("|") || "track";
+    map.gpx || map.kml || map.kmz || gpxSegmentsKey || "track";
 
   const bounds = useMemo<LngLatBounds | undefined>(() => {
     const coords: [number, number][] = [];
@@ -278,7 +280,6 @@ export default function TravelDetailMapClient({
           >
             <div
               className="travel-marker-wrapper"
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: getMarkerSvgForKind(point.kind) }}
               style={{ cursor: "pointer" }}
             />

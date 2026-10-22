@@ -62,10 +62,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params,
-}: LocaleLayoutProps) {
+export default async function LocaleLayout({ children }: LocaleLayoutProps) {
   return (
     <>
       <ConsentModeInitializer />
