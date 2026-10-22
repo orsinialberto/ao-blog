@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { LocalizedLink } from "@/components/LocalizedLink";
+import { HandUnderline } from "@/components/HandUnderline";
 import { HandHighlight } from "@/components/HandHighlight";
 import { WigglyText } from "@/components/WigglyText";
 import { withBasePath } from "@/lib/paths";
@@ -30,11 +31,14 @@ export function OnTheRoadHomeSection({ locale }: OnTheRoadHomeSectionProps) {
 
         <div className="flex w-full flex-col items-center text-center font-hand xl:w-auto xl:flex-none">
           <h2 className="mx-auto max-w-lg text-balance font-hand xl:text-wrap text-4xl leading-tight text-brand-primary md:text-5xl xl:text-[3.5rem]">
-            <WigglyText text={title} />
+            <span className="group relative inline-block pb-3">
+              <WigglyText text={title} />
+              <HandUnderline className="bottom-0 h-2 md:h-3" />
+            </span>
           </h2>
           <LocalizedLink
             href="/on-the-road"
-            className="relative mt-10 inline-block -rotate-2 px-10 py-4 text-2xl text-brand-primary transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none"
+            className="relative mt-14 inline-block -rotate-2 px-10 py-4 text-2xl text-brand-primary transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none"
           >
             <svg
               aria-hidden
