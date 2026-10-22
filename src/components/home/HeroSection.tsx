@@ -4,6 +4,7 @@ import { LocalizedLink } from "@/components/LocalizedLink";
 import { HandHighlight } from "@/components/HandHighlight";
 import { HandUnderline } from "@/components/HandUnderline";
 import { WigglyText } from "@/components/WigglyText";
+import { BearReveal } from "./BearReveal";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 
@@ -80,6 +81,11 @@ export function HeroSection({ locale }: HeroSectionProps) {
           {t.components.heroSection.titleLine2}
         </h1>
       </div>
+      <BearReveal
+        bear="wave"
+        variant="wave"
+        className="absolute right-3 bottom-6 w-28 sm:w-36 md:right-[6%] md:bottom-10 md:w-48 lg:w-60"
+      />
     </section>
   );
 }

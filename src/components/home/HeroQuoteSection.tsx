@@ -1,5 +1,9 @@
 import { getTranslations } from "@/i18n";
+import { BearReveal } from "./BearReveal";
 import type { SupportedLocale } from "@/config/locales";
+
+// The hiking bear further down the page waits for this bear to scroll out of view
+export const REST_BEAR_ID = "rest-bear";
 
 interface HeroQuoteSectionProps {
   locale: SupportedLocale;
@@ -30,6 +34,7 @@ export function HeroQuoteSection({ locale }: HeroQuoteSectionProps) {
             </cite>
           </footer>
         </blockquote>
+        <BearReveal bear="rest" id={REST_BEAR_ID} className="mx-auto mt-10 w-48 md:w-64" />
       </div>
     </section>
   );

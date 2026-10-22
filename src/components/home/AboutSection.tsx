@@ -3,6 +3,7 @@ import { NotebookReveal } from "./NotebookReveal";
 import { HandHighlight } from "@/components/HandHighlight";
 import { HandwrittenText } from "@/components/HandwrittenText";
 import { getTranslations } from "@/i18n";
+import { BEARS } from "@/config/bears";
 import type { SupportedLocale } from "@/config/locales";
 
 interface AboutSectionProps {
@@ -17,15 +18,26 @@ export function AboutSection({ locale }: AboutSectionProps) {
     <section className="bg-white">
       <NotebookReveal
         leftPage={
-          <div className="absolute left-[14%] top-[12%] w-[35%] aspect-[2080/2456]">
-            <Image
-              src="/images/polaroid.png"
-              alt=""
-              fill
-              className="object-contain"
-              sizes="(max-width: 1152px) 35vw, 403px"
-            />
-          </div>
+          <>
+            <div className="absolute left-[14%] top-[10%] w-[35%] aspect-[2080/2456]">
+              <Image
+                src="/images/polaroid.png"
+                alt=""
+                fill
+                className="object-contain"
+                sizes="(max-width: 1152px) 35vw, 403px"
+              />
+            </div>
+            <div className="absolute left-[24%] top-[64%] w-[22%] aspect-[900/576]">
+              <Image
+                src={BEARS.tent.src}
+                alt=""
+                fill
+                className="object-contain"
+                sizes="(max-width: 1152px) 22vw, 253px"
+              />
+            </div>
+          </>
         }
         rightPage={
           <>

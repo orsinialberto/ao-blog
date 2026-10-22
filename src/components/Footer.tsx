@@ -2,6 +2,7 @@
 
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
+import { CheersBear } from "./home/CheersBear";
 
 export function Footer() {
   const t = useTranslations();
@@ -57,7 +58,9 @@ export function Footer() {
 
   return (
     <footer className="bg-white border-t border-stone-100 py-16 px-6">
-      <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-10">
+      <div className="max-w-2xl mx-auto flex flex-col items-center text-center gap-5">
+
+        <CheersBear className="-mb-2 w-32" />
 
         <p className="font-hero text-4xl italic text-stone-800">
           {t.common.siteName}

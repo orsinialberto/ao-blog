@@ -691,3 +691,83 @@
     animation: hand-underline-wiggle 600ms var(--ease-out-strong);
   }
 }
+
+/* Home bears (BearReveal). Hidden until the slot scrolls into view, then each plays its entrance once.
+   Reduced motion keeps only the fade. */
+.bear {
+  opacity: 0;
+  transition: opacity 400ms var(--ease-out-strong);
+}
+
+.bear[data-in-view] {
+  opacity: 1;
+}
+
+@keyframes bear-wave {
+  25% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bear {
+    transition:
+      opacity 400ms var(--ease-out-strong),
+      transform 500ms var(--ease-out-strong);
+  }
+
+  .bear[data-variant='rise'] {
+    transform: translateY(12px);
+  }
+
+  /* Slides up from the bottom edge of the hero, then waves twice */
+  .bear[data-variant='wave'] {
+    transform: translateY(60%);
+    transition-duration: 400ms, 600ms;
+    transition-delay: 800ms;
+  }
+
+  .bear[data-in-view] {
+    transform: none;
+  }
+
+  .bear[data-variant='wave'] {
+    transform-origin: 50% 100%;
+  }
+
+  .bear[data-variant='wave'][data-in-view] {
+    animation: bear-wave 900ms ease-in-out 1500ms 2;
+  }
+}
+
+/* The waving bear waves again when hovered. The entrance wave runs on .bear and this one on its image,
+   so ending the hover never replays the entrance. */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .bear[data-variant='wave'] {
+    pointer-events: auto;
+  }
+
+  .bear[data-variant='wave'][data-in-view]:hover > img {
+    transform-origin: 50% 100%;
+    animation: bear-wave 900ms ease-in-out 2;
+  }
+}
+
+/* CheersBear: the beer crossfades over the standing bear. Hover needs a real pointer; touch taps toggle data-cheers. */
+.cheers-bear > :last-child {
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out-strong);
+}
+
+.cheers-bear[data-cheers] > :last-child {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cheers-bear:hover > :last-child {
+    opacity: 1;
+  }
+}
