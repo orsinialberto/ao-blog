@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { NotebookReveal } from "./NotebookReveal";
 import { HandHighlight } from "@/components/HandHighlight";
-import { HandwrittenText } from "@/components/HandwrittenText";
+import { HandwrittenText, jitter } from "@/components/HandwrittenText";
 import { getTranslations } from "@/i18n";
 import { BEARS } from "@/config/bears";
 import type { SupportedLocale } from "@/config/locales";
@@ -26,10 +26,10 @@ export function AboutSection({ locale }: AboutSectionProps) {
             sizes="240px"
           />
         </div>
-        <h2 className="mt-8 font-hand text-3xl font-bold uppercase leading-tight">
+        <h2 className="mt-8 font-hand text-3xl font-bold leading-tight">
           {name}
         </h2>
-        <div className="mt-4 space-y-4 font-hand text-lg font-bold uppercase leading-8">
+        <div className="mt-4 space-y-4 font-hand text-lg font-bold leading-8">
           {bio.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
@@ -70,15 +70,19 @@ export function AboutSection({ locale }: AboutSectionProps) {
         }
         rightPage={
           <>
-          <h2 className="absolute left-[52%] top-[15%] w-fit px-[1cqw] isolate before:absolute before:-inset-x-[0.5cqw] before:-inset-y-[0.3cqw] before:-z-10 before:rounded-full before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold uppercase [-webkit-text-stroke:0.02em_currentColor] text-[3.7cqw] leading-none text-[#173124]">
+          <h2 className="absolute left-[68%] top-[19.5%] w-fit -translate-x-1/2 whitespace-nowrap px-[1cqw] isolate before:absolute before:-inset-x-[0.5cqw] before:-inset-y-[0.3cqw] before:-z-10 before:rounded-full before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[4.2cqw] leading-none text-[#173124]/90">
             <HandHighlight />
             <HandwrittenText text={name} />
           </h2>
 
           {/* Line height matches the notebook's ruled-line pitch (28.4px of 1280) so each text line sits on a rule */}
-          <div className="absolute left-[53%] top-[27.4%] w-[30%] isolate before:absolute before:-inset-x-[1cqw] before:-inset-y-[0.5cqw] before:-z-10 before:rounded-[2cqw] before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold uppercase [-webkit-text-stroke:0.02em_currentColor] text-[1.85cqw] leading-[2.22cqw] text-[#173124]">
+          <div className="absolute left-[53%] top-[calc(27.4%+2.22cqw)] w-[30%] text-center isolate before:absolute before:-inset-x-[1cqw] before:-inset-y-[0.5cqw] before:-z-10 before:rounded-[2cqw] before:bg-white/45 before:blur-[0.6cqw] font-hand font-bold [-webkit-text-stroke:0.02em_currentColor] text-[1.85cqw] leading-[2.22cqw] text-[#173124]/90">
             {bio.map((paragraph, i) => (
-              <p key={i} className="[&+p]:mt-[2.22cqw]">
+              <p
+                key={i}
+                className="[&+p]:mt-[2.22cqw]"
+                style={{ rotate: `${jitter(i + 7) * 0.5}deg` }}
+              >
                 <HandwrittenText text={paragraph} seed={i * 100} />
               </p>
             ))}
