@@ -111,6 +111,11 @@ export interface TranslationMessages {
       cta: string;
       imageAlt: string;
     };
+    onTheRoadHome: {
+      title: string;
+      cta: string;
+      imageAlt: string;
+    };
     heroQuote: {
       lines: string[];
       author: string;
