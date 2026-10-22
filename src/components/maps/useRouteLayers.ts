@@ -87,7 +87,8 @@ export function useRouteLayers(
   // `MapLibreMap`, which is why that alias exists.
   const markersRef = useRef(new Map<string, InstanceType<MapLibreModule['Marker']>>());
 
-  // Source, layers and markers: built once, when the style is ready.
+  // Source, layers and markers: built once. `map` is only passed in after its
+  // style has loaded (see MapCanvas).
   useEffect(() => {
     if (!map || !lib) return;
 
@@ -153,14 +154,7 @@ export function useRouteLayers(
     map.on('zoomend', onOverlapCheck);
     map.on('resize', onOverlapCheck);
 
-    // `'load'` is deliberately not used here: it waits for `Map.loaded()`,
-    // which additionally requires every source's tiles to be fully fetched
-    // and non-dirty — on an interactive vector map that can be delayed
-    // indefinitely (and once this hook's own GeoJSON source is added, it
-    // adds to what that check watches). `addSource`/`addLayer` only need
-    // the style itself parsed, which `'style.load'` signals right away.
-    if (map.isStyleLoaded()) build();
-    else map.once('style.load', build);
+    build();
 
     return () => {
       map.off('zoomend', onOverlapCheck);
@@ -215,7 +209,6 @@ export function useRouteLayers(
       }
     };
 
-    if (map.isStyleLoaded()) apply();
-    else map.once('style.load', apply);
+    apply();
   }, [map, route, place, hasPanel]);
 }

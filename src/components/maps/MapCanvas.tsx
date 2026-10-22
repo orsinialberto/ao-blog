@@ -136,8 +136,17 @@ export default function MapCanvas({ label, errorMessage }: Props) {
         if (!loaded) setFailed(true);
       });
 
-      setLib(maplibre);
-      setMap(instance);
+      // The hooks get the map only once its style is parsed, so they can add
+      // sources and layers straight away. Subscribing here, in the same tick
+      // as the constructor, cannot miss the event; a hook subscribing after a
+      // React render could — when the style comes from the HTTP cache it is
+      // ready before that render, and the hook then waits forever.
+      const ready = instance;
+      ready.once('style.load', () => {
+        if (cancelled) return;
+        setLib(maplibre);
+        setMap(ready);
+      });
     })();
 
     return () => {
