@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { LocalizedLink } from "@/components/LocalizedLink";
+import { HandHighlight } from "@/components/HandHighlight";
 import { WigglyText } from "@/components/WigglyText";
 import { withBasePath } from "@/lib/paths";
 import { getTranslations } from "@/i18n";
@@ -51,7 +52,10 @@ export function OnTheRoadHomeSection({ locale }: OnTheRoadHomeSectionProps) {
                 vectorEffect="non-scaling-stroke"
               />
             </svg>
-            <span className="relative">{cta} →</span>
+            <span className="relative inline-block px-[0.3em]">
+              <HandHighlight />
+              {cta} →
+            </span>
           </LocalizedLink>
         </div>
       </div>
