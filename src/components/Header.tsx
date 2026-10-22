@@ -2,6 +2,7 @@
 
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
+import { House, Image, MapPin, Route } from "@sketchyicons/react";
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { WigglyText } from "./WigglyText";
@@ -12,10 +13,10 @@ import { removeLocaleFromPath } from "@/lib/i18n/routing";
 const baseLinkClass = "font-hand text-lg uppercase tracking-widest pb-1";
 
 const icons = {
-  home: "M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10",
-  travels: "M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z",
-  onTheRoad: "M5 19a2 2 0 100-4 2 2 0 000 4zM19 9a2 2 0 100-4 2 2 0 000 4zM7 17h6a3 3 0 000-6H11a3 3 0 010-6h6",
-  gallery: "M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M9 9.5a.5.5 0 100-1 .5.5 0 000 1z",
+  home: House,
+  travels: MapPin,
+  onTheRoad: Route,
+  gallery: Image,
 };
 
 export function Header() {
@@ -84,17 +85,7 @@ export function Header() {
                 : "text-brand-muted hover:text-brand-primary"
             }`}
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              viewBox="0 0 24 24"
-            >
-              <path d={l.icon} />
-            </svg>
+            <l.icon size={24} strokeWidth={1.8} aria-hidden="true" />
           </LocalizedLink>
         ))}
       </nav>

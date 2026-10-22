@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { Globe } from "@sketchyicons/react";
 import { useState, useEffect, useRef } from "react";
 import { useLocale, useTranslations } from "@/i18n/hooks";
 import { removeLocaleFromPath, addLocaleToPath } from "@/lib/i18n/routing";
@@ -134,20 +135,7 @@ export function LanguageSwitcher({ isTransparent = false }: LanguageSwitcherProp
           ${isOpen ? activeBg : `bg-transparent ${hoverBg}`}
         `}
       >
-        {/* Globe SVG Icon */}
-        <svg
-          className="h-5 w-5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-          <path d="M2 12h20" />
-        </svg>
+        <Globe size={20} strokeWidth={1.5} aria-hidden="true" />
       </button>
 
       {/* Dropdown Menu */}
