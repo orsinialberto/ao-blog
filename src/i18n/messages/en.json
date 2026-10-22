@@ -32,9 +32,6 @@
     }
   },
   "components": {
-    "tagFilter": {
-      "allTravels": "All travels"
-    },
     "cookieBanner": {
       "title": "Cookie Management",
       "description": "This site uses technical cookies for the functioning of maps and images, and analytics cookies to improve user experience. You can accept or reject non-essential cookies. For more information, see the",

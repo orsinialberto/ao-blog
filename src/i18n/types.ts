@@ -43,9 +43,6 @@ export interface TranslationMessages {
     };
   };
   components: {
-    tagFilter: {
-      allTravels: string;
-    };
     cookieBanner: {
       title: string;
       description: string;

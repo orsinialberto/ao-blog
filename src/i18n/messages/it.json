@@ -32,9 +32,6 @@
     }
   },
   "components": {
-    "tagFilter": {
-      "allTravels": "Tutti i viaggi"
-    },
     "cookieBanner": {
       "title": "Gestione dei Cookie",
       "description": "Questo sito utilizza cookie tecnici per il funzionamento delle mappe e delle immagini, e cookie di analytics per migliorare l'esperienza utente. Puoi accettare o rifiutare i cookie non essenziali. Per maggiori informazioni, consulta la",

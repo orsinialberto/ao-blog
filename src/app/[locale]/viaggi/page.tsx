@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 
 import { TravelsWorldMap } from "@/components/TravelsWorldMap";
 import { TravelsListClient } from "@/components/TravelsListClient";
-import { getArchiveTags, getTravelsForArchive } from "@/lib/travels";
+import { getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
@@ -31,16 +30,12 @@ export async function generateMetadata({
 
 export default async function TravelsPage({ params }: TravelsPageProps) {
   const locale = await getLocaleFromParams(params);
-  const t = getTranslations(locale as SupportedLocale);
   const allTravels = await getTravelsForArchive(locale);
-  const tags = getArchiveTags(locale);
 
   return (
-    <div className="max-w-6xl mx-auto px-6 pt-8 pb-32">
+    <div className="max-w-6xl mx-auto px-6 pt-8 pb-8">
       <TravelsWorldMap />
-      <Suspense fallback={<div>{t.common.loading}</div>}>
-        <TravelsListClient allTravels={allTravels} allTags={tags} locale={locale} />
-      </Suspense>
+      <TravelsListClient allTravels={allTravels} locale={locale} />
     </div>
   );
 }

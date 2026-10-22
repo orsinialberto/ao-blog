@@ -92,15 +92,6 @@ export function getTravelsForArchive(locale: Locale = "it"): Travel[] {
   return ensureCache(locale);
 }
 
-export function getArchiveTags(locale: Locale = "it"): string[] {
-  const travels = getTravelsForArchive(locale);
-  const tags = new Set<string>();
-  travels.forEach((travel) => {
-    travel.tags.forEach((tag) => tags.add(tag));
-  });
-  return Array.from(tags).sort((a, b) => a.localeCompare(b));
-}
-
 /** True if the travel has enough map data to render a route or markers. */
 export function hasTravelMapContent(map?: TravelMapData | null): boolean {
   if (!map) return false;
