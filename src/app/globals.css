@@ -672,3 +672,22 @@
     rgba(120, 150, 190, 0.12) 32px
   );
 }
+
+/* Hand-drawn underline (HandUnderline): a short wiggle when its group is hovered. */
+@keyframes hand-underline-wiggle {
+  25% {
+    transform: rotate(-1.5deg) scaleX(1.03);
+  }
+  50% {
+    transform: rotate(1deg) translateY(1px);
+  }
+  75% {
+    transform: rotate(-0.5deg) scaleX(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .group:hover .hand-underline {
+    animation: hand-underline-wiggle 600ms var(--ease-out-strong);
+  }
+}

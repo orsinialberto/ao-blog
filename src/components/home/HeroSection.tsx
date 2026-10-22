@@ -1,6 +1,7 @@
 import { withBasePath } from "@/lib/paths";
 import Image from "next/image";
 import { LocalizedLink } from "@/components/LocalizedLink";
+import { HandUnderline } from "@/components/HandUnderline";
 import { WigglyText } from "@/components/WigglyText";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
@@ -41,7 +42,10 @@ export function HeroSection({ locale }: HeroSectionProps) {
             className="absolute -inset-x-12 -inset-y-10 -z-10 bg-[radial-gradient(closest-side,rgba(255,255,255,0.7),transparent)] md:-inset-x-32 md:-inset-y-16"
           />
           <p className="leading-none text-brand-primary">
-            <WigglyText text={t.components.heroSection.label} />
+            <span className="group relative inline-block">
+              <WigglyText text={t.components.heroSection.label} />
+              <HandUnderline className="-bottom-[0.12em] h-[0.1em]" />
+            </span>
           </p>
           <p className="mt-6 text-[max(1rem,0.28em)] leading-tight text-brand-muted md:mt-9 lg:mt-12">
             <WigglyText text={t.components.heroSection.subtitle} />
@@ -51,7 +55,18 @@ export function HeroSection({ locale }: HeroSectionProps) {
               <WigglyText text={t.components.heroSection.byline} />
             </span>
             <span className="block text-[max(1.25rem,0.4em)]">
-              <WigglyText text="Alberto Orsini" />
+              <span className="relative inline-block px-[0.5em]">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 300 60"
+                  preserveAspectRatio="none"
+                  className="absolute inset-0 -z-10 h-full w-full fill-brand-accent"
+                >
+                  <path className="opacity-60 mix-blend-multiply" d="M6 20 C 60 12, 120 19, 180 13 S 260 17, 294 11 L 297 40 C 250 47, 190 40, 130 46 S 40 44, 4 42 Z" />
+                  <path className="opacity-60 mix-blend-multiply" d="M16 29 C 70 23, 130 31, 190 25 S 255 29, 288 23 L 291 50 C 240 55, 180 48, 120 54 S 50 51, 12 52 Z" />
+                </svg>
+                <WigglyText text="Alberto Orsini" />
+              </span>
             </span>
           </p>
           <LocalizedLink
