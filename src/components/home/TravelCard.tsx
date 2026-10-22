@@ -19,18 +19,19 @@ export function TravelCard({ travel, locale }: TravelCardProps) {
   return (
     <LocalizedLink href={`/viaggi/${travel.slug}`} className="group flex h-full">
       <article className="flex flex-col w-full">
-        <div className="relative aspect-3/2 overflow-hidden">
+        <div className="overflow-hidden">
           <Image
             src={optimizedCoverImage}
             alt={travel.title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            width={800}
+            height={533}
+            className="h-auto w-full transition-transform duration-700 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 33vw"
             loading="lazy"
           />
         </div>
 
-        <div className="pt-8 pb-6 px-1 flex-1 flex flex-col gap-3">
+        <div className="pt-5 pb-6 px-1 flex-1 flex flex-col gap-3">
           <div className="flex items-center gap-2">
             <span className="font-label text-[10px] font-bold text-foreground/50 uppercase tracking-tight">
               {travel.location}
