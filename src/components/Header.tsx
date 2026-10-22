@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { WigglyText } from "./WigglyText";
+import { HandHighlight } from "./HandHighlight";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { removeLocaleFromPath } from "@/lib/i18n/routing";
 
@@ -31,7 +32,7 @@ export function Header() {
 
   const linkColor = "transition-colors text-brand-muted hover:text-brand-primary";
 
-  const activeLinkClass = "font-semibold text-brand-primary border-b-2 border-brand-primary";
+  const activeLinkClass = "font-semibold text-brand-primary";
 
   return (
     <header
@@ -43,9 +44,12 @@ export function Header() {
             <LocalizedLink
               key={l.href}
               href={l.href}
-              className={`${baseLinkClass} ${linkColor} ${isActive(l.href) ? activeLinkClass : "border-b-2 border-transparent"}`}
+              className={`${baseLinkClass} ${linkColor} ${isActive(l.href) ? activeLinkClass : ""}`}
             >
-              <WigglyText text={l.label} />
+              <span className="relative inline-block px-[0.4em]">
+                {isActive(l.href) && <HandHighlight />}
+                <WigglyText text={l.label} />
+              </span>
             </LocalizedLink>
           ))}
         </nav>
@@ -84,10 +88,13 @@ export function Header() {
               <li key={l.href}>
                 <LocalizedLink
                   href={l.href}
-                  className={`${baseLinkClass} ${linkColor} ${isActive(l.href) ? activeLinkClass : "border-b-2 border-transparent"} inline-block`}
+                  className={`${baseLinkClass} ${linkColor} ${isActive(l.href) ? activeLinkClass : ""} inline-block`}
                   onClick={() => setIsOpen(false)}
                 >
-                  <WigglyText text={l.label} />
+                  <span className="relative inline-block px-[0.4em]">
+                    {isActive(l.href) && <HandHighlight />}
+                    <WigglyText text={l.label} />
+                  </span>
                 </LocalizedLink>
               </li>
             ))}
