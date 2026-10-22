@@ -660,3 +660,15 @@
   );
   pointer-events: none;
 }
+
+/* Ruled notebook paper, as in the home hero: a 1px line every 32px. */
+.notebook-paper {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    rgba(120, 150, 190, 0.12) 31px,
+    rgba(120, 150, 190, 0.12) 32px
+  );
+}

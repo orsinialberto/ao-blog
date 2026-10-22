@@ -30,5 +30,11 @@ export async function generateMetadata({
 export default async function OnTheRoadPage({ params }: OnTheRoadPageProps) {
   const locale = await getLocaleFromParams(params);
 
-  return <MapsWindow locale={locale as SupportedLocale} />;
+  // MainWrapper pads the page top and bottom; the negative margins let the
+  // paper run behind the header and up to the footer.
+  return (
+    <div className="notebook-paper -mt-(--header-height) -mb-16 pt-(--header-height) pb-16">
+      <MapsWindow locale={locale as SupportedLocale} />
+    </div>
+  );
 }
