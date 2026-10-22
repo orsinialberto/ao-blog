@@ -6,30 +6,32 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "predev": "node scripts/copy-maplibre-worker.mjs",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs",
+    "track:import": "node scripts/import-track.mjs"
   },
   "dependencies": {
     "@tmcw/togeojson": "^7.1.2",
     "gray-matter": "^4.0.3",
     "jszip": "^3.10.1",
-    "maplibre-gl": "^4.7.1",
-    "next": "16.0.3",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-map-gl": "^8.1.0",
+    "maplibre-gl": "^6.3.0",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-map-gl": "^8.1.3",
     "remark": "^15.0.1",
     "remark-breaks": "^4.0.0",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "autoprefixer": "^10.4.22",
     "eslint": "^9",
-    "eslint-config-next": "16.0.3",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.18",
+    "eslint-config-next": "16.3.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5"
   }
 }

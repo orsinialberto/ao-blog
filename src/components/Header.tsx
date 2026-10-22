@@ -19,19 +19,13 @@ export function Header() {
 
   const isActive = (href: string) => {
     if (href === "/") return cleanPath === "/" || cleanPath === "";
-    if (href === "/viaggi") {
-      return (
-        cleanPath.startsWith("/viaggi") &&
-        !cleanPath.startsWith("/viaggi-in-moto")
-      );
-    }
     return cleanPath.startsWith(href);
   };
 
   const links = [
     { href: "/", label: t.navigation.links.home },
     { href: "/viaggi", label: t.navigation.links.travels },
-    { href: "/viaggi-in-moto", label: t.navigation.links.motorcycleTravels },
+    { href: "/on-the-road", label: t.navigation.links.onTheRoad },
     { href: "/galleria", label: t.navigation.links.gallery },
   ];
 
@@ -41,7 +35,7 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 w-full z-50 bg-gradient-to-b from-white to-transparent"
+      className="fixed top-0 w-full z-50 bg-linear-to-b from-white to-transparent"
     >
       <div className="relative flex justify-center items-center py-4 px-8 max-w-screen-2xl mx-auto">
         <nav className="hidden md:flex items-center gap-10">

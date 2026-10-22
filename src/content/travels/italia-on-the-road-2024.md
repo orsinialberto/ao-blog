@@ -14,12 +14,6 @@ tags:
 location: "Italia"
 duration: "6 giorni"
 totalKilometers: 1500
-motorcycle: "Honda CB 650 R"
-motoRegions: "Lombardia, Veneto, Emilia-Romagna, Toscana"
-featuredPasses:
-  - name: "Abetone"
-    elevationM: 1388
-motoAlpinePasses: 1
 coords:
   lat: 43.061299
   lng: 11.605087

@@ -21,7 +21,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
 
   return (
     <section
-      className="relative min-h-[100dvh] w-full overflow-hidden"
+      className="relative min-h-dvh w-full overflow-hidden"
       style={notebookPaper}
     >
       <div
@@ -34,7 +34,7 @@ export function HeroSection({ locale }: HeroSectionProps) {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-screen-2xl items-center justify-center px-8 pb-16">
+      <div className="relative mx-auto flex min-h-dvh w-full max-w-screen-2xl items-center justify-center px-8 pb-16">
         <div className="relative isolate text-center font-hand text-5xl md:text-7xl lg:text-8xl">
           <div
             aria-hidden

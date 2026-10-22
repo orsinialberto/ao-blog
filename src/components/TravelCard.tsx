@@ -22,7 +22,7 @@ export function TravelCard({ travel, locale }: TravelCardProps) {
   return (
     <LocalizedLink href={`/viaggi/${travel.slug}`} className="group flex h-full">
       <article className="flex flex-col w-full">
-        <div className="relative aspect-[3/2] overflow-hidden">
+        <div className="relative aspect-3/2 overflow-hidden">
           <Image
             src={optimizedCoverImage}
             alt={travel.title}
