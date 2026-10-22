@@ -1,4 +1,5 @@
-import { Noto_Serif, Inter, Plus_Jakarta_Sans, Cormorant_Garamond, Waiting_for_the_Sunrise } from "next/font/google";
+import { Noto_Serif, Inter, Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
+import localFont from "next/font/local";
 
 export const notoSerif = Noto_Serif({
   variable: "--font-noto-serif",
@@ -33,9 +34,10 @@ export const cormorantGaramond = Cormorant_Garamond({
   preload: true,
 });
 
-export const waitingForTheSunrise = Waiting_for_the_Sunrise({
+// Self-hosted: next/font/google has no fallback metrics for this font and warns on every request.
+export const waitingForTheSunrise = localFont({
+  src: "../assets/fonts/waiting-for-the-sunrise-latin.woff2",
   variable: "--font-waiting-for-the-sunrise",
-  subsets: ["latin"],
   weight: "400",
   display: "swap",
   preload: true,
