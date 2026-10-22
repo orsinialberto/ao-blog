@@ -117,6 +117,13 @@ export function NotebookReveal({ leftPage, rightPage }: NotebookRevealProps) {
                   fill
                   sizes="(max-width: 1152px) 44vw, 504px"
                 />
+                <Image
+                  src="/images/bears/bear-explorer.webp"
+                  alt=""
+                  width={544}
+                  height={710}
+                  className="absolute left-[26%] top-[20%] w-[50%] h-auto"
+                />
               </div>
               <div
                 className="absolute inset-0 overflow-hidden [backface-visibility:hidden]"
