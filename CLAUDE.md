@@ -78,7 +78,7 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 
 Images are hosted on Cloudinary. Use `optimizeCloudinaryUrl()` from `src/lib/imageOptimization.ts` when rendering cover images. `next/image` is configured with `unoptimized: true` (required for static export).
 
-### Development principles (from AGENTS.md)
+### Development principles
 
 - Keep it simple — avoid overengineering.
 - Remove unused code.
