@@ -46,7 +46,7 @@ export function BearReveal({ bear, children, variant = "rise", className = "", i
 
   return (
     <div ref={slotRef} id={id} aria-hidden className={`pointer-events-none ${className}`}>
-      <div className="bear" data-variant={variant} data-in-view={inView || undefined}>
+      <div className="bear" data-bear={bear} data-variant={variant} data-in-view={inView || undefined}>
         {children ?? <Image src={src} alt="" width={width} height={height} className="h-auto w-full" />}
       </div>
     </div>
