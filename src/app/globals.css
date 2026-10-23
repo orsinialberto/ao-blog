@@ -156,6 +156,11 @@
       height: calc(var(--size) * 467 / 560) !important;
     }
 
+    /* The snowboarder sits a little lower than the other bears */
+    .prose-travel .travel-bear[data-bear='snowboard'] .travel-bear-figure {
+      bottom: calc(var(--size) * -0.15);
+    }
+
     .prose-travel .travel-bear[data-side='right'] .travel-bear-figure {
       left: calc(100% + var(--margin) / 2);
       translate: -50% 0;
