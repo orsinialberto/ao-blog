@@ -1,19 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import { gtag } from "@/lib/gtag";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID;
 const COOKIE_CONSENT_KEY = "cookie-consent";
-
-/**
- * Helper function to safely call gtag
- */
-function gtag(...args: unknown[]): void {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag(...args);
-  }
-}
 
 /**
  * Update consent state and initialize Google Analytics
@@ -34,31 +26,17 @@ function initializeGoogleAnalytics(): void {
     return;
   }
 
-  // Ensure dataLayer and gtag exist (they should be initialized by ConsentModeInitializer)
-  window.dataLayer = window.dataLayer || [];
-  if (!window.gtag) {
-    window.gtag = function(...args: unknown[]) {
-      window.dataLayer!.push(args);
-    };
-  }
-
   // Step 1: Update consent state to 'granted' (required by Consent Mode)
   // This must be done BEFORE loading the Google tag
   gtag('consent', 'update', {
-    'ad_user_data': 'granted',
-    'ad_personalization': 'granted',
-    'ad_storage': 'granted',
     'analytics_storage': 'granted',
   });
 
-  // Step 2: Add inline script with gtag initialization calls
-  // Equivalent to Google's second <script> tag
-  const inlineScript = document.createElement("script");
-  inlineScript.innerHTML = `
-    gtag('js', new Date());
-    gtag('config', '${GA_MEASUREMENT_ID}');
-  `;
-  document.head.appendChild(inlineScript);
+  // Step 2: Queue init commands. Page views are sent manually (SPA), so the
+  // automatic one is off; the current page is reported right away.
+  gtag('js', new Date());
+  gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
+  sendPageView(window.location.pathname);
 
   // Step 3: Load external gtag.js script asynchronously
   // Equivalent to Google's first <script> tag with async attribute
@@ -66,6 +44,10 @@ function initializeGoogleAnalytics(): void {
   externalScript.async = true;
   externalScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   document.head.appendChild(externalScript);
+}
+
+function sendPageView(path: string): void {
+  gtag("event", "page_view", { page_path: path });
 }
 
 /**
@@ -92,16 +74,6 @@ export function GoogleAnalytics() {
     // Only proceed if GA ID is available
     if (!GA_MEASUREMENT_ID) {
       return;
-    }
-
-    // Ensure dataLayer and gtag are initialized (should be done by ConsentModeInitializer)
-    if (typeof window !== "undefined") {
-      window.dataLayer = window.dataLayer || [];
-      if (!window.gtag) {
-        window.gtag = function(...args: unknown[]) {
-          window.dataLayer!.push(args);
-        };
-      }
     }
 
     // Initialize GA if consent was already given
@@ -132,32 +104,17 @@ export function GoogleAnalytics() {
     };
   }, []);
 
-  // Track page views on route changes
+  // Track page views on route changes (the first page is sent on initialization)
+  const lastPath = useRef(pathname);
   useEffect(() => {
-    if (!GA_MEASUREMENT_ID || !hasConsented() || !pathname) {
+    if (!GA_MEASUREMENT_ID || !pathname || pathname === lastPath.current) {
       return;
     }
-
-    // Wait a bit for gtag to be available
-    const timeoutId = setTimeout(() => {
-      if (window.gtag) {
-        gtag("config", GA_MEASUREMENT_ID, {
-          page_path: pathname,
-        });
-      }
-    }, 100);
-
-    return () => clearTimeout(timeoutId);
+    lastPath.current = pathname;
+    if (hasConsented()) {
+      sendPageView(pathname);
+    }
   }, [pathname]);
 
   return null;
 }
-
-// Extend Window interface for TypeScript
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-    dataLayer?: unknown[];
-  }
-}
-
