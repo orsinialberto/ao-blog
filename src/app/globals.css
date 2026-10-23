@@ -83,6 +83,7 @@
 
 @layer components {
   .prose-travel {
+    container-type: inline-size;
     font-family: var(--font-inter), "Inter", system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.8;
@@ -117,6 +118,48 @@
     line-height: 1.8;
     margin-top: 1.5rem;
     font-size: 1rem;
+  }
+
+  /* Bear slots (filled by TravelNarrative) take no room in the text; the bear hangs in the middle of the
+     white margin beside the end of its section, and only where the margin is wide enough.
+     The text is centred on the page, so each margin is (100vw - 100cqw) / 2 wide (cqw: width of .prose-travel). */
+  .prose-travel .travel-bear {
+    position: relative;
+    height: 0;
+  }
+
+  .prose-travel .travel-bear-figure {
+    display: none;
+  }
+
+  /* All story bears are exported at the same height, so a shared height makes them the same size.
+     The cap keeps the widest bear (about 1.25 x its height) clear of the text and the page edge. */
+  @media (min-width: 1024px) {
+    .prose-travel .travel-bear-figure {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      width: max-content;
+      --margin: calc((100vw - 100cqw) / 2);
+      --size: min(14rem, calc((var(--margin) - 2rem) / 1.25));
+    }
+
+    .prose-travel .travel-bear-figure img {
+      /* !important: the h-auto / w-full utilities on the bear images sit in a later layer and would win */
+      width: auto !important;
+      height: var(--size) !important;
+      margin-top: 0;
+    }
+
+    .prose-travel .travel-bear[data-side='right'] .travel-bear-figure {
+      left: calc(100% + var(--margin) / 2);
+      translate: -50% 0;
+    }
+
+    .prose-travel .travel-bear[data-side='left'] .travel-bear-figure {
+      right: calc(100% + var(--margin) / 2);
+      translate: 50% 0;
+    }
   }
 
   .prose-travel .img-mosaic {
@@ -804,9 +847,22 @@
   opacity: 1;
 }
 
+/* With data-replace the resting pose fades out as the other fades in */
+.cheers-bear[data-replace] > :first-child {
+  transition: opacity 150ms var(--ease-out-strong);
+}
+
+.cheers-bear[data-replace][data-cheers] > :first-child {
+  opacity: 0;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .cheers-bear:hover > :last-child {
     opacity: 1;
+  }
+
+  .cheers-bear[data-replace]:hover > :first-child {
+    opacity: 0;
   }
 }
 

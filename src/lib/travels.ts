@@ -232,6 +232,15 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  */
 const IMG_PARAGRAPH_RE = /<p>\s*<img\s+([^>]*)>\s*<\/p>/g;
 
+/**
+ * A line `:bear[name]` in the Markdown becomes an empty slot that TravelTabs fills with that bear.
+ */
+const BEAR_DIRECTIVE_RE = /<p>:bear\[(\w+)\]<\/p>/g;
+
+function markBearSlots(htmlContent: string): string {
+  return htmlContent.replace(BEAR_DIRECTIVE_RE, '<div class="travel-bear" data-bear="$1"></div>');
+}
+
 function wrapImageMosaics(htmlContent: string): string {
   const tokens: Array<{ type: "html"; value: string } | { type: "img"; attrs: string }> = [];
   let lastIndex = 0;
@@ -334,7 +343,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     duration: data.duration ?? "",
     gallery: Array.isArray(data.gallery) ? data.gallery : undefined,
     coords: parseCoords(data.coords),
-    content: wrapImageMosaics(processedContent.toString()),
+    content: markBearSlots(wrapImageMosaics(processedContent.toString())),
     heroImage: data.heroImage,
     totalKilometers: normalizeNumber(data.totalKilometers),
     timeline,

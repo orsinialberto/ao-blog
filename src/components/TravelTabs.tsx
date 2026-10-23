@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { TravelNarrative } from "@/components/TravelNarrative";
 import { TravelGallery } from "@/components/TravelGallery";
 import { TravelDetailMapLazy } from "@/components/map/TravelDetailMapLazy";
 import { TravelItineraryAccordion } from "@/components/TravelItineraryAccordion";
@@ -97,12 +98,7 @@ export function TravelTabs({
         </div>
       )}
 
-      {activeTab === "narrative" && (
-        <div
-          className="prose-travel"
-          dangerouslySetInnerHTML={{ __html: content }}
-        />
-      )}
+      {activeTab === "narrative" && <TravelNarrative content={content} />}
 
       {activeTab === "itinerary" && hasItinerary && (
         <div className="flex flex-col gap-12">

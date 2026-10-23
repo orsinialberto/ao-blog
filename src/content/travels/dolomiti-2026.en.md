@@ -77,6 +77,9 @@ That's why every year I try to add something new: a run I haven't done, a differ
 
 Below I describe the routes I managed to ski this year, starting from Corvara and moving around the Sellaronda, pushing out to the farthest linked areas… almost never taking my board off.
 
+:bear[snowboard]
+
+
 ---
 
 ## From Corvara to the Marmolada
@@ -132,6 +135,9 @@ At the end comes the most unusual part: the return. A horse-drawn sled takes you
 
 An experience that, every year, is worth the trip.
 
+:bear[throw1]
+
+
 ---
 
 ## Sellaronda clockwise and counter-clockwise
@@ -149,6 +155,9 @@ Both directions are spectacular and very scenic. If you have time, it's worth st
 From Passo Gardena, for example, you can branch off to the **Saslong**, one of the most famous World Cup runs: technical, fast, demanding.
 
 On the green loop, passing from Selva toward Canazei, you cross the **City of Stones**: a surreal landscape of huge snow-covered boulders that seem to rise from the ground like a silent city.
+
+:bear[ski]
+
 
 ---
 
@@ -169,6 +178,9 @@ I keep going without quite knowing where I'm headed, following the lifts, until 
 The panorama is incredible. From there one of the longest runs I've ever skied begins: **12 km** of pure descent.
 
 An unexpected discovery, and probably one of the highlights of the week.
+
+:bear[pretzel]
+
 
 ---
 

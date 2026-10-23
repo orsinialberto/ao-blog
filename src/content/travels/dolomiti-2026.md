@@ -77,6 +77,9 @@ Ed è proprio per questo che ogni anno cerco di aggiungere qualcosa: una pista n
 
 Qui sotto racconto i percorsi che sono riuscito a fare quest’anno, partendo da Corvara e muovendomi attorno al Sellaronda, spingendomi fino ai comprensori più lontani… quasi senza mai togliere la tavola dai piedi.
 
+:bear[snowboard]
+
+
 ---
 
 ## Da Corvara alla Marmolada
@@ -132,6 +135,9 @@ E alla fine arriva la parte più particolare: il rientro. Una slitta trainata da
 
 Un’esperienza che ogni anno vale il viaggio.
 
+:bear[throw1]
+
+
 ---
 
 ## Giro del Sellaronda in senso orario e antiorario
@@ -149,6 +155,9 @@ Entrambi i giri sono spettacolari e molto panoramici. Se si ha tempo, vale la pe
 Dal Passo Gardena, ad esempio, si può deviare per la **Sasslong**, una delle piste più famose della Coppa del Mondo: tecnica, veloce, impegnativa.
 
 Percorrendo il giro verde, invece, passando da Selva verso Canazei si attraversa la **Città dei Sassi**: un paesaggio surreale, con enormi massi coperti di neve che sembrano spuntare dal terreno come una città silenziosa.
+
+:bear[ski]
+
 
 ---
 
@@ -169,6 +178,9 @@ Il **Seceda**.
 Il panorama è incredibile. E da lì parte una delle piste più lunghe che abbia mai fatto: **12 km** di pura discesa.
 
 Una scoperta inaspettata, e probabilmente uno dei momenti più belli della settimana.
+
+:bear[pretzel]
+
 
 ---
 

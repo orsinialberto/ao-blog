@@ -2,21 +2,33 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BEARS } from "@/config/bears";
+import { BEARS, type BearName } from "@/config/bears";
+
+interface CheersBearProps {
+  /** Resting pose, and the pose crossfaded over it; both must share the same canvas size */
+  from?: BearName;
+  to?: BearName;
+  /** The resting pose disappears while the other one shows, instead of staying underneath it */
+  replace?: boolean;
+  className?: string;
+}
 
 /**
  * The standing bear raises a beer when hovered (mouse) or tapped (touch).
+ * Other pairs of poses work the same way (e.g. a snowball wind-up and throw).
  * Decorative easter egg, so it is hidden from assistive tech and not focusable.
  */
-export function CheersBear({ className = "" }: { className?: string }) {
+export function CheersBear({ from = "standing", to = "beer", replace = false, className = "" }: CheersBearProps) {
   const [cheers, setCheers] = useState(false);
-  const { standing, beer } = BEARS;
+  const standing = BEARS[from];
+  const beer = BEARS[to];
 
   return (
     <div
       aria-hidden
       className={`cheers-bear relative cursor-pointer ${className}`}
       data-cheers={cheers || undefined}
+      data-replace={replace || undefined}
       onClick={() => setCheers((value) => !value)}
     >
       <Image
