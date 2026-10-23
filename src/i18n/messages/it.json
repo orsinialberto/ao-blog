@@ -29,12 +29,13 @@
       "allTravels": "Tutti i Viaggi",
       "onTheRoad": "On the road",
       "photoGallery": "Galleria Foto"
-    }
+    },
+    "cookiePreferences": "Preferenze cookie"
   },
   "components": {
     "cookieBanner": {
       "title": "Gestione dei Cookie",
-      "description": "Questo sito utilizza cookie tecnici per il funzionamento delle mappe e delle immagini, e cookie di analytics per migliorare l'esperienza utente. Puoi accettare o rifiutare i cookie non essenziali. Per maggiori informazioni, consulta la",
+      "description": "Questo sito usa strumenti tecnici necessari al funzionamento e, solo con il tuo consenso, Google Analytics per statistiche sull'utilizzo. Puoi accettare o rifiutare: la scelta è modificabile in qualsiasi momento dal footer. Per maggiori informazioni, consulta la",
       "privacyPolicy": "Cookie Policy",
       "reject": "Rifiuta",
       "accept": "Accetta",
@@ -176,37 +177,52 @@
       "lastUpdate": "Ultimo aggiornamento",
       "introduction": {
         "title": "Introduzione",
-        "text": "Questa pagina descrive come questo sito web gestisce i cookie e i dati personali degli utenti, nel rispetto della normativa GDPR (Regolamento Generale sulla Protezione dei Dati) e delle linee guida del Garante per la Protezione dei Dati Personali italiano."
+        "text": "Questa pagina descrive come questo sito web tratta i cookie e i dati personali dei visitatori, ai sensi del Regolamento (UE) 2016/679 (GDPR) e delle linee guida del Garante per la protezione dei dati personali."
+      },
+      "controller": {
+        "title": "Titolare del Trattamento",
+        "text": "Il titolare del trattamento è Alberto Orsini. Per qualsiasi richiesta puoi scrivere all'indirizzo email indicato nella sezione Contatti."
       },
       "technicalCookies": {
-        "title": "Cookie Tecnici",
-        "text": "Questo sito utilizza cookie tecnici, che sono necessari per il corretto funzionamento del sito web. Questi cookie non richiedono il consenso dell'utente in quanto sono essenziali per la fornitura del servizio richiesto.",
-        "list1": "Cookie per il funzionamento delle mappe interattive (Leaflet)",
-        "list2": "Cookie per la gestione delle preferenze di visualizzazione"
+        "title": "Strumenti Tecnici",
+        "text": "Questo sito utilizza solo strumenti tecnici necessari al suo funzionamento, che non richiedono consenso. Non si tratta di cookie ma di dati salvati nel tuo browser (localStorage):",
+        "list1": "La tua scelta sui cookie (chiave cookie-consent), conservata finché non la modifichi o cancelli i dati del sito",
+        "list2": "La lingua preferita (chiave preferredLocale)"
       },
       "analyticsCookies": {
-        "title": "Cookie di Analytics",
-        "text": "Questo sito utilizza Google Analytics 4 (GA4) per raccogliere informazioni statistiche anonime sull'utilizzo del sito web. Questi cookie vengono installati solo previo consenso esplicito dell'utente.",
-        "details": "Google Analytics utilizza cookie per analizzare come gli utenti interagiscono con il sito, raccogliendo informazioni come:",
+        "title": "Google Analytics",
+        "text": "Questo sito utilizza Google Analytics 4 (GA4), servizio di Google Ireland Limited, per raccogliere statistiche aggregate sull'utilizzo del sito. Viene caricato solo dopo il tuo consenso esplicito, sulla base giuridica del consenso (art. 6.1.a GDPR). Se rifiuti, nessuno script di Google viene caricato.",
+        "details": "Google Analytics tratta dati pseudonimi (identificativo del browser, indirizzo IP, pagine visitate, dispositivo e browser, provenienza) per ricavare informazioni come:",
         "list1": "Numero di visitatori e pagine visitate",
         "list2": "Tempo di permanenza sul sito",
-        "list3": "Fonti di traffico (da dove arrivano i visitatori)"
+        "list3": "Fonti di traffico (da dove arrivano i visitatori)",
+        "cookiesIntro": "Con il tuo consenso vengono installati i seguenti cookie:",
+        "cookie1": "_ga: distingue i visitatori, dura 2 anni",
+        "cookie2": "_ga_<ID>: mantiene lo stato della sessione, dura 2 anni",
+        "retention": "I dati vengono conservati in GA4 per un periodo non superiore a 14 mesi. Per scopi pubblicitari non vengono usati: la personalizzazione degli annunci resta disattivata.",
+        "transfer": "Google può trasferire i dati verso paesi extra-UE, in particolare gli Stati Uniti, sulla base delle garanzie previste dal GDPR (ad esempio il EU-US Data Privacy Framework). Per i dettagli consulta l'informativa di Google su policies.google.com/technologies/partner-sites."
       },
       "management": {
-        "title": "Gestione dei Cookie",
-        "text": "Alla prima visita del sito, viene visualizzato un banner che ti permette di accettare o rifiutare i cookie non essenziali (cookie di analytics).",
-        "details": "Le tue preferenze vengono salvate nel tuo browser e ricordate per 6 mesi. Puoi modificare le tue preferenze in qualsiasi momento cancellando i cookie dal tuo browser o contattandoci direttamente."
+        "title": "Gestione delle Preferenze",
+        "text": "Alla prima visita viene mostrato un banner che ti permette di accettare o rifiutare Google Analytics con la stessa facilità.",
+        "details": "La tua scelta viene salvata nel browser e non ha scadenza. Puoi cambiarla o revocare il consenso in qualsiasi momento con il link «Preferenze cookie» nel footer del sito: se rifiuti, la misurazione si interrompe e i cookie di Google Analytics vengono eliminati. Puoi anche cancellare i dati del sito dal browser."
       },
       "rights": {
         "title": "Diritti dell'Utente",
-        "text": "Ai sensi del GDPR, hai diritto a:",
+        "text": "Ai sensi del GDPR hai diritto a:",
         "list1": "Accedere ai tuoi dati personali",
         "list2": "Richiedere la correzione o la cancellazione dei dati",
-        "list3": "Opporti al trattamento dei dati o revocare il consenso in qualsiasi momento"
+        "list3": "Opporti al trattamento o revocare il consenso in qualsiasi momento, senza pregiudicare la liceità del trattamento già effettuato. Hai inoltre diritto di presentare reclamo al Garante per la protezione dei dati personali (garanteprivacy.it)"
       },
       "contacts": {
         "title": "Contatti",
         "text": "Per qualsiasi domanda riguardo alla privacy e alla gestione dei cookie, puoi contattarci all'indirizzo email:"
+      },
+      "thirdParties": {
+        "title": "Servizi di Terze Parti Senza Cookie",
+        "text": "Per mostrare mappe e immagini, il tuo browser contatta direttamente alcuni servizi esterni, che ricevono necessariamente il tuo indirizzo IP. Non installiamo cookie per questo:",
+        "list1": "OpenFreeMap: tessere delle mappe",
+        "list2": "Cloudinary: immagini e fotografie"
       }
     }
   },

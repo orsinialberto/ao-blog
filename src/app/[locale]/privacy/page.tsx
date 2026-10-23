@@ -5,6 +5,9 @@ import { getAllLocalizedPaths } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 
+/** Update when the policy changes (ISO date). */
+const LAST_UPDATE = "2026-10-23";
+
 interface PrivacyPageProps {
   params: Promise<{ locale: string }> | { locale: string };
 }
@@ -51,6 +54,13 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
 
           <div>
             <h2 className="text-2xl font-semibold text-brand-primary">
+              {t.pages.privacy.controller.title}
+            </h2>
+            <p className="font-body text-lg">{t.pages.privacy.controller.text}</p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-primary">
               {t.pages.privacy.technicalCookies.title}
             </h2>
             <p className="font-body text-lg">{t.pages.privacy.technicalCookies.text}</p>
@@ -70,6 +80,24 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list1}</li>
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list2}</li>
               <li className="list-disc">{t.pages.privacy.analyticsCookies.list3}</li>
+            </ul>
+            <p className="mt-4 font-body text-lg">{t.pages.privacy.analyticsCookies.cookiesIntro}</p>
+            <ul className="mt-4 space-y-2 pl-6 font-body text-lg">
+              <li className="list-disc">{t.pages.privacy.analyticsCookies.cookie1}</li>
+              <li className="list-disc">{t.pages.privacy.analyticsCookies.cookie2}</li>
+            </ul>
+            <p className="mt-4 font-body text-lg">{t.pages.privacy.analyticsCookies.retention}</p>
+            <p className="mt-4 font-body text-lg">{t.pages.privacy.analyticsCookies.transfer}</p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-primary">
+              {t.pages.privacy.thirdParties.title}
+            </h2>
+            <p className="font-body text-lg">{t.pages.privacy.thirdParties.text}</p>
+            <ul className="mt-4 space-y-2 pl-6 font-body text-lg">
+              <li className="list-disc">{t.pages.privacy.thirdParties.list1}</li>
+              <li className="list-disc">{t.pages.privacy.thirdParties.list2}</li>
             </ul>
           </div>
 
@@ -103,10 +131,11 @@ export default async function PrivacyPage({ params }: PrivacyPageProps) {
 
           <div>
             <p className="text-sm text-brand-muted">
-              {t.pages.privacy.lastUpdate}: {new Date().toLocaleDateString(locale === "it" ? "it-IT" : "en-US", {
+              {t.pages.privacy.lastUpdate}: {new Date(LAST_UPDATE).toLocaleDateString(locale === "it" ? "it-IT" : "en-US", {
                 year: "numeric",
                 month: "long",
-                day: "numeric"
+                day: "numeric",
+                timeZone: "UTC",
               })}
             </p>
           </div>

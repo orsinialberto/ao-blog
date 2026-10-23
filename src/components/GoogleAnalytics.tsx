@@ -21,16 +21,17 @@ function initializeGoogleAnalytics(): void {
     return;
   }
 
+  // Step 1: Update consent state to 'granted' (required by Consent Mode)
+  // This must be done BEFORE loading the Google tag, and again if consent
+  // was revoked and then given anew without a reload
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+  });
+
   // Check if already initialized (prevent double loading)
   if (document.querySelector(`script[src*="gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
     return;
   }
-
-  // Step 1: Update consent state to 'granted' (required by Consent Mode)
-  // This must be done BEFORE loading the Google tag
-  gtag('consent', 'update', {
-    'analytics_storage': 'granted',
-  });
 
   // Step 2: Queue init commands. Page views are sent manually (SPA), so the
   // automatic one is off; the current page is reported right away.

@@ -35,6 +35,7 @@ export interface TranslationMessages {
     follow: string;
     description: string;
     followDescription: string;
+    cookiePreferences: string;
     quickLinks: {
       home: string;
       allTravels: string;
@@ -179,6 +180,10 @@ export interface TranslationMessages {
         title: string;
         text: string;
       };
+      controller: {
+        title: string;
+        text: string;
+      };
       technicalCookies: {
         title: string;
         text: string;
@@ -192,6 +197,17 @@ export interface TranslationMessages {
         list1: string;
         list2: string;
         list3: string;
+        cookiesIntro: string;
+        cookie1: string;
+        cookie2: string;
+        retention: string;
+        transfer: string;
+      };
+      thirdParties: {
+        title: string;
+        text: string;
+        list1: string;
+        list2: string;
       };
       management: {
         title: string;

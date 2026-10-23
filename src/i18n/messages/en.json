@@ -29,12 +29,13 @@
       "allTravels": "All Travels",
       "onTheRoad": "On the road",
       "photoGallery": "Photo Gallery"
-    }
+    },
+    "cookiePreferences": "Cookie preferences"
   },
   "components": {
     "cookieBanner": {
       "title": "Cookie Management",
-      "description": "This site uses technical cookies for the functioning of maps and images, and analytics cookies to improve user experience. You can accept or reject non-essential cookies. For more information, see the",
+      "description": "This site uses technical tools needed to work and, only with your consent, Google Analytics for usage statistics. You can accept or reject, and change your choice at any time from the footer. For more information, see the",
       "privacyPolicy": "Cookie Policy",
       "reject": "Reject",
       "accept": "Accept",
@@ -176,37 +177,52 @@
       "lastUpdate": "Last update",
       "introduction": {
         "title": "Introduction",
-        "text": "This page describes how this website manages cookies and user personal data, in compliance with GDPR (General Data Protection Regulation) and the guidelines of the Italian Data Protection Authority."
+        "text": "This page describes how this website handles cookies and visitors' personal data, under Regulation (EU) 2016/679 (GDPR) and the guidelines of the Italian Data Protection Authority."
+      },
+      "controller": {
+        "title": "Data Controller",
+        "text": "The data controller is Alberto Orsini. For any request you can write to the email address given in the Contacts section."
       },
       "technicalCookies": {
-        "title": "Technical Cookies",
-        "text": "This site uses technical cookies, which are necessary for the proper functioning of the website. These cookies do not require user consent as they are essential for providing the requested service.",
-        "list1": "Cookies for the functioning of interactive maps (Leaflet)",
-        "list2": "Cookies for managing display preferences"
+        "title": "Technical Tools",
+        "text": "This site only uses technical tools needed for it to work, which do not require consent. They are not cookies but data stored in your browser (localStorage):",
+        "list1": "Your cookie choice (key cookie-consent), kept until you change it or clear the site data",
+        "list2": "Your preferred language (key preferredLocale)"
       },
       "analyticsCookies": {
-        "title": "Analytics Cookies",
-        "text": "This site uses Google Analytics 4 (GA4) to collect anonymous statistical information about website usage. These cookies are only installed with explicit user consent.",
-        "details": "Google Analytics uses cookies to analyze how users interact with the site, collecting information such as:",
+        "title": "Google Analytics",
+        "text": "This site uses Google Analytics 4 (GA4), a service of Google Ireland Limited, to collect aggregated statistics on site usage. It is loaded only after your explicit consent, on the legal basis of consent (Art. 6(1)(a) GDPR). If you reject, no Google script is loaded.",
+        "details": "Google Analytics processes pseudonymous data (browser identifier, IP address, pages visited, device and browser, referrer) to derive information such as:",
         "list1": "Number of visitors and pages visited",
         "list2": "Time spent on the site",
-        "list3": "Traffic sources (where visitors come from)"
+        "list3": "Traffic sources (where visitors come from)",
+        "cookiesIntro": "With your consent, the following cookies are set:",
+        "cookie1": "_ga: tells visitors apart, lasts 2 years",
+        "cookie2": "_ga_<ID>: keeps the session state, lasts 2 years",
+        "retention": "Data is kept in GA4 for no more than 14 months. It is not used for advertising: ad personalisation stays off.",
+        "transfer": "Google may transfer data to countries outside the EU, notably the United States, under the safeguards provided by the GDPR (for example the EU-US Data Privacy Framework). For details see Google's notice at policies.google.com/technologies/partner-sites."
       },
       "management": {
-        "title": "Cookie Management",
-        "text": "On your first visit to the site, a banner is displayed that allows you to accept or reject non-essential cookies (analytics cookies).",
-        "details": "Your preferences are saved in your browser and remembered for 6 months. You can change your preferences at any time by deleting cookies from your browser or by contacting us directly."
+        "title": "Managing Your Preferences",
+        "text": "On your first visit a banner lets you accept or reject Google Analytics with equal ease.",
+        "details": "Your choice is saved in your browser and does not expire. You can change it or withdraw consent at any time with the \"Cookie preferences\" link in the site footer: if you reject, measurement stops and Google Analytics cookies are deleted. You can also clear the site data from your browser."
       },
       "rights": {
         "title": "User Rights",
-        "text": "Under GDPR, you have the right to:",
+        "text": "Under the GDPR you have the right to:",
         "list1": "Access your personal data",
         "list2": "Request correction or deletion of data",
-        "list3": "Object to data processing or withdraw consent at any time"
+        "list3": "Object to processing or withdraw consent at any time, without affecting the lawfulness of processing already carried out. You also have the right to lodge a complaint with the Italian Data Protection Authority (garanteprivacy.it)"
       },
       "contacts": {
         "title": "Contacts",
         "text": "For any questions regarding privacy and cookie management, you can contact us at the email address:"
+      },
+      "thirdParties": {
+        "title": "Third-Party Services Without Cookies",
+        "text": "To show maps and images, your browser contacts some external services directly, which necessarily receive your IP address. We set no cookies for this:",
+        "list1": "OpenFreeMap: map tiles",
+        "list2": "Cloudinary: images and photographs"
       }
     }
   },

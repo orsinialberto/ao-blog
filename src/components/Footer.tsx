@@ -3,6 +3,7 @@
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { CheersBear } from "./home/CheersBear";
+import { OPEN_COOKIE_BANNER_EVENT } from "./CookieBanner";
 
 export function Footer() {
   const t = useTranslations();
@@ -99,6 +100,14 @@ export function Footer() {
 
         <p className="font-label text-xs tracking-wider text-stone-500">
           © {currentYear} {t.common.siteName}
+          <span className="mx-2 select-none text-stone-300">·</span>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_BANNER_EVENT))}
+            className="underline underline-offset-2 hover:text-stone-800 transition-colors"
+          >
+            {t.footer.cookiePreferences}
+          </button>
         </p>
       </div>
     </footer>

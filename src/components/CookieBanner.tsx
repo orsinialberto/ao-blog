@@ -3,8 +3,11 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
+import { revokeAnalyticsConsent } from "@/lib/gtag";
 
 const COOKIE_CONSENT_KEY = "cookie-consent";
+/** Dispatched by the footer link to let the visitor change their choice. */
+export const OPEN_COOKIE_BANNER_EVENT = "open-cookie-banner";
 
 type CookieConsent = "accepted" | "rejected" | null;
 
@@ -28,6 +31,15 @@ export function CookieBanner() {
     };
   }, []);
 
+  useEffect(() => {
+    const open = () => {
+      setShowBanner(true);
+      setTimeout(() => setIsVisible(true), 100);
+    };
+    window.addEventListener(OPEN_COOKIE_BANNER_EVENT, open);
+    return () => window.removeEventListener(OPEN_COOKIE_BANNER_EVENT, open);
+  }, []);
+
   const handleAccept = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
     setIsVisible(false);
@@ -42,6 +54,7 @@ export function CookieBanner() {
 
   const handleReject = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "rejected");
+    revokeAnalyticsConsent();
     setIsVisible(false);
     setTimeout(() => setShowBanner(false), 300);
   };
@@ -79,7 +92,7 @@ export function CookieBanner() {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <button
                 onClick={handleReject}
-                className="px-4 py-2 text-sm font-medium text-brand-muted hover:text-brand-primary transition-colors whitespace-nowrap"
+                className="px-6 py-2 text-sm font-semibold text-white bg-brand-accent hover:bg-brand-accent/90 rounded-lg transition-colors whitespace-nowrap"
                 aria-label={t.components.cookieBanner.rejectAriaLabel}
               >
                 {t.components.cookieBanner.reject}
