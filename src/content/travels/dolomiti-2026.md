@@ -5,7 +5,7 @@ date: "2026-01-10"
 endDate: "2026-01-17"
 description: "Una settimana di snowboard su e giù per le Dolomiti, patrimonio dell'UNESCO"
 coverImage: "/images/sellaronda-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-sellaronda.jpg"
 tags:
   - Italia
   - Europa

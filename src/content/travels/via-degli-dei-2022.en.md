@@ -5,7 +5,7 @@ date: "2022-09-18"
 endDate: "2022-09-23"
 description: "Across the Tuscan-Emilian Apennines, a gruelling up-and-down through woods and historic roads"
 coverImage: "/images/via-degli-dei-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-via-degli-dei.jpg"
 tags:
   - Italia
   - Europa

@@ -5,7 +5,7 @@ date: "2024-04-25"
 endDate: "2024-04-30"
 description: "Un viaggio su due ruote, tra panorami e libertà: dall’altopiano di Asiago al Delta del Po, attraversando l’Emilia-Romagna e scendendo fino alla Toscana."
 coverImage: "/images/toscana-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-toscana.jpg"
 tags:
   - Italia
   - Europa

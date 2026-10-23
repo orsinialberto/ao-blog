@@ -5,7 +5,7 @@ date: "2023-09-06"
 endDate: "2023-09-15"
 description: "Dal porto di Ferrol fino a Santiago, per poi spingermi fino alla “fine del mondo”: un cammino breve ma intenso, fatto di incontri, buon cibo e tante risate. Un’esperienza umana che non dimenticherò mai."
 coverImage: "/images/cammino-inglese-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-cammino-inglese.jpg"
 tags:
   - Spagna
   - Europa

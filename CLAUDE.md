@@ -35,11 +35,11 @@ Travel entries are Markdown files in `src/content/travels/`. Naming convention:
 
 **Translated fields** (localized per file): `title`, `description`, `content`, `duration`, `map.points[].description`.
 
-**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroTitleVariant`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
+**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroImage`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
 
 Parsing and caching logic is in `src/lib/travels.ts`. In-memory cache (`travelCache`) is keyed by locale and populated lazily.
 
-Mandatory frontmatter fields: `title`, `date`, `description`, `coverImage`. Missing any of these throws at build time.
+Mandatory frontmatter fields: `title`, `date`, `description`, `coverImage`, `heroImage` (light B/W sketch behind the detail-page title). Missing any of these throws at build time.
 
 #### Image mosaic in Markdown content
 

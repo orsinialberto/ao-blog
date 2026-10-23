@@ -5,7 +5,7 @@ date: "2025-09-16"
 endDate: "2025-09-20"
 description: "Scoprire l’Umbria a piedi: 90 km tra borghi silenziosi, natura e incontri indimenticabili"
 coverImage: "/images/borghi-silenti-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-borghi-silenti.jpg"
 tags:
   - Italia
   - Europa

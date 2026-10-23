@@ -5,7 +5,7 @@ date: "2024-09-13"
 endDate: "2024-09-24"
 description: "A 226.5 km journey crossing cliffs, beaches and dunes, offering spectacular views along the southwestern coast"
 coverImage: "/images/rota-vicentina-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-rota-vicentina.jpg"
 tags:
   - Portogallo
   - Europa

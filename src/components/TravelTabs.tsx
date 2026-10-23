@@ -79,7 +79,7 @@ export function TravelTabs({
   return (
     <div className="min-w-0">
       {tabs.length > 1 && (
-        <div className="flex items-center gap-10 border-b border-brand-outline-variant/30 mb-6">
+        <div className="flex items-center gap-10 mb-6">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -87,7 +87,7 @@ export function TravelTabs({
               onClick={() => setActiveTab(tab.id)}
               className={`pb-4 font-label text-xs uppercase tracking-[0.2em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary ${
                 activeTab === tab.id
-                  ? "text-brand-primary border-b-2 border-brand-primary -mb-px"
+                  ? "text-brand-primary"
                   : "text-brand-outline hover:text-brand-primary"
               }`}
             >

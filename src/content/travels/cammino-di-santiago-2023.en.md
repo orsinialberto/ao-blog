@@ -5,7 +5,7 @@ date: "2023-09-06"
 endDate: "2023-09-15"
 description: "From the port of Ferrol to Santiago, then pushing on to the 'end of the world': a short but intense journey, made of encounters, good food and lots of laughter. A human experience I will never forget."
 coverImage: "/images/cammino-inglese-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-cammino-inglese.jpg"
 tags:
   - Spagna
   - Europa

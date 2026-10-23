@@ -19,7 +19,7 @@
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroTitleVariant, totalKilometers
+ * - gallery, heroImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
  * 
  * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
@@ -82,7 +82,7 @@ export interface Travel {
   content: string;
   gallery?: string[];
   coords?: TravelCoords;
-  heroTitleVariant: "light" | "dark";
+  heroImage: string;
   map?: TravelMapData;
   totalKilometers?: number;
   timeline?: TravelTimelineItem[];
@@ -222,7 +222,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroTitleVariant, totalKilometers
+ * - gallery, heroImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
@@ -314,7 +314,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
   const { data, content } = matter(fileContent);
   const processedContent = remark().use(remarkBreaks).use(html).processSync(content);
 
-  if (!data.title || !data.date || !data.description || !data.coverImage) {
+  if (!data.title || !data.date || !data.description || !data.coverImage || !data.heroImage) {
     throw new Error(
       `Missing mandatory fields in travel ${slug} (locale: ${locale})`
     );
@@ -335,7 +335,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     gallery: Array.isArray(data.gallery) ? data.gallery : undefined,
     coords: parseCoords(data.coords),
     content: wrapImageMosaics(processedContent.toString()),
-    heroTitleVariant: parseHeroTitleVariant(data.heroTitleVariant),
+    heroImage: data.heroImage,
     totalKilometers: normalizeNumber(data.totalKilometers),
     timeline,
     map: attachGpxSegmentsFromTimeline(parseMap(data.map), timeline),
@@ -370,14 +370,6 @@ function normalizeNumber(value: unknown): number | undefined {
   }
 
   return undefined;
-}
-
-function parseHeroTitleVariant(value: unknown): Travel["heroTitleVariant"] {
-  if (value === "dark") {
-    return "dark";
-  }
-
-  return "light";
 }
 
 function parseMap(rawMap: unknown): Travel["map"] {

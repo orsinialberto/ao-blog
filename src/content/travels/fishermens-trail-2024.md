@@ -5,7 +5,7 @@ date: "2024-09-13"
 endDate: "2024-09-24"
 description: "Un cammino di 226.5 km che attraversa scogliere, spiagge e dune, offrendo panorami spettacolari lungo la costa sud-occidentale"
 coverImage: "/images/rota-vicentina-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-rota-vicentina.jpg"
 tags:
   - Portogallo
   - Europa

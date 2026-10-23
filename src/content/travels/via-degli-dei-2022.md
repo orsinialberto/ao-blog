@@ -5,7 +5,7 @@ date: "2022-09-18"
 endDate: "2022-09-23"
 description: "Attraverso l’Appennino tosco-emiliano, uno sfiancante saliscendi tra boschi e strade storiche"
 coverImage: "/images/via-degli-dei-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-via-degli-dei.jpg"
 tags:
   - Italia
   - Europa

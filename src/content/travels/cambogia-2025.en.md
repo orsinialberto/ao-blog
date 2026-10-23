@@ -5,7 +5,7 @@ date: "2025-06-02"
 endDate: "2025-06-15"
 description: "Journey through Cambodia following the traces of an ancient and legendary civilization"
 coverImage: "/images/cambogia-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-cambogia.jpg"
 tags:
   - Cambogia
   - Asia

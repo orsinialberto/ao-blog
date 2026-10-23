@@ -5,7 +5,7 @@ date: "2025-09-16"
 endDate: "2025-09-20"
 description: "Discovering Umbria on foot: 90 km among silent villages, nature and unforgettable encounters"
 coverImage: "/images/borghi-silenti-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-borghi-silenti.jpg"
 tags:
   - Italia
   - Europa

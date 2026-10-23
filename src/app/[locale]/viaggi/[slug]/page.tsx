@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 import { RelatedWaypoints } from "@/components/RelatedWaypoints";
+import { WigglyText } from "@/components/WigglyText";
 import { TravelTabs } from "@/components/TravelTabs";
 import {
   getAllTravels,
   getTravelBySlug,
   getTravelsForArchive,
 } from "@/lib/travels";
+import { withBasePath } from "@/lib/paths";
 import { getRelatedTravels } from "@/lib/travelNavigation";
-import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import type { SupportedLocale } from "@/config/locales";
 import { supportedLocales } from "@/config/locales";
@@ -54,29 +54,26 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
   const relatedTravels = getRelatedTravels(getTravelsForArchive(locale), travel.slug);
 
-  const optimizedCoverImage = optimizeCloudinaryUrl(travel.coverImage, {
-    width: 1920,
-    quality: 85,
-  });
-
   return (
     <article>
-      {/* Hero Section — full-bleed */}
-      <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-center min-w-0">
-        <Image
-          src={optimizedCoverImage}
-          alt={travel.title}
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
+      {/* Hero Section — ruled notebook paper with a faint sketch, as in the home hero */}
+      <section className="notebook-paper relative flex h-[70vh] min-w-0 items-center overflow-hidden pt-(--header-height) md:h-[85vh]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply"
+          style={{
+            backgroundImage: `url(${withBasePath(travel.heroImage)})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center bottom",
+            backgroundRepeat: "no-repeat",
+          }}
         />
-        <div className="absolute inset-0 bg-linear-to-t from-brand-primary/60 via-transparent to-transparent" />
-
-        <div className="relative z-10 w-full min-w-0 max-w-7xl mx-auto px-8 md:px-20">
-          <div className="max-w-5xl mx-auto">
-            <h1 className="relative isolate w-fit mx-auto text-center before:absolute before:-inset-x-20 before:-inset-y-12 before:-z-10 before:backdrop-blur-[1px] before:[mask-image:radial-gradient(closest-side,black_70%,transparent)] font-hand text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white leading-[1.1] text-balance font-normal [-webkit-text-stroke:0.01em_currentColor] tracking-tight wrap-break-word">
-              {travel.title}
+        <div className="relative z-10 mx-auto w-full min-w-0 max-w-7xl px-8 md:px-20">
+          <div className="mx-auto max-w-5xl -translate-y-8 md:-translate-y-12">
+            <h1 className="relative isolate mx-auto w-fit text-balance text-center font-hand text-4xl leading-[1.3] font-normal tracking-tight text-brand-primary wrap-break-word sm:text-5xl md:text-7xl lg:text-8xl">
+              <span className="hand-underline-lines">
+                <WigglyText text={travel.title} />
+              </span>
             </h1>
           </div>
         </div>

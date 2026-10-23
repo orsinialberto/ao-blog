@@ -5,7 +5,7 @@ date: "2024-04-25"
 endDate: "2024-04-30"
 description: "A journey on two wheels, between landscapes and freedom: from the Asiago plateau to the Po Delta, crossing Emilia-Romagna and descending to Tuscany."
 coverImage: "/images/toscana-cover.jpg"
-heroTitleVariant: "light"
+heroImage: "/images/hero-toscana.jpg"
 tags:
   - Italia
   - Europa
