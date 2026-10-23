@@ -8,6 +8,7 @@ import { LocalizedLink } from "./LocalizedLink";
 import { WigglyText } from "./WigglyText";
 import { HandHighlight } from "./HandHighlight";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { Logo } from "./Logo";
 import { removeLocaleFromPath } from "@/lib/i18n/routing";
 
 const baseLinkClass = "font-hand text-lg uppercase tracking-widest pb-1";
@@ -46,6 +47,14 @@ export function Header() {
       className="fixed top-0 w-full z-50 bg-linear-to-b from-white to-transparent"
     >
       <div className="site-top-bar relative flex justify-center items-center py-4 px-8 max-w-screen-2xl mx-auto">
+        <LocalizedLink
+          href="/"
+          aria-label={t.navigation.links.home}
+          className="absolute left-8 text-brand-primary"
+        >
+          <Logo className="h-11 w-auto" />
+        </LocalizedLink>
+
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
             <LocalizedLink
