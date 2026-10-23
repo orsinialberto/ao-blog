@@ -6,6 +6,7 @@ endDate: "2025-09-20"
 description: "Discovering Umbria on foot: 90 km among silent villages, nature and unforgettable encounters"
 coverImage: "/images/borghi-silenti-cover.jpg"
 heroImage: "/images/hero-borghi-silenti.jpg"
+logoImage: "/images/logo-borghi-silenti.webp"
 tags:
   - Italia
   - Europa
@@ -134,11 +135,15 @@ The Cammino dei Borghi Silenti is one of those routes that surprise you from the
 
 It reminded me a bit of the Way of St. James, but here Italian beauty adds that extra touch that makes the experience even more special. A journey that doesn't just make you walk, but slows you down.
 
+:bear[hush right]
+
 ## Day 1: Tenaglie - Melezzole
 
 The first day of the journey starts with an alarm at dawn, one of those moments when you ask yourself why you decided to take a vacation… by walking. A quick breakfast at the village bar and then off we go, we really set off. In a few minutes the asphalt disappears behind us and I find myself immersed in lentil fields, wrapped in low clouds that brush the ground while the sun struggles to appear.
 
 After a few kilometers I meet two walkers, Daniele and Pamela. I don't know it yet, but they will become my traveling companions for the entire route. The first stage is Guardea, a rather large village compared to the ones we'll encounter later. We stop at the grocery store to get our packed lunch and then continue walking.
+
+:bear[walker left]
 
 Through silent woods and fields that seem to never end, we finally arrive at the first real village: the tiny, enchanting village of Santa Restituta. As soon as we arrive, a local welcomes us with some refreshment, as if he was waiting for us. We decide to eat our sandwich there and, while we enjoy the break, other walkers arrive.
 
@@ -155,6 +160,8 @@ Finally the path starts to climb again and we arrive in Toscolano, another perfe
 The last stretch passes quickly and in no time we reach the third village of the day. Melezzole is also impeccable and has a concentric structure that makes it even more particular. Inside there are only a grocery store, a bar and a church: essential, silent, authentic. Nothing else.
 
 The day closes like this: time to all meet up for dinner, a chat and then straight to the room. After all that up and down, collapsing into bed is not a choice… it's the natural consequence.
+
+:bear[sleeping right]
 
 ## Day 2: Melezzole - Morre
 
@@ -180,6 +187,8 @@ We leave Morre choosing the shortest road, avoiding Collelungo which we had alre
 
 In no time we arrive in Acqualoreto, a small but delightful village like all the others. Under an entrance arch we find a small library that seems to have come out of an illustrated book. We cross the village and re-enter the woods: here the raised hunting posts and a meadow of pink flowers that stand out among the beeches capture our attention, a small spectacle of nature.
 
+:bear[bench left]
+
 The journey continues until we find ourselves in front of a steep climb, short but more intense than that of Monte Croce di Serra. The fatigue makes itself felt, perhaps more than the previous day. When we finally emerge in front of a small church set under a rock – the Sanctuary of Madonna della Pasquarella – we are left speechless. Lost in nature yet perfectly preserved, I wonder how they managed to build it up there.
 
 We continue walking and reach Civitella del Lago, perched high with a view of Lake Corbara that is simply spectacular. We stop at the bar to refresh ourselves and enjoy the panorama: today's stage is also completed.
@@ -193,6 +202,8 @@ In the evening we have dinner at an inn in the village, always with a view of th
 The fourth day starts quietly: we're almost at the end now and today's stage is short. The goal is not to rush, but to reach the famous winery that offers a tasting to walkers.
 
 We leave Civitella del Lago and the path enters among olive trees before emerging on a provincial road. Chatting, we get distracted and walk without paying attention to the route signs. After a while we realize that something doesn't add up: no trace, no signal. We check the map and discover we've taken the wrong road. We laugh at the distraction, take it philosophically and go back. At the crossroads we finally take the right direction and arrive in Cerreto.
+
+:bear[map right]
 
 We cross the village and, shortly after, reach the long-awaited winery. The owners welcome us warmly and let us taste different wines from their production. They're all excellent, and I even discover that some are made with… moldy grapes! We make our purchases and continue walking.
 

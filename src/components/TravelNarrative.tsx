@@ -35,6 +35,22 @@ function HitSkier() {
   );
 }
 
+/** The sleeping bear breathes, and three Zs drift up from its muzzle (see `.sleeping-bear` in globals.css). */
+function SleepingBear() {
+  const { src, width, height } = BEARS.sleeping;
+  return (
+    <div className="sleeping-bear relative">
+      <Image src={src} alt="" width={width} height={height} className="h-auto w-full" />
+      <span className="sleeping-z">z</span>
+      <span className="sleeping-z">z</span>
+      <span className="sleeping-z">z</span>
+    </div>
+  );
+}
+
+// Bears that glide in from the page edge; the others rise into place or are already on the page
+const GLIDING_BEARS: BearName[] = ["snowboard", "walker", "map"];
+
 function StoryBear({ name }: { name: BearName }) {
   const figure = "travel-bear-figure";
   // The snowball bear throws when hovered or tapped
@@ -52,8 +68,17 @@ function StoryBear({ name }: { name: BearName }) {
       </BearReveal>
     );
   }
-  // The snowboarder glides in from the page edge; the others are already on the page
-  const variant = name === "snowboard" ? "glide" : "static";
+  if (name === "sleeping") {
+    return (
+      <BearReveal bear={name} variant="rise" className={figure} rootMargin={STORY_BEAR_ROOT_MARGIN}>
+        <SleepingBear />
+      </BearReveal>
+    );
+  }
+  if (name === "hush") {
+    return <BearReveal bear={name} variant="rise" className={figure} rootMargin={STORY_BEAR_ROOT_MARGIN} />;
+  }
+  const variant = GLIDING_BEARS.includes(name) ? "glide" : "static";
   return <BearReveal bear={name} variant={variant} className={figure} rootMargin={STORY_BEAR_ROOT_MARGIN} />;
 }
 

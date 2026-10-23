@@ -6,6 +6,7 @@ endDate: "2025-09-20"
 description: "Scoprire l’Umbria a piedi: 90 km tra borghi silenziosi, natura e incontri indimenticabili"
 coverImage: "/images/borghi-silenti-cover.jpg"
 heroImage: "/images/hero-borghi-silenti.jpg"
+logoImage: "/images/logo-borghi-silenti.webp"
 tags:
   - Italia
   - Europa
@@ -134,11 +135,15 @@ Il Cammino dei Borghi Silenti è uno di quei percorsi che ti sorprendono fin dal
 
 Mi ha ricordato un po’ il Cammino di Santiago, ma qui la bellezza italiana aggiunge quel tocco in più che rende l’esperienza ancora più speciale. Un cammino che non fa solo camminare, ma rallentare.
 
+:bear[hush right]
+
 ## Giorno 1: Tenaglie - Melezzole
 
 La prima giornata del cammino parte con la sveglia all’alba, uno di quei momenti in cui ti chiedi perché tu abbia deciso di fare una vacanza… camminando. Una colazione veloce al bar del paese e poi via, si parte davvero. In pochi minuti l’asfalto sparisce alle spalle e mi ritrovo immerso nei campi di lenticchie, avvolti da nuvole basse che sfiorano il terreno mentre il sole fa fatica ad affacciarsi.
 
 Dopo qualche chilometro incontro due camminatori, Daniele e Pamela. Non lo so ancora, ma diventeranno i miei compagni di viaggio per tutto il percorso. La prima tappa è Guardea, un paese piuttosto grande se confrontato con i borghi che incontreremo più avanti. Ci fermiamo all’alimentari per rimediare il pranzo al sacco e poi riprendiamo il cammino.
+
+:bear[walker left]
 
 Tra boschi silenziosi e campi che sembrano non finire mai, arriviamo finalmente al primo vero borgo: il minuscolo, incantevole borgo di Santa Restituta. Appena arrivati, un abitante del posto ci accoglie con un po’ di ristoro, come se ci stesse aspettando. Decidiamo di mangiare lì il nostro panino e, mentre ci godiamo la pausa, arrivano altri camminatori.
 
@@ -155,6 +160,8 @@ Finalmente il sentiero riprende a salire e arriviamo a Toscolano, un altro borgo
 L’ultimo tratto passa veloce e in poco tempo raggiungiamo il terzo borgo della giornata. Anche Melezzole è impeccabile e ha una struttura concentrica che lo rende ancora più particolare. Dentro ci sono solo un alimentari, un bar e una chiesa: essenziale, silenzioso, autentico. Nient’altro.
 
 La giornata si chiude così: il tempo di ritrovarci tutti per la cena, due chiacchiere e poi dritti in camera. Dopo tutto quel saliscendi, crollare a letto non è una scelta… è la naturale conseguenza.
+
+:bear[sleeping right]
 
 ## Giorno 2: Melezzole - Morre
 
@@ -180,6 +187,8 @@ Lasciamo Morre scegliendo la strada più corta, evitando Collelungo che avevamo 
 
 In breve tempo arriviamo ad Acqualoreto, un borgo piccolo ma delizioso come tutti gli altri. Sotto un arco d’ingresso troviamo una piccola biblioteca che sembra uscita da un libro illustrato. Attraversiamo il borgo e rientriamo nel bosco: qui catturano la nostra attenzione le postazioni di caccia rialzate e un prato di fiori rosa che spicca tra i faggi, un piccolo spettacolo della natura.
 
+:bear[bench left]
+
 Il cammino prosegue finché non ci troviamo davanti a una salita ripida, breve ma più intensa di quella del Monte Croce di Serra. La fatica si fa sentire, forse più del giorno precedente. Quando finalmente sbuchiamo davanti a una piccola chiesa incastonata sotto una roccia – il Santuario della Madonna della Pasquarella – rimaniamo a bocca aperta. Sperduta nella natura eppure perfettamente conservata, mi chiedo come abbiano fatto a costruirla lassù.
 
 Riprendiamo il cammino e raggiungiamo Civitella del Lago, arroccata in alto con una vista sul lago di Corbara semplicemente spettacolare. Ci fermiamo al bar per ristorarci e goderci il panorama: anche la tappa di oggi è completata.
@@ -193,6 +202,8 @@ La sera ceniamo in una locanda del paese, sempre con vista sul lago, mentre il c
 Il quarto giorno parte tranquillo: ormai siamo quasi alla fine e la tappa di oggi è breve. L’obiettivo non è correre, ma raggiungere la famosa cantina che offre una degustazione ai camminatori.
 
 Lasciamo Civitella del Lago e il sentiero si infila tra gli ulivi prima di sbucare su una strada provinciale. Chiacchierando, ci distraiamo e camminiamo senza far caso ai segni del percorso. Dopo un po’ ci accorgiamo che qualcosa non torna: nessuna traccia, nessun segnale. Controlliamo la mappa e scopriamo di aver sbagliato strada. Ridiamo della distrazione, prendiamo la cosa con filosofia e torniamo indietro. Al bivio imbocchiamo finalmente la direzione giusta e arriviamo a Cerreto.
+
+:bear[map right]
 
 Attraversiamo il borgo e, poco dopo, raggiungiamo la cantina tanto attesa. I proprietari ci accolgono calorosamente e ci fanno assaggiare diversi vini della loro produzione. Sono tutti ottimi, e scopro persino che alcuni vengono realizzati con uve… ammuffite! Facciamo i nostri acquisti e riprendiamo il cammino.
 

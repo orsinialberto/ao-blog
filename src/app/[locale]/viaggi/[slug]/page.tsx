@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { RelatedWaypoints } from "@/components/RelatedWaypoints";
 import { WigglyText } from "@/components/WigglyText";
@@ -77,6 +78,17 @@ export default async function TravelPage({ params }: TravelPageProps) {
             </h1>
           </div>
         </div>
+        {travel.logoImage && (
+          <div aria-hidden className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 md:bottom-10">
+            <Image
+              src={withBasePath(travel.logoImage)}
+              alt=""
+              width={480}
+              height={480}
+              className="hero-logo pointer-events-auto w-28 md:w-40"
+            />
+          </div>
+        )}
       </section>
 
       {/* Article Layout */}

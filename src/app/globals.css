@@ -1016,6 +1016,159 @@
   }
 }
 
+/* Cammino dei Borghi Silenti bears. Like the carving skier, each hover animation runs on the image so it never
+   interferes with the entrance on .bear, and pivots on the ground the bear stands on. */
+@keyframes bear-walk {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  14% {
+    transform: translate(1.5%, -2%) rotate(1.5deg);
+  }
+  28% {
+    transform: translate(3%, 0) rotate(0deg);
+  }
+  42% {
+    transform: translate(4.5%, -2%) rotate(1.5deg);
+  }
+  56%,
+  70% {
+    transform: translate(6%, 0) rotate(0deg);
+  }
+}
+
+/* The bear goes quiet: it shrinks a little, holds it, then relaxes */
+@keyframes bear-hush {
+  25%,
+  70% {
+    transform: translateY(1%) scale(0.96);
+  }
+}
+
+/* The mapreader turns its head about, then has an "aha" */
+@keyframes bear-puzzle {
+  25% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-1%) rotate(3deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+@keyframes bear-read {
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .bear[data-bear='walker'],
+  .bear[data-bear='hush'],
+  .bear[data-bear='map'],
+  .bear[data-bear='bench'] {
+    pointer-events: auto;
+  }
+
+  .bear[data-bear='walker'][data-in-view]:hover > img {
+    transform-origin: 50% 100%;
+    animation: bear-walk 1800ms ease-in-out;
+  }
+
+  .bear[data-bear='hush'][data-in-view]:hover > img {
+    transform-origin: 50% 100%;
+    animation: bear-hush 1600ms ease-in-out;
+  }
+
+  .bear[data-bear='map'][data-in-view]:hover > img {
+    transform-origin: 20% 100%;
+    animation: bear-puzzle 1200ms ease-in-out;
+  }
+
+  .bear[data-bear='bench'][data-in-view]:hover > img {
+    transform-origin: 50% 100%;
+    animation: bear-read 1800ms ease-in-out;
+  }
+}
+
+/* The sleeping bear breathes slowly while it is on the page, and three Zs drift up from its muzzle */
+@keyframes bear-breathe {
+  to {
+    transform: scaleY(1.025);
+  }
+}
+
+@keyframes bear-zzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.6);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0.6em, -2.2em) scale(1.1);
+  }
+}
+
+.sleeping-z {
+  position: absolute;
+  left: 72%;
+  top: 22%;
+  opacity: 0;
+  font-family: var(--font-waiting-for-the-sunrise), "Waiting for the Sunrise", cursive;
+  font-size: calc(var(--size, 14rem) * 0.14);
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bear[data-in-view] .sleeping-bear > img {
+    transform-origin: 50% 100%;
+    animation: bear-breathe 3600ms ease-in-out infinite alternate;
+  }
+
+  .bear[data-in-view] .sleeping-z {
+    animation: bear-zzz 2400ms ease-out infinite;
+  }
+
+  .bear[data-in-view] .sleeping-z:nth-of-type(2) {
+    animation-delay: 800ms;
+  }
+
+  .bear[data-in-view] .sleeping-z:nth-of-type(3) {
+    animation-delay: 1600ms;
+  }
+}
+
+/* The emblem lands on the hero paper like a stamp, after the title underline has been drawn */
+@keyframes hero-logo-stamp {
+  from {
+    opacity: 0;
+    transform: scale(1.25) rotate(-14deg);
+  }
+}
+
+.hero-logo {
+  transform: rotate(-6deg);
+  transition: transform 300ms var(--ease-out-strong);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-logo:hover {
+    transform: rotate(-2deg) scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-logo {
+    animation: hero-logo-stamp 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 900ms backwards;
+  }
+}
+
 /* CheersBear: the beer crossfades over the standing bear. Hover needs a real pointer; touch taps toggle data-cheers. */
 .cheers-bear > :last-child {
   opacity: 0;

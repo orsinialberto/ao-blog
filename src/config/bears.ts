@@ -15,6 +15,12 @@ export const BEARS = {
   snowboard: { src: "/images/bears/bear-snowboard.webp", width: 581, height: 560 },
   throw1: { src: "/images/bears/bear-throw-1.webp", width: 606, height: 560 },
   throw2: { src: "/images/bears/bear-throw-2.webp", width: 606, height: 560 },
+  // travel story bears (Cammino dei Borghi Silenti), also 560px tall
+  walker: { src: "/images/bears/bear-walker.webp", width: 549, height: 560 },
+  hush: { src: "/images/bears/bear-hush.webp", width: 573, height: 560 },
+  map: { src: "/images/bears/bear-map.webp", width: 700, height: 560 },
+  bench: { src: "/images/bears/bear-bench.webp", width: 596, height: 560 },
+  sleeping: { src: "/images/bears/bear-sleeping.webp", width: 707, height: 560 },
 } as const;
 
 export type BearName = keyof typeof BEARS;

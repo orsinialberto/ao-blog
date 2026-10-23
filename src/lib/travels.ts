@@ -19,7 +19,7 @@
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroImage, totalKilometers
+ * - gallery, heroImage, logoImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
  * 
  * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
@@ -83,6 +83,8 @@ export interface Travel {
   gallery?: string[];
   coords?: TravelCoords;
   heroImage: string;
+  /** Optional emblem shown in the detail page hero */
+  logoImage?: string;
   map?: TravelMapData;
   totalKilometers?: number;
   timeline?: TravelTimelineItem[];
@@ -222,7 +224,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroImage, totalKilometers
+ * - gallery, heroImage, logoImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
@@ -346,6 +348,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     coords: parseCoords(data.coords),
     content: markBearSlots(wrapImageMosaics(processedContent.toString())),
     heroImage: data.heroImage,
+    logoImage: isNonEmptyString(data.logoImage) ? data.logoImage : undefined,
     totalKilometers: normalizeNumber(data.totalKilometers),
     timeline,
     map: attachGpxSegmentsFromTimeline(parseMap(data.map), timeline),
