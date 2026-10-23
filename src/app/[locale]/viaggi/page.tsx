@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { SectionHeader } from "@/components/SectionHeader";
 import { TravelsWorldMap } from "@/components/TravelsWorldMap";
 import { TravelsListClient } from "@/components/TravelsListClient";
 import { getTravelsForArchive } from "@/lib/travels";
@@ -31,10 +32,13 @@ export async function generateMetadata({
 export default async function TravelsPage({ params }: TravelsPageProps) {
   const locale = await getLocaleFromParams(params);
   const allTravels = await getTravelsForArchive(locale);
+  const t = getTranslations(locale as SupportedLocale);
 
   return (
     <div className="max-w-6xl mx-auto px-6 pt-8 pb-8">
+      <SectionHeader label={t.pages.travels.mapTitle} className="-mt-4 mb-4" />
       <TravelsWorldMap />
+      <SectionHeader label={t.pages.travels.storiesTitle} className="mb-12" />
       <TravelsListClient allTravels={allTravels} locale={locale} />
     </div>
   );

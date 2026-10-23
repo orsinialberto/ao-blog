@@ -160,6 +160,8 @@ export interface TranslationMessages {
       archiveLabel: string;
       heading: string;
       subtitle: string;
+      mapTitle: string;
+      storiesTitle: string;
     };
     gallery: {
       title: string;

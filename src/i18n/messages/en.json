@@ -158,7 +158,9 @@
       "description": "Complete archive of travel diaries with tag filters.",
       "archiveLabel": "Archive",
       "heading": "Travels",
-      "subtitle": "A curated repository of transient moments and enduring landscapes."
+      "subtitle": "A curated repository of transient moments and enduring landscapes.",
+      "mapTitle": "My map",
+      "storiesTitle": "My stories"
     },
     "gallery": {
       "title": "Photo Gallery",

@@ -86,7 +86,7 @@
     font-family: var(--font-inter), "Inter", system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.8;
-    color: #1a1c1b;
+    color: #000;
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;

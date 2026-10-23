@@ -10,7 +10,7 @@ const pins = [
 
 export function TravelsWorldMap() {
   return (
-    <div className="relative mx-auto -mt-6 mb-12 w-full">
+    <div className="relative mx-auto mb-16 w-full">
       <Image
         src={withBasePath("/images/world-map.png")}
         alt=""

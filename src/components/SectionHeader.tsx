@@ -8,6 +8,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   dark?: boolean;
   plane?: boolean;
+  className?: string;
 }
 
 export function SectionHeader({
@@ -16,9 +17,10 @@ export function SectionHeader({
   subtitle,
   dark = false,
   plane = false,
+  className = "mb-16",
 }: SectionHeaderProps) {
   return (
-    <div className="mb-16 text-center">
+    <div className={`${className} text-center`}>
       <h2 className={`font-hand text-5xl md:text-6xl lg:text-7xl mb-2 ${dark ? 'text-white' : 'text-brand-primary'}`}>
         <span className="group relative inline-block pb-3">
           {plane && <PaperPlaneTrail />}

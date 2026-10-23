@@ -158,7 +158,9 @@
       "description": "Archivio completo dei diari di viaggio con filtri per tag.",
       "archiveLabel": "Archivio",
       "heading": "Viaggi",
-      "subtitle": "Un archivio di momenti fugaci e paesaggi che restano."
+      "subtitle": "Un archivio di momenti fugaci e paesaggi che restano.",
+      "mapTitle": "La mia mappa",
+      "storiesTitle": "I miei racconti"
     },
     "gallery": {
       "title": "Galleria Fotografica",
