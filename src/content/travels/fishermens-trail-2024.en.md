@@ -4,7 +4,7 @@ slug: "fishermens-trail-2024"
 date: "2024-09-13"
 endDate: "2024-09-24"
 description: "A 226.5 km journey crossing cliffs, beaches and dunes, offering spectacular views along the southwestern coast"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763735141/photo-01_zrs1jh.jpg"
+coverImage: "/images/rota-vicentina-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Portogallo

@@ -4,7 +4,7 @@ slug: "via-degli-dei-2022"
 date: "2022-09-18"
 endDate: "2022-09-23"
 description: "Across the Tuscan-Emilian Apennines, a gruelling up-and-down through woods and historic roads"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650892/sedie-con-vista_q5bw3u.jpg"
+coverImage: "/images/via-degli-dei-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Italia

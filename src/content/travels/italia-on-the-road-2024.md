@@ -4,7 +4,7 @@ slug: "italia-on-the-road-2024"
 date: "2024-04-25"
 endDate: "2024-04-30"
 description: "Un viaggio su due ruote, tra panorami e libertà: dall’altopiano di Asiago al Delta del Po, attraversando l’Emilia-Romagna e scendendo fino alla Toscana."
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-01_avlj5w.jpg"
+coverImage: "/images/toscana-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Italia

@@ -4,7 +4,7 @@ slug: "cammino-inglese-e-finisterre-2023"
 date: "2023-09-06"
 endDate: "2023-09-15"
 description: "From the port of Ferrol to Santiago, then pushing on to the 'end of the world': a short but intense journey, made of encounters, good food and lots of laughter. A human experience I will never forget."
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-01_mpmemj.jpg"
+coverImage: "/images/cammino-inglese-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Spagna

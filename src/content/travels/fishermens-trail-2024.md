@@ -4,7 +4,7 @@ slug: "fishermens-trail-2024"
 date: "2024-09-13"
 endDate: "2024-09-24"
 description: "Un cammino di 226.5 km che attraversa scogliere, spiagge e dune, offrendo panorami spettacolari lungo la costa sud-occidentale"
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763735141/photo-01_zrs1jh.jpg"
+coverImage: "/images/rota-vicentina-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Portogallo

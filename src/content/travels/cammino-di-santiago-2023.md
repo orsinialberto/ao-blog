@@ -4,7 +4,7 @@ slug: "cammino-inglese-e-finisterre-2023"
 date: "2023-09-06"
 endDate: "2023-09-15"
 description: "Dal porto di Ferrol fino a Santiago, per poi spingermi fino alla “fine del mondo”: un cammino breve ma intenso, fatto di incontri, buon cibo e tante risate. Un’esperienza umana che non dimenticherò mai."
-coverImage: "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-01_mpmemj.jpg"
+coverImage: "/images/cammino-inglese-cover.jpg"
 heroTitleVariant: "light"
 tags:
   - Spagna
