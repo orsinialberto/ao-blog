@@ -136,14 +136,6 @@
       "filteredByTag": "Filtered by tag",
       "noTravelsWithTag": "No travels with this tag yet. Come back soon!"
     },
-    "travelLogbook": {
-      "title": "The Logbook",
-      "coordinates": "Coordinates",
-      "location": "Destination",
-      "duration": "Duration",
-      "totalKilometers": "Distance covered",
-      "tags": "Categories"
-    },
     "travelTabs": {
       "narrative": "Narrative",
       "itinerary": "Itinerary",

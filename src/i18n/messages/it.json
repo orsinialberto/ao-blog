@@ -136,14 +136,6 @@
       "filteredByTag": "Filtrati per tag",
       "noTravelsWithTag": "Nessun viaggio con questo tag per ora. Torna presto!"
     },
-    "travelLogbook": {
-      "title": "Diario di bordo",
-      "coordinates": "Coordinate",
-      "location": "Destinazione",
-      "duration": "Durata",
-      "totalKilometers": "Distanza percorsa",
-      "tags": "Categorie"
-    },
     "travelTabs": {
       "narrative": "Racconto",
       "itinerary": "Tappe",

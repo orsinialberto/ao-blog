@@ -62,7 +62,7 @@ export function TravelItineraryAccordion({
   return (
     <div className={`min-w-0 ${className}`.trim()}>
       {heading ? (
-        <h2 className="mb-8 font-headline text-2xl font-bold tracking-tight text-brand-primary md:text-3xl">
+        <h2 className="mb-8 font-label uppercase text-2xl tracking-tight text-brand-primary md:text-3xl">
           {heading}
         </h2>
       ) : null}
@@ -82,7 +82,7 @@ export function TravelItineraryAccordion({
                 <span className="shrink-0 font-label text-[10px] uppercase tracking-widest text-brand-outline">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="font-headline text-lg font-bold text-brand-primary wrap-break-word">
+                <span className="font-label text-lg uppercase text-brand-primary wrap-break-word">
                   {item.title}
                 </span>
               </div>

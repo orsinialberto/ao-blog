@@ -79,7 +79,7 @@ export function TravelTabs({
   return (
     <div className="min-w-0">
       {tabs.length > 1 && (
-        <div className="flex items-center gap-10 border-b border-brand-outline-variant/30 mb-12">
+        <div className="flex items-center gap-10 border-b border-brand-outline-variant/30 mb-6">
           {tabs.map((tab) => (
             <button
               key={tab.id}

@@ -137,14 +137,6 @@ export interface TranslationMessages {
       filteredByTag: string;
       noTravelsWithTag: string;
     };
-    travelLogbook: {
-      title: string;
-      coordinates: string;
-      location: string;
-      duration: string;
-      totalKilometers: string;
-      tags: string;
-    };
     travelTabs: {
       narrative: string;
       itinerary: string;

@@ -83,7 +83,7 @@
 
 @layer components {
   .prose-travel {
-    font-family: var(--font-noto-serif), "Noto Serif", Georgia, serif;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
     font-size: 1rem;
     line-height: 1.8;
     color: #1a1c1b;
@@ -94,7 +94,7 @@
 
   .prose-travel > p:first-of-type::first-letter {
     float: left;
-    font-family: var(--font-noto-serif), "Noto Serif", Georgia, serif;
+    font-family: var(--font-inter), "Inter", system-ui, sans-serif;
     font-size: 5.5rem;
     line-height: 0.8;
     padding-top: 0.5rem;
@@ -104,6 +104,7 @@
   }
 
   .prose-travel h2 {
+    font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, sans-serif;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
     font-size: 1.5rem;
