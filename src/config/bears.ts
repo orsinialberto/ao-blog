@@ -10,6 +10,8 @@ export const BEARS = {
   // travel story bears (Sellaronda), all 560px tall so they show at the same size; throw1 and throw2 share one canvas, so they can be crossfaded in place
   pretzel: { src: "/images/bears/bear-pretzel.webp", width: 676, height: 560 },
   ski: { src: "/images/bears/bear-ski.webp", width: 463, height: 560 },
+  // the snowplough skier hit by the snowball, drawn on the same baseline as ski but on a wider canvas
+  skiHit: { src: "/images/bears/bear-ski-hit.webp", width: 681, height: 467 },
   snowboard: { src: "/images/bears/bear-snowboard.webp", width: 581, height: 560 },
   throw1: { src: "/images/bears/bear-throw-1.webp", width: 606, height: 560 },
   throw2: { src: "/images/bears/bear-throw-2.webp", width: 606, height: 560 },

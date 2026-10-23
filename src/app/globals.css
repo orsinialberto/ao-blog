@@ -151,6 +151,11 @@
       margin-top: 0;
     }
 
+    /* The hit pose is drawn at the skier's scale on a canvas 467 / 560 as tall; the rule above would stretch it */
+    .prose-travel .travel-bear-figure .hit-skier-hit {
+      height: calc(var(--size) * 467 / 560) !important;
+    }
+
     .prose-travel .travel-bear[data-side='right'] .travel-bear-figure {
       left: calc(100% + var(--margin) / 2);
       translate: -50% 0;
@@ -885,6 +890,48 @@
   }
 }
 
+/* The skier is hit by the snowball. Both bears live in the same .prose-travel, so :has() starts the hit
+   whenever the thrower plays: on its own when it scrolls into view (same timing as its autoplay, a little
+   later because the snowball needs time to fly), on hover, and on tap. */
+.hit-skier-hit {
+  opacity: 0;
+  transition: opacity 150ms var(--ease-out-strong);
+}
+
+.hit-skier > :first-child {
+  transition: opacity 150ms var(--ease-out-strong);
+}
+
+.prose-travel:has(.cheers-bear[data-cheers]) .hit-skier-hit {
+  opacity: 1;
+}
+
+.prose-travel:has(.cheers-bear[data-cheers]) .hit-skier > :first-child {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .prose-travel:has(.cheers-bear:hover) .hit-skier-hit {
+    opacity: 1;
+    transition-delay: 200ms;
+  }
+
+  .prose-travel:has(.cheers-bear:hover) .hit-skier > :first-child {
+    opacity: 0;
+    transition-delay: 200ms;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .prose-travel:has(.bear[data-in-view] .cheers-bear[data-autoplay]) .hit-skier-hit {
+    animation: bear-auto-show 1600ms var(--ease-out-strong) 550ms;
+  }
+
+  .prose-travel:has(.bear[data-in-view] .cheers-bear[data-autoplay]) .hit-skier > :first-child {
+    animation: bear-auto-hide 1600ms var(--ease-out-strong) 550ms;
+  }
+}
+
 /* The snowplough skier carves left and right when hovered. Runs on the image, like the waving bear,
    so it never interferes with the glide-in on .bear. */
 @keyframes bear-carve {
@@ -904,9 +951,63 @@
     pointer-events: auto;
   }
 
-  .bear[data-bear='ski'][data-in-view]:hover > img {
+  .bear[data-bear='ski'][data-in-view]:hover > .hit-skier {
     transform-origin: 50% 100%;
     animation: bear-carve 1400ms ease-in-out;
+  }
+}
+
+/* The snowboarder slides forward over the text, takes a ramp, backflips and lands back where it started.
+   Position and rotation are separate animations (translate / rotate properties) so the spin can stay linear
+   and never slows down upside down. Both run on the image, like the carving skier. --size comes from
+   .travel-bear-figure. The bear faces right, so a counter-clockwise spin is a backflip. */
+@keyframes bear-ramp-move {
+  0% {
+    translate: 0 0;
+  }
+  35% {
+    translate: calc(var(--size) * 0.8) 0;
+    animation-timing-function: ease-in;
+  }
+  50% {
+    translate: calc(var(--size) * 1) calc(var(--size) * -0.1);
+    animation-timing-function: ease-out;
+  }
+  70% {
+    translate: calc(var(--size) * 0.55) calc(var(--size) * -1.1);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+@keyframes bear-ramp-spin {
+  0% {
+    rotate: 0deg;
+  }
+  35% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: -12deg;
+  }
+  90%,
+  100% {
+    rotate: -360deg;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .bear[data-bear='snowboard'] {
+    pointer-events: auto;
+  }
+
+  .bear[data-bear='snowboard'][data-in-view]:hover > img {
+    transform-origin: 50% 55%;
+    animation:
+      bear-ramp-move 2200ms linear,
+      bear-ramp-spin 2200ms linear;
   }
 }
 

@@ -233,12 +233,13 @@ function ensureCache(locale: Locale = "it"): Travel[] {
 const IMG_PARAGRAPH_RE = /<p>\s*<img\s+([^>]*)>\s*<\/p>/g;
 
 /**
- * A line `:bear[name]` in the Markdown becomes an empty slot that TravelTabs fills with that bear.
+ * A line `:bear[name left|right]` in the Markdown becomes an empty slot that TravelTabs fills with that bear,
+ * in the left or right margin of the text.
  */
-const BEAR_DIRECTIVE_RE = /<p>:bear\[(\w+)\]<\/p>/g;
+const BEAR_DIRECTIVE_RE = /<p>:bear\[(\w+) (left|right)\]<\/p>/g;
 
 function markBearSlots(htmlContent: string): string {
-  return htmlContent.replace(BEAR_DIRECTIVE_RE, '<div class="travel-bear" data-bear="$1"></div>');
+  return htmlContent.replace(BEAR_DIRECTIVE_RE, '<div class="travel-bear" data-bear="$1" data-side="$2"></div>');
 }
 
 function wrapImageMosaics(htmlContent: string): string {

@@ -77,7 +77,7 @@ Ed è proprio per questo che ogni anno cerco di aggiungere qualcosa: una pista n
 
 Qui sotto racconto i percorsi che sono riuscito a fare quest’anno, partendo da Corvara e muovendomi attorno al Sellaronda, spingendomi fino ai comprensori più lontani… quasi senza mai togliere la tavola dai piedi.
 
-:bear[snowboard]
+:bear[snowboard left]
 
 
 ---
@@ -113,7 +113,9 @@ Seguendo le indicazioni per Armentarola si arriva a un parcheggio sopra San Cass
 Prima però devio verso le **5 Torri**. Era da anni che non ci tornavo e l’effetto è stato quello di sempre: stupore.  
 Piste perfette, pochissima gente, un panorama che ti costringe a fermarti. Vale assolutamente la pena perdere un po’ di tempo qui.
 
-:bear[throw1]
+:bear[throw1 left]
+
+:bear[ski right]
 
 ![5 Torri](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1769031248/10-IMG_3568_vmx1zc.jpg)
 
@@ -154,8 +156,6 @@ Entrambi i giri sono spettacolari e molto panoramici. Se si ha tempo, vale la pe
 
 Dal Passo Gardena, ad esempio, si può deviare per la **Sasslong**, una delle piste più famose della Coppa del Mondo: tecnica, veloce, impegnativa.
 
-:bear[ski]
-
 Percorrendo il giro verde, invece, passando da Selva verso Canazei si attraversa la **Città dei Sassi**: un paesaggio surreale, con enormi massi coperti di neve che sembrano spuntare dal terreno come una città silenziosa.
 
 
@@ -179,7 +179,7 @@ Il panorama è incredibile. E da lì parte una delle piste più lunghe che abbia
 
 Una scoperta inaspettata, e probabilmente uno dei momenti più belli della settimana.
 
-:bear[pretzel]
+:bear[pretzel left]
 
 
 ---
