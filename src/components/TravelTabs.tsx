@@ -87,7 +87,7 @@ export function TravelTabs({
               onClick={() => setActiveTab(tab.id)}
               className={`pb-4 font-label text-xs uppercase tracking-[0.2em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-primary ${
                 activeTab === tab.id
-                  ? "text-brand-primary"
+                  ? "text-brand-primary border-b-2 border-brand-primary"
                   : "text-brand-outline hover:text-brand-primary"
               }`}
             >
