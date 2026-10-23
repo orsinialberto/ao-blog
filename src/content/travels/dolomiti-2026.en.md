@@ -113,6 +113,8 @@ Following signs for Armentarola you reach a car park above San Cassiano. That wa
 First, though, I detoured to the **5 Torri**. I hadn't been back in years, and the effect was the same as always: awe.  
 Perfect pistes, hardly anyone around, views that make you stop. It's absolutely worth spending time here.
 
+:bear[throw1]
+
 ![5 Torri](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1769031248/10-IMG_3568_vmx1zc.jpg)
 
 From the 5 Torri a long gondola runs down to Cortina.  
@@ -135,8 +137,6 @@ At the end comes the most unusual part: the return. A horse-drawn sled takes you
 
 An experience that, every year, is worth the trip.
 
-:bear[throw1]
-
 
 ---
 
@@ -154,9 +154,9 @@ Both directions are spectacular and very scenic. If you have time, it's worth st
 
 From Passo Gardena, for example, you can branch off to the **Saslong**, one of the most famous World Cup runs: technical, fast, demanding.
 
-On the green loop, passing from Selva toward Canazei, you cross the **City of Stones**: a surreal landscape of huge snow-covered boulders that seem to rise from the ground like a silent city.
-
 :bear[ski]
+
+On the green loop, passing from Selva toward Canazei, you cross the **City of Stones**: a surreal landscape of huge snow-covered boulders that seem to rise from the ground like a silent city.
 
 
 ---

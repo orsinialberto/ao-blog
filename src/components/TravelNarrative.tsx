@@ -10,17 +10,22 @@ function isBearName(name: string): name is BearName {
   return name in BEARS;
 }
 
+// A story bear plays once it is well inside the viewport, not as soon as its edge peeks in at the bottom
+const STORY_BEAR_ROOT_MARGIN = "0px 0px -30% 0px";
+
 function StoryBear({ name }: { name: BearName }) {
   const figure = "travel-bear-figure";
   // The snowball bear throws when hovered or tapped
   if (name === "throw1") {
     return (
-      <BearReveal bear={name} className={figure}>
-        <CheersBear from="throw1" to="throw2" replace className="pointer-events-auto" />
+      <BearReveal bear={name} variant="static" className={figure} rootMargin={STORY_BEAR_ROOT_MARGIN}>
+        <CheersBear from="throw1" to="throw2" replace autoplay className="pointer-events-auto" />
       </BearReveal>
     );
   }
-  return <BearReveal bear={name} className={figure} />;
+  // The skiers glide in from the page edge; the others are already on the page
+  const variant = name === "ski" || name === "snowboard" ? "glide" : "static";
+  return <BearReveal bear={name} variant={variant} className={figure} rootMargin={STORY_BEAR_ROOT_MARGIN} />;
 }
 
 /**

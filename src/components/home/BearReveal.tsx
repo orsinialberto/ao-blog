@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { BEARS, type BearName } from "@/config/bears";
 
-export type BearVariant = "rise" | "wave";
+export type BearVariant = "rise" | "wave" | "glide" | "static";
 
 interface BearRevealProps {
   bear: BearName;
@@ -14,13 +14,15 @@ interface BearRevealProps {
   /** Sizing and position of the slot the bear lives in */
   className?: string;
   id?: string;
+  /** Shrinks the viewport the bear must enter before it plays, e.g. "0px 0px -30% 0px" waits until it is well inside */
+  rootMargin?: string;
 }
 
 /**
  * Decorative bear that plays its entrance once, the first time it scrolls into view.
  * Motion lives in globals.css (`.bear`); under reduced motion it only fades.
  */
-export function BearReveal({ bear, children, variant = "rise", className = "", id }: BearRevealProps) {
+export function BearReveal({ bear, children, variant = "rise", className = "", id, rootMargin }: BearRevealProps) {
   const slotRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -34,11 +36,11 @@ export function BearReveal({ bear, children, variant = "rise", className = "", i
         setInView(true);
         observer.disconnect();
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin },
     );
     observer.observe(slot);
     return () => observer.disconnect();
-  }, []);
+  }, [rootMargin]);
 
   const { src, width, height } = BEARS[bear];
 

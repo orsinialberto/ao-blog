@@ -773,6 +773,11 @@
   }
 }
 
+/* Static bears are already on the page; BearReveal only reports when they scroll into view (data-in-view) */
+.bear[data-variant='static'] {
+  opacity: 1;
+}
+
 /* Home bears (BearReveal). Hidden until the slot scrolls into view, then each plays its entrance once.
    Reduced motion keeps only the fade. */
 .bear {
@@ -782,6 +787,20 @@
 
 .bear[data-in-view] {
   opacity: 1;
+}
+
+@keyframes bear-auto-show {
+  15%,
+  85% {
+    opacity: 1;
+  }
+}
+
+@keyframes bear-auto-hide {
+  15%,
+  85% {
+    opacity: 0;
+  }
 }
 
 @keyframes bear-wave {
@@ -813,6 +832,32 @@
 
   .bear[data-in-view] {
     transform: none;
+  }
+
+  /* Story bears glide in from the page edge on the side of the margin they hang in, then settle */
+  .travel-bear[data-side='right'] .bear[data-variant='glide'] {
+    transform: translateX(3rem) rotate(4deg);
+  }
+
+  .travel-bear[data-side='left'] .bear[data-variant='glide'] {
+    transform: translateX(-3rem) rotate(-4deg);
+  }
+
+  .travel-bear .bear[data-variant='glide'][data-in-view] {
+    transform: none;
+  }
+
+  .bear[data-variant='glide'] {
+    transition-duration: 900ms, 1600ms;
+  }
+
+  /* The snowball bear throws once on its own when it scrolls into view, then rests (hover and tap still work) */
+  .bear[data-in-view] .cheers-bear[data-autoplay] > :last-child {
+    animation: bear-auto-show 1600ms var(--ease-out-strong) 300ms;
+  }
+
+  .bear[data-in-view] .cheers-bear[data-autoplay][data-replace] > :first-child {
+    animation: bear-auto-hide 1600ms var(--ease-out-strong) 300ms;
   }
 
   .bear[data-variant='wave'] {

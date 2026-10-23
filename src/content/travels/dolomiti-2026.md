@@ -113,6 +113,8 @@ Seguendo le indicazioni per Armentarola si arriva a un parcheggio sopra San Cass
 Prima però devio verso le **5 Torri**. Era da anni che non ci tornavo e l’effetto è stato quello di sempre: stupore.  
 Piste perfette, pochissima gente, un panorama che ti costringe a fermarti. Vale assolutamente la pena perdere un po’ di tempo qui.
 
+:bear[throw1]
+
 ![5 Torri](https://res.cloudinary.com/dx6hrvg6l/image/upload/v1769031248/10-IMG_3568_vmx1zc.jpg)
 
 Dalle 5 Torri parte una lunga cabinovia che porta fino a Cortina.  
@@ -135,8 +137,6 @@ E alla fine arriva la parte più particolare: il rientro. Una slitta trainata da
 
 Un’esperienza che ogni anno vale il viaggio.
 
-:bear[throw1]
-
 
 ---
 
@@ -154,9 +154,9 @@ Entrambi i giri sono spettacolari e molto panoramici. Se si ha tempo, vale la pe
 
 Dal Passo Gardena, ad esempio, si può deviare per la **Sasslong**, una delle piste più famose della Coppa del Mondo: tecnica, veloce, impegnativa.
 
-Percorrendo il giro verde, invece, passando da Selva verso Canazei si attraversa la **Città dei Sassi**: un paesaggio surreale, con enormi massi coperti di neve che sembrano spuntare dal terreno come una città silenziosa.
-
 :bear[ski]
+
+Percorrendo il giro verde, invece, passando da Selva verso Canazei si attraversa la **Città dei Sassi**: un paesaggio surreale, con enormi massi coperti di neve che sembrano spuntare dal terreno come una città silenziosa.
 
 
 ---

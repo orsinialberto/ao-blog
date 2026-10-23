@@ -10,6 +10,8 @@ interface CheersBearProps {
   to?: BearName;
   /** The resting pose disappears while the other one shows, instead of staying underneath it */
   replace?: boolean;
+  /** Plays the other pose once on its own when an ancestor `.bear` scrolls into view */
+  autoplay?: boolean;
   className?: string;
 }
 
@@ -18,7 +20,7 @@ interface CheersBearProps {
  * Other pairs of poses work the same way (e.g. a snowball wind-up and throw).
  * Decorative easter egg, so it is hidden from assistive tech and not focusable.
  */
-export function CheersBear({ from = "standing", to = "beer", replace = false, className = "" }: CheersBearProps) {
+export function CheersBear({ from = "standing", to = "beer", replace = false, autoplay = false, className = "" }: CheersBearProps) {
   const [cheers, setCheers] = useState(false);
   const standing = BEARS[from];
   const beer = BEARS[to];
@@ -29,6 +31,7 @@ export function CheersBear({ from = "standing", to = "beer", replace = false, cl
       className={`cheers-bear relative cursor-pointer ${className}`}
       data-cheers={cheers || undefined}
       data-replace={replace || undefined}
+      data-autoplay={autoplay || undefined}
       onClick={() => setCheers((value) => !value)}
     >
       <Image
