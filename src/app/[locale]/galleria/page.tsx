@@ -37,17 +37,25 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
-      <header className="mb-8 flex flex-col items-center md:mb-12">
-        <SectionHeader
-          label={t.pages.gallery.heading}
-          className="mb-6"
-        />
+      <header className="mb-8 flex items-center justify-center gap-2 md:mb-12 md:gap-6">
         <Image
           src={withBasePath("/images/galleria/camera.png")}
           alt=""
           width={640}
           height={478}
-          className="h-44 w-auto md:h-60"
+          className="h-auto w-[22%] max-w-[280px] shrink-0"
+          priority
+        />
+        <SectionHeader
+          label={t.pages.gallery.heading}
+          className="mb-0 min-w-0"
+        />
+        <Image
+          src={withBasePath("/images/galleria/film-canister.png")}
+          alt=""
+          width={640}
+          height={478}
+          className="h-auto w-[22%] max-w-[280px] shrink-0"
           priority
         />
       </header>
