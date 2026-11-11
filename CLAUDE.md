@@ -75,6 +75,15 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 - Message strings use `{km}`, `{m}`, `{name}` placeholders, substituted by `fill()` in `src/components/maps/format.ts`.
 - Styles are at the end of `src/app/globals.css`; MapLibre overrides are scoped under `.maps-window` so `TravelDetailMapClient` is unaffected. Tailwind 4 is loaded with `@config` (`tailwind.config.ts` is kept) plus `@utility container`.
 
+### Gallery
+
+`/[locale]/galleria/` is a film-roll index (`src/components/gallery/RollCard.tsx`); `/[locale]/galleria/[slug]/` is an album page (`FilmSheet.tsx`: serpentine film ribbon on hover/drag, `?foto=` opens the lightbox, read client-side like the On the road params). The homepage shows `GalleryHomeSection.tsx` with a swinging polaroid `Clothesline.tsx` linking to the gallery.
+
+- An album is a travel with a `gallery`; `shortTitle` (the album name on the roll) is mandatory when `gallery` is set and missing it throws at build time. Data comes from `src/lib/gallery.ts`.
+- Pure logic lives in `src/lib/galleryLogic.ts` and `src/lib/clotheslineGeometry.ts`, covered by `npm test` (node test runner).
+- Drawings are in `public/images/galleria/`. Positions inside them (frame windows, label, polaroid pegs) are measured on the pixels and stored in `src/config/galleryDrawings.ts`. **When a drawing changes, re-measure the constants on the pixels**, do not adjust by eye.
+- `film-tile.jpg` is a placeholder (the two middle frames of the 4-frame drawing, alternating by slot parity) until the author's transparent single-frame tile arrives; then update `FILM_TILE`.
+
 ### Images
 
 Images are hosted on Cloudinary. Use `optimizeCloudinaryUrl()` from `src/lib/imageOptimization.ts` when rendering cover images. `next/image` is configured with `unoptimized: true` (required for static export).
