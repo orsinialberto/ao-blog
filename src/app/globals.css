@@ -1245,6 +1245,8 @@
   container-type: inline-size;
   --roll-gap: 2.5rem;
   --roll-closed: 0.31;
+  /* One slow, symmetric curve for the roll opening and for its neighbours moving aside. */
+  --roll-motion: 1.4s cubic-bezier(0.45, 0, 0.25, 1);
   --roll-w: 100cqw;
   display: flex;
   flex-direction: column;
@@ -1286,12 +1288,13 @@
     min-width: calc(var(--roll-w) * var(--roll-closed));
     max-width: var(--roll-w);
     overflow: hidden;
-    transition: flex-grow 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: flex-grow var(--roll-motion);
   }
 
+  /* Exactly the open/closed width ratio, so no roll hits its min/max width mid-animation (that stop looked jerky). */
   .roll-slot:hover,
   .roll-slot:focus-within {
-    flex-grow: 10;
+    flex-grow: calc(1 / var(--roll-closed));
   }
 }
 
@@ -1318,12 +1321,12 @@
 @media (prefers-reduced-motion: no-preference) {
   .roll-film {
     transform: translateX(-58%);
-    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform var(--roll-motion);
   }
 
   .roll-photo {
     filter: grayscale(1) brightness(0.55) contrast(1.1);
-    transition: filter 0.9s ease 0.35s;
+    transition: filter 1.2s ease 0.5s;
   }
 
   .roll-card:hover .roll-film,
