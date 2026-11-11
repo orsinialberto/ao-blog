@@ -70,7 +70,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
         </header>
       </div>
 
-      <div className="roll-rows mx-auto max-w-6xl px-6 py-8 md:py-12">
+      <div className="roll-rows mx-auto max-w-6xl px-6 pb-8 md:pb-12">
         {chunk(albums, ROLLS_PER_ROW).map((row) => (
           <div key={row[0].slug} className="roll-row">
             {row.map((album) => (
