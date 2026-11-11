@@ -11,6 +11,7 @@ import {
   type CSSProperties,
   type RefObject,
 } from "react";
+import { flushSync } from "react-dom";
 import { Lightbox } from "@/components/Lightbox";
 import { FILM_TILE } from "@/config/galleryDrawings";
 import { useInView } from "@/hooks/useInView";
@@ -82,10 +83,31 @@ function photoAlt(template: string, title: string, index: number) {
 }
 
 /** The open photo lives in the URL (`?foto=3`, 1-based). The History API updates
-    it without a router navigation; Next.js keeps `useSearchParams` in sync. */
-function showPhoto(index: number | null) {
-  const url = index === null ? window.location.pathname : `?${PHOTO_PARAM}=${index + 1}`;
-  window.history.replaceState(null, "", url);
+    it without a router navigation; Next.js keeps `useSearchParams` in sync (and keeps
+    our own keys in `history.state`). Opening pushes an entry, so Back closes the lightbox;
+    browsing replaces it; closing goes back if the entry is ours. */
+const PUSHED_BY_LIGHTBOX = "galleryLightbox";
+
+function isOwnLightboxEntry() {
+  return window.history.state?.[PUSHED_BY_LIGHTBOX] === true;
+}
+
+function openPhoto(index: number) {
+  window.history.pushState({ [PUSHED_BY_LIGHTBOX]: true }, "", `?${PHOTO_PARAM}=${index + 1}`);
+}
+
+function browsePhoto(index: number) {
+  window.history.replaceState(
+    { [PUSHED_BY_LIGHTBOX]: isOwnLightboxEntry() },
+    "",
+    `?${PHOTO_PARAM}=${index + 1}`,
+  );
+}
+
+function closePhoto() {
+  if (isOwnLightboxEntry()) window.history.back();
+  // Loaded with ?foto=: there is no entry of ours to go back to.
+  else window.history.replaceState(null, "", window.location.pathname);
 }
 
 function trackTransform(offset: number, row: number, frameCount: number) {
@@ -141,7 +163,8 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
       sheet.querySelectorAll<HTMLElement>(".film-track").forEach((track, row) => {
         track.style.transform = trackTransform(next, row, track.childElementCount);
       });
-      if (stepChanged || leftRest) setOffset(next);
+      // Same frame as the transform: otherwise the strip slides with the old photos for one paint.
+      if (stepChanged || leftRest) flushSync(() => setOffset(next));
     }
 
     function tick(time: number) {
@@ -267,7 +290,7 @@ export function FilmSheet({ title, photos, labels }: FilmSheetProps) {
             perStrip={perStrip}
             photos={photos}
             photoLabel={(index) => photoAlt(labels.photoAlt, title, index)}
-            onOpen={showPhoto}
+            onOpen={openPhoto}
           />
         ))}
       </div>
@@ -291,9 +314,9 @@ function AlbumLightbox({ title, photos, labels }: FilmSheetProps) {
     <Lightbox
       src={photos[openIndex]}
       alt={photoAlt(labels.photoAlt, title, openIndex)}
-      onClose={() => showPhoto(null)}
-      onPrevious={canBrowse ? () => showPhoto(mod(openIndex - 1, photos.length)) : undefined}
-      onNext={canBrowse ? () => showPhoto(mod(openIndex + 1, photos.length)) : undefined}
+      onClose={closePhoto}
+      onPrevious={canBrowse ? () => browsePhoto(mod(openIndex - 1, photos.length)) : undefined}
+      onNext={canBrowse ? () => browsePhoto(mod(openIndex + 1, photos.length)) : undefined}
       closeLabel={labels.close}
       previousLabel={labels.previous}
       nextLabel={labels.next}
@@ -338,9 +361,10 @@ function FilmStrip({ row, offset, perStrip, photos, photoLabel, onOpen }: FilmSt
           const slot = frameSlot(offset, row, k, perStrip);
           // Frame k spans [k + shift, k + shift + 1] in visible-frame units; the strip shows [0, perStrip].
           const offScreen = k + shift + 1 <= 0 || k + shift >= perStrip;
+          // Keyed by slot: on a step React keeps the frames (and their loaded images, and focus).
           return (
             <FilmFrame
-              key={k}
+              key={slot}
               slot={slot}
               photoIndex={slotPhoto(slot, photos.length, perStrip)}
               photos={photos}
