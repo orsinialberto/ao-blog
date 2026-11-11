@@ -170,6 +170,7 @@
       "photoCount": "{count} foto"
     },
     "galleryAlbum": {
+      "description": "Foto di {title}",
       "photoAlt": "{title} — foto {n}",
       "close": "Chiudi",
       "previousPhoto": "Foto precedente",

@@ -173,6 +173,8 @@ export interface TranslationMessages {
       photoCount: string;
     };
     galleryAlbum: {
+      /** Contains the `{title}` placeholder. */
+      description: string;
       /** Contains the `{title}` and `{n}` placeholders. */
       photoAlt: string;
       close: string;
