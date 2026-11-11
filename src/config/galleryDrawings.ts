@@ -20,17 +20,21 @@ export const ROLL = {
   label: { left: 11.12, top: 24.16, width: 9.5, height: 36.89 },
 };
 
-// Straight film tile. Placeholder values from the prototype, for the 4-frame drawing:
-// the two middle frames alternate as tiles (by slot parity) until the seamless tile arrives.
+// Straight film strip (film-strip.png, transparent, resized from a 2400×1339 original; values are % so they
+// hold for any size). Its two middle frames alternate as tiles, by slot parity. Measured on the original:
+// tile A spans x 695–1202 and tile B x 1202–1660 (divider centres), both cropped to y 380–975; frame windows
+// are transparent at x 715–1183 / 1221–1641, y 490–846; the film itself is opaque from y 400 to 943.
+// Tile B is ~10% narrower and is stretched to tile A's width.
 export const FILM_TILE = {
-  src: "/images/galleria/film-tile.jpg",
-  aspect: "578 / 737",
+  src: "/images/galleria/film-strip.png",
+  aspect: "507 / 595",
   tiles: [
-    { size: "476.2% 208.3%", position: "36.2% 50%" },
-    { size: "507.6% 208.3%", position: "61.8% 50%" },
+    { size: "473.37% 225.04%", position: "36.71% 51.07%" },
+    { size: "524.02% 225.04%", position: "61.9% 51.07%" },
   ],
-  window: { left: 4.5, top: 22.1, width: 92, height: 56.2 },
-  band: { top: 0.073, bottom: 0.937 },
+  // Slightly larger than the window: the edges hide under the film.
+  window: { left: 3.4, top: 17.8, width: 93.2, height: 61.4 },
+  band: { top: 0.034, bottom: 0.946 },
 };
 
 // Clothesline with six polaroids (clothesline.png, 1200×350). Drawing pixels of the shipped file:

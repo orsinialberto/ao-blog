@@ -82,7 +82,7 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 - An album is a travel with a `gallery`; `shortTitle` (the album name on the roll) is mandatory when `gallery` is set and missing it throws at build time. Data comes from `src/lib/gallery.ts`.
 - Pure logic lives in `src/lib/galleryLogic.ts` and `src/lib/clotheslineGeometry.ts`, covered by `npm test` (node test runner).
 - Drawings are in `public/images/galleria/`. Positions inside them (frame windows, label, polaroid pegs) are measured on the pixels and stored in `src/config/galleryDrawings.ts`. **When a drawing changes, re-measure the constants on the pixels**, do not adjust by eye.
-- `film-tile.jpg` is a placeholder (the two middle frames of the 4-frame drawing, alternating by slot parity) until the author's transparent single-frame tile arrives; then update `FILM_TILE`.
+- `film-strip.png` (transparent, 4 frames): its two middle frames alternate as tiles by slot parity; tile B is stretched to tile A's width (`FILM_TILE`).
 
 ### Images
 
