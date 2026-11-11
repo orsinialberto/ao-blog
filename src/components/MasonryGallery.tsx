@@ -82,13 +82,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
   useEffect(() => {
     if (photos.length === 0) return;
 
-    // Inizializza con distribuzione ciclica
-    setDistributedColumns({
-      mobile: distributeInColumns(1),
-      tablet: distributeInColumns(2),
-      desktop: distributeInColumns(3),
-    });
-
+    // Until heights are measured, render falls back to the cyclic distribution
     const imageHeights = new Map<string, number>();
     let loadedCount = 0;
     const totalPhotos = photos.length;
@@ -132,7 +126,7 @@ export default function MasonryGallery({ photos }: MasonryGalleryProps) {
       
       img.src = optimizedUrl;
     });
-  }, [photos, distributeInColumns, distributeByHeight]);
+  }, [photos, distributeByHeight]);
 
   if (photos.length === 0) {
     return (
