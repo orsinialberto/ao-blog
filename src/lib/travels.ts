@@ -11,6 +11,7 @@
  * TRANSLATED FIELDS (must be localized in each language version):
  * - title: Travel title
  * - description: Short description/summary
+ * - shortTitle: Short gallery album name (mandatory when gallery is set)
  * - content: Main Markdown content body
  * - duration: Duration string with units (e.g., "14 giorni" → "14 days")
  * - map.points[].description: Map point descriptions
@@ -31,6 +32,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkBreaks from "remark-breaks";
+import { requireShortTitle } from "./galleryLogic";
 import { isNonEmptyString, isValidNumber, isObject } from "./typeGuards";
 export { getTrackFileDownloadUrl } from "./trackFileUrl";
 
@@ -81,6 +83,8 @@ export interface Travel {
   duration: string;
   content: string;
   gallery?: string[];
+  /** Short album name for the gallery; mandatory when `gallery` is set. */
+  shortTitle?: string;
   coords?: TravelCoords;
   heroImage: string;
   /** Optional emblem shown in the detail page hero */
@@ -215,6 +219,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * 
  * TRANSLATED FIELDS (read from locale-specific file):
  * - title: Travel title (e.g., "Cambogia" in Italian, "Cambodia" in English)
+ * - shortTitle: Short gallery album name (mandatory when gallery is set)
  * - description: Short description/summary (fully translated)
  * - content: Main Markdown content body (fully translated)
  * - duration: Duration string with localized units (e.g., "14 giorni" → "14 days")
@@ -333,6 +338,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
   }
 
   const timeline = parseTimeline(data.timeline);
+  const hasGallery = Array.isArray(data.gallery) && data.gallery.length > 0;
 
   return {
     slug: data.slug ?? slug,
@@ -345,6 +351,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     location: data.location ?? "",
     duration: data.duration ?? "",
     gallery: Array.isArray(data.gallery) ? data.gallery : undefined,
+    shortTitle: requireShortTitle(data.shortTitle, hasGallery, fileName),
     coords: parseCoords(data.coords),
     content: markBearSlots(wrapImageMosaics(processedContent.toString())),
     heroImage: data.heroImage,

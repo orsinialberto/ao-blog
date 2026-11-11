@@ -1,5 +1,6 @@
 ---
 title: "Italy on the road"
+shortTitle: "Italy on the road"
 slug: "italia-on-the-road-2024"
 date: "2024-04-25"
 endDate: "2024-04-30"

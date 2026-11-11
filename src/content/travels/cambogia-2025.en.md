@@ -1,5 +1,6 @@
 ---
 title: "Cambodia"
+shortTitle: "Cambodia"
 slug: "cambogia-2025"
 date: "2025-06-02"
 endDate: "2025-06-15"

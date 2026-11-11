@@ -1,5 +1,6 @@
 ---
 title: "Rota Vicentina - Fishermen's Trail"
+shortTitle: "Rota Vicentina"
 slug: "fishermens-trail-2024"
 date: "2024-09-13"
 endDate: "2024-09-24"

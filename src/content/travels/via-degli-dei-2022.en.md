@@ -1,5 +1,6 @@
 ---
 title: "Via degli Dei"
+shortTitle: "Way of the Gods"
 slug: "via-degli-dei-2022"
 date: "2022-09-18"
 endDate: "2022-09-23"

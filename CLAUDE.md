@@ -34,7 +34,7 @@ Travel entries are Markdown files in `src/content/travels/`. Naming convention:
 - `[slug].md` → Italian (default)
 - `[slug].en.md` → English
 
-**Translated fields** (localized per file): `title`, `description`, `content`, `duration`, `map.points[].description`.
+**Translated fields** (localized per file): `title`, `shortTitle` (short gallery album name, mandatory when `gallery` is set), `description`, `content`, `duration`, `map.points[].description`.
 
 **Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroImage`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
 

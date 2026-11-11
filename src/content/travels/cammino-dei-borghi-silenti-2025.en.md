@@ -1,5 +1,6 @@
 ---
 title: "Cammino dei Borghi Silenti"
+shortTitle: "Silent Villages"
 slug: "cammino-dei-borghi-silenti-2025"
 date: "2025-09-16"
 endDate: "2025-09-20"

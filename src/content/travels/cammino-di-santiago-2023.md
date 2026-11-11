@@ -1,5 +1,6 @@
 ---
 title: "Cammino di Santiago - Inglese e di Finisterre"
+shortTitle: "Santiago"
 slug: "cammino-inglese-e-finisterre-2023"
 date: "2023-09-06"
 endDate: "2023-09-15"

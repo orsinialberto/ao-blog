@@ -1,5 +1,6 @@
 ---
 title: "Ski week on the Sellaronda"
+shortTitle: "Sellaronda"
 slug: "sellaronda-2026"
 date: "2026-01-10"
 endDate: "2026-01-17"

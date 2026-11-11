@@ -1,5 +1,6 @@
 ---
 title: "Way of St. James - English Way and Finisterre"
+shortTitle: "Santiago"
 slug: "cammino-inglese-e-finisterre-2023"
 date: "2023-09-06"
 endDate: "2023-09-15"
