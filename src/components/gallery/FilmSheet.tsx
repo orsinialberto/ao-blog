@@ -92,19 +92,14 @@ function trackTransform(offset: number, row: number, frameCount: number) {
   return `translateX(${(trackShift(offset, row) * 100) / frameCount}%)`;
 }
 
-function prefersReducedMotion() {
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-
 /** The hover drive runs only while the mouse is on the dark film: not on a photo,
     not on the paper above/below it, not between strips. */
-function isOverFilm(event: PointerEvent) {
-  const target = event.target as Element;
-  if (target.closest(".film-photo")) return false;
-  const frame = target.closest(".film-frame");
+function isOverFilm(element: Element | null, clientY: number) {
+  if (!element || element.closest(".film-photo")) return false;
+  const frame = element.closest(".film-frame");
   if (!frame) return false;
   const box = frame.getBoundingClientRect();
-  return isOnFilmBand((event.clientY - box.top) / box.height, FILM_TILE.band);
+  return isOnFilmBand((clientY - box.top) / box.height, FILM_TILE.band);
 }
 
 interface Drag {
@@ -128,20 +123,25 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
   useEffect(() => {
     if (!sheetRef.current) throw new Error("FilmSheet: sheet element missing");
     const sheet: HTMLDivElement = sheetRef.current;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let live = 0;
     let animationFrame: number | null = null;
     let lastTime: number | null = null;
     let drag: Drag | null = null;
     let dragged = false;
+    let mouseX = 0;
+    let mouseY = 0;
 
     function moveTo(next: number) {
       const stepChanged = Math.floor(next) !== Math.floor(live);
+      // At a whole offset the edge frames are inert; they must not stay inert while sliding in.
+      const leftRest = Number.isInteger(live) && !Number.isInteger(next);
       live = next;
       sheet.querySelectorAll<HTMLElement>(".film-track").forEach((track, row) => {
         track.style.transform = trackTransform(next, row, track.childElementCount);
       });
-      if (stepChanged) setOffset(next);
+      if (stepChanged || leftRest) setOffset(next);
     }
 
     function tick(time: number) {
@@ -150,6 +150,8 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
       }
       lastTime = time;
       animationFrame = requestAnimationFrame(tick);
+      // The mouse may be still while a photo slides under it: stop on the frame it arrives.
+      if (!isOverFilm(document.elementFromPoint(mouseX, mouseY), mouseY)) setMoving(false);
     }
 
     function setMoving(moving: boolean) {
@@ -195,7 +197,13 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
 
     function onPointerMove(event: PointerEvent) {
       if (event.pointerType === "touch") onTouchMove(event);
-      else if (event.pointerType === "mouse") setMoving(!prefersReducedMotion() && isOverFilm(event));
+      else if (event.pointerType === "mouse") onMouseMove(event);
+    }
+
+    function onMouseMove(event: PointerEvent) {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      setMoving(!reducedMotion.matches && isOverFilm(event.target as Element, event.clientY));
     }
 
     function onPointerEnd(event: PointerEvent) {
@@ -212,7 +220,8 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
     // and opening the lightbox (click or keyboard) stops the ribbon.
     function onClickCapture(event: MouseEvent) {
       if (!(event.target as Element).closest(".film-photo")) return;
-      if (dragged) {
+      // detail is 0 for a keyboard click, which is never the end of a drag.
+      if (dragged && event.detail !== 0) {
         dragged = false;
         event.preventDefault();
         event.stopPropagation();
