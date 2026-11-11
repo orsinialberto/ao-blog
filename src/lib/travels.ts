@@ -182,13 +182,7 @@ function buildCache(locale: Locale): Travel[] {
       continue;
     }
 
-    try {
-      const travel = parseTravelFromFile(parsed.slug, locale);
-      travels.push(travel);
-    } catch (error) {
-      // Log error but continue processing other files
-      console.error(`Error parsing travel file ${file}:`, error);
-    }
+    travels.push(parseTravelFromFile(parsed.slug, locale));
   }
 
   const sorted = sortTravelsByDate(travels);
