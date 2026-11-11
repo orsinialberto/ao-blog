@@ -47,58 +47,60 @@ export function RollCard({ album, href }: RollCardProps) {
   const drawingSrc = withBasePath(ROLL.src);
 
   return (
-    <LocalizedLink href={href} className={`roll-card block${isOpen ? " is-open" : ""}`}>
-      <div
-        ref={rollRef}
-        className="relative"
-        style={{ aspectRatio: `${ROLL.width} / ${ROLL.height}` }}
-      >
+    <div className="roll-slot">
+      <LocalizedLink href={href} className={`roll-card block${isOpen ? " is-open" : ""}`}>
         <div
-          className="absolute inset-0"
-          style={{ clipPath: `inset(0 0 0 ${ROLL.canEdge}%)` }}
+          ref={rollRef}
+          className="relative"
+          style={{ aspectRatio: `${ROLL.width} / ${ROLL.height}` }}
         >
-          <div className="roll-film absolute inset-0">
-            {album.photos.slice(0, 3).map((photo, index) => (
+          <div
+            className="absolute inset-0"
+            style={{ clipPath: `inset(0 0 0 ${ROLL.canEdge}%)` }}
+          >
+            <div className="roll-film absolute inset-0">
+              {album.photos.slice(0, 3).map((photo, index) => (
+                <Image
+                  key={photo}
+                  src={optimizeCloudinaryUrl(photo, { width: 400 })}
+                  alt=""
+                  width={400}
+                  height={267}
+                  className="roll-photo absolute object-cover"
+                  style={percentBox(ROLL.frames[index])}
+                />
+              ))}
               <Image
-                key={photo}
-                src={optimizeCloudinaryUrl(photo, { width: 400 })}
+                src={drawingSrc}
                 alt=""
-                width={400}
-                height={267}
-                className="roll-photo absolute object-cover"
-                style={percentBox(ROLL.frames[index])}
+                width={ROLL.width}
+                height={ROLL.height}
+                className="absolute inset-0 h-full w-full"
               />
-            ))}
-            <Image
-              src={drawingSrc}
-              alt=""
-              width={ROLL.width}
-              height={ROLL.height}
-              className="absolute inset-0 h-full w-full"
-            />
+            </div>
           </div>
+          <Image
+            src={drawingSrc}
+            alt=""
+            width={ROLL.width}
+            height={ROLL.height}
+            className="absolute inset-0 h-full w-full"
+            style={{ clipPath: `inset(0 ${100 - ROLL.canEdge}% 0 0)` }}
+          />
+          <span
+            className="roll-label absolute font-hand text-brand-primary"
+            style={percentBox(ROLL.label)}
+          >
+            {album.shortTitle}
+          </span>
+          <span
+            className="absolute text-center text-sm text-brand-muted"
+            style={{ left: "7.5%", width: `${ROLL.canEdge - 7.5}%`, top: "78%" }}
+          >
+            {album.year}
+          </span>
         </div>
-        <Image
-          src={drawingSrc}
-          alt=""
-          width={ROLL.width}
-          height={ROLL.height}
-          className="absolute inset-0 h-full w-full"
-          style={{ clipPath: `inset(0 ${100 - ROLL.canEdge}% 0 0)` }}
-        />
-        <span
-          className="roll-label absolute font-hand text-brand-primary"
-          style={percentBox(ROLL.label)}
-        >
-          {album.shortTitle}
-        </span>
-        <span
-          className="absolute text-sm text-brand-muted"
-          style={{ left: `${ROLL.frames[0].left}%`, top: "62%" }}
-        >
-          {album.year}
-        </span>
-      </div>
-    </LocalizedLink>
+      </LocalizedLink>
+    </div>
   );
 }

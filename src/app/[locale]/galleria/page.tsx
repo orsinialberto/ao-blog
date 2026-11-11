@@ -10,6 +10,14 @@ import { withBasePath } from "@/lib/paths";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 
+const ROLLS_PER_ROW = 3;
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const rows: T[][] = [];
+  for (let i = 0; i < items.length; i += size) rows.push(items.slice(i, i + size));
+  return rows;
+}
+
 interface GalleriaPageProps {
   params: Promise<{ locale: string }> | { locale: string };
 }
@@ -62,16 +70,18 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
         </header>
       </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-8 md:py-12">
-        <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
-          {albums.map((album) => (
-            <RollCard
-              key={album.slug}
-              album={album}
-              href={`/galleria/${album.slug}`}
-            />
-          ))}
-        </div>
+      <div className="roll-rows mx-auto max-w-6xl px-6 py-8 md:py-12">
+        {chunk(albums, ROLLS_PER_ROW).map((row) => (
+          <div key={row[0].slug} className="roll-row">
+            {row.map((album) => (
+              <RollCard
+                key={album.slug}
+                album={album}
+                href={`/galleria/${album.slug}`}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     </>
   );

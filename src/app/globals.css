@@ -1238,6 +1238,63 @@
 }
 
 /* Gallery */
+/* Film rolls index: rows of 3. --roll-w is the width of an open roll. On wide screens with a mouse the
+   rolls share the row; the hovered one grows to --roll-w and its neighbours shrink to the closed width
+   (canister plus the film that peeks out). Touch screens and reduced motion show every roll open, one per row. */
+.roll-rows {
+  container-type: inline-size;
+  --roll-gap: 2.5rem;
+  --roll-closed: 0.31;
+  --roll-w: 100cqw;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.roll-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (width >= 768px) {
+  .roll-rows {
+    --roll-w: min(640px, calc((100cqw - 2 * var(--roll-gap)) / (1 + 2 * var(--roll-closed))));
+  }
+
+  .roll-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: var(--roll-gap);
+  }
+
+  .roll-slot,
+  .roll-slot .roll-card {
+    width: var(--roll-w);
+  }
+}
+
+@media (width >= 768px) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .roll-row {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+
+  .roll-slot {
+    flex: 1 1 0;
+    min-width: calc(var(--roll-w) * var(--roll-closed));
+    max-width: var(--roll-w);
+    overflow: hidden;
+    transition: flex-grow 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .roll-slot:hover,
+  .roll-slot:focus-within {
+    flex-grow: 10;
+  }
+}
+
 /* Film roll card: cqw units below are relative to the card width. */
 .roll-card {
   container-type: inline-size;
