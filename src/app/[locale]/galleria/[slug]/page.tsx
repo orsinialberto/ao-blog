@@ -47,7 +47,7 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
   return (
     <div className="overflow-x-clip">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-12">
-        <SectionHeader label={album.title} subtitle={album.year} className="mb-8 md:mb-12" />
+        <SectionHeader label={album.title} className="mb-8 md:mb-12" />
         <FilmSheet
           title={album.title}
           photos={album.photos}
