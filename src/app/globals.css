@@ -1294,6 +1294,8 @@
 .film-strip {
   overflow: hidden;
   rotate: var(--tilt);
+  /* Horizontal touch drags move the film; vertical ones still scroll the page. */
+  touch-action: pan-y;
 }
 
 .film-track {

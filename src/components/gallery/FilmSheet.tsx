@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState, useSyncExternalStore, type CSSProperties } from "react";
+import {
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type CSSProperties,
+  type RefObject,
+} from "react";
 import { Lightbox } from "@/components/Lightbox";
 import { FILM_TILE } from "@/config/galleryDrawings";
 import { useInView } from "@/hooks/useInView";
@@ -10,6 +18,7 @@ import {
   PER_STRIP_DESKTOP,
   PER_STRIP_MOBILE,
   frameSlot,
+  isOnFilmBand,
   parsePhotoParam,
   slotPhoto,
   stripCount,
@@ -40,6 +49,13 @@ const MAX_STAGGERED_STRIPS = 4;
 const EAGER_STRIPS = 2;
 
 const MOBILE_QUERY = "(max-width: 767px)";
+
+// Hover drive speed, in frames per second.
+const HOVER_SPEED = 0.45;
+// rAF pauses in background tabs: cap a single step so the ribbon does not jump on return.
+const MAX_STEP_SECONDS = 0.1;
+// A touch that moves less than this is a tap, not a drag.
+const TAP_SLOP_PX = 8;
 
 function subscribeToMobile(onChange: () => void) {
   const query = window.matchMedia(MOBILE_QUERY);
@@ -72,15 +88,168 @@ function showPhoto(index: number | null) {
   window.history.replaceState(null, "", url);
 }
 
+function trackTransform(offset: number, row: number, frameCount: number) {
+  return `translateX(${(trackShift(offset, row) * 100) / frameCount}%)`;
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+/** The hover drive runs only while the mouse is on the dark film: not on a photo,
+    not on the paper above/below it, not between strips. */
+function isOverFilm(event: PointerEvent) {
+  const target = event.target as Element;
+  if (target.closest(".film-photo")) return false;
+  const frame = target.closest(".film-frame");
+  if (!frame) return false;
+  const box = frame.getBoundingClientRect();
+  return isOnFilmBand((event.clientY - box.top) / box.height, FILM_TILE.band);
+}
+
+interface Drag {
+  pointerId: number;
+  row: number;
+  startX: number;
+  startY: number;
+  startOffset: number;
+  frameWidth: number;
+}
+
+/**
+ * Ribbon position in frames, driven by mouse hover (on the film) and touch drag (on a strip).
+ * Only whole-frame steps go through React state (which photo sits in which frame); the
+ * slide in between is written straight to each track's transform, so the strips re-render
+ * once per frame step instead of on every animation frame.
+ */
+function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    if (!sheetRef.current) throw new Error("FilmSheet: sheet element missing");
+    const sheet: HTMLDivElement = sheetRef.current;
+
+    let live = 0;
+    let animationFrame: number | null = null;
+    let lastTime: number | null = null;
+    let drag: Drag | null = null;
+    let dragged = false;
+
+    function moveTo(next: number) {
+      const stepChanged = Math.floor(next) !== Math.floor(live);
+      live = next;
+      sheet.querySelectorAll<HTMLElement>(".film-track").forEach((track, row) => {
+        track.style.transform = trackTransform(next, row, track.childElementCount);
+      });
+      if (stepChanged) setOffset(next);
+    }
+
+    function tick(time: number) {
+      if (lastTime !== null) {
+        moveTo(live + HOVER_SPEED * Math.min((time - lastTime) / 1000, MAX_STEP_SECONDS));
+      }
+      lastTime = time;
+      animationFrame = requestAnimationFrame(tick);
+    }
+
+    function setMoving(moving: boolean) {
+      if (moving && animationFrame === null) {
+        animationFrame = requestAnimationFrame(tick);
+      } else if (!moving && animationFrame !== null) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+        lastTime = null;
+        setOffset(live);
+      }
+    }
+
+    function onPointerDown(event: PointerEvent) {
+      dragged = false;
+      if (event.pointerType !== "touch") return;
+      const strip = (event.target as Element).closest<HTMLElement>(".film-strip");
+      const track = strip?.querySelector<HTMLElement>(".film-track");
+      if (!strip || !track) return;
+      drag = {
+        pointerId: event.pointerId,
+        row: Number(strip.dataset.row),
+        startX: event.clientX,
+        startY: event.clientY,
+        startOffset: live,
+        frameWidth: track.offsetWidth / track.childElementCount,
+      };
+    }
+
+    function onTouchMove(event: PointerEvent) {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      const dx = event.clientX - drag.startX;
+      const dy = event.clientY - drag.startY;
+      if (!dragged) {
+        // Vertical moves are page scroll (touch-action: pan-y); the browser cancels the pointer.
+        if (Math.abs(dx) < TAP_SLOP_PX || Math.abs(dx) < Math.abs(dy)) return;
+        dragged = true;
+      }
+      // Even rows run left as the offset grows, odd rows run right: the film follows the finger.
+      const frames = (drag.row % 2 === 0 ? -dx : dx) / drag.frameWidth;
+      moveTo(drag.startOffset + frames);
+    }
+
+    function onPointerMove(event: PointerEvent) {
+      if (event.pointerType === "touch") onTouchMove(event);
+      else if (event.pointerType === "mouse") setMoving(!prefersReducedMotion() && isOverFilm(event));
+    }
+
+    function onPointerEnd(event: PointerEvent) {
+      if (!drag || event.pointerId !== drag.pointerId) return;
+      drag = null;
+      setOffset(live);
+    }
+
+    function onPointerLeave() {
+      setMoving(false);
+    }
+
+    // Runs before React's onClick: a drag that ends on a photo must not open it,
+    // and opening the lightbox (click or keyboard) stops the ribbon.
+    function onClickCapture(event: MouseEvent) {
+      if (!(event.target as Element).closest(".film-photo")) return;
+      if (dragged) {
+        dragged = false;
+        event.preventDefault();
+        event.stopPropagation();
+        return;
+      }
+      setMoving(false);
+    }
+
+    sheet.addEventListener("pointerdown", onPointerDown);
+    sheet.addEventListener("pointermove", onPointerMove);
+    sheet.addEventListener("pointerup", onPointerEnd);
+    sheet.addEventListener("pointercancel", onPointerEnd);
+    sheet.addEventListener("pointerleave", onPointerLeave);
+    sheet.addEventListener("click", onClickCapture, true);
+    return () => {
+      if (animationFrame !== null) cancelAnimationFrame(animationFrame);
+      sheet.removeEventListener("pointerdown", onPointerDown);
+      sheet.removeEventListener("pointermove", onPointerMove);
+      sheet.removeEventListener("pointerup", onPointerEnd);
+      sheet.removeEventListener("pointercancel", onPointerEnd);
+      sheet.removeEventListener("pointerleave", onPointerLeave);
+      sheet.removeEventListener("click", onClickCapture, true);
+    };
+  }, [sheetRef]);
+
+  return offset;
+}
+
 export function FilmSheet({ title, photos, labels }: FilmSheetProps) {
   const perStrip = usePerStrip();
-  // Ribbon position in frames. Fixed for now; scrolling the film will drive it.
-  const [offset] = useState(0);
+  const sheetRef = useRef<HTMLDivElement>(null);
+  const offset = useRibbonOffset(sheetRef);
   const rows = stripCount(photos.length, perStrip);
 
   return (
     <>
-      <div className="film-sheet">
+      <div ref={sheetRef} className="film-sheet">
         {Array.from({ length: rows }, (_, row) => (
           <FilmStrip
             key={row}
@@ -143,12 +312,17 @@ function FilmStrip({ row, offset, perStrip, photos, photoLabel, onOpen }: FilmSt
   } as CSSProperties;
 
   return (
-    <div ref={stripRef} className={`film-strip${inView ? " is-visible" : ""}`} style={style}>
+    <div
+      ref={stripRef}
+      className={`film-strip${inView ? " is-visible" : ""}`}
+      style={style}
+      data-row={row}
+    >
       <div
         className="film-track"
         style={{
           width: `${(frameCount / perStrip) * 100}%`,
-          transform: `translateX(${(shift * 100) / frameCount}%)`,
+          transform: trackTransform(offset, row, frameCount),
         }}
       >
         {Array.from({ length: frameCount }, (_, k) => {
