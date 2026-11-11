@@ -50,7 +50,7 @@ export function Header() {
         <LocalizedLink
           href="/"
           aria-label={t.navigation.links.home}
-          className="absolute left-8 translate-y-1 text-brand-primary"
+          className="absolute left-8 top-5 text-brand-primary"
         >
           <Logo className="h-11 w-auto" />
         </LocalizedLink>
