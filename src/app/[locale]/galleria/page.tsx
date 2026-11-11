@@ -45,8 +45,9 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
 
   return (
     <>
-      <div className="notebook-paper">
-        <header className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 py-16 md:gap-6 md:py-20">
+      {/* The ruled paper also runs under the fixed navbar, as on the on-the-road page. */}
+      <div className="notebook-paper -mt-(--header-height) pt-(--header-height)">
+        <header className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 pb-16 pt-4 md:gap-6 md:pb-20 md:pt-6">
           <Image
             src={withBasePath("/images/galleria/film-canister.png")}
             alt=""
