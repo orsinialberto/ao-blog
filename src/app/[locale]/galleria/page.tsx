@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 import { RollCard } from "@/components/gallery/RollCard";
+import { SectionHeader } from "@/components/SectionHeader";
 import { getGalleryAlbums } from "@/lib/gallery";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
@@ -42,21 +43,20 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
-      <header className="mb-8 flex items-center gap-5 md:mb-12">
+      <header className="mb-8 flex flex-col items-center md:mb-12">
         <Image
           src={withBasePath("/images/galleria/camera.png")}
           alt=""
           width={320}
           height={239}
-          className="h-20 w-auto md:h-24"
+          className="mb-4 h-20 w-auto md:h-24"
           priority
         />
-        <div>
-          <h1 className="font-headline text-4xl text-brand-primary md:text-5xl">
-            {t.pages.gallery.heading}
-          </h1>
-          <p className="mt-1 text-brand-muted">{statisticsText}</p>
-        </div>
+        <SectionHeader
+          label={t.pages.gallery.heading}
+          subtitle={statisticsText}
+          className="mb-0"
+        />
       </header>
 
       <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
