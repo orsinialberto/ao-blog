@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/maps/icons";
-import { useEffect, useCallback, useRef, type ReactNode } from "react";
+import { useEffect, useCallback, useRef, type ReactNode, type TouchEvent } from "react";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface LightboxProps {
@@ -17,7 +17,11 @@ interface LightboxProps {
   footer?: ReactNode;
   loading?: boolean;
   onImageLoad?: () => void;
+  /** Horizontal touch swipes go to the previous/next photo. */
+  swipe?: boolean;
 }
+
+const SWIPE_DISTANCE = 50;
 
 function trapFocus(e: KeyboardEvent, dialog: HTMLElement | null) {
   const focusable = dialog?.querySelectorAll<HTMLElement>("button");
@@ -45,10 +49,29 @@ export function Lightbox({
   footer,
   loading,
   onImageLoad,
+  swipe = false,
 }: LightboxProps) {
   const showNavigation = Boolean(onPrevious && onNext);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (e: TouchEvent) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) <= SWIPE_DISTANCE || Math.abs(dx) <= Math.abs(dy)) return;
+    if (dx > 0) onPrevious?.();
+    else onNext?.();
+  };
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -87,6 +110,8 @@ export function Lightbox({
       aria-label={alt}
       className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95 backdrop-blur"
       onClick={onClose}
+      onTouchStart={swipe ? handleTouchStart : undefined}
+      onTouchEnd={swipe ? handleTouchEnd : undefined}
     >
       <button
         ref={closeButtonRef}

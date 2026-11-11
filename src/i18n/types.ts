@@ -166,6 +166,13 @@ export interface TranslationMessages {
       /** Contains the `{count}` placeholder. */
       photoCount: string;
     };
+    galleryAlbum: {
+      /** Contains the `{title}` and `{n}` placeholders. */
+      photoAlt: string;
+      close: string;
+      previousPhoto: string;
+      nextPhoto: string;
+    };
     privacy: {
       title: string;
       description: string;

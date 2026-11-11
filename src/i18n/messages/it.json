@@ -164,6 +164,12 @@
       "statistics": "{photoCount} foto da {travelCount} viaggi",
       "photoCount": "{count} foto"
     },
+    "galleryAlbum": {
+      "photoAlt": "{title} — foto {n}",
+      "close": "Chiudi",
+      "previousPhoto": "Foto precedente",
+      "nextPhoto": "Foto successiva"
+    },
     "privacy": {
       "title": "Privacy e Cookie Policy",
       "description": "Informativa sulla privacy e sulla gestione dei cookie del sito",

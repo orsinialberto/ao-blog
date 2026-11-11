@@ -1281,3 +1281,62 @@
     filter: none;
   }
 }
+
+/* Album page: film strips. Each frame draws the photo, then the film tile on top
+   (a JPG on white paper, so multiply lets the photo show through the window). */
+.film-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-inline: -2%;
+}
+
+.film-strip {
+  overflow: hidden;
+  rotate: var(--tilt);
+}
+
+.film-track {
+  display: flex;
+}
+
+.film-frame {
+  position: relative;
+  flex: 1;
+}
+
+.film-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--tile-image);
+  background-repeat: no-repeat;
+  background-size: var(--tile-size);
+  background-position: var(--tile-position);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.film-photo {
+  position: absolute;
+  cursor: zoom-in;
+  transition: filter 0.25s;
+}
+
+.film-photo:hover {
+  filter: brightness(1.1);
+}
+
+/* Strips drop in as they scroll into view. Reduced motion shows them at rest. */
+@media (prefers-reduced-motion: no-preference) {
+  .film-strip {
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay),
+      translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay);
+  }
+
+  .film-strip:not(.is-visible) {
+    opacity: 0;
+    translate: 0 14px;
+  }
+}
