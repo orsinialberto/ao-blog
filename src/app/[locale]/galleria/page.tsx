@@ -39,7 +39,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
     <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
       <header className="mb-8 flex items-center justify-center gap-2 md:mb-12 md:gap-6">
         <Image
-          src={withBasePath("/images/galleria/camera.png")}
+          src={withBasePath("/images/galleria/film-canister.png")}
           alt=""
           width={640}
           height={478}
@@ -51,7 +51,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
           className="mb-0 min-w-0"
         />
         <Image
-          src={withBasePath("/images/galleria/film-canister.png")}
+          src={withBasePath("/images/galleria/camera.png")}
           alt=""
           width={640}
           height={478}
