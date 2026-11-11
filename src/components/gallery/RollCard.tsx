@@ -94,8 +94,8 @@ export function RollCard({ album, href }: RollCardProps) {
             {album.shortTitle}
           </span>
           <span
-            className="absolute text-center text-sm text-brand-muted"
-            style={{ left: "7.5%", width: `${ROLL.canEdge - 7.5}%`, top: "78%" }}
+            className="absolute text-sm text-brand-muted"
+            style={{ left: `${ROLL.frames[0].left}%`, top: "62%" }}
           >
             {album.year}
           </span>
