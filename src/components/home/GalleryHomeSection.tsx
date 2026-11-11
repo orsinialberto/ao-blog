@@ -24,20 +24,21 @@ export function GalleryHomeSection({ locale }: GalleryHomeSectionProps) {
 
   return (
     <section className="notebook-paper overflow-hidden px-6 py-16 md:py-24">
-      <div className="mx-auto w-full max-w-5xl">
+      <h2 className="mx-auto max-w-lg text-balance text-center font-hand text-4xl leading-tight text-brand-primary md:text-5xl xl:text-[3.5rem]">
+        <span className="group relative inline-block pb-3">
+          <WigglyText text={title} />
+          <HandUnderline className="bottom-0 h-2 md:h-3" />
+        </span>
+      </h2>
+
+      <div className="mx-auto mt-10 w-full max-w-5xl">
         <Clothesline items={items} />
       </div>
 
-      <div className="mt-6 flex flex-col items-center text-center font-hand">
-        <h2 className="mx-auto max-w-lg text-balance font-hand text-4xl leading-tight text-brand-primary md:text-5xl xl:text-[3.5rem]">
-          <span className="group relative inline-block pb-3">
-            <WigglyText text={title} />
-            <HandUnderline className="bottom-0 h-2 md:h-3" />
-          </span>
-        </h2>
+      <div className="mt-6 flex justify-center font-hand">
         <LocalizedLink
           href="/galleria"
-          className="relative mt-14 inline-block -rotate-2 px-10 py-4 text-2xl text-brand-primary transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none"
+          className="relative inline-block -rotate-2 px-10 py-4 text-2xl text-brand-primary transition-transform duration-300 hover:rotate-0 hover:scale-105 motion-reduce:transition-none"
         >
           <svg
             aria-hidden
