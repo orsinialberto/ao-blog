@@ -23,7 +23,7 @@ export function GalleryHomeSection({ locale }: GalleryHomeSectionProps) {
   });
 
   return (
-    <section className="notebook-paper overflow-hidden px-6 py-16 md:py-24">
+    <section className="overflow-hidden px-6 py-16 md:py-24">
       <h2 className="mx-auto max-w-lg text-balance text-center font-hand text-4xl leading-tight text-brand-primary md:text-5xl xl:text-[3.5rem]">
         <span className="group relative inline-block pb-3">
           <WigglyText text={title} />
