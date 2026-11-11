@@ -3,21 +3,22 @@ import type { ClotheslineDrawing } from "@/lib/clotheslineGeometry";
 // Positions inside the gallery drawings, measured on the pixels (not by eye):
 // PNG → BMP with `sips -s format bmp`, then alpha and luminance read with the Python standard library.
 
-// Roll + film (roll.png, 1200×805, resized from the 2400×1610 original). All values in % of the drawing.
+// Roll + film (roll.png, 1200×540: the 2400×1610 original resized to 1200×805, then cropped to rows 125–665
+// to drop the empty paper above and below). All values in % of the shipped drawing.
 // Measured on the original: frame windows are the transparent areas inside the film borders
 // (x 645–1000, 1032–1564, 1597–2126; y 500 to 875/878/877); the canister's right outline ends at x 634;
 // the label is the transparent front face of the canister, x 267–494, y 389–982.
 export const ROLL = {
   src: "/images/galleria/roll.png",
   width: 1200,
-  height: 805,
+  height: 540,
   frames: [
-    { left: 26.88, top: 31.06, width: 14.83, height: 23.35 },
-    { left: 43.0, top: 31.06, width: 22.21, height: 23.54 },
-    { left: 66.54, top: 31.06, width: 22.08, height: 23.48 },
+    { left: 26.88, top: 23.15, width: 14.83, height: 34.81 },
+    { left: 43.0, top: 23.15, width: 22.21, height: 35.09 },
+    { left: 66.54, top: 23.15, width: 22.08, height: 35.0 },
   ],
   canEdge: 26.42,
-  label: { left: 11.12, top: 24.16, width: 9.5, height: 36.89 },
+  label: { left: 11.12, top: 12.87, width: 9.5, height: 54.99 },
 };
 
 // Straight film tile. Placeholder values from the prototype, for the 4-frame drawing:
