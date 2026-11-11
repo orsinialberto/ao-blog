@@ -46,7 +46,7 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
   return (
     <>
       <div className="notebook-paper">
-        <header className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 py-8 md:gap-6 md:py-12">
+        <header className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 py-16 md:gap-6 md:py-20">
           <Image
             src={withBasePath("/images/galleria/film-canister.png")}
             alt=""
