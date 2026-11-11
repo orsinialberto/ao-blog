@@ -102,6 +102,11 @@
       "cta": "Scopri i percorsi",
       "imageAlt": "Disegno a matita di una moto"
     },
+    "galleryHome": {
+      "title": "I miei scatti",
+      "cta": "Apri la galleria",
+      "photoAlt": "Foto da {title}"
+    },
     "heroQuote": {
       "lines": [
         "La vita assume una drastica semplicità quando si cammina.",

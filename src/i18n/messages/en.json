@@ -102,6 +102,11 @@
       "cta": "See the routes",
       "imageAlt": "Pencil sketch of a motorcycle"
     },
+    "galleryHome": {
+      "title": "My shots",
+      "cta": "Open the gallery",
+      "photoAlt": "Photo from {title}"
+    },
     "heroQuote": {
       "lines": [
         "Life takes on a stark simplicity when you walk.",

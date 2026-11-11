@@ -1342,3 +1342,79 @@
     translate: 0 14px;
   }
 }
+
+/* Homepage clothesline. Every layer is the whole drawing clipped to one piece: the rope band
+   (static, never cut) or one polaroid (body below the rope, its photo, its pegs on top). */
+.clothesline {
+  position: relative;
+  transform-origin: 50% 15%;
+}
+
+.clothesline-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.clothesline-drawing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.clothesline-photo {
+  position: absolute;
+  pointer-events: auto;
+}
+
+.clothesline-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The line sways, each polaroid swings around its peg; a hovered line swings faster.
+   Photos develop from black once the line is in view. Reduced motion: still and developed. */
+@media (prefers-reduced-motion: no-preference) {
+  .clothesline {
+    animation: clothesline-sway 5s ease-in-out infinite;
+  }
+
+  .clothesline-polaroid {
+    animation: clothesline-swing var(--dur) ease-in-out var(--delay) infinite;
+  }
+
+  .clothesline:hover .clothesline-polaroid {
+    animation-duration: calc(var(--dur) * 0.55);
+  }
+
+  .clothesline-photo img {
+    filter: brightness(0);
+    transition: filter 1.4s ease var(--develop-delay);
+  }
+
+  .clothesline.is-developed .clothesline-photo img {
+    filter: none;
+  }
+}
+
+@keyframes clothesline-sway {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(1.5%) rotate(0.35deg);
+  }
+}
+
+@keyframes clothesline-swing {
+  0%,
+  100% {
+    transform: rotate(calc(var(--amp) * -1));
+  }
+  50% {
+    transform: rotate(var(--amp));
+  }
+}

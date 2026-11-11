@@ -3,6 +3,7 @@ import { AboutSection } from "@/components/home/AboutSection";
 import { HeroQuoteSection } from "@/components/home/HeroQuoteSection";
 import { TravelsHighlightSection } from "@/components/home/TravelsHighlightSection";
 import { OnTheRoadHomeSection } from "@/components/home/OnTheRoadHomeSection";
+import { GalleryHomeSection } from "@/components/home/GalleryHomeSection";
 import { getTravelsForArchive } from "@/lib/travels";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
@@ -27,6 +28,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <HeroQuoteSection locale={locale} />
       <TravelsHighlightSection travels={highlights} locale={locale} />
       <OnTheRoadHomeSection locale={locale} />
+      <GalleryHomeSection locale={locale} />
     </div>
   );
 }

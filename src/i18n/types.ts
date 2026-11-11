@@ -107,6 +107,12 @@ export interface TranslationMessages {
       cta: string;
       imageAlt: string;
     };
+    galleryHome: {
+      title: string;
+      cta: string;
+      /** Contains the `{title}` placeholder. */
+      photoAlt: string;
+    };
     heroQuote: {
       lines: string[];
       author: string;
