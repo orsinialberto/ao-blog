@@ -46,8 +46,8 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
         <Image
           src={withBasePath("/images/galleria/camera.png")}
           alt=""
-          width={1200}
-          height={896}
+          width={320}
+          height={239}
           className="h-20 w-auto md:h-24"
           priority
         />
