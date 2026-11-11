@@ -1236,3 +1236,48 @@
     transform: translate(-50%, -100%);
   }
 }
+
+/* Gallery */
+/* Film roll card: cqw units below are relative to the card width. */
+.roll-card {
+  container-type: inline-size;
+}
+
+.roll-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  text-align: center;
+  /* Two columns of 4.6cqw × 0.95 fit the 9.5cqw-wide label. */
+  font-size: 4.6cqw;
+  line-height: 0.95;
+  mix-blend-mode: multiply;
+}
+
+/* Closed: film rolled into the canister, photos still undeveloped. Reduced motion keeps it open. */
+@media (prefers-reduced-motion: no-preference) {
+  .roll-film {
+    transform: translateX(-58%);
+    transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .roll-photo {
+    filter: grayscale(1) brightness(0.55) contrast(1.1);
+    transition: filter 0.9s ease 0.35s;
+  }
+
+  .roll-card:hover .roll-film,
+  .roll-card:focus-visible .roll-film,
+  .roll-card.is-open .roll-film {
+    transform: translateX(0);
+  }
+
+  .roll-card:hover .roll-photo,
+  .roll-card:focus-visible .roll-photo,
+  .roll-card.is-open .roll-photo {
+    filter: none;
+  }
+}

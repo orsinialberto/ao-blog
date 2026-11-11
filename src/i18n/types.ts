@@ -82,12 +82,6 @@ export interface TranslationMessages {
       scrollThumbnailsBack: string;
       scrollThumbnailsForward: string;
     };
-    masonryGallery: {
-      close: string;
-      previousPhoto: string;
-      nextPhoto: string;
-      noPhotosAvailable: string;
-    };
     sectionHeader: {
       latestPublications: string;
       latestPublicationsSubtitle: string;
@@ -169,6 +163,8 @@ export interface TranslationMessages {
       description: string;
       heading: string;
       statistics: string;
+      /** Contains the `{count}` placeholder. */
+      photoCount: string;
     };
     privacy: {
       title: string;

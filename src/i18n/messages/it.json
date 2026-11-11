@@ -71,12 +71,6 @@
       "scrollThumbnailsBack": "Scroll thumbnails indietro",
       "scrollThumbnailsForward": "Scroll thumbnails avanti"
     },
-    "masonryGallery": {
-      "close": "Chiudi",
-      "previousPhoto": "Foto precedente",
-      "nextPhoto": "Foto successiva",
-      "noPhotosAvailable": "Nessuna foto disponibile"
-    },
     "sectionHeader": {
       "latestPublications": "Le mie ultime avventure",
       "latestPublicationsSubtitle": "Gli ultimi racconti dal campo.",
@@ -167,7 +161,8 @@
       "title": "Galleria Fotografica",
       "description": "Tutte le foto dei miei viaggi raccolte in un'unica galleria fotografica",
       "heading": "Galleria Fotografica",
-      "statistics": "{photoCount} foto da {travelCount} viaggi"
+      "statistics": "{photoCount} foto da {travelCount} viaggi",
+      "photoCount": "{count} foto"
     },
     "privacy": {
       "title": "Privacy e Cookie Policy",

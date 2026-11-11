@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
-import MasonryGallery from "@/components/MasonryGallery";
-import { getTravelsForArchive } from "@/lib/travels";
+import { RollCard } from "@/components/gallery/RollCard";
+import { getGalleryAlbums } from "@/lib/gallery";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getAllLocalizedPaths } from "@/lib/i18n/routing";
+import { withBasePath } from "@/lib/paths";
 import { getTranslations } from "@/i18n";
 import type { SupportedLocale } from "@/config/locales";
 
@@ -27,55 +29,49 @@ export async function generateMetadata({
   };
 }
 
-interface PhotoWithMetadata {
-  url: string;
-  travelTitle: string;
-  travelSlug: string;
-  location: string;
-}
-
 export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
-  // Get all travels for the current locale
-  const travels = await getTravelsForArchive(locale);
+  const albums = getGalleryAlbums(locale);
+  const formatNumber = new Intl.NumberFormat(locale).format;
 
-  // Filter only travels with gallery
-  const travelsWithGallery = travels.filter(
-    (travel) => travel.gallery && travel.gallery.length > 0
-  );
-
-  // Collect all photos maintaining order by travel
-  const allPhotos: PhotoWithMetadata[] = travelsWithGallery.flatMap((travel) =>
-    (travel.gallery || []).map((photo) => ({
-      url: photo,
-      travelTitle: travel.title,
-      travelSlug: travel.slug,
-      location: travel.location,
-    }))
-  );
-
-  // Format numbers with locale-specific formatting
-  const photoCount = new Intl.NumberFormat(locale).format(allPhotos.length);
-  const travelCount = new Intl.NumberFormat(locale).format(travelsWithGallery.length);
-
-  // Format statistics text
+  const photoTotal = albums.reduce((sum, album) => sum + album.photos.length, 0);
   const statisticsText = t.pages.gallery.statistics
-    .replace("{photoCount}", photoCount)
-    .replace("{travelCount}", travelCount);
+    .replace("{photoCount}", formatNumber(photoTotal))
+    .replace("{travelCount}", formatNumber(albums.length));
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-12">
-      <div className="mb-8 md:mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-3 text-brand-primary">
-          {t.pages.gallery.heading}
-        </h1>
-        <p className="text-brand-muted text-lg">
-          {statisticsText}
-        </p>
-      </div>
+    <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
+      <header className="mb-8 flex items-center gap-5 md:mb-12">
+        <Image
+          src={withBasePath("/images/galleria/camera.png")}
+          alt=""
+          width={1200}
+          height={896}
+          className="h-20 w-auto md:h-24"
+          priority
+        />
+        <div>
+          <h1 className="font-headline text-4xl text-brand-primary md:text-5xl">
+            {t.pages.gallery.heading}
+          </h1>
+          <p className="mt-1 text-brand-muted">{statisticsText}</p>
+        </div>
+      </header>
 
-      <MasonryGallery photos={allPhotos} />
+      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
+        {albums.map((album) => (
+          <RollCard
+            key={album.slug}
+            album={album}
+            href={`/galleria/${album.slug}`}
+            photoCountLabel={t.pages.gallery.photoCount.replace(
+              "{count}",
+              formatNumber(album.photos.length),
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }

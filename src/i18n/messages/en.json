@@ -71,12 +71,6 @@
       "scrollThumbnailsBack": "Scroll thumbnails back",
       "scrollThumbnailsForward": "Scroll thumbnails forward"
     },
-    "masonryGallery": {
-      "close": "Close",
-      "previousPhoto": "Previous photo",
-      "nextPhoto": "Next photo",
-      "noPhotosAvailable": "No photos available"
-    },
     "sectionHeader": {
       "latestPublications": "Discover my latest travels",
       "latestPublicationsSubtitle": "The latest dispatches from the field.",
@@ -167,7 +161,8 @@
       "title": "Photo Gallery",
       "description": "All photos from my travels collected in a single photo gallery",
       "heading": "Photo Gallery",
-      "statistics": "{photoCount} photos from {travelCount} travels"
+      "statistics": "{photoCount} photos from {travelCount} travels",
+      "photoCount": "{count} photos"
     },
     "privacy": {
       "title": "Privacy and Cookie Policy",
