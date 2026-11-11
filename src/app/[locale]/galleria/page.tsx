@@ -36,39 +36,43 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const albums = getGalleryAlbums(locale);
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
-      <header className="mb-8 flex items-center justify-center gap-2 md:mb-12 md:gap-6">
-        <Image
-          src={withBasePath("/images/galleria/film-canister.png")}
-          alt=""
-          width={640}
-          height={478}
-          className="h-auto w-[22%] max-w-[280px] shrink-0"
-          priority
-        />
-        <SectionHeader
-          label={t.pages.gallery.heading}
-          className="mb-0 min-w-0"
-        />
-        <Image
-          src={withBasePath("/images/galleria/camera.png")}
-          alt=""
-          width={640}
-          height={478}
-          className="h-auto w-[22%] max-w-[280px] shrink-0"
-          priority
-        />
-      </header>
-
-      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
-        {albums.map((album) => (
-          <RollCard
-            key={album.slug}
-            album={album}
-            href={`/galleria/${album.slug}`}
+    <>
+      <div className="notebook-paper">
+        <header className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-6 py-8 md:gap-6 md:py-12">
+          <Image
+            src={withBasePath("/images/galleria/film-canister.png")}
+            alt=""
+            width={640}
+            height={478}
+            className="h-auto w-[22%] max-w-[280px] shrink-0"
+            priority
           />
-        ))}
+          <SectionHeader
+            label={t.pages.gallery.heading}
+            className="mb-0 min-w-0"
+          />
+          <Image
+            src={withBasePath("/images/galleria/camera.png")}
+            alt=""
+            width={640}
+            height={478}
+            className="h-auto w-[22%] max-w-[280px] shrink-0"
+            priority
+          />
+        </header>
       </div>
-    </div>
+
+      <div className="mx-auto max-w-6xl px-6 py-8 md:py-12">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
+          {albums.map((album) => (
+            <RollCard
+              key={album.slug}
+              album={album}
+              href={`/galleria/${album.slug}`}
+            />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
