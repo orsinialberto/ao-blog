@@ -8,9 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev      # Start dev server (localhost:3000)
 npm run build    # Static export to /out (Next.js output: 'export')
 npm run lint     # ESLint
+npm test         # Node built-in test runner (src/**/*.test.ts)
 ```
 
-There are no automated tests.
+Pure logic modules have `*.test.ts` files run by Node's built-in runner; they must not import anything.
 
 ## Architecture
 
