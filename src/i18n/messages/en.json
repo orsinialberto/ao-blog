@@ -165,9 +165,7 @@
     "gallery": {
       "title": "Photo Gallery",
       "description": "All photos from my travels collected in a single photo gallery",
-      "heading": "Photo Gallery",
-      "statistics": "{photoCount} photos from {travelCount} travels",
-      "photoCount": "{count} photos"
+      "heading": "Photo Gallery"
     },
     "galleryAlbum": {
       "description": "Photos from {title}",

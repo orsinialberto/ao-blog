@@ -165,9 +165,7 @@
     "gallery": {
       "title": "Galleria Fotografica",
       "description": "Tutte le foto dei miei viaggi raccolte in un'unica galleria fotografica",
-      "heading": "Galleria Fotografica",
-      "statistics": "{photoCount} foto da {travelCount} viaggi",
-      "photoCount": "{count} foto"
+      "heading": "Galleria Fotografica"
     },
     "galleryAlbum": {
       "description": "Foto di {title}",

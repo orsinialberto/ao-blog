@@ -11,7 +11,6 @@ import type { GalleryAlbum } from "@/lib/gallery";
 
 interface RollCardProps {
   album: GalleryAlbum;
-  photoCountLabel: string;
   href: string;
 }
 
@@ -41,7 +40,7 @@ function percentBox(box: { left: number; top: number; width: number; height: num
   };
 }
 
-export function RollCard({ album, photoCountLabel, href }: RollCardProps) {
+export function RollCard({ album, href }: RollCardProps) {
   const [rollRef, inView] = useInView<HTMLDivElement>({ threshold: 0.6 });
   const noHover = useNoHover();
   const isOpen = noHover && inView;
@@ -97,7 +96,7 @@ export function RollCard({ album, photoCountLabel, href }: RollCardProps) {
           className="absolute text-sm text-brand-muted"
           style={{ left: `${ROLL.frames[0].left}%`, top: "62%" }}
         >
-          {album.year} · {photoCountLabel}
+          {album.year}
         </span>
       </div>
     </LocalizedLink>

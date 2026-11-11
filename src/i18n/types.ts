@@ -168,9 +168,6 @@ export interface TranslationMessages {
       title: string;
       description: string;
       heading: string;
-      statistics: string;
-      /** Contains the `{count}` placeholder. */
-      photoCount: string;
     };
     galleryAlbum: {
       /** Contains the `{title}` placeholder. */

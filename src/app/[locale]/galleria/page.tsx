@@ -34,12 +34,6 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
   const albums = getGalleryAlbums(locale);
-  const formatNumber = new Intl.NumberFormat(locale).format;
-
-  const photoTotal = albums.reduce((sum, album) => sum + album.photos.length, 0);
-  const statisticsText = t.pages.gallery.statistics
-    .replace("{photoCount}", formatNumber(photoTotal))
-    .replace("{travelCount}", formatNumber(albums.length));
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
@@ -54,7 +48,6 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
         />
         <SectionHeader
           label={t.pages.gallery.heading}
-          subtitle={statisticsText}
           className="mb-0"
         />
       </header>
@@ -65,10 +58,6 @@ export default async function GalleriaPage({ params }: GalleriaPageProps) {
             key={album.slug}
             album={album}
             href={`/galleria/${album.slug}`}
-            photoCountLabel={t.pages.gallery.photoCount.replace(
-              "{count}",
-              formatNumber(album.photos.length),
-            )}
           />
         ))}
       </div>
