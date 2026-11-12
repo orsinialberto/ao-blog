@@ -7,6 +7,7 @@ import { getGalleryAlbum } from "@/lib/gallery";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { withBasePath } from "@/lib/paths";
 import { supportedLocales } from "@/config/locales";
 
 interface AlbumPageProps {
@@ -46,7 +47,19 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
   return (
     <div className="overflow-x-clip">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-12">
-        <SectionHeader label={album.title} className="mb-14 md:mb-20" />
+        <header
+          className={`relative mb-14 grid place-items-center md:mb-20${album.emblem ? " min-h-44 md:min-h-64" : ""}`}
+        >
+          {album.emblem && (
+            // Washed out so the title stays readable on top of it.
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-60"
+              style={{ backgroundImage: `url(${withBasePath(album.emblem)})` }}
+            />
+          )}
+          <SectionHeader label={album.title} className="relative mb-0" />
+        </header>
         <FilmSheet
           title={album.title}
           photos={album.photos}

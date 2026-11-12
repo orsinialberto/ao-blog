@@ -8,6 +8,7 @@ export interface GalleryAlbum {
   shortTitle: string;
   year: string;
   photos: string[];
+  emblem?: string;
 }
 
 async function loadAlbum(album: AlbumDefinition, locale: Locale): Promise<GalleryAlbum> {
@@ -17,6 +18,7 @@ async function loadAlbum(album: AlbumDefinition, locale: Locale): Promise<Galler
     shortTitle: album.shortTitle[locale],
     year: album.date.slice(0, 4),
     photos: await listFolderPhotos(album.folder),
+    emblem: album.emblem,
   };
 }
 

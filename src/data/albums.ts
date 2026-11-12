@@ -18,6 +18,8 @@ export interface AlbumDefinition {
   shortTitle: Localized;
   /** Cloudinary folder path, e.g. "travels/vietnam-2026". */
   folder: string;
+  /** Flag or symbol drawn behind the title of the album page (a file in `public`). */
+  emblem?: string;
 }
 
 export const albums: AlbumDefinition[] = [
@@ -27,6 +29,7 @@ export const albums: AlbumDefinition[] = [
     title: { it: "Vietnam", en: "Vietnam" },
     shortTitle: { it: "Vietnam", en: "Vietnam" },
     folder: "travels/vietnam-2026",
+    emblem: "/images/galleria/emblems/vietnam-2026.webp",
   },
   {
     slug: "dolomiti-2026",
@@ -41,6 +44,7 @@ export const albums: AlbumDefinition[] = [
     title: { it: "Cammino dei Borghi Silenti", en: "Cammino dei Borghi Silenti" },
     shortTitle: { it: "Borghi Silenti", en: "Silent Villages" },
     folder: "travels/borghi-silenti-2025",
+    emblem: "/images/galleria/emblems/cammino-dei-borghi-silenti-2025.webp",
   },
   {
     slug: "cambogia-2025",
@@ -48,6 +52,7 @@ export const albums: AlbumDefinition[] = [
     title: { it: "Cambogia", en: "Cambodia" },
     shortTitle: { it: "Cambogia", en: "Cambodia" },
     folder: "travels/cambogia-2025",
+    emblem: "/images/galleria/emblems/cambogia-2025.webp",
   },
   {
     slug: "fishermens-trail-2024",
