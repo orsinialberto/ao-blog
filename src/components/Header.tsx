@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
-import { House, Image, MapPin, Route } from "@sketchyicons/react";
+import Image from "next/image";
 import { useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { WigglyText } from "./WigglyText";
@@ -13,11 +13,12 @@ import { removeLocaleFromPath } from "@/lib/i18n/routing";
 
 const baseLinkClass = "font-hand text-lg uppercase tracking-widest pb-1";
 
+// Watercolour drawings for the mobile nav, 256px wide with a transparent background.
 const icons = {
-  home: House,
-  travels: MapPin,
-  onTheRoad: Route,
-  gallery: Image,
+  home: "/images/icons/nav-home.webp",
+  travels: "/images/icons/nav-travels.webp",
+  onTheRoad: "/images/icons/nav-on-the-road.webp",
+  gallery: "/images/icons/nav-gallery.webp",
 };
 
 export function Header() {
@@ -46,7 +47,8 @@ export function Header() {
     <header
       className="fixed top-0 w-full z-50 bg-linear-to-b from-white to-transparent"
     >
-      <div className="site-top-bar relative flex justify-center items-center py-4 px-8 max-w-screen-2xl mx-auto">
+      {/* Logo, nav and language switcher share one row: 20px from the top (pt-5 / top-5), 44px tall (h-11). */}
+      <div className="site-top-bar relative mx-auto flex max-w-screen-2xl items-center justify-center px-8 pt-5 pb-3 md:pb-0">
         <LocalizedLink
           href="/"
           aria-label={t.navigation.links.home}
@@ -55,7 +57,7 @@ export function Header() {
           <Logo className="h-11 w-auto" />
         </LocalizedLink>
 
-        <nav className="hidden md:flex items-center gap-10">
+        <nav className="hidden h-11 items-center gap-10 md:flex">
           {links.map((l) => (
             <LocalizedLink
               key={l.href}
@@ -70,7 +72,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="absolute right-8 flex items-center gap-4">
+        <div className="absolute right-8 top-5 flex h-11 items-center gap-4">
           <Suspense fallback={<div className="h-9 w-20 rounded-lg border border-brand-outline-variant bg-brand-surface-low" />}>
             <LanguageSwitcher />
           </Suspense>
@@ -88,13 +90,17 @@ export function Header() {
             href={l.href}
             aria-label={l.label}
             aria-current={isActive(l.href) ? "page" : undefined}
-            className={`flex h-11 w-11 items-center justify-center rounded-full transition-colors ${
-              isActive(l.href)
-                ? "bg-brand-primary/10 text-brand-primary"
-                : "text-brand-muted hover:text-brand-primary"
+            className={`flex h-12 w-16 items-center justify-center rounded-full transition-[background-color,opacity] ${
+              isActive(l.href) ? "bg-brand-primary/10" : "opacity-60"
             }`}
           >
-            <l.icon size={24} strokeWidth={1.8} aria-hidden="true" />
+            <Image
+              src={l.icon}
+              alt=""
+              width={256}
+              height={186}
+              className="h-10 w-14 object-contain"
+            />
           </LocalizedLink>
         ))}
       </nav>
