@@ -41,7 +41,7 @@ export async function generateMetadata({
 export default async function GalleriaPage({ params }: GalleriaPageProps) {
   const locale = await getLocaleFromParams(params);
   const t = getTranslations(locale as SupportedLocale);
-  const albums = getGalleryAlbums(locale);
+  const albums = await getGalleryAlbums(locale);
 
   return (
     <>

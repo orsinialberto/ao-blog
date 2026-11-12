@@ -1,6 +1,5 @@
 ---
 title: "Way of St. James - English Way and Finisterre"
-shortTitle: "Santiago"
 slug: "cammino-inglese-e-finisterre-2023"
 date: "2023-09-06"
 endDate: "2023-09-15"
@@ -122,25 +121,7 @@ timeline:
     to: "Cabo Finisterre"
     km: 34
     elevationGain: 600
-gallery:
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-01_mpmemj.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/ferrol-02_bexium.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/neda-01_jo6h14.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883560/pontedeume-01_ogihv5.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/betanzos-01_gz3bzm.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/bruma-01_pwfubo.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883561/sigueiro_tgmzng.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883560/santiago-01_muxnwb.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/negreira-01_wifro7.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/olveiroa-01_yls74a.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/olveiroa-02_tc3xj8.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883560/olveiroa-03_lryptz.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/finisterre-01_riem59.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883558/finisterre-02_aua5pr.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/finisterre-03_iixhch.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/finisterre-04_zl3cdc.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/finisterre-05_vqtwrs.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764883559/muxia-01_elukdo.jpg"
+album: "cammino-di-santiago-2023"
 
 ---
 

@@ -14,9 +14,9 @@ interface GalleryHomeSectionProps {
   locale: SupportedLocale;
 }
 
-export function GalleryHomeSection({ locale }: GalleryHomeSectionProps) {
+export async function GalleryHomeSection({ locale }: GalleryHomeSectionProps) {
   const { title, cta, photoAlt } = getTranslations(locale).components.galleryHome;
-  const albums = getGalleryAlbums(locale);
+  const albums = await getGalleryAlbums(locale);
   const items = pickHomePhotos(albums, MAX_PHOTOS).map(({ slug, photo }) => {
     const album = albums.find((a) => a.slug === slug)!;
     return { slug, photo, alt: photoAlt.replace("{title}", album.title) };

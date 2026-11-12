@@ -1,6 +1,5 @@
 ---
 title: "Italia on the road"
-shortTitle: "Italia on the road"
 slug: "italia-on-the-road-2024"
 date: "2024-04-25"
 endDate: "2024-04-30"
@@ -103,20 +102,7 @@ timeline:
     to: "Milano"
     km: 258
 
-gallery:
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098305/bassano-01_jtt2ec.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098305/chioggia-01_romprc.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/delta-del-po-01_hsakib.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098305/delta-del-po-02_poaj1w.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/delta-del-po-03_rkxisu.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/delta-del-po-04_mm8fya.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-01_avlj5w.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-02_audrbd.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-03_drvxuq.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/toscana-04_mp4ixv.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098306/pisa-01_wkaaje.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098305/castiglione-della-pescaia-01_yfmsix.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1764098307/maranello-01_gq0cat.jpg"
+album: "italia-on-the-road-2024"
 
 ---
 

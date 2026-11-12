@@ -1,6 +1,5 @@
 ---
 title: "Rota Vicentina - Fishermen's Trail"
-shortTitle: "Rota Vicentina"
 slug: "fishermens-trail-2024"
 date: "2024-09-13"
 endDate: "2024-09-24"
@@ -86,27 +85,7 @@ map:
       lat: 37.108550
       lng: -8.671962
       description: "Lively city known for the caves and cliffs of Ponta da Piedade."
-gallery:
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763735141/photo-01_zrs1jh.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-02_m0zunk.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-03_jexos0.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-04_u9hiix.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-06_yrgyp5.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-07_fpq6zx.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847374/photo-08_prxc1f.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-09_cfto5p.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-10_fupjpx.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847375/photo-11_zib5nt.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-12_h53lth.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-13_cirz5d.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-14_ypmlg1.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-15_xtzp2l.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-16_n4ham2.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847376/photo-17_d8uudi.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847377/photo-18_uugzss.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847377/photo-19_iegilh.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847377/photo-20_trxzig.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763847377/photo-21_cyqm4x.jpg"
+album: "fishermens-trail-2024"
 timeline:
   - city: "Porto Covo"
     from: "Porto Covo"

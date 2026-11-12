@@ -9,6 +9,7 @@ import {
   getTravelBySlug,
   getTravelsForArchive,
 } from "@/lib/travels";
+import { getGalleryAlbum } from "@/lib/gallery";
 import { withBasePath } from "@/lib/paths";
 import { getRelatedTravels } from "@/lib/travelNavigation";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
@@ -54,6 +55,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
   const locale = await getLocaleFromParams(resolvedParams);
   const travel = await getTravelBySlug(resolvedParams.slug, locale);
   const relatedTravels = getRelatedTravels(getTravelsForArchive(locale), travel.slug);
+  const gallery = travel.album ? (await getGalleryAlbum(travel.album, locale)).photos : undefined;
 
   return (
     <article>
@@ -97,7 +99,7 @@ export default async function TravelPage({ params }: TravelPageProps) {
         <div className="lg:col-span-8 lg:col-start-3 min-w-0">
           <TravelTabs
             content={travel.content}
-            gallery={travel.gallery}
+            gallery={gallery}
             timeline={travel.timeline}
             map={travel.map}
             coords={travel.coords}

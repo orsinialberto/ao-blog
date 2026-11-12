@@ -34,9 +34,9 @@ Travel entries are Markdown files in `src/content/travels/`. Naming convention:
 - `[slug].md` → Italian (default)
 - `[slug].en.md` → English
 
-**Translated fields** (localized per file): `title`, `shortTitle` (short gallery album name, mandatory when `gallery` is set), `description`, `content`, `duration`, `map.points[].description`.
+**Translated fields** (localized per file): `title`, `description`, `content`, `duration`, `map.points[].description`.
 
-**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `gallery`, `heroImage`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
+**Common fields** (identical across language files): `slug`, `date`, `endDate`, `coverImage`, `tags`, `location`, `coords`, `album` (slug of a gallery album, see Gallery), `heroImage`, `totalKilometers`, `timeline[].city/km/gpx`, `map.gpx/kml/kmz/points[].name/lat/lng/kind`.
 
 Parsing and caching logic is in `src/lib/travels.ts`. In-memory cache (`travelCache`) is keyed by locale and populated lazily.
 
@@ -79,7 +79,8 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 
 `/[locale]/galleria/` is a film-roll index (`src/components/gallery/RollCard.tsx`); `/[locale]/galleria/[slug]/` is an album page (`FilmSheet.tsx`: serpentine film ribbon on hover/drag, `?foto=` opens the lightbox, read client-side like the On the road params). The homepage shows `GalleryHomeSection.tsx` with a swinging polaroid `Clothesline.tsx` linking to the gallery.
 
-- An album is a travel with a `gallery`; `shortTitle` (the album name on the roll) is mandatory when `gallery` is set and missing it throws at build time. Data comes from `src/lib/gallery.ts`.
+- Albums are independent of travels: each is an entry in `src/data/albums.ts` (`slug`, `date`, `title` and `shortTitle` per locale) and `folder`, a Cloudinary folder whose images are listed at build time and sorted by file name (prefix file names with numbers to choose the order). A travel shows an album in its gallery tab with `album: <slug>` in its frontmatter; an unknown slug throws at build time. Data comes from `src/lib/gallery.ts` (async).
+- Folders are listed by `src/lib/cloudinaryFolder.ts` through the Cloudinary Admin API, so the build needs `CLOUDINARY_API_KEY` and `CLOUDINARY_API_SECRET` (`.env.local` locally, repository secrets in `deploy.yml`). Missing credentials or an empty folder fail the build. New photos in a folder appear at the next build.
 - Pure logic lives in `src/lib/galleryLogic.ts` and `src/lib/clotheslineGeometry.ts`, covered by `npm test` (node test runner).
 - Drawings are in `public/images/galleria/`. Positions inside them (frame windows, label, polaroid pegs) are measured on the pixels and stored in `src/config/galleryDrawings.ts`. **When a drawing changes, re-measure the constants on the pixels**, do not adjust by eye.
 - `film-strip.png` (transparent, 4 frames): its two middle frames alternate as tiles by slot parity; tile B is stretched to tile A's width (`FILM_TILE`).

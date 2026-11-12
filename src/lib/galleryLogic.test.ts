@@ -8,7 +8,7 @@ import {
   isOnFilmBand,
   parsePhotoParam,
   pickHomePhotos,
-  requireShortTitle,
+  orderFolderPhotos,
 } from "./galleryLogic.ts";
 
 test("stripCount", () => {
@@ -43,8 +43,13 @@ test("pickHomePhotos", () => {
   assert.deepEqual(pickHomePhotos(albums, 6), [{ slug: "a", photo: "a1" }, { slug: "c", photo: "c1" }]);
   assert.equal(pickHomePhotos(albums, 1).length, 1);
 });
-test("requireShortTitle", () => {
-  assert.equal(requireShortTitle(" Santiago ", true, "x.md"), "Santiago");
-  assert.equal(requireShortTitle(undefined, false, "x.md"), undefined);
-  assert.throws(() => requireShortTitle("", true, "x.en.md"), /Missing shortTitle in x\.en\.md/);
+test("orderFolderPhotos sorts images by file name and drops other files", () => {
+  const resource = (display_name: string, resource_type = "image") => ({
+    display_name,
+    resource_type,
+    secure_url: "https://x/" + display_name,
+  });
+  const listing = [resource("IMG_10"), resource("clip", "video"), resource("IMG_9"), resource("IMG_100")];
+  assert.deepEqual(orderFolderPhotos(listing), ["https://x/IMG_9", "https://x/IMG_10", "https://x/IMG_100"]);
+  assert.deepEqual(orderFolderPhotos([resource("IMG_1.heic")]), ["https://x/IMG_1.jpg"]);
 });

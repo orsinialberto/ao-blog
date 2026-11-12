@@ -52,13 +52,17 @@ export function pickHomePhotos(
     .map((album) => ({ slug: album.slug, photo: album.photos[0] }));
 }
 
-export function requireShortTitle(
-  value: unknown,
-  hasGallery: boolean,
-  fileName: string,
-): string | undefined {
-  const title = typeof value === "string" ? value.trim() : "";
-  if (title) return title;
-  if (hasGallery) throw new Error("Missing shortTitle in " + fileName + " (required when gallery is set)");
-  return undefined;
+export interface FolderResource {
+  resource_type: string;
+  secure_url: string;
+  display_name: string;
+}
+
+// Image URLs of a Cloudinary folder listing, by file name ("IMG_9" before "IMG_10").
+// HEIC files are requested as JPEG, which browsers can show.
+export function orderFolderPhotos(resources: FolderResource[]): string[] {
+  return resources
+    .filter((resource) => resource.resource_type === "image")
+    .sort((a, b) => a.display_name.localeCompare(b.display_name, "en", { numeric: true }))
+    .map((resource) => resource.secure_url.replace(/\.heic$/i, ".jpg"));
 }

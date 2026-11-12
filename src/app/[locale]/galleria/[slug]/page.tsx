@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 import { SectionHeader } from "@/components/SectionHeader";
 import { FilmSheet } from "@/components/gallery/FilmSheet";
-import { getGalleryAlbum, getGalleryAlbums } from "@/lib/gallery";
+import { albums } from "@/data/albums";
+import { getGalleryAlbum } from "@/lib/gallery";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
 import { getTranslations } from "@/i18n";
 import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
@@ -13,15 +14,13 @@ interface AlbumPageProps {
 }
 
 export async function generateStaticParams() {
-  return supportedLocales.flatMap((locale) =>
-    getGalleryAlbums(locale).map((album) => ({ locale, slug: album.slug })),
-  );
+  return supportedLocales.flatMap((locale) => albums.map((album) => ({ locale, slug: album.slug })));
 }
 
 export async function generateMetadata({ params }: AlbumPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const locale = await getLocaleFromParams(resolvedParams);
-  const album = getGalleryAlbum(resolvedParams.slug, locale);
+  const album = await getGalleryAlbum(resolvedParams.slug, locale);
   const description = getTranslations(locale).pages.galleryAlbum.description.replace(
     "{title}",
     album.title,
@@ -41,7 +40,7 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
 export default async function AlbumPage({ params }: AlbumPageProps) {
   const resolvedParams = await params;
   const locale = await getLocaleFromParams(resolvedParams);
-  const album = getGalleryAlbum(resolvedParams.slug, locale);
+  const album = await getGalleryAlbum(resolvedParams.slug, locale);
   const t = getTranslations(locale).pages.galleryAlbum;
 
   return (

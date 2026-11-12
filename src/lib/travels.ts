@@ -11,7 +11,6 @@
  * TRANSLATED FIELDS (must be localized in each language version):
  * - title: Travel title
  * - description: Short description/summary
- * - shortTitle: Short gallery album name (mandatory when gallery is set)
  * - content: Main Markdown content body
  * - duration: Duration string with units (e.g., "14 giorni" → "14 days")
  * - map.points[].description: Map point descriptions
@@ -20,7 +19,7 @@
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.gpxSegments, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroImage, logoImage, totalKilometers
+ * - album, heroImage, logoImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km, timeline[].gpx
  * 
  * See MARKDOWN_I18N_CONVENTION.md for complete documentation and field-by-field policy.
@@ -32,7 +31,7 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 import remarkBreaks from "remark-breaks";
-import { requireShortTitle } from "./galleryLogic";
+import { albums } from "../data/albums";
 import { isNonEmptyString, isValidNumber, isObject } from "./typeGuards";
 export { getTrackFileDownloadUrl } from "./trackFileUrl";
 
@@ -82,9 +81,8 @@ export interface Travel {
   location: string;
   duration: string;
   content: string;
-  gallery?: string[];
-  /** Short album name for the gallery; mandatory when `gallery` is set. */
-  shortTitle?: string;
+  /** Slug of a gallery album in `src/data/albums.ts`; its photos fill the gallery tab. */
+  album?: string;
   coords?: TravelCoords;
   heroImage: string;
   /** Optional emblem shown in the detail page hero */
@@ -213,7 +211,6 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * 
  * TRANSLATED FIELDS (read from locale-specific file):
  * - title: Travel title (e.g., "Cambogia" in Italian, "Cambodia" in English)
- * - shortTitle: Short gallery album name (mandatory when gallery is set)
  * - description: Short description/summary (fully translated)
  * - content: Main Markdown content body (fully translated)
  * - duration: Duration string with localized units (e.g., "14 giorni" → "14 days")
@@ -223,7 +220,7 @@ function ensureCache(locale: Locale = "it"): Travel[] {
  * - slug, date, endDate, coverImage, tags, location
  * - coords (lat, lng)
  * - map.gpx/kml/kmz, map.points[].name, map.points[].lat, map.points[].lng, map.points[].kind
- * - gallery, heroImage, logoImage, totalKilometers
+ * - album, heroImage, logoImage, totalKilometers
  * - timeline[].city (proper nouns, not translated), timeline[].km
  * 
  * @param slug - Base slug of the travel (without locale extension)
@@ -332,7 +329,6 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
   }
 
   const timeline = parseTimeline(data.timeline);
-  const hasGallery = Array.isArray(data.gallery) && data.gallery.length > 0;
 
   return {
     slug: data.slug ?? slug,
@@ -344,8 +340,7 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     tags: Array.isArray(data.tags) ? data.tags : [],
     location: data.location ?? "",
     duration: data.duration ?? "",
-    gallery: Array.isArray(data.gallery) ? data.gallery : undefined,
-    shortTitle: requireShortTitle(data.shortTitle, hasGallery, fileName),
+    album: parseAlbum(data.album, fileName),
     coords: parseCoords(data.coords),
     content: markBearSlots(wrapImageMosaics(processedContent.toString())),
     heroImage: data.heroImage,
@@ -354,6 +349,13 @@ function parseTravelFromFile(slug: string, locale: Locale = "it"): Travel {
     timeline,
     map: attachGpxSegmentsFromTimeline(parseMap(data.map), timeline),
   } satisfies Travel;
+}
+
+function parseAlbum(value: unknown, fileName: string): string | undefined {
+  if (value === undefined) return undefined;
+  const album = albums.find((a) => a.slug === value);
+  if (!album) throw new Error(`Unknown album "${value}" in ${fileName} (see src/data/albums.ts)`);
+  return album.slug;
 }
 
 function parseCoords(rawCoords: unknown): Travel["coords"] {

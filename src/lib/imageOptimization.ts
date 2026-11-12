@@ -41,7 +41,7 @@ export function optimizeCloudinaryUrl(
 
 
 /** Cloudinary cloud that hosts the on-the-road bike photos. */
-const CLOUDINARY_CLOUD_NAME = "dx6hrvg6l";
+export const CLOUDINARY_CLOUD_NAME = "dx6hrvg6l";
 
 /**
  * Builds an optimized Cloudinary URL from a `v<version>/<publicId>.<format>` path.

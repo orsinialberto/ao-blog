@@ -1,6 +1,5 @@
 ---
 title: "Cammino dei Borghi Silenti"
-shortTitle: "Borghi Silenti"
 slug: "cammino-dei-borghi-silenti-2025"
 date: "2025-09-16"
 endDate: "2025-09-20"
@@ -115,19 +114,7 @@ timeline:
     to: "Tenaglie"
     km: 16
     elevationGain: 340
-gallery:
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-03_nkm9b9.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-01_q8trbr.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-02_igqu4p.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-04_xpisb5.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-05_u1wlcy.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-06_lqwnwn.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-07_st2g7w.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-08_isom69.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-09_e6kow7.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-11_aqhtkv.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-12_ki9nij.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1763734562/photo-13_aoiaxh.jpg"
+album: "cammino-dei-borghi-silenti-2025"
 ---
 
 ## Introduzione

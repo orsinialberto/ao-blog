@@ -1,6 +1,5 @@
 ---
 title: "Via degli Dei"
-shortTitle: "Way of the Gods"
 slug: "via-degli-dei-2022"
 date: "2022-09-18"
 endDate: "2022-09-23"
@@ -87,21 +86,7 @@ timeline:
     to: "Firenze"
     km: 18
     elevationGain: 250
-gallery:
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650881/canali-bologna_xojgd2.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650886/palazzo-del-podest%C3%A0-bologna_h0gzy0.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650889/portici_xhonpd.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650892/san-luca_zhariv.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650895/strada-romana_gohogb.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650880/banditacce-punto-pi%C3%B9-alto_erl3ce.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650883/castagneto_hyvvot.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650896/vista-dal-passo_wu7msd.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650886/memoriale-passo-della-futa_czkxtd.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650885/frantoio_igjfqe.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650897/via-sterrata_wfc1oy.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650892/sedie-con-vista_q5bw3u.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650887/palazzo-vecchio_wctdnm.jpg"
-  - "https://res.cloudinary.com/dx6hrvg6l/image/upload/v1767650888/ponte-vecchio_arkro4.jpg"
+album: "via-degli-dei-2022"
 
 ---
 
