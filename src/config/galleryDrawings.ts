@@ -23,13 +23,13 @@ export const ROLL = {
   title: { centre: 18.25, top: 80 },
 };
 
-// Straight film strip (film-strip.png, transparent, resized from a 2400×1340 original; values are % so they
+// Straight film strip (film-strip.webp, transparent, resized from a 2400×1340 original; values are % so they
 // hold for any size). Its two middle frames alternate as tiles, by slot parity. Measured on the original:
 // tile A spans x 695–1202 and tile B x 1202–1660 (divider centres), both cropped to y 380–975; frame windows
 // are transparent at x 715–1183 / 1220–1640, y 492–847; the film itself is opaque from y 400 to 942.
 // Tile B is ~10% narrower and is stretched to tile A's width.
 export const FILM_TILE = {
-  src: "/images/galleria/film-strip.png",
+  src: "/images/galleria/film-strip.webp",
   aspect: "507 / 595",
   tiles: [
     { size: "473.37% 225.21%", position: "36.71% 51.01%" },

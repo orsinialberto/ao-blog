@@ -83,7 +83,7 @@ GPX/KMZ/KML track files live in `public/tracks/` and are served as static assets
 - Folders are listed by `src/lib/cloudinaryFolder.ts` through the Cloudinary Admin API, so the build needs `CLOUDINARY_API_KEY` and `CLOUDINARY_API_SECRET` (`.env.local` locally, repository secrets in `deploy.yml`). Missing credentials or an empty folder fail the build. New photos in a folder appear at the next build.
 - Pure logic lives in `src/lib/galleryLogic.ts` and `src/lib/clotheslineGeometry.ts`, covered by `npm test` (node test runner).
 - Drawings are in `public/images/galleria/`. Positions inside them (frame windows, label, polaroid pegs) are measured on the pixels and stored in `src/config/galleryDrawings.ts`. **When a drawing changes, re-measure the constants on the pixels**, do not adjust by eye.
-- `film-strip.png` (transparent, 4 frames): its two middle frames alternate as tiles by slot parity; tile B is stretched to tile A's width (`FILM_TILE`).
+- `film-strip.webp` (transparent, 4 frames; preloaded by the album page, since it is a CSS background): its two middle frames alternate as tiles by slot parity; tile B is stretched to tile A's width (`FILM_TILE`).
 
 ### Images
 

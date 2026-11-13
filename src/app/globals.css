@@ -1416,15 +1416,27 @@
   z-index: 1;
 }
 
-/* Strips drop in as they scroll into view. Reduced motion shows them at rest. */
+/* Strips drop in: the first ones with an animation (no JavaScript, so they are there before
+   hydration), the others as they scroll into view. Reduced motion shows them at rest. */
+@keyframes film-drop {
+  from {
+    opacity: 0;
+    translate: 0 14px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .film-strip {
-    transition:
-      opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay),
-      translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay);
+  .film-strip-intro {
+    animation: film-drop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) var(--delay) backwards;
   }
 
-  .film-strip:not(.is-visible) {
+  .film-strip:not(.film-strip-intro) {
+    transition:
+      opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+      translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .film-strip:not(.film-strip-intro):not(.is-visible) {
     opacity: 0;
     translate: 0 14px;
   }

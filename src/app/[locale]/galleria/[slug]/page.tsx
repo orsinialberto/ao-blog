@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 
 import { SectionHeader } from "@/components/SectionHeader";
 import { FilmSheet } from "@/components/gallery/FilmSheet";
+import { FILM_TILE } from "@/config/galleryDrawings";
 import { albums } from "@/data/albums";
 import { getGalleryAlbum } from "@/lib/gallery";
 import { getLocaleFromParams } from "@/lib/i18n/routing";
@@ -43,6 +45,8 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
   const locale = await getLocaleFromParams(resolvedParams);
   const album = await getGalleryAlbum(resolvedParams.slug, locale);
   const t = getTranslations(locale).pages.galleryAlbum;
+  // The film is a CSS background: without a preload it is found only after the stylesheet.
+  preload(withBasePath(FILM_TILE.src), { as: "image" });
 
   return (
     <div className="overflow-x-clip">

@@ -50,8 +50,11 @@ const FILM_BEARS = ["wave", "peace", "strong", "lookout"].map(
 );
 const STRIP_TILTS = [-0.5, 0.4, -0.3];
 const STRIP_STAGGER_SECONDS = 0.15;
-// Strips further down drop in on scroll, one at a time: no point in waiting longer.
-const MAX_STAGGERED_STRIPS = 4;
+// The strips on screen at load drop in with a staggered CSS animation, which needs no JavaScript:
+// they show up before hydration. Further down they drop in on scroll, one at a time, with no delay.
+const INTRO_STRIPS = 4;
+// A strip starts dropping in this far below the viewport, so it is there when scrolled to.
+const STRIP_REVEAL_MARGIN = "0px 0px 300px 0px";
 const EAGER_STRIPS = 2;
 
 const MOBILE_QUERY = "(max-width: 767px)";
@@ -340,18 +343,20 @@ interface FilmStripProps {
 }
 
 function FilmStrip({ row, offset, perStrip, photos, photoLabel, onOpen }: FilmStripProps) {
-  const [stripRef, inView] = useInView<HTMLDivElement>({ threshold: 0.2 });
+  const [stripRef, inView] = useInView<HTMLDivElement>({ rootMargin: STRIP_REVEAL_MARGIN });
   const frameCount = perStrip + 1;
   const shift = trackShift(offset, row);
   const style = {
     "--tilt": `${STRIP_TILTS[row % STRIP_TILTS.length]}deg`,
-    "--delay": `${Math.min(row, MAX_STAGGERED_STRIPS) * STRIP_STAGGER_SECONDS}s`,
+    "--delay": `${row * STRIP_STAGGER_SECONDS}s`,
   } as CSSProperties;
+  // Intro strips ignore inView: their animation runs on its own.
+  const reveal = row < INTRO_STRIPS ? " film-strip-intro" : inView ? " is-visible" : "";
 
   return (
     <div
       ref={stripRef}
-      className={`film-strip${inView ? " is-visible" : ""}`}
+      className={`film-strip${reveal}`}
       style={style}
       data-row={row}
     >
