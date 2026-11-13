@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   stripCount,
   slotPhoto,
+  emptyFrameIndex,
   frameSlot,
   trackShift,
   isOnFilmBand,
@@ -19,6 +20,11 @@ test("slotPhoto wraps and leaves trailing frames empty", () => {
   assert.equal(slotPhoto(11, 12, 5), 11); assert.equal(slotPhoto(12, 12, 5), null);
   assert.equal(slotPhoto(14, 12, 5), null); assert.equal(slotPhoto(15, 12, 5), 0);
   assert.equal(slotPhoto(-1, 12, 5), null); assert.equal(slotPhoto(-4, 12, 5), 11);
+});
+test("emptyFrameIndex numbers the trailing frames and survives a full loop", () => {
+  assert.equal(emptyFrameIndex(11, 12, 5), null); assert.equal(emptyFrameIndex(12, 12, 5), 0);
+  assert.equal(emptyFrameIndex(14, 12, 5), 2); assert.equal(emptyFrameIndex(15, 12, 5), null);
+  assert.equal(emptyFrameIndex(27, 12, 5), 0); assert.equal(emptyFrameIndex(-1, 12, 5), 2);
 });
 test("few photos: one strip, each photo once", () => {
   const shown = [0, 1, 2, 3, 4].map((k) => slotPhoto(frameSlot(0, 0, k, 5), 3, 5));

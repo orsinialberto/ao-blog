@@ -1393,6 +1393,14 @@
   pointer-events: none;
 }
 
+/* A bear in a frame that has no photo. */
+.film-bear {
+  position: absolute;
+  padding: 3% 0 0;
+  object-fit: contain;
+  object-position: bottom;
+}
+
 .film-photo {
   position: absolute;
   cursor: zoom-in;

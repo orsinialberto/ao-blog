@@ -18,6 +18,13 @@ export function slotPhoto(slot: number, photoCount: number, perStrip: number): n
   return index < photoCount ? index : null;
 }
 
+// Position of a ribbon slot among the empty trailing frames (0 for the first one), or null if it holds a photo.
+export function emptyFrameIndex(slot: number, photoCount: number, perStrip: number): number | null {
+  const ribbonLength = stripCount(photoCount, perStrip) * perStrip;
+  const index = mod(slot, ribbonLength);
+  return index < photoCount ? null : index - photoCount;
+}
+
 // Unwrapped slot shown in frame k (0..perStrip) of a row; odd rows run right to left.
 export function frameSlot(offset: number, row: number, k: number, perStrip: number): number {
   const base = Math.floor(offset);

@@ -18,6 +18,7 @@ import { useInView } from "@/hooks/useInView";
 import {
   PER_STRIP_DESKTOP,
   PER_STRIP_MOBILE,
+  emptyFrameIndex,
   frameSlot,
   isOnFilmBand,
   parsePhotoParam,
@@ -43,6 +44,10 @@ interface FilmSheetProps {
 }
 
 const PHOTO_PARAM = "foto";
+// The frames left over at the end of the ribbon show a bear each, in this order.
+const FILM_BEARS = ["wave", "peace", "strong", "lookout"].map(
+  (name) => `/images/galleria/film-bears/${name}.webp`,
+);
 const STRIP_TILTS = [-0.5, 0.4, -0.3];
 const STRIP_STAGGER_SECONDS = 0.15;
 // Strips further down drop in on scroll, one at a time: no point in waiting longer.
@@ -367,6 +372,7 @@ function FilmStrip({ row, offset, perStrip, photos, photoLabel, onOpen }: FilmSt
               key={slot}
               slot={slot}
               photoIndex={slotPhoto(slot, photos.length, perStrip)}
+              emptyIndex={emptyFrameIndex(slot, photos.length, perStrip)}
               photos={photos}
               offScreen={offScreen}
               eager={row < EAGER_STRIPS}
@@ -383,6 +389,8 @@ function FilmStrip({ row, offset, perStrip, photos, photoLabel, onOpen }: FilmSt
 interface FilmFrameProps {
   slot: number;
   photoIndex: number | null;
+  /** Set when the frame has no photo: which of the empty trailing frames it is. */
+  emptyIndex: number | null;
   photos: string[];
   offScreen: boolean;
   eager: boolean;
@@ -390,7 +398,16 @@ interface FilmFrameProps {
   onOpen: (index: number) => void;
 }
 
-function FilmFrame({ slot, photoIndex, photos, offScreen, eager, photoLabel, onOpen }: FilmFrameProps) {
+function FilmFrame({
+  slot,
+  photoIndex,
+  emptyIndex,
+  photos,
+  offScreen,
+  eager,
+  photoLabel,
+  onOpen,
+}: FilmFrameProps) {
   const tile = FILM_TILE.tiles[((slot % 2) + 2) % 2];
   const style = {
     aspectRatio: FILM_TILE.aspect,
@@ -399,18 +416,30 @@ function FilmFrame({ slot, photoIndex, photos, offScreen, eager, photoLabel, onO
     "--tile-position": tile.position,
   } as CSSProperties;
 
+  const windowBox = {
+    left: `${FILM_TILE.window.left}%`,
+    top: `${FILM_TILE.window.top}%`,
+    width: `${FILM_TILE.window.width}%`,
+    height: `${FILM_TILE.window.height}%`,
+  };
+
   return (
     <div className="film-frame" style={style} inert={offScreen}>
+      {emptyIndex !== null && (
+        <Image
+          src={withBasePath(FILM_BEARS[emptyIndex % FILM_BEARS.length])}
+          alt=""
+          width={600}
+          height={600}
+          className="film-bear"
+          style={windowBox}
+        />
+      )}
       {photoIndex !== null && (
         <button
           type="button"
           className="film-photo focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-primary"
-          style={{
-            left: `${FILM_TILE.window.left}%`,
-            top: `${FILM_TILE.window.top}%`,
-            width: `${FILM_TILE.window.width}%`,
-            height: `${FILM_TILE.window.height}%`,
-          }}
+          style={windowBox}
           onClick={() => onOpen(photoIndex)}
         >
           <Image
