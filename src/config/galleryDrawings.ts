@@ -6,7 +6,9 @@ import type { ClotheslineDrawing } from "@/lib/clotheslineGeometry";
 // Roll + film (roll.png, 1200×805, resized from the 2400×1610 original). All values in % of the drawing.
 // Measured on the original: frame windows are the transparent areas inside the film borders
 // (x 645–1000, 1032–1564, 1597–2126; y 500 to 875/878/877); the canister's right outline ends at x 634;
-// the label is the transparent front face of the canister, x 267–494, y 389–982.
+// the label is the transparent front face of the canister, x 267–494, y 389–982 (the album's label drawing
+// sits behind it, so the canister's hatching stays on top). The title is centred under the canister: on the
+// 1200px file its outline runs x 121–317 and the lower spool ends at y 557.
 export const ROLL = {
   src: "/images/galleria/roll.png",
   width: 1200,
@@ -18,6 +20,7 @@ export const ROLL = {
   ],
   canEdge: 26.42,
   label: { left: 11.12, top: 24.16, width: 9.5, height: 36.89 },
+  title: { centre: 18.25, top: 80 },
 };
 
 // Straight film strip (film-strip.png, transparent, resized from a 2400×1340 original; values are % so they

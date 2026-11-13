@@ -48,17 +48,20 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
     <div className="overflow-x-clip">
       <div className="mx-auto max-w-6xl px-6 py-8 md:py-12">
         <header
-          className={`relative mb-14 grid place-items-center md:mb-20${album.emblem ? " min-h-44 md:min-h-64" : ""}`}
+          className={`relative mb-14 grid place-items-center md:mb-20 ${album.emblemLarge ? "min-h-64 md:min-h-[26rem]" : "min-h-44 md:min-h-64"}`}
         >
-          {album.emblem && (
-            // Washed out so the title stays readable on top of it.
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-contain bg-center bg-no-repeat opacity-60"
-              style={{ backgroundImage: `url(${withBasePath(album.emblem)})` }}
-            />
+          {/* Multiplied so the drawing's white paper takes the colour of the page. Behind a written title it is
+              washed out, to keep the title readable. */}
+          <div
+            aria-hidden
+            className={`absolute inset-0 bg-contain bg-center bg-no-repeat mix-blend-multiply${album.emblemIsTitle ? "" : " opacity-60"}`}
+            style={{ backgroundImage: `url(${withBasePath(album.emblem)})` }}
+          />
+          {album.emblemIsTitle ? (
+            <h2 className="sr-only">{album.title}</h2>
+          ) : (
+            <SectionHeader label={album.title} className="relative mb-0" />
           )}
-          <SectionHeader label={album.title} className="relative mb-0" />
         </header>
         <FilmSheet
           title={album.title}

@@ -1249,14 +1249,19 @@
   --roll-motion: 1.4s cubic-bezier(0.45, 0, 0.25, 1);
   --roll-w: 100cqw;
   /* How far a roll overlaps the empty paper of the one above it, as a share of --roll-w. */
-  --roll-overlap: 0.2;
+  --roll-overlap: 0.1;
   display: flex;
   flex-direction: column;
 }
 
-/* The drawing has empty paper above the canister and below the year: rows overlap into it. */
+/* The drawing has empty paper above the canister and below the title: rows overlap into it. */
 .roll-row + .roll-row {
   margin-top: calc(var(--roll-w) * var(--roll-overlap) * -1);
+}
+
+/* The first row has the same empty paper above it (16% of the drawing's height): pull it up under the header. */
+.roll-row:first-child {
+  margin-top: calc(var(--roll-w) * -0.07);
 }
 
 .roll-row {
@@ -1274,7 +1279,7 @@
 @media (width >= 768px) {
   .roll-rows {
     --roll-w: min(640px, calc((100cqw - 2 * var(--roll-gap)) / (1 + 2 * var(--roll-closed))));
-    --roll-overlap: 0.1;
+    --roll-overlap: 0.09;
   }
 
   .roll-row {
@@ -1316,18 +1321,15 @@
   container-type: inline-size;
 }
 
-.roll-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  writing-mode: vertical-rl;
-  rotate: 180deg;
+/* Centred under the canister. The closed slot leaves 12.75cqw to the right of the canister's centre,
+   so a title wider than twice that goes on two lines. */
+.roll-title {
+  translate: -50% 0;
+  width: max-content;
+  max-width: 25cqw;
   text-align: center;
-  /* Two columns of 4.6cqw × 0.95 fit the 9.5cqw-wide label. */
-  font-size: 4.6cqw;
-  line-height: 0.95;
-  mix-blend-mode: multiply;
+  font-size: max(1.125rem, 4.6cqw);
+  line-height: 1;
 }
 
 /* Closed: film rolled into the canister, photos still undeveloped. Reduced motion keeps it open. */

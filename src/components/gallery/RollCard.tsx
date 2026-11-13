@@ -80,6 +80,14 @@ export function RollCard({ album, href }: RollCardProps) {
             </div>
           </div>
           <Image
+            src={withBasePath(album.label)}
+            alt=""
+            width={342}
+            height={891}
+            className="absolute object-cover"
+            style={percentBox(ROLL.label)}
+          />
+          <Image
             src={drawingSrc}
             alt=""
             width={ROLL.width}
@@ -88,8 +96,8 @@ export function RollCard({ album, href }: RollCardProps) {
             style={{ clipPath: `inset(0 ${100 - ROLL.canEdge}% 0 0)` }}
           />
           <span
-            className="roll-label absolute font-hand text-brand-primary"
-            style={percentBox(ROLL.label)}
+            className="roll-title absolute font-hand text-brand-primary"
+            style={{ left: `${ROLL.title.centre}%`, top: `${ROLL.title.top}%` }}
           >
             {album.shortTitle}
           </span>
