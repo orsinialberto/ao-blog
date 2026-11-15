@@ -1391,8 +1391,9 @@
 .film-strip {
   overflow: hidden;
   rotate: var(--tilt);
-  /* Horizontal touch drags move the film; vertical ones still scroll the page, pinches still zoom. */
-  touch-action: pan-y pinch-zoom;
+  /* Horizontal touch drags move the film (FilmSheet also cancels the scroll in JavaScript);
+     vertical ones still scroll the page. Only plain values: Safari drops "pinch-zoom". */
+  touch-action: pan-y;
   /* A long press must not select, open the image callout or start a drag (iPad):
      each of these cancels the touch mid-drag. */
   user-select: none;

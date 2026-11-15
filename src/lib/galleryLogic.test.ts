@@ -6,7 +6,9 @@ import {
   emptyFrameIndex,
   frameSlot,
   trackShift,
+  easeTowards,
   hoverVelocity,
+  releaseVelocity,
   isOnFilmBand,
   parsePhotoParam,
   pickHomePhotos,
@@ -44,6 +46,24 @@ test("hoverVelocity runs towards the mouse side, both ways, still in the middle"
   // Odd rows run the other way, so the sign flips.
   assert.equal(hoverVelocity(1, 1, 1, 0.2), -1);
   assert.equal(hoverVelocity(0, 1, 1, 0.2), 1);
+});
+
+test("easeTowards closes the gap exponentially", () => {
+  assert.equal(easeTowards(5, 5, 0.1, 0.2), 5);
+  assert.equal(easeTowards(0, 1, 0, 0.2), 0);
+  assert.ok(Math.abs(easeTowards(0, 1, 0.2, 0.2) - (1 - Math.exp(-1))) < 1e-12);
+});
+
+test("releaseVelocity measures the last samples and is 0 after a pause", () => {
+  const samples = [
+    { time: 0, value: 0 },
+    { time: 900, value: 1 },
+    { time: 950, value: 1.5 },
+    { time: 1000, value: 2 },
+  ];
+  assert.equal(releaseVelocity(samples, 1000, 100), 10);
+  assert.equal(releaseVelocity(samples, 1300, 100), 0);
+  assert.equal(releaseVelocity([], 0, 100), 0);
 });
 
 test("isOnFilmBand", () => {

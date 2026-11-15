@@ -48,6 +48,27 @@ export function hoverVelocity(xFraction: number, row: number, maxSpeed: number, 
   return maxSpeed * strength * toRight * (row % 2 === 0 ? 1 : -1);
 }
 
+// Moves value towards target, covering the share of the gap an exponential ease of time
+// constant tau (seconds) covers in dt: the same feel at any frame rate.
+export function easeTowards(value: number, target: number, dt: number, tau: number): number {
+  return target + (value - target) * Math.exp(-dt / tau);
+}
+
+// Speed (units per second) at the end of a drag, from its recent samples (time in ms, oldest first):
+// the slope over the samples in the last windowMs, 0 if the finger stood still before letting go.
+export function releaseVelocity(
+  samples: { time: number; value: number }[],
+  now: number,
+  windowMs: number,
+): number {
+  const recent = samples.filter((sample) => now - sample.time <= windowMs);
+  if (recent.length < 2) return 0;
+  const first = recent[0];
+  const last = recent[recent.length - 1];
+  const elapsed = last.time - first.time;
+  return elapsed > 0 ? ((last.value - first.value) * 1000) / elapsed : 0;
+}
+
 export function isOnFilmBand(yFraction: number, band: { top: number; bottom: number }): boolean {
   return yFraction > band.top && yFraction < band.bottom;
 }
