@@ -38,6 +38,16 @@ export function trackShift(offset: number, row: number): number {
   return row % 2 === 0 ? -frac : frac - 1;
 }
 
+// Hover speed in frames per second for a mouse at xFraction (0 left, 1 right) of a row's strip.
+// The film slides towards the side the mouse is on, faster near the edge, still in the middle.
+// Even rows slide left as the offset grows, odd rows right: the sign follows the row.
+export function hoverVelocity(xFraction: number, row: number, maxSpeed: number, deadZone: number): number {
+  const fromCenter = Math.min(Math.max(xFraction, 0), 1) * 2 - 1;
+  const strength = Math.max(Math.abs(fromCenter) - deadZone, 0) / (1 - deadZone);
+  const toRight = fromCenter > 0 ? 1 : -1;
+  return maxSpeed * strength * toRight * (row % 2 === 0 ? 1 : -1);
+}
+
 export function isOnFilmBand(yFraction: number, band: { top: number; bottom: number }): boolean {
   return yFraction > band.top && yFraction < band.bottom;
 }

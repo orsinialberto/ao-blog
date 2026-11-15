@@ -20,6 +20,7 @@ import {
   PER_STRIP_MOBILE,
   emptyFrameIndex,
   frameSlot,
+  hoverVelocity,
   isOnFilmBand,
   parsePhotoParam,
   slotPhoto,
@@ -58,8 +59,10 @@ const EAGER_STRIPS = 2;
 
 const MOBILE_QUERY = "(max-width: 767px)";
 
-// Hover drive speed, in frames per second.
-const HOVER_SPEED = 0.45;
+// Hover drive speed at the strip's edges, in frames per second.
+const HOVER_MAX_SPEED = 0.9;
+// Fraction of the half-strip around the middle where the hover drive stands still.
+const HOVER_DEAD_ZONE = 0.15;
 // rAF pauses in background tabs: cap a single step so the ribbon does not jump on return.
 const MAX_STEP_SECONDS = 0.1;
 // A touch that moves less than this is a tap, not a drag.
@@ -117,18 +120,24 @@ function trackTransform(offset: number, row: number, frameCount: number) {
   return `translateX(${(trackShift(offset, row) * 100) / frameCount}%)`;
 }
 
-/** The hover drive runs only while the mouse is on the dark film: not on a photo,
-    not on the paper above/below it, not between strips. */
-function isOverFilm(element: Element | null, clientY: number) {
-  if (!element || element.closest(".film-photo")) return false;
+/** Hover drive speed for the mouse at (clientX, clientY), towards the side of the strip it is on.
+    It runs only while the mouse is on the dark film: not on a photo, not on the paper
+    above/below it, not between strips (0 there). */
+function filmVelocity(element: Element | null, clientX: number, clientY: number) {
+  if (!element || element.closest(".film-photo")) return 0;
   const frame = element.closest(".film-frame");
-  if (!frame) return false;
-  const box = frame.getBoundingClientRect();
-  return isOnFilmBand((clientY - box.top) / box.height, FILM_TILE.band);
+  const strip = element.closest<HTMLElement>(".film-strip");
+  if (!frame || !strip) return 0;
+  const frameBox = frame.getBoundingClientRect();
+  if (!isOnFilmBand((clientY - frameBox.top) / frameBox.height, FILM_TILE.band)) return 0;
+  const stripBox = strip.getBoundingClientRect();
+  const xFraction = (clientX - stripBox.left) / stripBox.width;
+  return hoverVelocity(xFraction, Number(strip.dataset.row), HOVER_MAX_SPEED, HOVER_DEAD_ZONE);
 }
 
 interface Drag {
   pointerId: number;
+  strip: HTMLElement;
   row: number;
   startX: number;
   startY: number;
@@ -171,13 +180,17 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
     }
 
     function tick(time: number) {
+      // The mouse may be still while a photo slides under it: stop on the frame it arrives.
+      const velocity = filmVelocity(document.elementFromPoint(mouseX, mouseY), mouseX, mouseY);
+      if (velocity === 0) {
+        setMoving(false);
+        return;
+      }
       if (lastTime !== null) {
-        moveTo(live + HOVER_SPEED * Math.min((time - lastTime) / 1000, MAX_STEP_SECONDS));
+        moveTo(live + velocity * Math.min((time - lastTime) / 1000, MAX_STEP_SECONDS));
       }
       lastTime = time;
       animationFrame = requestAnimationFrame(tick);
-      // The mouse may be still while a photo slides under it: stop on the frame it arrives.
-      if (!isOverFilm(document.elementFromPoint(mouseX, mouseY), mouseY)) setMoving(false);
     }
 
     function setMoving(moving: boolean) {
@@ -199,6 +212,7 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
       if (!strip || !track) return;
       drag = {
         pointerId: event.pointerId,
+        strip,
         row: Number(strip.dataset.row),
         startX: event.clientX,
         startY: event.clientY,
@@ -215,6 +229,11 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
         // Vertical moves are page scroll (touch-action: pan-y); the browser cancels the pointer.
         if (Math.abs(dx) < TAP_SLOP_PX || Math.abs(dx) < Math.abs(dy)) return;
         dragged = true;
+        // The touch is aimed at the frame under the finger, and frames are keyed by slot:
+        // after a step or two that frame unmounts and its events no longer reach the sheet,
+        // so the drag would freeze. The strip stays mounted; it receives the rest of the touch.
+        // (Captured only now: a capture from the start would retarget a tap's click.)
+        drag.strip.setPointerCapture(drag.pointerId);
       }
       // Even rows run left as the offset grows, odd rows run right: the film follows the finger.
       const frames = (drag.row % 2 === 0 ? -dx : dx) / drag.frameWidth;
@@ -229,7 +248,8 @@ function useRibbonOffset(sheetRef: RefObject<HTMLDivElement | null>) {
     function onMouseMove(event: PointerEvent) {
       mouseX = event.clientX;
       mouseY = event.clientY;
-      setMoving(!reducedMotion.matches && isOverFilm(event.target as Element, event.clientY));
+      const velocity = filmVelocity(event.target as Element, event.clientX, event.clientY);
+      setMoving(!reducedMotion.matches && velocity !== 0);
     }
 
     function onPointerEnd(event: PointerEvent) {

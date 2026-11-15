@@ -6,6 +6,7 @@ import {
   emptyFrameIndex,
   frameSlot,
   trackShift,
+  hoverVelocity,
   isOnFilmBand,
   parsePhotoParam,
   pickHomePhotos,
@@ -35,6 +36,16 @@ test("serpentine rows", () => {
   assert.equal(frameSlot(2.4, 0, 0, 5), 2); assert.equal(frameSlot(2.4, 1, 5, 5), 7);
   assert.ok(Math.abs(trackShift(2.4, 0) + 0.4) < 1e-9); assert.ok(Math.abs(trackShift(2.4, 1) + 0.6) < 1e-9);
 });
+test("hoverVelocity runs towards the mouse side, both ways, still in the middle", () => {
+  assert.equal(hoverVelocity(1, 0, 1, 0.2), 1);
+  assert.equal(hoverVelocity(0, 0, 1, 0.2), -1);
+  assert.equal(hoverVelocity(0.55, 0, 1, 0.2), 0);
+  assert.equal(hoverVelocity(0.75, 0, 1, 0), 0.5);
+  // Odd rows run the other way, so the sign flips.
+  assert.equal(hoverVelocity(1, 1, 1, 0.2), -1);
+  assert.equal(hoverVelocity(0, 1, 1, 0.2), 1);
+});
+
 test("isOnFilmBand", () => {
   const band = { top: 0.073, bottom: 0.937 };
   assert.equal(isOnFilmBand(0.5, band), true); assert.equal(isOnFilmBand(0.05, band), false);
