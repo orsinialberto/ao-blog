@@ -12,7 +12,7 @@ import {
   type RefObject,
 } from "react";
 import { flushSync } from "react-dom";
-import { Lightbox } from "@/components/Lightbox";
+import { AlbumViewer, albumThumbnailUrl } from "@/components/gallery/AlbumViewer";
 import { FILM_TILE } from "@/config/galleryDrawings";
 import { useInView } from "@/hooks/useInView";
 import {
@@ -26,7 +26,6 @@ import {
   stripCount,
   trackShift,
 } from "@/lib/galleryLogic";
-import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 import { withBasePath } from "@/lib/paths";
 
 interface FilmSheetLabels {
@@ -80,10 +79,6 @@ function usePerStrip() {
     () => false,
   );
   return isMobile ? PER_STRIP_MOBILE : PER_STRIP_DESKTOP;
-}
-
-function mod(n: number, m: number) {
-  return ((n % m) + m) % m;
 }
 
 function photoAlt(template: string, title: string, index: number) {
@@ -316,19 +311,17 @@ function AlbumLightbox({ title, photos, labels }: FilmSheetProps) {
   const searchParams = useSearchParams();
   const openIndex = parsePhotoParam(searchParams.get(PHOTO_PARAM), photos.length);
   if (openIndex === null) return null;
-  const canBrowse = photos.length > 1;
 
   return (
-    <Lightbox
-      src={photos[openIndex]}
-      alt={photoAlt(labels.photoAlt, title, openIndex)}
+    <AlbumViewer
+      photos={photos}
+      initialIndex={openIndex}
+      photoLabel={(index) => photoAlt(labels.photoAlt, title, index)}
+      onBrowse={browsePhoto}
       onClose={closePhoto}
-      onPrevious={canBrowse ? () => browsePhoto(mod(openIndex - 1, photos.length)) : undefined}
-      onNext={canBrowse ? () => browsePhoto(mod(openIndex + 1, photos.length)) : undefined}
       closeLabel={labels.close}
       previousLabel={labels.previous}
       nextLabel={labels.next}
-      swipe
     />
   );
 }
@@ -448,7 +441,7 @@ function FilmFrame({
           onClick={() => onOpen(photoIndex)}
         >
           <Image
-            src={optimizeCloudinaryUrl(photos[photoIndex], { width: 400 })}
+            src={albumThumbnailUrl(photos[photoIndex])}
             alt={photoLabel(photoIndex)}
             width={400}
             height={312}

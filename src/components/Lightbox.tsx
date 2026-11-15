@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "@/components/maps/icons";
-import { useEffect, useCallback, useRef, type ReactNode, type TouchEvent } from "react";
-import { optimizeCloudinaryUrl } from "@/lib/imageOptimization";
+import { useCallback, useRef, type ReactNode } from "react";
+import { useModalDialog } from "@/hooks/useModalDialog";
+import { cloudinarySrcSet, optimizeCloudinaryUrl } from "@/lib/imageOptimization";
 
 interface LightboxProps {
   src: string;
@@ -17,25 +17,10 @@ interface LightboxProps {
   footer?: ReactNode;
   loading?: boolean;
   onImageLoad?: () => void;
-  /** Horizontal touch swipes go to the previous/next photo. */
-  swipe?: boolean;
 }
 
-const SWIPE_DISTANCE = 50;
-
-function trapFocus(e: KeyboardEvent, dialog: HTMLElement | null) {
-  const focusable = dialog?.querySelectorAll<HTMLElement>("button");
-  if (!focusable?.length) return;
-  const first = focusable[0];
-  const last = focusable[focusable.length - 1];
-  if (e.shiftKey && document.activeElement === first) {
-    e.preventDefault();
-    last.focus();
-  } else if (!e.shiftKey && document.activeElement === last) {
-    e.preventDefault();
-    first.focus();
-  }
-}
+/** Widths offered to the browser for a full-screen photo: it picks the one the screen needs. */
+export const FULL_PHOTO_WIDTHS = [640, 1080, 1600, 2048];
 
 export function Lightbox({
   src,
@@ -49,58 +34,20 @@ export function Lightbox({
   footer,
   loading,
   onImageLoad,
-  swipe = false,
 }: LightboxProps) {
   const showNavigation = Boolean(onPrevious && onNext);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-
-  const handleTouchStart = (e: TouchEvent) => {
-    const touch = e.touches[0];
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
-  };
-
-  const handleTouchEnd = (e: TouchEvent) => {
-    const start = touchStartRef.current;
-    touchStartRef.current = null;
-    if (!start) return;
-    const touch = e.changedTouches[0];
-    const dx = touch.clientX - start.x;
-    const dy = touch.clientY - start.y;
-    if (Math.abs(dx) <= SWIPE_DISTANCE || Math.abs(dx) <= Math.abs(dy)) return;
-    if (dx > 0) onPrevious?.();
-    else onNext?.();
-  };
 
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
       else if (e.key === "ArrowLeft" && onPrevious) onPrevious();
       else if (e.key === "ArrowRight" && onNext) onNext();
-      else if (e.key === "Tab") trapFocus(e, dialogRef.current);
     },
     [onClose, onPrevious, onNext]
   );
-
-  useEffect(() => {
-    const opener = document.activeElement;
-    closeButtonRef.current?.focus();
-    return () => {
-      if (opener instanceof HTMLElement) opener.focus();
-    };
-  }, []);
-
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [handleKeyDown]);
+  useModalDialog(dialogRef, closeButtonRef, handleKeyDown);
 
   return (
     <div
@@ -108,16 +55,14 @@ export function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={alt}
-      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95 backdrop-blur"
+      className="fixed inset-0 z-9999 flex items-center justify-center bg-black/95"
       onClick={onClose}
-      onTouchStart={swipe ? handleTouchStart : undefined}
-      onTouchEnd={swipe ? handleTouchEnd : undefined}
     >
       <button
         ref={closeButtonRef}
         type="button"
         onClick={onClose}
-        className="absolute right-6 top-6 z-10 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        className="absolute right-6 top-6 z-10 border border-white/40 bg-black/60 px-4 py-2 text-sm font-semibold text-white transition hover:bg-black/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
       >
         {closeLabel}
       </button>
@@ -127,7 +72,7 @@ export function Lightbox({
           <button
             type="button"
             aria-label={previousLabel}
-            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 [&>svg]:size-6 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="pointer-events-auto bg-black/60 p-4 text-white transition hover:bg-black/80 [&>svg]:size-6 hover:-translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={(e) => {
               e.stopPropagation();
               onPrevious?.();
@@ -138,7 +83,7 @@ export function Lightbox({
           <button
             type="button"
             aria-label={nextLabel}
-            className="pointer-events-auto bg-black/60 p-4 text-white backdrop-blur transition hover:bg-black/80 [&>svg]:size-6 hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="pointer-events-auto bg-black/60 p-4 text-white transition hover:bg-black/80 [&>svg]:size-6 hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             onClick={(e) => {
               e.stopPropagation();
               onNext?.();
@@ -155,17 +100,16 @@ export function Lightbox({
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-white/30 border-t-white" />
           </div>
         )}
-        <Image
-          src={optimizeCloudinaryUrl(src, { width: 1920, quality: 90 })}
+        {/* A plain img: next/image is unoptimized (static export) and would drop the srcset. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={optimizeCloudinaryUrl(src, { width: 1600, quality: "auto" })}
+          srcSet={cloudinarySrcSet(src, FULL_PHOTO_WIDTHS)}
+          sizes="90vw"
           alt={alt}
-          width={1920}
-          height={1080}
           className={`max-h-[90vh] max-w-[90vw] object-contain ${loading ? "opacity-0" : "opacity-100"} transition-opacity duration-300`}
           onClick={(e) => e.stopPropagation()}
           onLoad={onImageLoad}
-          quality={90}
-          sizes="90vw"
-          priority
         />
       </div>
 

@@ -6,7 +6,7 @@ export function optimizeCloudinaryUrl(
   url: string,
   options: {
     width?: number;
-    quality?: number;
+    quality?: number | "auto";
     format?: "auto" | "webp" | "avif" | "jpg";
   } = {}
 ): string {
@@ -39,6 +39,16 @@ export function optimizeCloudinaryUrl(
   return `${beforeUpload}${transformations}${afterUpload}`;
 }
 
+
+/**
+ * A `srcset` of a Cloudinary image at the given widths, at automatic quality, so the browser
+ * downloads only what the screen needs. Few fixed widths keep Cloudinary's derived-image cache warm.
+ */
+export function cloudinarySrcSet(url: string, widths: number[]): string {
+  return widths
+    .map((width) => `${optimizeCloudinaryUrl(url, { width, quality: "auto" })} ${width}w`)
+    .join(", ");
+}
 
 /** Cloudinary cloud that hosts the on-the-road bike photos. */
 export const CLOUDINARY_CLOUD_NAME = "dx6hrvg6l";
