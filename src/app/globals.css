@@ -1316,6 +1316,28 @@
   }
 }
 
+/* Tablets (and reduced motion), where there is no hover accordion: two rolls per line. The rows of three
+   dissolve into one wrapping flow, and every roll overlaps the empty paper of the one above it. The first
+   line overlaps the header less: the padding gives back the difference. */
+@media (width >= 768px) and (hover: none), (width >= 768px) and (prefers-reduced-motion: reduce) {
+  .roll-rows {
+    --roll-w: calc((100cqw - var(--roll-gap)) / 2);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: var(--roll-gap);
+    padding-top: calc(var(--roll-w) * (var(--roll-overlap) - 0.07));
+  }
+
+  .roll-row {
+    display: contents;
+  }
+
+  .roll-slot {
+    margin-top: calc(var(--roll-w) * var(--roll-overlap) * -1);
+  }
+}
+
 /* Film roll card: cqw units below are relative to the card width. */
 .roll-card {
   container-type: inline-size;
