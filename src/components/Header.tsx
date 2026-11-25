@@ -3,13 +3,14 @@
 import { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { useTranslations } from "@/i18n/hooks";
+import { useLocale, useTranslations } from "@/i18n/hooks";
 import { LocalizedLink } from "./LocalizedLink";
 import { WigglyText } from "./WigglyText";
 import { HandHighlight } from "./HandHighlight";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { Logo } from "./Logo";
 import { removeLocaleFromPath } from "@/lib/i18n/routing";
+import { hubUrl, staysOnPage } from "@/lib/homeNav";
 
 const baseLinkClass = "font-hand text-lg uppercase tracking-widest pb-1";
 
@@ -24,6 +25,7 @@ const icons = {
 export function Header() {
   const t = useTranslations();
   const pathname = usePathname();
+  const locale = useLocale();
 
   const cleanPath = removeLocaleFromPath(pathname || "");
 
@@ -39,6 +41,13 @@ export function Header() {
     { href: "/galleria", label: t.navigation.links.gallery, icon: icons.gallery },
   ];
 
+  const scrollUpIfHome = (href: string) => (event: React.MouseEvent) => {
+    if (href !== "/" || !staysOnPage(cleanPath, event)) return;
+    event.preventDefault();
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: calm ? "auto" : "smooth" });
+  };
+
   const linkColor = "transition-colors text-brand-muted hover:text-brand-primary";
 
   const activeLinkClass = "font-semibold text-brand-primary";
@@ -49,19 +58,20 @@ export function Header() {
     >
       {/* Logo, nav and language switcher share one row: 20px from the top (pt-5 / top-5), 44px tall (h-11). */}
       <div className="site-top-bar relative mx-auto flex max-w-screen-2xl items-center justify-center px-8 pt-5 pb-3 md:pb-0">
-        <LocalizedLink
-          href="/"
-          aria-label={t.navigation.links.home}
+        <a
+          href={hubUrl(locale)}
+          aria-label={t.navigation.hub}
           className="absolute left-8 top-5 text-brand-primary"
         >
           <Logo className="h-11 w-auto" />
-        </LocalizedLink>
+        </a>
 
         <nav className="hidden h-11 items-center gap-10 md:flex">
           {links.map((l) => (
             <LocalizedLink
               key={l.href}
               href={l.href}
+              onClick={scrollUpIfHome(l.href)}
               className={`${baseLinkClass} ${linkColor} ${isActive(l.href) ? activeLinkClass : ""}`}
             >
               <span className="relative inline-block px-[0.4em]">
@@ -88,6 +98,7 @@ export function Header() {
           <LocalizedLink
             key={l.href}
             href={l.href}
+            onClick={scrollUpIfHome(l.href)}
             aria-label={l.label}
             aria-current={isActive(l.href) ? "page" : undefined}
             className={`flex h-12 w-16 items-center justify-center rounded-full transition-[background-color,opacity] ${

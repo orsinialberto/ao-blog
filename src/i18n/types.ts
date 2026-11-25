@@ -23,6 +23,7 @@ export interface TranslationMessages {
   navigation: {
     menu: string;
     close: string;
+    hub: string;
     links: {
       home: string;
       travels: string;
